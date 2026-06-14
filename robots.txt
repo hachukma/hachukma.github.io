@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+Disallow: /admin/
+Disallow: /admin-login.php
+Disallow: /public/
+
+
+Sitemap: https://hachukmascript.online/sitemap.xml

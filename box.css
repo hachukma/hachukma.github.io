@@ -1,0 +1,346 @@
+@font-face {
+    font-family: "NewScript";
+    src: url("../Font/hachukma.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    
+}
+
+td {
+    font-family: "NewScript", sans-serif;
+}
+
+.thang-script-box {
+    background: linear-gradient(135deg, #f8f6f0, #e8e4d8);
+    border: 2px solid #d6c7a8;
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+.thang-script-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #8b5a2b, #d6c7a8, #8b5a2b);
+}
+
+.thang-script-box h2 {
+    color: #5d4037;
+    font-size: 1.8rem;
+    margin: 0 0 1rem 0;
+    font-weight: 600;
+    text-align: center;
+    border-bottom: 2px solid #d6c7a8;
+    padding-bottom: 0.5rem;
+}
+
+.thang-script-box p {
+    color: #5d4037;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 1rem 0;
+    text-align: justify;
+}
+
+.thang-script-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.thang-vowels, .thang-consonants {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.thang-vowels h3, .thang-consonants h3 {
+    color: #5d4037;
+    font-size: 1.2rem;
+    margin: 0 0 1rem 0;
+    text-align: center;
+    border-bottom: 1px solid #d6c7a8;
+    padding-bottom: 0.5rem;
+}
+
+.phonetic-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    table-layout: fixed;
+}
+
+.phonetic-table th,
+.phonetic-table td {
+    padding: 0.5rem;
+    text-align: center;
+    border: 1px solid #d6c7a8;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.phonetic-table th {
+    background-color: #f0e6d2;
+    color: #5d4037;
+    font-weight: 600;
+}
+
+.phonetic-table td {
+    background-color: #faf7f0;
+}
+
+/* Special handling for consonant table with many columns */
+.thang-consonants .phonetic-table {
+    min-width: 100%;
+}
+
+.thang-consonants .phonetic-table th,
+.thang-consonants .phonetic-table td {
+    min-width: 60px;
+    font-size: 0.85rem;
+}
+
+.phonetic-note {
+    font-size: 0.9rem;
+    color: #8d6e63;
+    font-style: italic;
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+.thang-glyph-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    flex-wrap: wrap;
+}
+
+.thang-glyph {
+    font-family: "NewScript", sans-serif;
+    font-size: 2.5rem;
+    color: #5d4037;
+    background: #f0e6d2;
+    border-radius: 8px;
+    padding: 0.5rem;
+    min-width: 60px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+} 
+
+@media (max-width: 768px) {
+    .thang-script-box {
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+    }
+    
+    .thang-script-box h2 {
+        font-size: 1.5rem;
+    }
+    
+    .thang-script-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .thang-vowels, .thang-consonants {
+        padding: 1rem;
+    }
+    
+    .thang-glyph {
+        font-size: 2rem;
+        min-width: 50px;
+    }
+    
+    .phonetic-table {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .thang-script-box {
+        padding: 1rem;
+        margin: 1rem 0;
+    }
+    
+    .thang-script-box h2 {
+        font-size: 1.3rem;
+    }
+    
+    .thang-glyph {
+        font-size: 1.8rem;
+        min-width: 45px;
+    }
+    
+    .phonetic-table {
+        font-size: 0.8rem;
+    }
+    
+    .phonetic-table th,
+    .phonetic-table td {
+        padding: 0.3rem;
+    }
+}
+
+/* Diphthongs Section Styling */
+.diphthongs-section {
+    background: linear-gradient(135deg, #f8f6f0, #e8e4d8);
+    border: 2px solid #d6c7a8;
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+.diphthongs-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #8b5a2b, #d6c7a8, #8b5a2b);
+}
+
+.diphthongs-section h2 {
+    color: #5d4037;
+    font-size: 1.8rem;
+    margin: 0 0 1.5rem 0;
+    font-weight: 600;
+    text-align: center;
+    border-bottom: 2px solid #d6c7a8;
+    padding-bottom: 0.5rem;
+}
+
+.diphthongs-section h3 {
+    color: #5d4037;
+    font-size: 1.3rem;
+    margin: 1.5rem 0 0.75rem 0;
+    font-weight: 600;
+}
+
+.diphthongs-section p {
+    color: #5d4037;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0.75rem 0;
+}
+
+.diphthongs-section ul {
+    color: #5d4037;
+    margin: 0.75rem 0;
+    padding-left: 1.5rem;
+}
+
+.diphthongs-section li {
+    margin: 0.25rem 0;
+    line-height: 1.5;
+}
+
+.diphthong-info,
+.syllables-info,
+.consonant-clusters,
+.tone-info {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.examples {
+    font-style: italic;
+    color: #8d6e63;
+    background-color: #faf7f0;
+    padding: 0.75rem;
+    border-radius: 6px;
+    border-left: 3px solid #d6c7a8;
+    margin: 0.75rem 0;
+}
+
+.tone-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    table-layout: fixed;
+}
+
+.tone-table th,
+.tone-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border: 1px solid #d6c7a8;
+}
+
+.tone-table th {
+    background-color: #f0e6d2;
+    color: #5d4037;
+    font-weight: 600;
+}
+
+.tone-table td {
+    background-color: #faf7f0;
+}
+
+/* Mobile responsiveness for diphthongs section */
+@media (max-width: 768px) {
+    .diphthongs-section {
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+    }
+    
+    .diphthongs-section h2 {
+        font-size: 1.5rem;
+    }
+    
+    .diphthongs-section h3 {
+        font-size: 1.2rem;
+    }
+    
+    .diphthong-info,
+    .syllables-info,
+    .consonant-clusters,
+    .tone-info {
+        padding: 1rem;
+        margin: 1rem 0;
+    }
+    
+    .tone-table th,
+    .tone-table td {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .diphthongs-section {
+        padding: 1rem;
+        margin: 1rem 0;
+    }
+    
+    .diphthongs-section h2 {
+        font-size: 1.3rem;
+    }
+    
+    .diphthongs-section h3 {
+        font-size: 1.1rem;
+    }
+    
+    .tone-table th,
+    .tone-table td {
+        padding: 0.3rem;
+        font-size: 0.8rem;
+    }
+}

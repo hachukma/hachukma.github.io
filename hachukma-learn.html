@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Learn Hachukma Script – Hard modes (font only, no English)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- <link rel="canonical" href="https://hachukma.online/public/hachukma-learn.html"> -->
+<link rel="stylesheet" href="learn-hachukma.css">
+
+<style>
+@font-face {
+    font-family: "NewScript";
+    src: url("hachukma.woff") format("woff"); 
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <div class="nav-container">
+    <button class="back-btn" onclick="goHome()">← Back to Home</button>
+    <h1>Learn <span>Hachukma script</span></h1>
+    <div class="nav-info">Interactive Typing Practice</div>
+    <div class="nav-tabs">
+      <button class="nav-tab active" onclick="showSection('letters')">Letters</button>
+      <button class="nav-tab" onclick="showSection('numbers')">Numbers</button>
+  
+    </div>
+  </div>
+</div>
+
+<!-- LETTERS SECTION (normal, with English after slash) -->
+<div id="lettersSection" class="section active">
+  <div class="header">
+    <div class="pageTitle">Fill the Missing Letters</div>
+    <div class="subtitle">Choose the correct Hachukma character to complete each word</div>
+  </div>
+  <div style="max-width:1400px; margin:0 auto; padding:20px;">
+    <!-- all original letter boxes (with slash + English) -->
+    <div class="keyboardBox" data-correct="thɘng"><div class="wordDisplay">th_ng/thɘng</div><button class="key" onclick="checkKey(this, '\uE023')">&#xE023;</button><button class="key" onclick="checkKey(this, '\uE00A')">&#xE00A;</button><button class="key" onclick="checkKey(this, '\uE012')">&#xE012;</button><button class="key" onclick="checkKey(this, '\uE01C')">&#xE01C;</button><button class="key" onclick="checkKey(this, '\uE011')">&#xE011;</button></div>
+    <div class="keyboardBox" data-correct="chɘng"><div class="wordDisplay">ch_ng/chɘng</div><button class="key" onclick="checkKey(this, '\uE023')">&#xE023;</button><button class="key" onclick="checkKey(this, '\uE00C')">&#xE00C;</button><button class="key" onclick="checkKey(this, '\uE017')">&#xE017;</button><button class="key" onclick="checkKey(this, '\uE01D')">&#xE01D;</button><button class="key" onclick="checkKey(this, '\uE014')">&#xE014;</button></div>
+    <div class="keyboardBox" data-correct="norok"><div class="wordDisplay">n_r_k/norok</div><button class="key" onclick="checkKey(this, '\uE017')">&#xE017;</button><button class="key" onclick="checkKey(this, '\uE018')">&#xE018;</button><button class="key" onclick="checkKey(this, '\uE01B')">&#xE01B;</button><button class="key" onclick="checkKey(this, '\uE014')">&#xE014;</button></div>
+    <div class="keyboardBox" data-correct="berai"><div class="wordDisplay">b_rai/berai</div><button class="key" onclick="checkKey(this, '\uE01B')">&#xE00B;</button><button class="key" onclick="checkKey(this, '\uE01B')">&#xE01B;</button><button class="key" onclick="checkKey(this, '\uE00E')">&#xE00E;</button><button class="key" onclick="checkKey(this, '\uE012')">&#xE012;</button></div>
+    <div class="keyboardBox" data-correct="biyang"><div class="wordDisplay">biy_ng/biyang</div><button class="key" onclick="checkKey(this, '\uE00A')">&#xE00A;</button><button class="key" onclick="checkKey(this, '\uE016')">&#xE016;</button><button class="key" onclick="checkKey(this, '\uE012')">&#xE012;</button><button class="key" onclick="checkKey(this, '\uE011')">&#xE011;</button></div>
+    <div class="keyboardBox" data-correct="ayang"><div class="wordDisplay">a_ang/ayang</div><button class="key" onclick="checkKey(this, '\uE022')">&#xE022;</button><button class="key" onclick="checkKey(this, '\uE016')">&#xE016;</button><button class="key" onclick="checkKey(this, '\uE012')">&#xE012;</button><button class="key" onclick="checkKey(this, '\uE011')">&#xE011;</button></div>
+    <div class="keyboardBox" data-correct="ang"><div class="wordDisplay">a__/ang</div><button class="key" onclick="checkKey(this, '\uE021')">&#xE021;</button><button class="key" onclick="checkKey(this, '\uE00F')">&#xE00F;</button><button class="key" onclick="checkKey(this, '\uE018')">&#xE018;</button><button class="key" onclick="checkKey(this, '\uE015')">&#xE015;</button><button class="key" onclick="checkKey(this, '\uE01D')">&#xE01D;</button></div>
+    <div class="keyboardBox" data-correct="kheto"><div class="wordDisplay">__eto/kheto</div><button class="key" onclick="checkKey(this, '\uE01F')">&#xE01F;</button><button class="key" onclick="checkKey(this, '\uE01C')">&#xE01C;</button><button class="key" onclick="checkKey(this, '\uE016')">&#xE016;</button><button class="key" onclick="checkKey(this, '\uE014')">&#xE014;</button><button class="key" onclick="checkKey(this, '\uE011')">&#xE011;</button></div>
+    <div class="keyboardBox" data-correct="kwthar"><div class="wordDisplay">_ɘthar/kɘthar</div><button class="key" onclick="checkKey(this, '\uE014')">&#xE014;</button><button class="key" onclick="checkKey(this, '\uE016')">&#xE016;</button><button class="key" onclick="checkKey(this, '\uE018')">&#xE018;</button><button class="key" onclick="checkKey(this, '\uE011')">&#xE011;</button></div>
+    <div class="keyboardBox" data-correct="mayung"><div class="wordDisplay">_ayung/mayung</div><button class="key" onclick="checkKey(this, '\uE016')">&#xE016;</button><button class="key" onclick="checkKey(this, '\uE014')">&#xE014;</button><button class="key" onclick="checkKey(this, '\uE00E')">&#xE00E;</button><button class="key" onclick="checkKey(this, '\uE01D')">&#xE01D;</button></div>
+    <div class="keyboardBox" data-correct="mokol"><div class="wordDisplay">mo_ol/mokol</div><button class="key" onclick="checkKey(this, '\uE014')">&#xE014;</button><button class="key" onclick="checkKey(this, '\uE01C')">&#xE01C;</button><button class="key" onclick="checkKey(this, '\uE00E')">&#xE00E;</button><button class="key" onclick="checkKey(this, '\uE018')">&#xE018;</button></div>
+    <div class="keyboardBox" data-correct="yak"><div class="wordDisplay">y_k/yak</div><button class="key" onclick="checkKey(this, '\uE00A')">&#xE00A;</button><button class="key" onclick="checkKey(this, '\uE016')">&#xE016;</button><button class="key" onclick="checkKey(this, '\uE018')">&#xE018;</button><button class="key" onclick="checkKey(this, '\uE00E')">&#xE00E;</button></div>
+    <div class="keyboardBox" data-correct="bokhorok"><div class="wordDisplay">bo_orok/bokhorok</div><button class="key" onclick="checkKey(this, '\uE01F')">&#xE01F;</button><button class="key" onclick="checkKey(this, '\uE016')">&#xE016;</button><button class="key" onclick="checkKey(this, '\uE00E')">&#xE00E;</button><button class="key" onclick="checkKey(this, '\uE018')">&#xE018;</button><button class="key" onclick="checkKey(this, '\uE015')">&#xE015;</button></div>
+  </div>
+</div>
+
+<!-- NUMBERS NORMAL SECTION (with slash + English) -->
+<div id="numbersSection" class="section">
+  <div class="header">
+    <div class="pageTitle">Hachukma Numbers Practice </span></div>
+    <div class="subtitle">Complete the number sequences – wrong answers lock the box</div>
+  </div>
+  <div style="max-width:1400px; margin:0 auto; padding:20px;">
+    <!-- all original number boxes (with slash + English) -->
+    <div class="keyboardBox" data-correct="50"><div class="wordDisplay">5_/50</div><button class="key" onclick="checkNumberKey(this, '\uE000')">&#xE000;</button><button class="key" onclick="checkNumberKey(this, '\uE005')">&#xE005;</button><button class="key" onclick="checkNumberKey(this, '\uE001')">&#xE001;</button><button class="key" onclick="checkNumberKey(this, '\uE009')">&#xE009;</button></div>
+    <div class="keyboardBox" data-correct="76"><div class="wordDisplay">7_/76</div><button class="key" onclick="checkNumberKey(this, '\uE006')">&#xE006;</button><button class="key" onclick="checkNumberKey(this, '\uE007')">&#xE007;</button><button class="key" onclick="checkNumberKey(this, '\uE008')">&#xE008;</button><button class="key" onclick="checkNumberKey(this, '\uE003')">&#xE003;</button></div>
+    <div class="keyboardBox" data-correct="34"><div class="wordDisplay">3_/34</div><button class="key" onclick="checkNumberKey(this, '\uE004')">&#xE004;</button><button class="key" onclick="checkNumberKey(this, '\uE003')">&#xE003;</button><button class="key" onclick="checkNumberKey(this, '\uE002')">&#xE002;</button><button class="key" onclick="checkNumberKey(this, '\uE001')">&#xE001;</button></div>
+    <div class="keyboardBox" data-correct="89"><div class="wordDisplay">8_/89</div><button class="key" onclick="checkNumberKey(this, '\uE009')">&#xE009;</button><button class="key" onclick="checkNumberKey(this, '\uE008')">&#xE008;</button><button class="key" onclick="checkNumberKey(this, '\uE007')">&#xE007;</button><button class="key" onclick="checkNumberKey(this, '\uE006')">&#xE006;</button></div>
+    <div class="keyboardBox" data-correct="12"><div class="wordDisplay">1_/12</div><button class="key" onclick="checkNumberKey(this, '\uE002')">&#xE002;</button><button class="key" onclick="checkNumberKey(this, '\uE001')">&#xE001;</button><button class="key" onclick="checkNumberKey(this, '\uE003')">&#xE003;</button><button class="key" onclick="checkNumberKey(this, '\uE004')">&#xE004;</button></div>
+    <div class="keyboardBox" data-correct="67"><div class="wordDisplay">6_/64</div><button class="key" onclick="checkNumberKey(this, '\uE007')">&#xE007;</button><button class="key" onclick="checkNumberKey(this, '\uE006')">&#xE006;</button><button class="key" onclick="checkNumberKey(this, '\uE008')">&#xE008;</button><button class="key" onclick="checkNumberKey(this, '\uE005')">&#xE005;</button></div>
+    <div class="keyboardBox" data-correct="45"><div class="wordDisplay">4_/45</div><button class="key" onclick="checkNumberKey(this, '\uE005')">&#xE005;</button><button class="key" onclick="checkNumberKey(this, '\uE004')">&#xE004;</button><button class="key" onclick="checkNumberKey(this, '\uE006')">&#xE006;</button><button class="key" onclick="checkNumberKey(this, '\uE003')">&#xE003;</button></div>
+    <div class="keyboardBox" data-correct="90"><div class="wordDisplay">9_/90</div><button class="key" onclick="checkNumberKey(this, '\uE000')">&#xE000;</button><button class="key" onclick="checkNumberKey(this, '\uE009')">&#xE009;</button><button class="key" onclick="checkNumberKey(this, '\uE008')">&#xE008;</button><button class="key" onclick="checkNumberKey(this, '\uE007')">&#xE007;</button></div>
+  </div>
+</div>
+
+
+<!-- FOOTNOTE -->
+<div style="font-family: Arial, sans-serif; font-size: 12px; line-height: 1.5; color: #333; margin: 40px auto; max-width: 800px; padding: 0 20px;">
+  <strong>*Important Note:*</strong><br>
+   The <b>Hachukma Script</b> currently uses characters mapped to the
+    <b>Unicode Private Use Area (PUA)</b>.<br>
+    Since these characters are not yet part of the official Unicode standard,
+    the <b>custom Hachukma font</b> is required for proper display.<br>
+ For universal compatibility across devices and platforms, official Unicode encoding is required.
+</div>
+
+<script>
+// Unicode to English mapping (used for comparison)
+const unicodeMap = {
+  '\uE000': '0', '\uE001': '1', '\uE002': '2', '\uE003': '3',
+  '\uE004': '4', '\uE005': '5', '\uE006': '6', '\uE007': '7',
+  '\uE008': '8', '\uE009': '9', '\uE00A': 'a', '\uE00B': 'b',
+  '\uE00C': 'ch', '\uE00D': 'd', '\uE00E': 'e', '\uE00F': 'ph',
+  '\uE010': 'g', '\uE011': 'h', '\uE012': 'i', '\uE013': 'j',
+  '\uE014': 'k', '\uE015': 'l', '\uE016': 'm', '\uE017': 'n',
+  '\uE018': 'o', '\uE019': 'p', '\uE01A': 'th', '\uE01B': 'r',
+  '\uE01C': 's', '\uE01D': 't', '\uE01E': 'u', '\uE01F': 'kh',
+  '\uE020': 'w', '\uE021': 'ng', '\uE022': 'y', '\uE023': 'ɘ'
+};
+
+// ----- SECTION TOGGLING (4 sections) -----
+function showSection(sectionName) {
+  document.querySelectorAll('.section').forEach(section => section.style.display = 'none');
+  if (sectionName === 'letters') document.getElementById('lettersSection').style.display = 'block';
+  else if (sectionName === 'numbers') document.getElementById('numbersSection').style.display = 'block';
+  else if (sectionName === 'numbersHard') document.getElementById('numbersHardSection').style.display = 'block';
+  else if (sectionName === 'lettersHard') document.getElementById('lettersHardSection').style.display = 'block';
+
+  document.querySelectorAll('.nav-tab').forEach(tab => tab.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(tab => {
+    if (tab.getAttribute('onclick') && tab.getAttribute('onclick').includes(`'${sectionName}'`)) {
+      tab.classList.add('active');
+    }
+  });
+}
+
+// ----- NORMAL LETTERS (with slash, lock on wrong, red) -----
+function checkKey(button, value) {
+  const box = button.closest(".keyboardBox");
+  const wordDisplay = box.querySelector(".wordDisplay");
+  const keys = box.querySelectorAll(".key");
+  const correctWord = box.getAttribute("data-correct");
+
+  let currentDisplay = wordDisplay.textContent.split('/')[0];
+  if (currentDisplay === correctWord) return;
+
+  let current = currentDisplay;
+  let underscoreIndex = current.indexOf("_");
+  if (underscoreIndex === -1) return;
+
+  let letter = unicodeMap[value];
+  let expected = correctWord.substr(underscoreIndex, letter.length);
+
+  if (letter === expected) {
+    const newDisplay = current.substr(0, underscoreIndex) + letter + current.substr(underscoreIndex + letter.length);
+    wordDisplay.textContent = newDisplay + "/" + correctWord;
+    wordDisplay.classList.remove("strike");
+    button.style.backgroundColor = "#28a745";
+    button.style.borderColor = "#28a745";
+    button.style.color = "white";
+
+    if (newDisplay === correctWord) {
+      wordDisplay.classList.add("correctWord");
+      box.style.borderColor = "green";
+      keys.forEach(k => k.disabled = true);
+      checkPageCompletion();
+    } else {
+      box.style.borderColor = "#888";
+    }
+  } else {
+    wordDisplay.classList.add("strike");
+    box.style.borderColor = "red";
+    button.style.backgroundColor = "#dc3545";
+    button.style.borderColor = "#dc3545";
+    button.style.color = "white";
+    keys.forEach(k => k.disabled = true);
+    const correct = box.getAttribute("data-correct");
+    wordDisplay.textContent = wordDisplay.textContent.split('/')[0].replace('_', correct.charAt(wordDisplay.textContent.indexOf('_'))) + "/" + correct;
+    wordDisplay.classList.add("correctWord");
+  }
+}
+
+// ----- NORMAL NUMBERS (with slash, lock on wrong, red) -----
+function checkNumberKey(button, value) {
+  const box = button.closest(".keyboardBox");
+  const wordDisplay = box.querySelector(".wordDisplay");
+  const keys = box.querySelectorAll(".key");
+  const correctNumber = box.getAttribute("data-correct");
+
+  let currentDisplay = wordDisplay.textContent.split('/')[0];
+  if (currentDisplay === correctNumber) return;
+
+  let current = currentDisplay;
+  let underscoreIndex = current.indexOf("_");
+  if (underscoreIndex === -1) return;
+
+  let number = unicodeMap[value];
+  let expected = correctNumber.substr(underscoreIndex, number.length);
+
+  if (number === expected) {
+    const newDisplay = current.substr(0, underscoreIndex) + number + current.substr(underscoreIndex + number.length);
+    wordDisplay.textContent = newDisplay + "/" + correctNumber;
+    wordDisplay.classList.remove("strike");
+    button.style.backgroundColor = "#28a745";
+    button.style.borderColor = "#28a745";
+    button.style.color = "white";
+
+    if (newDisplay === correctNumber) {
+      wordDisplay.classList.add("correctWord");
+      box.style.borderColor = "green";
+      keys.forEach(k => k.disabled = true);
+      checkPageCompletion();
+    } else {
+      box.style.borderColor = "#888";
+    }
+  } else {
+    wordDisplay.classList.add("strike");
+    box.style.borderColor = "red";
+    button.style.backgroundColor = "#dc3545";
+    button.style.borderColor = "#dc3545";
+    button.style.color = "white";
+    keys.forEach(k => k.disabled = true);
+    const correct = box.getAttribute("data-correct");
+    wordDisplay.textContent = wordDisplay.textContent.split('/')[0].replace('_', correct.charAt(wordDisplay.textContent.indexOf('_'))) + "/" + correct;
+    wordDisplay.classList.add("correctWord");
+  }
+}
+
+// ----- HARD NUMBERS (no slash, no English, orange on wrong, no lock) -----
+function checkNumberKeyHard(button, value) {
+  const box = button.closest(".keyboardBox");
+  const wordDisplay = box.querySelector(".wordDisplay");
+  const keys = box.querySelectorAll(".key");
+  const correctNumber = box.getAttribute("data-correct");
+
+  let currentDisplay = wordDisplay.textContent; // no slash, just font
+  if (currentDisplay === correctNumber) return; // already fully correct
+
+  let current = currentDisplay;
+  let underscoreIndex = current.indexOf("_");
+  if (underscoreIndex === -1) return;
+
+  let number = unicodeMap[value];
+  let expected = correctNumber.substr(underscoreIndex, number.length);
+
+  if (number === expected) {
+    const newDisplay = current.substr(0, underscoreIndex) + number + current.substr(underscoreIndex + number.length);
+    wordDisplay.textContent = newDisplay; // only font, no slash
+    wordDisplay.classList.remove("strike");
+    // reset any previous wrong style
+    button.classList.remove('wrong-hard');
+    button.style.backgroundColor = "#28a745";
+    button.style.borderColor = "#28a745";
+    button.style.color = "white";
+
+    if (newDisplay === correctNumber) {
+      wordDisplay.classList.add("correctWord");
+      box.style.borderColor = "green";
+      keys.forEach(k => k.disabled = true);
+      checkPageCompletion();
+    } else {
+      box.style.borderColor = "#888";
+    }
+  } else {
+    // wrong: orange, no lock, no auto-correct
+    wordDisplay.classList.add("strike");
+    box.style.borderColor = "red";
+    // apply orange class (removes any previous green inline)
+    button.classList.add('wrong-hard');
+    button.style.backgroundColor = "";
+    button.style.borderColor = "";
+    button.style.color = "";
+    // keys remain enabled
+  }
+}
+
+// ----- HARD LETTERS (no slash, no English, orange on wrong, no lock) -----
+function checkKeyHard(button, value) {
+  const box = button.closest(".keyboardBox");
+  const wordDisplay = box.querySelector(".wordDisplay");
+  const keys = box.querySelectorAll(".key");
+  const correctWord = box.getAttribute("data-correct");
+
+  let currentDisplay = wordDisplay.textContent; // no slash, just font
+  if (currentDisplay === correctWord) return;
+
+  let current = currentDisplay;
+  let underscoreIndex = current.indexOf("_");
+  if (underscoreIndex === -1) return;
+
+  let letter = unicodeMap[value];
+  let expected = correctWord.substr(underscoreIndex, letter.length);
+
+  if (letter === expected) {
+    const newDisplay = current.substr(0, underscoreIndex) + letter + current.substr(underscoreIndex + letter.length);
+    wordDisplay.textContent = newDisplay; // only font
+    wordDisplay.classList.remove("strike");
+    button.classList.remove('wrong-hard');
+    button.style.backgroundColor = "#28a745";
+    button.style.borderColor = "#28a745";
+    button.style.color = "white";
+
+    if (newDisplay === correctWord) {
+      wordDisplay.classList.add("correctWord");
+      box.style.borderColor = "green";
+      keys.forEach(k => k.disabled = true);
+      checkPageCompletion();
+    } else {
+      box.style.borderColor = "#888";
+    }
+  } else {
+    // wrong: orange, no lock
+    wordDisplay.classList.add("strike");
+    box.style.borderColor = "red";
+    button.classList.add('wrong-hard');
+    button.style.backgroundColor = "";
+    button.style.borderColor = "";
+    button.style.color = "";
+  }
+}
+
+// ----- COMPLETION CHECK (all boxes in active section) -----
+function checkPageCompletion() {
+  const activeSection = document.querySelector('.section.active');
+  if (!activeSection) return;
+  const boxes = activeSection.querySelectorAll('.keyboardBox');
+  const completedBoxes = Array.from(boxes).filter(box => 
+    box.style.borderColor === 'green' || box.style.borderColor === 'rgb(0, 128, 0)'
+  );
+  if (completedBoxes.length === boxes.length && boxes.length > 0) {
+    showEmojiPopup();
+  }
+}
+
+// ----- EMOJI POPUP -----
+function showEmojiPopup() {
+  const emojis = ['🎉', '🌟', '👍', '🎯', '💯', '🔥', '✨', '🏆'];
+  const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+  const popup = document.createElement('div');
+  popup.className = 'emoji-popup';
+  popup.innerHTML = `<div class="emoji-bubble"><span class="emoji">${randomEmoji}</span><span class="emoji-text">Great job!</span></div>`;
+  document.body.appendChild(popup);
+  setTimeout(() => {
+    popup.classList.add('show');
+    setTimeout(() => {
+      popup.classList.remove('show');
+      setTimeout(() => { if (popup.parentNode) popup.parentNode.removeChild(popup); }, 500);
+    }, 2000);
+  }, 100);
+}
+
+// ----- DISABLE RIGHT CLICK AND KEYBOARD -----
+document.addEventListener('contextmenu', e => e.preventDefault()); // disable right-click
+document.addEventListener('keydown', e => {
+  // Allow browser shortcuts (Ctrl, Alt, Meta, F keys, arrows, Tab, Escape)
+  if (e.ctrlKey || e.altKey || e.metaKey || e.key.startsWith('F') || e.key === 'Escape' || e.key === 'Tab' || e.key.startsWith('Arrow')) {
+    return;
+  }
+  // Block all other keys (letters, numbers, space, Enter, etc.)
+  e.preventDefault();
+});
+
+// goHome
+function goHome() { window.location.href = "index.html"; }
+
+// Initialize with letters section
+showSection('letters');
+</script>
+</body>
+</html>

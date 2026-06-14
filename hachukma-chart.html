@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hachukma Alphabet Chart</title>
+
+<style>
+@font-face {
+    font-family: "NewScript";
+    src: url("hachukma.woff") format("woff");
+}
+
+h1 {
+    font-family: "NewScript";
+    font-size: 42px;
+    margin-bottom: 6px;
+    background: linear-gradient(90deg,#ff6b6b,#ff9f1c,#4d96ff);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background: white;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    max-width: 1200px;
+    text-align: center;
+}
+
+
+h2 {
+    font-family: "NewScript";
+    font-size: 18px;
+    color: #6b7280;
+    margin-bottom: 20px;
+}
+
+
+.download-app {
+    display: inline-block;
+    margin-top: 0.9rem;
+    padding: 0.35rem 0.9rem;
+    font-size: 0.9rem;
+    color: #297c7c;
+    background-color: #f8f8f8;
+    border-radius: 999px;
+    text-decoration: none;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.download-app:hover {
+    background-color: #e4f1f1;
+}
+
+.dev-back-home {
+    display: inline-block;
+    margin-bottom: 25px;
+    padding: 0.2rem 0.9rem;
+    font-size: 0.9rem;
+    color: #297c7c;
+    background-color: #f8f8f8;
+    text-decoration: none;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 4px;
+}
+
+.dev-back-home:hover {
+    background-color: #e4f1f1;
+}
+
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px; 
+    justify-items: center;
+    margin-bottom: 40px;
+}
+
+
+.card {
+    border: 1px solid #555;
+    border-radius: 4px;
+    padding: 10px;
+    width: 110px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+
+.letter {
+    font-family: "NewScript";
+    font-size: 38px;
+}
+
+
+.word {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+
+
+.card img {
+    width: calc(100% - 18px);
+    max-height: 60px;
+    object-fit: scale-down;
+    margin-bottom: 4px;
+    border-radius: 6px;
+    border: 1px solid currentColor;
+}
+
+.alphabet-grid .card:nth-child(1){border-color:hsl(0, 100%, 71%);color:#FF6B6B;}
+.alphabet-grid .card:nth-child(2){border-color:#FFA07A;color:#FFA07A;}
+.alphabet-grid .card:nth-child(3){border-color:#E9C46A;color:#E9C46A;}
+.alphabet-grid .card:nth-child(4){border-color:#6BCB77;color:#6BCB77;}
+.alphabet-grid .card:nth-child(5){border-color:#4D96FF;color:#4D96FF;}
+.alphabet-grid .card:nth-child(6){border-color:#845EC2;color:#845EC2;}
+.alphabet-grid .card:nth-child(7){border-color:#FF9671;color:#FF9671;}
+.alphabet-grid .card:nth-child(8){border-color:#D4A373;color:#D4A373;}
+.alphabet-grid .card:nth-child(9){border-color:#70C1B3;color:#70C1B3;}
+.alphabet-grid .card:nth-child(10){border-color:#FF6F91;color:#FF6F91;}
+.alphabet-grid .card:nth-child(11){border-color:#AF7AC5;color:#AF7AC5;}
+.alphabet-grid .card:nth-child(12){border-color:#FFB400;color:#FFB400;}
+.alphabet-grid .card:nth-child(13){border-color:#00CFFF;color:#00CFFF;}
+.alphabet-grid .card:nth-child(14){border-color:#FF5D8F;color:#FF5D8F;}
+.alphabet-grid .card:nth-child(15){border-color:#9D4EDD;color:#9D4EDD;}
+.alphabet-grid .card:nth-child(16){border-color:#FF9F1C;color:#FF9F1C;}
+.alphabet-grid .card:nth-child(17){border-color:#2EC4B6;color:#2EC4B6;}
+.alphabet-grid .card:nth-child(18){border-color:#FF3C38;color:#FF3C38;}
+.alphabet-grid .card:nth-child(19){border-color:#6A4C93;color:#6A4C93;}
+.alphabet-grid .card:nth-child(20){border-color:#FF8066;color:#FF8066;}
+.alphabet-grid .card:nth-child(21){border-color:#00B4D8;color:#00B4D8;}
+.alphabet-grid .card:nth-child(22){border-color:#FF5E5B;color:#FF5E5B;}
+.alphabet-grid .card:nth-child(23){border-color:#8338EC;color:#8338EC;}
+.alphabet-grid .card:nth-child(24){border-color:#FFCA3A;color:#FFCA3A;}
+.alphabet-grid .card:nth-child(25){border-color:#06D6A0;color:#06D6A0;}
+.alphabet-grid .card:nth-child(26){border-color:#118AB2;color:#118AB2;} 
+
+
+
+
+.numerals-grid .card:nth-child(1){border-color:#FF6B6B;color:#FF6B6B;}
+.numerals-grid .card:nth-child(2){border-color:#FFA07A;color:#FFA07A;}
+.numerals-grid .card:nth-child(3){border-color:#E9C46A;color:#E9C46A;}
+.numerals-grid .card:nth-child(4){border-color:#6BCB77;color:#6BCB77;}
+.numerals-grid .card:nth-child(5){border-color:#4D96FF;color:#4D96FF;}
+.numerals-grid .card:nth-child(6){border-color:#845EC2;color:#845EC2;}
+.numerals-grid .card:nth-child(7){border-color:#FF9671;color:#FF9671;}
+.numerals-grid .card:nth-child(8){border-color:#D4A373;color:#D4A373;}
+.numerals-grid .card:nth-child(9){border-color:#70C1B3;color:#70C1B3;}
+.numerals-grid .card:nth-child(10){border-color:#FF6F91;color:#FF6F91;}
+@media (max-width:600px){
+    .grid {
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 15px;
+    }
+}
+</style>
+</head>
+
+
+<body>
+<div class="container">
+
+    
+
+    <h1>Hachukma Chart</h1>
+    <h2>Acrophonic Principle</h2>
+    <a href="index.html" class="dev-back-home">Back to home</a>
+   
+
+
+
+    
+    <!-- ===== ALPHABET GRID ===== -->
+    <div class="grid alphabet-grid">
+        <div class="card"><div class="letter">&#xE00A;</div><img src="a.png"><div class="word">/a/ng</div></div>
+        <div class="card"><div class="letter">&#xE00B;</div><img src="b.png"><div class="word">/b/uphang-kɘthɘi</div></div>
+        <div class="card"><div class="letter">&#xE00C;</div><img src="ch.png"><div class="word">/ch/ɘng</div></div>
+        <div class="card"><div class="letter">&#xE00D;</div><img src="d.png"><div class="word">/d/angdol</div></div>
+        <div class="card"><div class="letter">&#xE00E;</div><img src="e.png"><div class="word">/e/imang</div></div>
+        <div class="card"><div class="letter">&#xE00F;</div><img src="ph.png"><div class="word">/ph/arok</div></div>
+        <div class="card"><div class="letter">&#xE010;</div><img src="g.png"><div class="word">/g/olari</div></div>
+        <div class="card"><div class="letter">&#xE011;</div><img src="h.png"><div class="word">/h/angrai-nok</div></div>
+        <div class="card"><div class="letter">&#xE012;</div><img src="i.png"><div class="word">/i/aikha</div></div>
+        <div class="card"><div class="letter">&#xE013;</div><img src="j.png"><div class="word">/j/ubar-bubar</div></div>
+        <div class="card"><div class="letter">&#xE014;</div><img src="k.png"><div class="word">/k/owai-buphang</div></div>
+        <div class="card"><div class="letter">&#xE015;</div><img src="l.png"><div class="word">/l/anga</div></div>
+        <div class="card"><div class="letter">&#xE016;</div><img src="m.png"><div class="word">/m/ɘsui-bokhorok</div></div>
+        <div class="card"><div class="letter">&#xE017;</div><img src="n.png"><div class="word">/n/oboraisa</div></div>
+        <div class="card"><div class="letter">&#xE018;</div><img src="o.png"><div class="word">/o/nchi</div></div>
+        <div class="card"><div class="letter">&#xE019;</div><img src="p.png"><div class="word">/p/otdo-bubar</div></div>
+        <div class="card"><div class="letter">&#xE01A;</div><img src="th.png"><div class="word">/th/aichumui</div></div>
+        <div class="card"><div class="letter">&#xE01B;</div><img src="r.png"><div class="word">/r/omo</div></div>
+        <div class="card"><div class="letter">&#xE01C;</div><img src="s.png"><div class="word">/s/indɘrai</div></div>
+        <div class="card"><div class="letter">&#xE01D;</div><img src="t.png"><div class="word">/t/ok-thunta</div></div>
+        <div class="card"><div class="letter">&#xE01E;</div><img src="u.png"><div class="word">/u/nklog</div></div>
+        <div class="card"><div class="letter">&#xE01F;</div><img src="kh.png"><div class="word">/kh/unta</div></div>
+        <div class="card"><div class="letter">&#xE020;</div><img src="w.png"><div class="word">/w/a</div></div>
+        <div class="card"><div class="letter">&#xE021;</div><img src="ng.png"><div class="word">/ng/wasung</div></div>
+        <div class="card"><div class="letter">&#xE022;</div><img src="y.png"><div class="word">/y/akung</div></div>
+        <div class="card"><div class="letter">&#xE023;</div><img src="ɘ.png"><div class="word">/ɘ/rɘ</div></div>
+    </div>
+
+     <!-- ===== NUMERALS GRID ===== -->
+    <h2>Diacritic</h2>
+    <div class="grid numerals-grid">
+        <div class="card"><div class="letter">&#xE024;</div><div class="word"></div>high-tone</div>
+    </div>
+
+    <!-- ===== NUMERALS GRID ===== -->
+    <h2>Numerals (0–9)</h2>
+    <div class="grid numerals-grid">
+        <div class="card"><div class="letter">&#xE000;</div><div class="word">0</div></div>
+        <div class="card"><div class="letter">&#xE001;</div><div class="word">1</div></div>
+        <div class="card"><div class="letter">&#xE002;</div><div class="word">2</div></div>
+        <div class="card"><div class="letter">&#xE003;</div><div class="word">3</div></div>
+        <div class="card"><div class="letter">&#xE004;</div><div class="word">4</div></div>
+        <div class="card"><div class="letter">&#xE005;</div><div class="word">5</div></div>
+        <div class="card"><div class="letter">&#xE006;</div><div class="word">6</div></div>
+        <div class="card"><div class="letter">&#xE007;</div><div class="word">7</div></div>
+        <div class="card"><div class="letter">&#xE008;</div><div class="word">8</div></div>
+        <div class="card"><div class="letter">&#xE009;</div><div class="word">9</div></div>
+    </div>
+
+<!-- DEVELOPMENT STATUS BADGE (ADDED) -->
+    <div style="margin-bottom:15px; display:inline-block; padding:6px 14px; border-radius:20px; background:#e8fff1; color:#1b7f3a; font-weight:bold; font-family:Arial;">
+        ✔ Development Complete
+    </div>
+
+
+<div style="font-family: 'Arial', sans-serif; font-size: 12px; line-height: 1.4; color: #333; margin-top: 35px;">
+    <strong style="font-size: 12.5px;">*Important Note:*</strong><br>
+    The <b>Hachukma Script</b> currently uses characters mapped to the
+    <b>Unicode Private Use Area (PUA)</b>.<br>
+    Since these characters are not yet part of the official Unicode standard,
+    the <b>custom Hachukma font</b> is required for proper display.<br>
+    For universal compatibility across devices and platforms, official Unicode
+    encoding is needed in the future.
+</div>
+
+<!-- Hachukma Script Usage & Creator Notice -->
+<div style="margin-top:20px; padding:10px; border:1px solid #ccc; border-radius:4px; background-color:#f9f9f9; font-family: Arial, sans-serif; font-size:12px; color:#333;">
+    <strong>Hachukma Script Usage Notice:</strong>
+    
+    <p style="margin-top:8px;">
+        You can freely use the <b>Hachukma letters</b> for writing, study, and educational purposes.
+    </p>
+
+    <p style="margin-top:8px;">
+        <b>Notice to new script creators:</b> Do <u>not</u> copy or modify Hachukma letters. All characters and designs are the <b>intellectual property of the Hachukma Script</b>.
+    </p>
+</div>
+</div>
+</div>
+</body>
+</html>

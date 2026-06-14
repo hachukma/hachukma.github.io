@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Kokborok · Hachukma IDE | Digital Script + PUA Numerals</title>
+     <link rel="stylesheet" href="IDE.css">
+     <link rel="stylesheet" href="clock.css">
+
+      <script src="clock.js"></script>
+     
+    <style>
+        
+        @font-face {
+            font-family: "HachukmaScript";
+            src: url("hachukma.woff") format("woff");
+            font-display: swap;
+        }
+
+.unicode-clock {
+    font-family: "HachukmaScript";
+}
+
+    </style>
+
+
+</head>
+<body>
+
+<div class="app-header">
+    <div class="brand">
+        <h1>Hachukma Script - Future Compatibility Demo</h1>
+        <p>Hachukma · Future computing showcase</p>
+    </div>
+
+        <div id="unicode-clock" class="unicode-clock">
+            <span class="clock-hour"></span>
+            <span class="separator">:</span>
+            <span class="clock-minute"></span>
+            <span class="separator">:</span>
+            <span class="clock-second"></span>
+            <span class="separator">.</span>
+            <span class="clock-ms"></span>
+            <span class="clock-ampm"></span>
+        </div>
+   
+    <div class="nav-actions">
+        <a href="index.html" class="btn btn-outline">Back Home</a>
+    </div>
+</div>
+
+
+
+
+<!-- Dual Editor Showcase (read-only) -->
+<div class="editor-grid">
+    <div class="editor-card">
+        <div class="editor-header">
+            <h3>Kokborok Roman<span class="readonly-badge">Example</span></h3>
+            <span class="lang-badge">Demo-code-editor</span>
+        </div>
+        <div class="custom-editor">
+            <div class="line-numbers" id="romanLineNumbers">1</div>
+            <div class="code-container">
+                <div id="romanEditorContent" class="syntax-editor" spellcheck="false"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="editor-card hachukma-editor">
+        <div class="editor-header">
+            <h3>Hachukma Script <span class="readonly-badge">Example</span></h3>
+            <span class="lang-badge">Demo-code-editor</span>
+        </div>
+        <div class="custom-editor">
+            <div class="line-numbers" id="hachukmaLineNumbers">1</div>
+            <div class="code-container">
+                <div id="hachukmaEditorContent" class="syntax-editor hachukma-syntax" spellcheck="false"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- NEW: Code Elements Breakdown -->
+<div class="reference-panel">
+    <h2>Code Elements Breakdown</h2>
+
+    <div class="ref-grid">
+
+        <!-- Keywords & Functions -->
+        <div class="ref-card">
+            <h3>Keywords &amp; Functions</h3>
+            <ul class="ref-list">
+                <li>chapdi - print</li>
+            </ul>
+        </div>
+
+        <!-- Keywords -->
+        <div class="ref-card">
+            <h3>Keywords</h3>
+            <ul class="ref-list">
+                <li>wngkhe - if</li>
+                <li>hayakhe - else</li>
+            </ul>
+        </div>
+
+        <!-- String Literals -->
+        <div class="ref-card">
+            <h3>Strings</h3>
+            <ul class="ref-list">
+                <li>"hachukma" - - - - </li>
+                <li>"kokborok swrungnok" - Kokborok-school</li>
+                <li>"mung:" - name</li>
+                <li>"phurungnok:" - school</li>
+                <li>"achima:" - birth</li>
+                <li>"bisi:" - year</li>
+                <li>"achai:" - age</li>
+                <li>"kwrwngma: khwlainw kwrwng" - eligible</li>
+                <li>"kwrwngma: khwlainw manya" - ineligible</li>
+            </ul>
+        </div>
+
+        <!-- Identifiers -->
+        <div class="ref-card">
+            <h3>Identifiers</h3>
+            <ul class="ref-list">
+                <li>mung - name</li>
+                <li>phurungnok - school</li>
+                <li>achaima - birth-year</li>
+                <li>bisi - year</li>
+                <li>achai_sal - age</li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+<div class="future-tech-section">
+    <h2>Future Vision of Hachukma in Digital Technology</h2>
+<div class="future-grid">
+    <ul class="future-list" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px; margin:10px 0 16px;">
+
+        <li>
+            <span class="accent-text">Emerging writing system</span> –
+            Hachukma presents a conceptual writing system exploring how
+            indigenous language identity could evolve within future digital
+            communication and modern software environments.
+        </li>
+
+        <li>
+            <span class="accent-text">Future compatibility vision</span> –
+            The showcase explores possibilities for visual consistency across
+            browsers, devices, and evolving interface technologies through
+            custom rendering approaches.
+        </li>
+
+        <li>
+            <span class="accent-text">Conceptual computing environment</span> –
+            The project demonstrates how script-oriented interfaces and
+            symbolic text structures could appear within future multilingual
+            programming and digital systems.
+        </li>
+
+        <li>
+            <span class="accent-text">Digital integration possibilities</span> –
+            The interface presents a future-oriented example of how Hachukma
+            writing could visually integrate into websites, applications,
+            keyboards, and interactive digital platforms.
+        </li>
+
+        <li>
+            <span class="accent-text">Character representation showcase</span> –
+            Visual mapping methods are used to demonstrate how Hachukma
+            symbols may be represented within digital environments and
+            evolving technological ecosystems.
+        </li>
+
+        <li>
+            <span class="accent-text">Language-centered innovation</span> –
+            The concept reflects future possibilities for adaptive typography,
+            intelligent text systems, and AI-assisted tools designed around
+            Kokborok digital expression.
+        </li>
+
+    </ul>
+</div>
+
+</div>
+
+<div class="articles-section">
+<div class="section-title">
+    Hachukma · Conceptual Digital Ecosystem
+</div>
+
+<div class="articles-grid">
+
+    <div class="article-card">
+        <h4>Symbolic Character Design</h4>
+        <p>
+            Hachukma explores original visual character structures intended
+            to demonstrate how indigenous writing systems could appear within
+            future digital communication environments.
+        </p>
+    </div>
+
+    <div class="article-card">
+        <h4>Custom Visual Rendering</h4>
+        <p>
+            The showcase demonstrates how Hachukma symbols can be visually
+            displayed within browsers and digital interfaces using custom
+            rendering and font-based display methods.
+        </p>
+    </div>
+
+    <div class="article-card">
+        <h4>Script-Aware Interface Concepts</h4>
+        <p>
+            Conceptual interface layouts explore multilingual formatting,
+            symbolic code presentation, and future possibilities for
+            indigenous writing systems in software environments.
+        </p>
+    </div>
+
+    <div class="article-card">
+        <h4>Future Digital Expression</h4>
+        <p>
+            The project presents a creative vision of how emerging writing
+            systems may participate in future digital culture, communication
+            technologies, and modern interface design.
+        </p>
+    </div>
+
+</div>
+</div>
+
+
+        
+<div style="font-family: 'Arial', sans-serif; font-size: 12px; line-height: 1.4; color: #333; margin-top: 35px;">
+    <strong style="font-size: 12.5px;">*Important Note:*</strong><br>
+    The <b>Hachukma Script</b> currently uses characters mapped to the
+    <b>Unicode Private Use Area (PUA)</b>.<br>
+    Since these characters are not yet part of the official Unicode standard,
+    the <b>custom Hachukma font</b> is required for proper display.<br>
+    For universal compatibility across devices and platforms, official Unicode
+    encoding is needed in the future.
+</div>     
+                
+<script>
+    
+    // 1. Base code (Roman Kokborok)
+    const DEFAULT_ROMAN_CODE = `// hachukma
+        
+        
+mung = "hachukma"
+phurungnok = "kokborok swrungnok"
+achaima = 2025
+bisi = 2026
+
+achai_sal = bisi - achaima
+
+chapdi("mung:", mung)
+chapdi("phurungnok:", phurungnok)
+chapdi("achima:", achaima)
+chapdi("bisi:", bisi)
+chapdi("achai:", achai_sal)
+
+wngkhe achai_sal >= 18:
+    chapdi("kwrwngma: khwlainw kwrwng")
+hayakhe:
+    chapdi("kwrwngma: khwlainw manya")
+
+// hachukma 
+nangmani()`;
+
+  
+    // 2. Hachukma PUA MAPPING (including DIGITS: 0-9 -> U+E000..U+E009)
+    const hachukmaMap = new Map();
+
+    // digraphs (longest first)
+    const digraphs = [
+        ["ch", 0xE00C], ["ph", 0xE00F], ["th", 0xE01A], ["kh", 0xE01F], ["ng", 0xE021]
+    ];
+    // single letters
+    const singleLetters = {
+        'a':0xE00A, 'b':0xE00B, 'd':0xE00D, 'e':0xE00E, 'g':0xE010, 'h':0xE011,
+        'i':0xE012, 'j':0xE013, 'k':0xE014, 'l':0xE015, 'm':0xE016, 'n':0xE017,
+        'o':0xE018, 'p':0xE019, 'r':0xE01B, 's':0xE01C, 't':0xE01D, 'u':0xE01E,
+        'w':0xE020, 'y':0xE022, 'ɘ':0xE023, 'c':0xE003, 'f':0xE004, 'v':0xE005, 'z':0xE006
+    };
+    // ----- digit PUA mapping (hachukma numerals) -----
+    const digitMapping = {
+        '0': 0xE000, '1': 0xE001, '2': 0xE002, '3': 0xE003,
+        '4': 0xE004, '5': 0xE005, '6': 0xE006, '7': 0xE007,
+        '8': 0xE008, '9': 0xE009
+    };
+
+    for (let [dg, code] of digraphs) hachukmaMap.set(dg, String.fromCodePoint(code));
+    for (let [ch, code] of Object.entries(singleLetters)) hachukmaMap.set(ch, String.fromCodePoint(code));
+    for (let [digit, code] of Object.entries(digitMapping)) hachukmaMap.set(digit, String.fromCodePoint(code));
+
+    // Convert Roman script to Hachukma (letters, digraphs, and digits 0-9 become PUA numerals)
+    function toHachukmaPUA(romanText) {
+        let result = "";
+        let i = 0;
+        while (i < romanText.length) {
+            let matched = false;
+            // try digraphs (2 chars)
+            if (i + 1 < romanText.length) {
+                let two = romanText.substr(i, 2);
+                if (hachukmaMap.has(two)) {
+                    result += hachukmaMap.get(two);
+                    i += 2;
+                    matched = true;
+                    continue;
+                }
+            }
+            let ch = romanText[i];
+            if (hachukmaMap.has(ch)) {
+                result += hachukmaMap.get(ch);
+            } else {
+                result += ch;
+            }
+            i++;
+        }
+        return result;
+    }
+
+    const DEFAULT_HACHUKMA_CODE = toHachukmaPUA(DEFAULT_ROMAN_CODE);
+
+    // ============================================================
+    // 3. KEYWORD lists for both editors
+    // ============================================================
+    const ROMAN_KEYWORDS = [ 'chapdi', 'wngkhe', 'hayakhe'];
+    // For Hachukma: PUA-encoded versions of same keywords
+    const HACHUKMA_KEYWORDS_PUA = ROMAN_KEYWORDS.map(kw => toHachukmaPUA(kw));
+    const hachukmaKeywordPattern = HACHUKMA_KEYWORDS_PUA.map(kw => kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
+    const HACHUKMA_KEYWORD_REGEX = new RegExp(`(${hachukmaKeywordPattern})`, 'g');
+    // Hachukma numerals: match sequences of PUA digits (U+E000..U+E009)
+    const HACHUKMA_NUMBER_REGEX = /[\uE000-\uE009]+/g;
+    const HACHUKMA_STRING_REGEX = /("[^"]*")/g;
+    const HACHUKMA_COMMENT_REGEX = /(\/\/.*$)/gm;
+
+    // Roman highlighting
+    const ROMAN_KEYWORD_REGEX = new RegExp(`\\b(${ROMAN_KEYWORDS.join('|')})\\b`, 'g');
+    const ROMAN_STRING_REGEX = /(".*?"|'.*?')/g;
+    const ROMAN_COMMENT_REGEX = /(\/\/.*$)/gm;
+    const ROMAN_NUMBER_REGEX = /\b\d+\b/g;
+
+    // DOM
+    const romanEditorDiv = document.getElementById('romanEditorContent');
+    const hachukmaEditorDiv = document.getElementById('hachukmaEditorContent');
+    const romanLineNumbersDiv = document.getElementById('romanLineNumbers');
+    const hachukmaLineNumbersDiv = document.getElementById('hachukmaLineNumbers');
+    const resetBtn = document.getElementById('homeResetBtn');
+
+    let currentRomanRaw = DEFAULT_ROMAN_CODE;
+    let currentHachukmaRaw = DEFAULT_HACHUKMA_CODE;
+
+    // Highlighters
+    function highlightRomanCode(code) {
+        let escaped = code.replace(/[&<>]/g, m => m === '&' ? '&amp;' : (m === '<' ? '&lt;' : '&gt;'));
+        escaped = escaped.replace(ROMAN_COMMENT_REGEX, match => `<span class="comment">${match}</span>`);
+        escaped = escaped.replace(ROMAN_STRING_REGEX, match => `<span class="string">${match}</span>`);
+        escaped = escaped.replace(ROMAN_NUMBER_REGEX, match => `<span class="number">${match}</span>`);
+        escaped = escaped.replace(ROMAN_KEYWORD_REGEX, match => `<span class="keyword">${match}</span>`);
+        escaped = escaped.replace(/\n/g, '<br>');
+        return escaped;
+    }
+
+    function highlightHachukmaCode(code) {
+        let escaped = code.replace(/[&<>]/g, m => m === '&' ? '&amp;' : (m === '<' ? '&lt;' : '&gt;'));
+        escaped = escaped.replace(HACHUKMA_COMMENT_REGEX, match => `<span class="comment">${match}</span>`);
+        escaped = escaped.replace(HACHUKMA_STRING_REGEX, match => `<span class="string">${match}</span>`);
+        // match PUA digits as numbers (Hachukma numeral blocks)
+        escaped = escaped.replace(HACHUKMA_NUMBER_REGEX, match => `<span class="number">${match}</span>`);
+        escaped = escaped.replace(HACHUKMA_KEYWORD_REGEX, match => `<span class="keyword">${match}</span>`);
+        escaped = escaped.replace(/\n/g, '<br>');
+        return escaped;
+    }
+
+    function updateLineNumbers(editorElement, lineNumbersDiv, rawText) {
+        if (!editorElement || !lineNumbersDiv) return;
+        const lines = rawText.split('\n');
+        let numbered = '';
+        for (let i = 1; i <= lines.length; i++) numbered += i + '\n';
+        lineNumbersDiv.textContent = numbered;
+    }
+
+    function renderRomanDisplay() {
+        romanEditorDiv.innerHTML = highlightRomanCode(currentRomanRaw);
+        updateLineNumbers(romanEditorDiv, romanLineNumbersDiv, currentRomanRaw);
+    }
+
+    function renderHachukmaDisplay() {
+        hachukmaEditorDiv.innerHTML = highlightHachukmaCode(currentHachukmaRaw);
+        updateLineNumbers(hachukmaEditorDiv, hachukmaLineNumbersDiv, currentHachukmaRaw);
+    }
+
+    function makeEditorReadOnly(editorElement) {
+        editorElement.setAttribute('contenteditable', 'false');
+        editorElement.style.userSelect = 'text';
+        editorElement.addEventListener('dragstart', (e) => e.preventDefault());
+        editorElement.addEventListener('drop', (e) => e.preventDefault());
+        editorElement.addEventListener('beforeinput', (e) => e.preventDefault());
+        editorElement.addEventListener('keydown', (e) => {
+            if (e.key === 'Delete' || e.key === 'Backspace' || e.key === 'Enter' || e.key === 'Insert') e.preventDefault();
+            if ((e.ctrlKey || e.metaKey) && (e.key === 'v' || e.key === 'x')) e.preventDefault();
+        });
+        editorElement.addEventListener('paste', (e) => e.preventDefault());
+    }
+
+    function attachContainerScrollSync(container, lineNumbersDiv) {
+        if (!container || !lineNumbersDiv) return;
+        container.addEventListener('scroll', () => {
+            lineNumbersDiv.style.transform = `translateY(-${container.scrollTop}px)`;
+        });
+    }
+
+    function resetToHome() {
+        currentRomanRaw = DEFAULT_ROMAN_CODE;
+        currentHachukmaRaw = DEFAULT_HACHUKMA_CODE;
+        renderRomanDisplay();
+        renderHachukmaDisplay();
+        const romanContainer = romanEditorDiv.closest('.code-container');
+        const hachContainer = hachukmaEditorDiv.closest('.code-container');
+        if (romanContainer) romanContainer.scrollTop = 0;
+        if (hachContainer) hachContainer.scrollTop = 0;
+        romanLineNumbersDiv.style.transform = 'translateY(0px)';
+        hachukmaLineNumbersDiv.style.transform = 'translateY(0px)';
+    }
+
+    // init
+    function init() {
+        makeEditorReadOnly(romanEditorDiv);
+        makeEditorReadOnly(hachukmaEditorDiv);
+        renderRomanDisplay();
+        renderHachukmaDisplay();
+        const romanContainer = romanEditorDiv.closest('.code-container');
+        const hachContainer = hachukmaEditorDiv.closest('.code-container');
+        if (romanContainer) attachContainerScrollSync(romanContainer, romanLineNumbersDiv);
+        if (hachContainer) attachContainerScrollSync(hachContainer, hachukmaLineNumbersDiv);
+        if (resetBtn) resetBtn.addEventListener('click', resetToHome);
+        setTimeout(() => {
+            if(romanContainer) romanLineNumbersDiv.style.transform = `translateY(-${romanContainer.scrollTop}px)`;
+            if(hachContainer) hachukmaLineNumbersDiv.style.transform = `translateY(-${hachContainer.scrollTop}px)`;
+        }, 20);
+    }
+    init();
+</script>
+
+
+<script>
+document.addEventListener("contextmenu", function(e){
+    e.preventDefault();
+});
+
+
+document.addEventListener("selectstart", function(e){
+    e.preventDefault();
+});
+
+
+document.addEventListener("copy", function(e){
+    e.preventDefault();
+});
+
+document.addEventListener("keydown", function(e){
+
+    if (e.key === "F12") {
+        e.preventDefault();
+    }
+
+    if (e.ctrlKey && e.key.toLowerCase() === "u") {
+        e.preventDefault();
+    }
+
+    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "i") {
+        e.preventDefault();
+    }
+
+    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "j") {
+        e.preventDefault();
+    }
+
+    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "c") {
+        e.preventDefault();
+    }
+
+});
+
+</script>
+</body>
+</html>

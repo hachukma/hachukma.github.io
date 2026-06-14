@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Hachukma IME – Official Input Method for Kokborok Script</title>
+<style>
+
+/* ----- CUSTOM FONT (Hachukma) ----- */
+@font-face {
+    font-family: 'Hachukma';
+    src: url('../Font/hachukma.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ----- RESET & GLOBAL (ORIGINAL STYLES - UNCHANGED) ----- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', system-ui, Arial, sans-serif;
+    background: #ffffff;
+    color: #0f172a;
+    line-height: 1.5;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* ----- HERO SECTION (ORIGINAL) ----- */
+.hero {
+    padding: 80px 0 60px;
+    text-align: center;
+    border-bottom: 3px solid #f97316;
+    background: linear-gradient(145deg, #ffffff 0%, #fef9e8 100%);
+}
+
+.hero h1 {
+    font-size: 3.8rem;
+    font-weight: 800;
+    letter-spacing: -2px;
+    background: linear-gradient(135deg, #1e293b, #f97316, #3b82f6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    max-width: 700px;
+    margin: 18px auto;
+    color: #475569;
+    font-size: 1.1rem;
+}
+
+.btns {
+    margin-top: 28px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 28px;
+    margin: 6px;
+    border-radius: 8px;
+    text-decoration: none;
+    border: 1px solid #e2e8f0;
+    color: #0f172a;
+    font-weight: 600;
+    background: white;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.btn.primary {
+    background: #1e293b;
+    color: white;
+    border-color: #1e293b;
+}
+
+.btn.primary:hover {
+    background: #f97316;
+    border-color: #f97316;
+    transform: translateY(-2px);
+}
+
+.btn:hover:not(.disabled) {
+    border-color: #f59e0b;
+    color: #f97316;
+    transform: translateY(-2px);
+}
+
+/* ----- SECTIONS (ORIGINAL) ----- */
+section {
+    padding: 70px 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 24px;
+    border-left: 5px solid #f97316;
+    padding-left: 20px;
+    color: #1e293b;
+}
+
+.lead {
+    color: #475569;
+    max-width: 800px;
+    font-size: 1.05rem;
+}
+
+/* ----- SCREENSHOT (ORIGINAL) ----- */
+.screenshot-section {
+    width: 100%;
+    margin: 40px 0 20px;
+    padding: 0;
+    background: transparent;
+}
+
+.screenshot-full {
+    width: 100%;
+    padding: 6px;
+    border-radius: 12px;
+    background: #f1f5f9;
+}
+
+.screenshot-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+}
+
+.screenshot-note {
+    margin-top: 18px;
+    font-size: 0.85rem;
+    color: #475569;
+    background: #fef9e8;
+    display: inline-block;
+    padding: 6px 18px;
+    border-radius: 40px;
+}
+
+/* ----- KEYBOARD GUIDE (ORIGINAL) ----- */
+.keyboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.key {
+    border: 1px solid #e2e8f0;
+    padding: 12px 6px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 700;
+    background: #f8fafc;
+    transition: 0.1s;
+}
+
+.key:hover {
+    border-color: #f59e0b;
+    background: #fffbeb;
+    transform: scale(1.02);
+}
+
+.key .glyph {
+    font-family: 'Hachukma', 'Segoe UI Symbol', monospace;
+    font-size: 2rem;
+    display: block;
+    margin: 8px 0;
+    letter-spacing: normal;
+    font-weight: normal;
+}
+
+/* ----- UNICODE TABLE (ORIGINAL) ----- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 24px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+}
+
+th, td {
+    padding: 12px 14px;
+    border: 1px solid #e2e8f0;
+    text-align: left;
+    vertical-align: middle;
+}
+
+th {
+    background: #f8fafc;
+    color: #1e293b;
+    font-weight: 600;
+}
+
+.glyph-cell {
+    font-family: 'Hachukma', 'Segoe UI Symbol', monospace;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.hachukma-glyph {
+    font-family: 'Hachukma', 'Segoe UI Symbol', monospace;
+    font-size: 1.3rem;
+    display: inline-block;
+}
+
+.copy-btn {
+    background: none;
+    border: 1px solid #e2e8f0;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 6px 14px;
+    border-radius: 8px;
+    transition: 0.1s;
+}
+
+.copy-btn:hover {
+    background: #3b82f6;
+    border-color: #3b82f6;
+    color: white;
+}
+
+/* ----- DOWNLOAD CARDS (UPDATED: full-width separate card for Windows IME) ----- */
+.download-main {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 36px 32px;
+    margin: 30px 0 40px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.download-main h2 {
+    border-left: none;
+    text-align: center;
+    padding-left: 0;
+    margin-bottom: 12px;
+}
+
+/* Full width card for Windows IME (separate) */
+.full-width-card {
+    width: 100%;
+    margin-bottom: 32px;
+}
+
+.full-width-card .download-card {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+}
+
+/* Flex container for the other three cards (Font, WOFF, Android) */
+.download-flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+    margin: 20px 0 20px;
+}
+
+.download-card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px 20px;
+    min-width: 220px;
+    flex: 1;
+    text-align: center;
+    border: 1px solid #e2e8f0;
+    transition: 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.download-card:hover {
+    border-color: #f97316;
+    transform: translateY(-4px);
+}
+
+.download-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+}
+
+.download-card p {
+    flex-grow: 1;
+    margin-bottom: 16px;
+}
+
+.download-btn {
+    display: inline-block;
+    background: #1e293b;
+    color: white;
+    padding: 10px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: auto;
+    transition: 0.2s;
+    border: none;
+    align-self: center;
+    min-width: 180px;
+}
+
+.download-btn:hover {
+    background: #f97316;
+    transform: translateY(-2px);
+}
+
+.version-badge {
+    background: #e2e8f0;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    display: inline-block;
+    margin-bottom: 12px;
+}
+
+.drive-note {
+    font-size: 0.7rem;
+    background: #fff3e0;
+    margin-top: 12px;
+    padding: 6px 10px;
+    border-radius: 20px;
+    color: #b45309;
+    font-weight: 500;
+}
+
+/* ----- SOFTWARE INSTALLATION GUIDE (SCOPED INSIDE .download-main) ----- */
+.software-guide {
+    background: #f0f9ff;
+    border-radius: 18px;
+    padding: 20px 24px;
+    margin-top: 28px;
+    border-left: 5px solid #3b82f6;
+    font-size: 0.9rem;
+}
+
+.software-guide h4 {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #0c4a6e;
+}
+
+.software-guide ol, .software-guide ul {
+    margin-left: 20px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.software-guide li {
+    margin: 8px 0;
+    line-height: 1.4;
+}
+
+.software-guide code {
+    background: #e2e8f0;
+    padding: 2px 6px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+}
+
+/* ----- DISCLAIMER & METRICS (ORIGINAL) ----- */
+.disclaimer {
+    background: #fef9e8;
+    border-left: 5px solid #f59e0b;
+    padding: 1.2rem 1.5rem;
+    margin: 1.8rem 0 1.2rem;
+    font-size: 0.85rem;
+    border-radius: 8px;
+}
+
+.metrics-box {
+    background: #f0f9ff;
+    border-left: 5px solid #3b82f6;
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 8px;
+    font-family: 'Consolas', monospace;
+    font-size: 0.9rem;
+}
+
+.metrics-box h3 {
+    margin-bottom: 10px;
+    color: #1e293b;
+}
+
+.metrics-table {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px 16px;
+    margin-top: 8px;
+}
+
+.metrics-table .label {
+    font-weight: bold;
+    color: #0f172a;
+}
+
+/* ----- FOOTER (ORIGINAL) ----- */
+.footer {
+    padding: 48px 0 40px;
+    text-align: center;
+    color: #475569;
+    border-top: 1px solid #e2e8f0;
+    margin-top: 20px;
+}
+
+.back-home {
+    display: inline-block;
+    margin-top: 12px;
+    color: #3b82f6;
+    text-decoration: none;
+}
+
+.back-home:hover {
+    color: #f97316;
+}
+
+/* ----- RESPONSIVE (ORIGINAL + ensure full width card adapts) ----- */
+@media (max-width: 760px) {
+    .hero h1 { font-size: 2.4rem; }
+    h2 { font-size: 1.6rem; }
+    .download-flex { flex-direction: column; }
+    .keyboard { grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); }
+    
+    .software-guide {
+        padding: 16px 18px;
+    }
+    .software-guide h4 {
+        font-size: 1rem;
+    }
+    .software-guide li, .software-guide p {
+        font-size: 0.8rem;
+    }
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="hero">
+        <h1>HACHUKMA IME SOFTWARE</h1>
+        <p>Official Desktop Input Method Software for the Hachukma Script (Kokborok)<br>
+        Type Roman letters → instantly get Hachukma glyphs. Write, learn.</p>
+        <div class="btns">
+            <a href="#download-ime" class="btn primary">⬇ Download IME</a>
+            <a href="#keyboard" class="btn">Keyboard Guide</a>
+            <a href="#unicode" class="btn">Unicode Reference</a>
+        </div>
+    </div>
+
+    <!-- DOWNLOAD SECTION: Windows IME card takes FULL WIDTH as separate card -->
+    <div id="download-ime" class="download-main">
+        <h2>Hachukma IME Software – Desktop Version</h2>
+        <p style="text-align: center; color: #475569;">Full offline input method for Windows 10/11. Real‑time Roman to Hachukma conversion.</p>
+        
+        <!-- FULL WIDTH SEPARATE CARD for Windows IME -->
+        <div class="full-width-card">
+            <div class="download-card">
+                <div class="version-badge">version v1.0</div>
+                <h3>Windows IME</h3>
+                <p> Download → Unzip → Install<br>Installer package (ZIP/EXE) | Size: 14.0 MB</p>
+                <!-- 
+                    🔽 GOOGLE DRIVE PLACEHOLDER 🔽
+                    Replace YOUR_FILE_ID_HERE with actual Google Drive file ID.
+                -->
+                <a href="https://drive.google.com/file/d/1MWknQPBHrpVSQ8QWXC6BULMn9XdsklQE/view?usp=drive_link" class="download-btn" id="windowsImeBtn">⬇ Download IME Installer</a>
+                <div class="drive-note">
+                 <strong>Google Drive delivery</strong><br>
+              
+                    After <strong>unzip</strong> the folder → run <strong>setup.exe</strong>.
+                </div>
+            </div>
+        </div>
+
+        <!-- OTHER DOWNLOAD CARDS (Font, WOFF, Android) in a flex row -->
+        <div class="download-flex">
+            <div class="download-card">
+                <div class="version-badge">Font Package</div>
+                <h3>Hachukma Font</h3>
+                <p>TrueType font for all OS<br>View & print Hachukma glyphs</p>
+                <a href="Hachukma-Regular.ttf" class="download-btn">⬇ Download TTF</a>
+            </div>
+            <div class="download-card">
+                <div class="version-badge">Web Font</div>
+                <h3>WOFF Format</h3>
+                <p>For websites & web apps<br>Embed Hachukma script</p>
+                <a href="Hachukma-Regular.woff" class="download-btn">⬇ Download WOFF</a>
+            </div>
+        </div>
+        
+        
+
+    <!-- SCREENSHOT SECTION -->
+    <div id="screenshots" class="screenshot-section">
+        <h2>Hachukma IME in Action</h2>
+        <p class="lead" style="margin-bottom:20px">Preview of the desktop input method software interface.</p>
+        <div class="screenshot-full">
+            <img class="screenshot-img" src="hachukma-ime.png" alt="Hachukma IME Software Screenshot">
+        </div>
+        <div class="screenshot-note">The IME shows both Hachukma script and Roman transliteration side by side. Supports custom themes, word count, MonkeyType typing test, and tone diacritic via double‑tap 'p'.</div>
+    </div>
+
+    <!-- KEYBOARD GUIDE -->
+    <section id="keyboard">
+        <h2>⌨Keyboard Guide (Roman Key → Glyph)</h2>
+        <div class="keyboard" id="keyboardGrid"></div>
+        <p class="lead" style="margin-top:20px">Double‑tap <kbd>p</kbd> quickly → tone high diacritic 
+            <span class="hachukma-glyph">&#xE024;</span> (custom diacritic – U+E024).
+        </p>
+    </section>
+
+    <!-- UNICODE REFERENCE + TONE METRICS -->
+    <section id="unicode">
+        <h2>Unicode Reference (PUA Mapping)</h2>
+        <div class="disclaimer">
+           
+
+        <div class="metrics-box">
+            <h3>Tone Glyph Metrics (U+E024) – Font‑Internal Values</h3>
+            <p>These are the exact OpenType metrics and anchor coordinates used in the <strong>Hachukma-Regular.ttf</strong> font to position the tone high diacritic above the base letter. These values were tuned to work correctly in the Windows IME and on the web.</p>
+            <div class="metrics-table">
+                <span class="label">Width:</span><span>0 (zero advance width – combining mark)</span>
+                <span class="label">Left Side Bearing (LSB):</span><span>0</span>
+                <span class="label">Right Side Bearing (RSB):</span><span>−200 to −309 (negative – overhangs to the left to center the tone)</span>
+                <span class="label">Anchor Type:</span><span>mark (GPOS lookup “mark”)</span>
+                <span class="label">Anchor Name:</span><span>top</span>
+                <span class="label">Anchor X:</span><span>61 (horizontal offset – works with the base anchors at X≈500)</span>
+                <span class="label">Anchor Y:</span><span>719 (vertical position above the baseline)</span>
+                <span class="label">Glyph Origin:</span><span>Bottom‑center at (0,0); shape extends upward (negative Y)</span>
+                <span class="label">Base Anchor (on letters):</span><span>top, X≈500, Y≈top of letter (e.g., -600)</span>
+            </div>
+            <p style="margin-top: 12px; font-size: 0.8rem;">🔧 <strong>Note:</strong> The negative RSB compensates for the anchor X not being exactly 0. If you regenerate the font, consider setting anchor X to 0 and RSB to 0 for cleaner standard behavior – but the current values work perfectly in the IME.</p>
+        </div>
+
+        <p class="lead">Click copy to get mapping (e.g., <code>c =  (U+E00C) – ch</code>). “Copy All” for the full table.</p>
+        <div style="margin-bottom:15px">
+            <button id="copyAllBtn" class="btn primary">📋 Copy All Mappings</button>
+        </div>
+        <div style="overflow-x:auto">
+            <table id="unicodeTable">
+                <thead>
+                    <tr><th>Glyph</th><th>Unicode</th><th>Roman Key</th><th>Description</th><th>Copy</th></tr>
+                </thead>
+                <tbody id="unicodeTableBody"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <div class="footer">
+        Hachukma IME Software <br>
+        <a href="index.html" class="back-home">Back to Home</a>
+    </div>
+</div>
+
+<script>
+    // Keyboard guide data (all roman keys + corresponding PUA glyphs)
+    const guideData = [
+        { key: 'a', glyph: '\uE00A', name: 'a' }, { key: 'b', glyph: '\uE00B', name: 'b' },
+        { key: 'c', glyph: '\uE00C', name: 'ch' }, { key: 'd', glyph: '\uE00D', name: 'd' },
+        { key: 'e', glyph: '\uE00E', name: 'e' }, { key: 'f', glyph: '\uE00F', name: 'ph' },
+        { key: 'g', glyph: '\uE010', name: 'g' }, { key: 'h', glyph: '\uE011', name: 'h' },
+        { key: 'i', glyph: '\uE012', name: 'i' }, { key: 'j', glyph: '\uE013', name: 'j' },
+        { key: 'k', glyph: '\uE014', name: 'k' }, { key: 'l', glyph: '\uE015', name: 'l' },
+        { key: 'm', glyph: '\uE016', name: 'm' }, { key: 'n', glyph: '\uE017', name: 'n' },
+        { key: 'o', glyph: '\uE018', name: 'o' }, { key: 'p', glyph: '\uE019', name: 'p' },
+        { key: 'q', glyph: '\uE01A', name: 'th' }, { key: 'r', glyph: '\uE01B', name: 'r' },
+        { key: 's', glyph: '\uE01C', name: 's' }, { key: 't', glyph: '\uE01D', name: 't' },
+        { key: 'u', glyph: '\uE01E', name: 'u' }, { key: 'v', glyph: '\uE01F', name: 'kh' },
+        { key: 'w', glyph: '\uE020', name: 'w' }, { key: 'x', glyph: '\uE021', name: 'ng' },
+        { key: 'y', glyph: '\uE022', name: 'y' }, { key: 'z', glyph: '\uE023', name: 'ɘ' },
+        { key: '0', glyph: '\uE000', name: '0' }, { key: '1', glyph: '\uE001', name: '1' },
+        { key: '2', glyph: '\uE002', name: '2' }, { key: '3', glyph: '\uE003', name: '3' },
+        { key: '4', glyph: '\uE004', name: '4' }, { key: '5', glyph: '\uE005', name: '5' },
+        { key: '6', glyph: '\uE006', name: '6' }, { key: '7', glyph: '\uE007', name: '7' },
+        { key: '8', glyph: '\uE008', name: '8' }, { key: '9', glyph: '\uE009', name: '9' }
+    ];
+
+    // Populate keyboard grid
+    const keyboardContainer = document.getElementById('keyboardGrid');
+    if (keyboardContainer) {
+        guideData.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'key';
+            div.innerHTML = `<div><strong>${item.key}</strong></div><div class="glyph">${item.glyph}</div><div style="font-size:0.7rem">${item.name}</div>`;
+            keyboardContainer.appendChild(div);
+        });
+    }
+
+    // Unicode table data (includes tone glyph U+E024)
+    const tableData = [
+        ['\uE00A', 'U+E00A', 'a', 'a'], ['\uE00B', 'U+E00B', 'b', 'b'],
+        ['\uE00C', 'U+E00C', 'c', 'ch'], ['\uE00D', 'U+E00D', 'd', 'd'],
+        ['\uE00E', 'U+E00E', 'e', 'e'], ['\uE00F', 'U+E00F', 'f', 'ph'],
+        ['\uE010', 'U+E010', 'g', 'g'], ['\uE011', 'U+E011', 'h', 'h'],
+        ['\uE012', 'U+E012', 'i', 'i'], ['\uE013', 'U+E013', 'j', 'j'],
+        ['\uE014', 'U+E014', 'k', 'k'], ['\uE015', 'U+E015', 'l', 'l'],
+        ['\uE016', 'U+E016', 'm', 'm'], ['\uE017', 'U+E017', 'n', 'n'],
+        ['\uE018', 'U+E018', 'o', 'o'], ['\uE019', 'U+E019', 'p', 'p'],
+        ['\uE01A', 'U+E01A', 'q', 'th'], ['\uE01B', 'U+E01B', 'r', 'r'],
+        ['\uE01C', 'U+E01C', 's', 's'], ['\uE01D', 'U+E01D', 't', 't'],
+        ['\uE01E', 'U+E01E', 'u', 'u'], ['\uE01F', 'U+E01F', 'v', 'kh'],
+        ['\uE020', 'U+E020', 'w', 'w'], ['\uE021', 'U+E021', 'x', 'ng'],
+        ['\uE022', 'U+E022', 'y', 'y'], ['\uE023', 'U+E023', 'z', 'ɘ'],
+        ['\uE000', 'U+E000', '0', '0'], ['\uE001', 'U+E001', '1', '1'],
+        ['\uE002', 'U+E002', '2', '2'], ['\uE003', 'U+E003', '3', '3'],
+        ['\uE004', 'U+E004', '4', '4'], ['\uE005', 'U+E005', '5', '5'],
+        ['\uE006', 'U+E006', '6', '6'], ['\uE007', 'U+E007', '7', '7'],
+        ['\uE008', 'U+E008', '8', '8'], ['\uE009', 'U+E009', '9', '9'],
+        ['\uE024', 'U+E024', 'pp (double‑tap)', 'TONE HIGH diacritic']
+    ];
+
+    const tableBody = document.getElementById('unicodeTableBody');
+    if (tableBody) {
+        tableData.forEach(rowData => {
+            const row = tableBody.insertRow();
+            const glyphCell = row.insertCell(0); 
+            glyphCell.className = 'glyph-cell'; 
+            glyphCell.textContent = rowData[0];
+            const unicodeCell = row.insertCell(1); 
+            unicodeCell.textContent = rowData[1];
+            const keyCell = row.insertCell(2); 
+            keyCell.textContent = rowData[2];
+            const descCell = row.insertCell(3); 
+            descCell.textContent = rowData[3];
+            const copyCell = row.insertCell(4);
+            const copyBtn = document.createElement('button');
+            copyBtn.textContent = '📋';
+            copyBtn.className = 'copy-btn';
+            const mapping = `${rowData[2]} = ${rowData[0]} (${rowData[1]}) – ${rowData[3]}`;
+            copyBtn.onclick = () => {
+                navigator.clipboard.writeText(mapping).then(() => alert(`Copied: ${mapping}`));
+            };
+            copyCell.appendChild(copyBtn);
+        });
+    }
+
+    // Copy all mappings
+    document.getElementById('copyAllBtn')?.addEventListener('click', () => {
+        const allMappings = tableData.map(r => `${r[2]} = ${r[0]} (${r[1]}) – ${r[3]}`).join('\n');
+        navigator.clipboard.writeText(allMappings).then(() => alert(`Copied ${tableData.length} mappings`));
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('.btn[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href');
+            if (targetId && targetId !== '#') {
+                e.preventDefault();
+                const target = document.querySelector(targetId);
+                if (target) target.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+
+    // Console hint about Google Drive replacement
+    const driveBtn = document.getElementById('windowsImeBtn');
+    if (driveBtn && driveBtn.href.includes('YOUR_FILE_ID_HERE')) {
+        console.info('🔁 Replace the Google Drive file ID in the Windows IME download link with your actual file ID. Format: https://drive.google.com/uc?export=download&id=YOUR_REAL_ID');
+    }
+</script>
+    
+    
+    
+<script>
+document.addEventListener("contextmenu", function(e){
+    e.preventDefault();
+});
+
+
+document.addEventListener("selectstart", function(e){
+    e.preventDefault();
+});
+
+
+document.addEventListener("copy", function(e){
+    e.preventDefault();
+});
+
+document.addEventListener("keydown", function(e){
+
+    if (e.key === "F12") {
+        e.preventDefault();
+    }
+
+    if (e.ctrlKey && e.key.toLowerCase() === "u") {
+        e.preventDefault();
+    }
+
+    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "i") {
+        e.preventDefault();
+    }
+
+    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "j") {
+        e.preventDefault();
+    }
+
+    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "c") {
+        e.preventDefault();
+    }
+
+});
+</script>
+</body>
+</html>

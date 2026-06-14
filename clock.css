@@ -1,0 +1,56 @@
+.unicode-clock {
+    display: inline-grid;
+    grid-template-columns: 3rem 0.6rem 3rem 0.6rem 3rem 0.6rem 4rem 3.5rem;
+    align-items: center;
+    justify-items: center;
+    font-family: "HachukmaScript", -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 1.8rem;
+    font-weight: 500;
+    padding: 0.3rem 1rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #ff4d4d;
+    width: 20rem; /* Strictly fixed width for the entire container */
+    box-sizing: border-box;
+}
+
+.clock-hour,
+.clock-minute,
+.clock-second,
+.clock-ms {
+    font-variant-numeric: tabular-nums;
+    width: 100%; /* Fill the grid cell */
+    text-align: center;
+    padding: 0.1rem 0;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.04);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.clock-ms {
+    font-size: 0.8em;
+    opacity: 0.8;
+}
+
+.unicode-clock .separator {
+    width: 100%;
+    text-align: center;
+    opacity: 0.6;
+    font-family: Arial, sans-serif; /* Use standard font for separators to ensure consistent width */
+}
+
+.clock-ampm {
+    width: 100%;
+    text-align: center;
+    font-size: 0.85rem;
+    font-family: Arial, sans-serif;
+    opacity: 0.9;
+    color: #ff4d4d;
+    font-weight: bold;
+}
+
+
+
