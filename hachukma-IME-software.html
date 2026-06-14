@@ -675,47 +675,5 @@ th {
         console.info('🔁 Replace the Google Drive file ID in the Windows IME download link with your actual file ID. Format: https://drive.google.com/uc?export=download&id=YOUR_REAL_ID');
     }
 </script>
-    
-    
-    
-<script>
-document.addEventListener("contextmenu", function(e){
-    e.preventDefault();
-});
-
-
-document.addEventListener("selectstart", function(e){
-    e.preventDefault();
-});
-
-
-document.addEventListener("copy", function(e){
-    e.preventDefault();
-});
-
-document.addEventListener("keydown", function(e){
-
-    if (e.key === "F12") {
-        e.preventDefault();
-    }
-
-    if (e.ctrlKey && e.key.toLowerCase() === "u") {
-        e.preventDefault();
-    }
-
-    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "i") {
-        e.preventDefault();
-    }
-
-    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "j") {
-        e.preventDefault();
-    }
-
-    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "c") {
-        e.preventDefault();
-    }
-
-});
-</script>
 </body>
 </html>
