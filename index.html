@@ -465,7 +465,6 @@ In use, every symbol functions purely as a phoneme. The characters are arranged 
     the <b>custom Hachukma font</b> is required for proper display.<br>
  For universal compatibility across devices and platforms, official Unicode encoding is required.
     
-    
         </div> 
         </div>
 
@@ -475,69 +474,10 @@ import { initializeKeyboard } from './keyboard.js';
 
 document.addEventListener('DOMContentLoaded', initializeKeyboard);
                 </script>
-            
-      <!-- Desktop 728x90 -->
-<!--        
-<div style="text-align:center; margin:10px 0;">
-
-  <div class="ad-desktop" style="display:none;">
-
-<script>
-  atOptions = {
-    'key' : '',
-    'format' : '',
-    'height' : 90,
-    'width' : 728,
-    'params' : {}
-  };
-</script>
-
-  </div> -->
-
-  <!-- Mobile 300x250 -->
-  <!-- <div class="ad-mobile" style="display:none;">
-<script>
-  atOptions = {
-    'key' : '',
-    'format' : '',
-    'height' : 250,
-    'width' : 300,
-    'params' : {}
-  };
-</script> -->
-
-
   </div>
 </div>
 <style>
 
-
-  /* Show desktop ad on screens ≥768px */
-  @media (min-width: 768px) {
-    .ad-desktop { display:block !important; }
-    .ad-mobile { display:none !important; }
-  }
-
-  /* Show mobile ad on screens <768px */
-  @media (max-width: 767px) {
-    .ad-desktop { display:none !important; }
-    .ad-mobile { display:block !important; }
-  }
-</style>
-
-</div>
-<style>
-  @media (min-width: 768px) {
-    .ad-desktop { display:block !important; }
-  }
-
-  @media (max-width: 767px) {
-    .ad-mobile { display:block !important; }
-  }
-</style>
-
-
-    
         <div class="contact-section">
         <h3>Contact Hachukma</h3>
 
@@ -554,9 +494,7 @@ document.addEventListener('DOMContentLoaded', initializeKeyboard);
             Hachukma Script Official
         </a>
         </p>
- 
 
-       
 <div class="site-footer" style="font-family: Arial, sans-serif; font-size:12px; color:#555; margin-top:20px;">
     <span id="hide-on-android" style="display: inline;">
         Official Website of the <strong>Hachukma Script</strong>.
@@ -578,30 +516,6 @@ if (/Android/i.test(navigator.userAgent)) {
 </script>
      
     </div> 
-
-
-
-<script>
-// Disable keyboard shortcuts
-document.addEventListener('keydown', function (e) {
-
-    if (
-        e.key === 'F12' ||
-        (e.ctrlKey && e.key.toLowerCase() === 'u') ||
-        (e.ctrlKey && e.shiftKey && ['i', 'c', 'j'].includes(e.key.toLowerCase()))
-    ) {
-        e.preventDefault();
-        return false;
-    }
-});
-
-// Disable right click
-document.addEventListener('contextmenu', function (e) {
-    e.preventDefault();
-    return false;
-});
-
-</script>   
 </body>
 </html>
 
