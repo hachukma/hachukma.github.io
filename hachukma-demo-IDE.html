@@ -448,47 +448,5 @@ nangmani()`;
     }
     init();
 </script>
-
-
-<script>
-document.addEventListener("contextmenu", function(e){
-    e.preventDefault();
-});
-
-
-document.addEventListener("selectstart", function(e){
-    e.preventDefault();
-});
-
-
-document.addEventListener("copy", function(e){
-    e.preventDefault();
-});
-
-document.addEventListener("keydown", function(e){
-
-    if (e.key === "F12") {
-        e.preventDefault();
-    }
-
-    if (e.ctrlKey && e.key.toLowerCase() === "u") {
-        e.preventDefault();
-    }
-
-    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "i") {
-        e.preventDefault();
-    }
-
-    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "j") {
-        e.preventDefault();
-    }
-
-    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "c") {
-        e.preventDefault();
-    }
-
-});
-
-</script>
 </body>
 </html>
