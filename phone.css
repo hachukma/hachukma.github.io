@@ -155,11 +155,17 @@
     touch-action: manipulation;
 }
 
+/* 
+.smalldevice-key[data-key="p"] {
+    background: linear-gradient(145deg, #a3d3bd, #e9ebda);
+} */
+
+/* 
 .smalldevice-key[data-key="p"],
 .smalldevice-key[data-key="ch"],
 .smalldevice-key[data-key="chh"] {
     background: linear-gradient(145deg, #a3d3bd, #e9ebda);
-}
+} */
 
 .smalldevice-key:hover,
 .smalldevice-keys:hover,
@@ -248,21 +254,25 @@ button:hover {
     vertical-align: middle;
 }
 
-
-
-
 .syllabic-line {
     position: relative;
     display: inline-block;
 }
 
-.high-tone {
-    position: absolute;
-    top: -0.8em;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 0.8em;
+
+
+
+/* Phone hih tone */
+@media (max-width: 768px) {
+    .high-tone {
+        left: 8%;
+        top: 0;
+        transform: translate(-50%, 20%);
+        font-size: 1.9em;
+    }
 }
+
+
 
 /* important keys padding small device */
 
