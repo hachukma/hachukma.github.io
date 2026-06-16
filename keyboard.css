@@ -90,10 +90,16 @@
 } 
 
 
+.key[data-key="p"] {
+    background: linear-gradient(145deg, #a3d3bd, #e9ebda);
+}
+
+/* 
 .key[data-key="p"],
 .key[data-key="ch"] {
     background: linear-gradient(145deg, #a3d3bd, #e9ebda);
-}
+} */
+
 
 .key:hover {
     transform: translateY(-2px);
@@ -197,14 +203,18 @@ button:hover {
     display: inline-block;
 }
 
+
+
+/* computer  */
 .high-tone {
     position: absolute;
-    margin-top: 10px;
-    top: -0.8em;
-    left: 50%;
+    top: -0.2em;
+    left: 0;
     transform: translateX(-50%);
-    font-size: 0.8em;
+    font-size: 1.6em;
 }
+
+
 
 
 /* .syllabic-line[data-key="chh"], */
