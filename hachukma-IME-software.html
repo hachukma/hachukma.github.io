@@ -4,8 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Hachukma IME – Official Input Method for Kokborok Script</title>
+
+
     <style>
-        /* ----- CUSTOM FONT (Hachukma) ----- */
         @font-face {
             font-family: 'Hachukma';
             src: url('hachukma.woff') format('woff');
@@ -14,7 +15,7 @@
             font-display: swap;
         }
 
-        /* ----- RESET & GLOBAL ----- */
+     
         * {
             margin: 0;
             padding: 0;
@@ -28,7 +29,6 @@
             line-height: 1.5;
         }
 
-        /* ===== NAV BAR (teal #297c7c) ===== */
         .navbar {
             background: #297c7c;
             border-bottom: 3px solid #1f6363;
@@ -147,7 +147,7 @@
             border-bottom: none;
         }
 
-        /* ----- SECTIONS ----- */
+        /* ===== SECTIONS ===== */
         section {
             padding: 60px 24px;
             border-bottom: 1px solid #e2e8f0;
@@ -169,7 +169,7 @@
             font-size: 1rem;
         }
 
-        /* ----- DOWNLOAD AREA ----- */
+        /* ===== DOWNLOAD AREA ===== */
         .download-main {
             background: #ffffff;
             border-radius: 12px;
@@ -310,7 +310,7 @@
             margin-bottom: 12px;
         }
 
-        /* ----- SECURITY DISCLAIMER (TEAL) ----- */
+        /* ===== SECURITY NOTICE ===== */
         .security-notice {
             background: #e6f4f4;
             border-left: 6px solid #297c7c;
@@ -362,7 +362,7 @@
             color: #1f6363;
         }
 
-        /* ----- PUA DISCLAIMER (TEAL) WITH CSUR LINK ----- */
+        /* ===== PUA NOTICE ===== */
         .pua-notice {
             background: #e6f4f4;
             border-left: 6px solid #297c7c;
@@ -430,7 +430,7 @@
             color: #0d3b3b;
         }
 
-        /* ----- FEATURES SECTION ----- */
+        /* ===== FEATURES ===== */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -470,38 +470,24 @@
             font-weight: 600;
         }
 
-        .example-box {
-            background: #f1f5f9;
-            border-radius: 8px;
-            padding: 10px 14px;
-            margin-top: 10px;
+        .feature-card ul {
+            margin: 8px 0 8px 18px;
+            color: #475569;
             font-size: 0.9rem;
-            border-left: 3px solid #297c7c;
+            line-height: 1.8;
         }
 
-        .example-box .correct {
-            color: #16a34a;
-            font-weight: 600;
+        .independent-note {
+            background: #f0fdf4;
+            border-left: 4px solid #22c55e;
+            padding: 8px 14px;
+            margin: 10px 0 4px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: #166534;
         }
 
-        .example-box .wrong {
-            color: #dc2626;
-            font-weight: 600;
-            text-decoration: line-through;
-        }
-
-        .example-box .strike-badge {
-            display: inline-block;
-            background: #297c7c;
-            color: white;
-            font-size: 0.65rem;
-            font-weight: 700;
-            padding: 1px 8px;
-            border-radius: 12px;
-            margin: 0 2px;
-        }
-
-        /* ----- SCREENSHOT ----- */
+        /* ===== SCREENSHOT ===== */
         .screenshot-section {
             padding: 40px 24px 60px;
             max-width: 1200px;
@@ -532,7 +518,7 @@
             border-radius: 40px;
         }
 
-        /* ----- KEYBOARD GUIDE ----- */
+        /* ===== KEYBOARD ===== */
         .keyboard {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
@@ -565,7 +551,7 @@
             font-weight: normal;
         }
 
-        /* ----- UNICODE TABLE ----- */
+        /* ===== UNICODE TABLE ===== */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -613,7 +599,7 @@
             color: white;
         }
 
-        /* ----- METRICS ----- */
+        /* ===== METRICS ===== */
         .disclaimer {
             background: #e8f5f5;
             border-left: 5px solid #297c7c;
@@ -650,28 +636,7 @@
             color: #0f172a;
         }
 
-        /* ----- FOOTER ----- */
-        .footer {
-            padding: 48px 24px 40px;
-            text-align: center;
-            color: #475569;
-            border-top: 1px solid #e2e8f0;
-            margin-top: 20px;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .footer a {
-            color: #297c7c;
-            text-decoration: none;
-        }
-
-        .footer a:hover {
-            color: #1f6363;
-        }
-
-        /* ----- BUTTONS (all teal) ----- */
+        /* ===== BUTTONS ===== */
         .btn {
             display: inline-block;
             padding: 0.6rem 1.4rem;
@@ -704,7 +669,28 @@
             transform: translateY(-2px);
         }
 
-        /* ----- RESPONSIVE ----- */
+        /* ===== FOOTER ===== */
+        .footer {
+            padding: 48px 24px 40px;
+            text-align: center;
+            color: #475569;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 20px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer a {
+            color: #297c7c;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: #1f6363;
+        }
+
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 760px) {
             h2 {
                 font-size: 1.5rem;
@@ -774,13 +760,16 @@
         }
     </style>
 </head>
+
 <body>
 
     <nav class="navbar">
         <div class="navbar-inner">
             <div class="nav-back-wrap">
                 <a href="index.html" class="nav-back">
-                    <svg viewBox="0 0 24 24" width="18" height="18"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+                    <svg viewBox="0 0 24 24" width="18" height="18">
+                        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" />
+                    </svg>
                     Back to Home
                 </a>
             </div>
@@ -797,14 +786,14 @@
         </div>
     </nav>
 
-    <!-- ===== MAIN CONTENT ===== -->
 
-    <!-- DOWNLOAD SECTION -->
-    <div id="download-ime" class="download-main">
+
+    
+    <section id="download-ime" class="download-main">
         <h2>Hachukma IME Software – Desktop Version</h2>
         <p>Full offline input method for Windows 10/11. Real‑time Roman to Hachukma conversion.</p>
 
-        <!-- SECURITY DISCLAIMER -->
+     
         <div class="security-notice">
             <div class="icon"></div>
             <div class="content">
@@ -815,6 +804,7 @@
             </div>
         </div>
 
+  
         <div class="ime-dual">
             <div class="ime-card">
                 <div class="version-badge">version v1.0</div>
@@ -827,11 +817,12 @@
                 <div class="version-badge">version v1.0</div>
                 <h3>Windows IME (GitHub)</h3>
                 <p>Download from GitHub Releases<br />ZIP / installer assets</p>
-                <a href="https://github.com/hachukma/Hachukma-IME-Software-PUA/releases/tag/v1.0" class="download-btn">Download from GitHub</a>
+                <a href="https://github.com/hachukma/Hachukma-IME-Software-PUA/releases/tag/v1" class="download-btn">Download from GitHub</a>
                 <div class="github-note">Official release page – choose the IME installer package.</div>
             </div>
         </div>
 
+        <!-- Font Downloads -->
         <div class="download-flex">
             <div class="download-card">
                 <div class="version-badge">Font Package</div>
@@ -846,119 +837,85 @@
                 <a href="Hachukma-Regular.woff" class="download-btn">Download WOFF</a>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- SCREENSHOT -->
-    <div id="screenshots" class="screenshot-section">
+
+    <section id="screenshots" class="screenshot-section">
         <h2>Hachukma IME in Action</h2>
-        <p class="lead" style="margin-bottom:20px">Preview of the desktop input method software interface.</p>
+        <p class="lead" style="margin-bottom:20px;">Preview of the desktop input method software interface.</p>
         <div class="screenshot-full">
             <img class="screenshot-img" src="hachukma-ime.png" alt="Hachukma IME Software Screenshot" />
         </div>
-        <div class="screenshot-note">The IME shows both Hachukma script and Roman transliteration side by side. Supports custom themes, word count, MonkeyType typing test, and tone diacritic via double‑tap 'p'.</div>
-    </div>
+        <div class="screenshot-note">
+            The IME shows both Hachukma script and Roman transliteration side by side. Supports custom themes, word count, MonkeyType typing test, and tone diacritic via double‑tap 'p'.
+        </div>
+    </section>
 
-    <!-- ===== FEATURES SECTION ===== -->
     <section id="features">
         <h2>IME Features &amp; Smart Transliteration</h2>
         <p class="lead" style="margin-bottom:16px;">The Hachukma IME is built for efficiency and accuracy. Here's what you get out of the box:</p>
 
         <div class="features-grid">
             <div class="feature-card">
-                <h3>Visual Themes</h3>
-                <p>Switch between light, dark, and custom color schemes. Reduce eye strain and match your workspace aesthetic during long typing sessions.</p>
+                <h3>Themes</h3>
+                <p>Switch between light, dark, and other available color schemes. Reduce eye strain and choose a look that feels comfortable during long typing sessions.</p>
             </div>
 
             <div class="feature-card">
-                <h3>Font Scaling</h3>
-                <p>Adjust the displayed Hachukma glyph size — from <strong>small</strong> to <strong>big</strong> — in real-time. Perfect for high-DPI monitors and accessibility needs.</p>
-            </div>
-
-            <div class="feature-card">
-                <h3>Smart Digraph Engine</h3>
-                <p>Each independent consonant is typed as a single <strong>strike</strong>. Vowels (like <kbd>a</kbd>) are typed normally and are <strong>not</strong> counted as strikes.</p>
-                <ul style="margin: 8px 0 8px 18px; color: #475569; font-size: 0.9rem; line-height: 1.6;">
-                    <li><kbd>k</kbd> + <kbd>h</kbd> → <strong>kh</strong> (strike, mapped to <kbd>v</kbd>)</li>
-                    <li><kbd>c</kbd> + <kbd>h</kbd> → <strong>ch</strong> (strike, mapped to <kbd>c</kbd>)</li>
-                    <li><kbd>p</kbd> + <kbd>h</kbd> → <strong>ph</strong> (strike, mapped to <kbd>f</kbd>)</li>
-                    <li><kbd>t</kbd> + <kbd>h</kbd> → <strong>th</strong> (strike, mapped to <kbd>q</kbd>)</li>
-                    <li><kbd>n</kbd> + <kbd>g</kbd> → <strong>ng</strong> (strike, mapped to <kbd>x</kbd>)</li>
-                </ul>
-                <div class="example-box">
-                    <strong>Example — "thang" (2 strikes):</strong><br />
-                    <span class="correct">✅ th</span> <span style="color:#6b7280;font-size:0.7rem;">(strike 1)</span>
-                    <span style="color:#6b7280;">+</span>
-                    <span style="color:#6b7280;">a</span> <span style="color:#6b7280;font-size:0.7rem;">(vowel, not a strike)</span>
-                    <span style="color:#6b7280;">+</span>
-                    <span class="correct">ng</span> <span style="color:#6b7280;font-size:0.7rem;">(strike 2)</span>
-                    <span style="color:#6b7280;">→</span>
-                    <strong style="color:#16a34a;">thang</strong>
-                </div>
+                <h3>Font Size</h3>
+                <p>Adjust the displayed Hachukma font size in real time, from small to large, for a more comfortable reading and typing experience.</p>
             </div>
 
             <div class="feature-card">
                 <h3>Visual Error Detection</h3>
-                <p>If you type individual consonants instead of the correct independent strikes, the IME automatically highlights the wrong letters in <strong style="color:#dc2626;">red</strong>. This gives you instant feedback and helps you learn proper Kokborok spelling.</p>
-                <div class="example-box">
-                    <strong>Wrong — "thang" typed with individual consonants:</strong><br />
-                    <span class="wrong">t</span> <span style="color:#6b7280;font-size:0.7rem;">(letter)</span>
-                    <span style="color:#6b7280;">+</span>
-                    <span class="wrong">h</span> <span style="color:#6b7280;font-size:0.7rem;">(letter)</span>
-                    <span style="color:#6b7280;">+</span>
-                    <span style="color:#6b7280;">a</span> <span style="color:#6b7280;font-size:0.7rem;">(vowel)</span>
-                    <span style="color:#6b7280;">+</span>
-                    <span class="wrong">n</span> <span style="color:#6b7280;font-size:0.7rem;">(letter)</span>
-                    <span style="color:#6b7280;">+</span>
-                    <span class="wrong">g</span> <span style="color:#6b7280;font-size:0.7rem;">(letter)</span>
-                    <span style="color:#6b7280;">→</span>
-                    <span style="color:#dc2626;font-weight:600;">t h a n g</span> <span style="color:#dc2626;font-size:0.8rem;">(wrong consonants in red)</span>
-                </div>
+                <p>If a word is typed using an incorrect character sequence, the IME automatically highlights the affected letters in <strong style="color:#dc2626;">red</strong>. This provides instant feedback and helps identify mistakes while learning the correct character forms.</p>
             </div>
 
             <div class="feature-card">
-                <h3>Save &amp; Share Your Rules</h3>
-                <p>Save your custom typing rules to a file and share it with anyone. Another person can load the same file on their computer — so everyone can type the same way, and your personalized setup travels with you wherever you work.</p>
+                <h3>Save &amp; Share</h3>
+                <p>Save your typing preferences to a file and share it whenever needed. Anyone using the same software can load the file and instantly get the same typing experience without having to adjust anything manually.</p>
+                <div style="margin-top:8px;font-size:0.85rem;color:#475569;background:#eef2ff;padding:6px 12px;border-radius:6px;display:inline-block;">
+                </div>
             </div>
-        </div>
-
-        <!-- Important note about independent consonants -->
-        <div class="disclaimer" style="background: #e0f2fe; border-left-color: #0284c7; margin-top: 10px;">
-            <strong>Important — Independent Letters:</strong> In the Kokborok script, <strong>kh</strong>, <strong>ch</strong>, <strong>ph</strong>, <strong>th</strong>, and <strong>ng</strong> are <strong>single, independent consonants</strong>, not combinations of two letters. Each is typed as <strong>one strike</strong>. Vowels like <kbd>a</kbd> are typed normally and do not count as strikes.
         </div>
     </section>
 
-    <!-- KEYBOARD GUIDE -->
+    <!-- ===== KEYBOARD GUIDE ===== -->
     <section id="keyboard">
         <h2>Keyboard Guide (Input Key → Glyph)</h2>
-        <p class="lead" style="margin-bottom:12px;">Press these keys on your physical keyboard to type the corresponding Hachukma glyph. Each key represents <strong>one strike</strong> (for consonants) or a regular vowel/digit.</p>
+        <p class="lead" style="margin-bottom:12px;">
+            Press these keys on your physical keyboard to type the corresponding Hachukma glyph.
+            Each key represents a single consonant character &amp; a regular vowel/digit.
+        </p>
         <div class="keyboard" id="keyboardGrid"></div>
-        <p class="lead" style="margin-top:20px;">Double‑tap <kbd>p</kbd> quickly → tone high diacritic
+        <p class="lead" style="margin-top:20px;">
+            Double‑tap <kbd>p</kbd> quickly → tone high diacritic
             <span class="hachukma-glyph">&#xE024;</span> (custom diacritic – U+E024).
         </p>
     </section>
 
-    <!-- UNICODE REFERENCE -->
+    <!-- ===== UNICODE REFERENCE ===== -->
     <section id="unicode">
         <h2>Unicode Reference (PUA Mapping)</h2>
 
-        <!-- PUA DISCLAIMER – Corrected title and "not reserved" wording -->
+        <!-- PUA Disclaimer -->
         <div class="pua-notice">
             <div class="icon"></div>
             <div class="content">
-                <p><strong>PUA Codepoint Status — Hachukma uses U+E000 to U+E025</strong></p>
-                <p>These glyphs are mapped to the Unicode <strong>Private Use Area (PUA)</strong>. Hachukma specifically uses the codepoints <strong>U+E000 through U+E025</strong>. 
+                <p><strong>PUA Codepoint Status — Hachukma uses U+E000 to U+E024</strong></p>
+                <p>These glyphs are mapped to the Unicode <strong>Private Use Area (PUA)</strong>. Hachukma specifically uses the codepoints <strong>U+E000 through U+E024</strong>.</p>
                 <ul>
                     <li><strong>Hachukma has NOT submitted a proposal</strong> to the Unicode Consortium to reserve these specific codepoints for Kokborok.</li>
                     <li><strong>Hachukma has NOT been submitted to the <a href="https://en.wikipedia.org/wiki/ConScript_Unicode_Registry" target="_blank" rel="noopener">ConScript Unicode Registry (CSUR)</a></strong> — registration with CSUR is <strong>optional</strong>.</li>
                     <li>These assignments are <strong>purely private</strong> — made solely within the Hachukma font and IME for the purpose of enabling digital typing.</li>
-                  
                 </ul>
-                <span class="highlight"> <strong>Future :</strong> A formal proposal will be submitted to the Unicode Consortium to allocate official, universal codepoints for the Kokborok script.</span>
+                <span class="highlight">
+                    <strong>Future :</strong> A formal proposal will be submitted to the Unicode Consortium to allocate official, universal codepoints for the Kokborok script.
+                </span>
             </div>
         </div>
 
-        <div class="disclaimer"></div>
-
+        <!-- Metrics Box -->
         <div class="metrics-box">
             <h3>Tone Glyph Metrics (U+E024) – Font‑Internal Values</h3>
             <p>These are the exact OpenType metrics and anchor coordinates used in the <strong>Hachukma-Regular.ttf</strong> font to position the tone high diacritic above the base letter. These values were tuned to work correctly in the Windows IME and on the web.</p>
@@ -977,136 +934,207 @@
         </div>
 
         <p class="lead">Click copy to get mapping (e.g., <code>c =  (U+E00C) – ch</code>). “Copy All” for the full table.</p>
+
         <div style="margin-bottom:15px;">
             <button id="copyAllBtn" class="btn primary">Copy All Mappings</button>
         </div>
+
         <div style="overflow-x:auto;">
             <table id="unicodeTable">
                 <thead>
-                    <tr><th>Glyph</th><th>Unicode</th><th>Input Key</th><th>Description</th><th>Copy</th></tr>
+                    <tr>
+                        <th>Glyph</th>
+                        <th>Unicode</th>
+                        <th>Input Key</th>
+                        <th>Description</th>
+                        <th>Copy</th>
+                    </tr>
                 </thead>
                 <tbody id="unicodeTableBody"></tbody>
             </table>
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <div class="footer">
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
         Hachukma IME Software &middot; Preserving Kokborok through digital tools
-    </div>
+    </footer>
 
+    <!-- ============================================================== -->
+    <!-- JAVASCRIPT -->
+    <!-- ============================================================== -->
     <script>
-        // Keyboard guide data
-        const guideData = [
-            { key: 'a', glyph: '\uE00A', name: 'a' }, { key: 'b', glyph: '\uE00B', name: 'b' },
-            { key: 'c', glyph: '\uE00C', name: 'ch' }, { key: 'd', glyph: '\uE00D', name: 'd' },
-            { key: 'e', glyph: '\uE00E', name: 'e' }, { key: 'f', glyph: '\uE00F', name: 'ph' },
-            { key: 'g', glyph: '\uE010', name: 'g' }, { key: 'h', glyph: '\uE011', name: 'h' },
-            { key: 'i', glyph: '\uE012', name: 'i' }, { key: 'j', glyph: '\uE013', name: 'j' },
-            { key: 'k', glyph: '\uE014', name: 'k' }, { key: 'l', glyph: '\uE015', name: 'l' },
-            { key: 'm', glyph: '\uE016', name: 'm' }, { key: 'n', glyph: '\uE017', name: 'n' },
-            { key: 'o', glyph: '\uE018', name: 'o' }, { key: 'p', glyph: '\uE019', name: 'p' },
-            { key: 'q', glyph: '\uE01A', name: 'th' }, { key: 'r', glyph: '\uE01B', name: 'r' },
-            { key: 's', glyph: '\uE01C', name: 's' }, { key: 't', glyph: '\uE01D', name: 't' },
-            { key: 'u', glyph: '\uE01E', name: 'u' }, { key: 'v', glyph: '\uE01F', name: 'kh' },
-            { key: 'w', glyph: '\uE020', name: 'w' }, { key: 'x', glyph: '\uE021', name: 'ng' },
-            { key: 'y', glyph: '\uE022', name: 'y' }, { key: 'z', glyph: '\uE023', name: 'ɘ' },
-            { key: '0', glyph: '\uE000', name: '0' }, { key: '1', glyph: '\uE001', name: '1' },
-            { key: '2', glyph: '\uE002', name: '2' }, { key: '3', glyph: '\uE003', name: '3' },
-            { key: '4', glyph: '\uE004', name: '4' }, { key: '5', glyph: '\uE005', name: '5' },
-            { key: '6', glyph: '\uE006', name: '6' }, { key: '7', glyph: '\uE007', name: '7' },
-            { key: '8', glyph: '\uE008', name: '8' }, { key: '9', glyph: '\uE009', name: '9' }
-        ];
+        (function() {
 
-        // Populate keyboard grid
-        const keyboardContainer = document.getElementById('keyboardGrid');
-        if (keyboardContainer) {
-            guideData.forEach(item => {
-                const div = document.createElement('div');
-                div.className = 'key';
-                div.innerHTML =
-                    `<div><strong>${item.key}</strong></div><div class="glyph">${item.glyph}</div><div style="font-size:0.7rem">${item.name}</div>`;
-                keyboardContainer.appendChild(div);
+            // --------------------------------------------------------------
+            // 1. KEYBOARD GUIDE DATA
+            // --------------------------------------------------------------
+            var guideData = [
+                { key: 'a', glyph: '\uE00A', name: 'a' },
+                { key: 'b', glyph: '\uE00B', name: 'b' },
+                { key: 'c', glyph: '\uE00C', name: 'ch' },
+                { key: 'd', glyph: '\uE00D', name: 'd' },
+                { key: 'e', glyph: '\uE00E', name: 'e' },
+                { key: 'f', glyph: '\uE00F', name: 'ph' },
+                { key: 'g', glyph: '\uE010', name: 'g' },
+                { key: 'h', glyph: '\uE011', name: 'h' },
+                { key: 'i', glyph: '\uE012', name: 'i' },
+                { key: 'j', glyph: '\uE013', name: 'j' },
+                { key: 'k', glyph: '\uE014', name: 'k' },
+                { key: 'l', glyph: '\uE015', name: 'l' },
+                { key: 'm', glyph: '\uE016', name: 'm' },
+                { key: 'n', glyph: '\uE017', name: 'n' },
+                { key: 'o', glyph: '\uE018', name: 'o' },
+                { key: 'p', glyph: '\uE019', name: 'p' },
+                { key: 'q', glyph: '\uE01A', name: 'th' },
+                { key: 'r', glyph: '\uE01B', name: 'r' },
+                { key: 's', glyph: '\uE01C', name: 's' },
+                { key: 't', glyph: '\uE01D', name: 't' },
+                { key: 'u', glyph: '\uE01E', name: 'u' },
+                { key: 'v', glyph: '\uE01F', name: 'kh' },
+                { key: 'w', glyph: '\uE020', name: 'w' },
+                { key: 'x', glyph: '\uE021', name: 'ng' },
+                { key: 'y', glyph: '\uE022', name: 'y' },
+                { key: 'z', glyph: '\uE023', name: 'ɘ' },
+                { key: '0', glyph: '\uE000', name: '0' },
+                { key: '1', glyph: '\uE001', name: '1' },
+                { key: '2', glyph: '\uE002', name: '2' },
+                { key: '3', glyph: '\uE003', name: '3' },
+                { key: '4', glyph: '\uE004', name: '4' },
+                { key: '5', glyph: '\uE005', name: '5' },
+                { key: '6', glyph: '\uE006', name: '6' },
+                { key: '7', glyph: '\uE007', name: '7' },
+                { key: '8', glyph: '\uE008', name: '8' },
+                { key: '9', glyph: '\uE009', name: '9' }
+            ];
+
+            // --------------------------------------------------------------
+            // 2. POPULATE KEYBOARD GRID
+            // --------------------------------------------------------------
+            var keyboardContainer = document.getElementById('keyboardGrid');
+            if (keyboardContainer) {
+                guideData.forEach(function(item) {
+                    var div = document.createElement('div');
+                    div.className = 'key';
+                    div.innerHTML =
+                        '<div><strong>' + item.key + '</strong></div>' +
+                        '<div class="glyph">' + item.glyph + '</div>' +
+                        '<div style="font-size:0.7rem">' + item.name + '</div>';
+                    keyboardContainer.appendChild(div);
+                });
+            }
+
+            // --------------------------------------------------------------
+            // 3. UNICODE TABLE DATA (includes tone glyph U+E024)
+            // --------------------------------------------------------------
+            var tableData = [
+                ['\uE00A', 'U+E00A', 'a', 'a'],
+                ['\uE00B', 'U+E00B', 'b', 'b'],
+                ['\uE00C', 'U+E00C', 'c', 'ch'],
+                ['\uE00D', 'U+E00D', 'd', 'd'],
+                ['\uE00E', 'U+E00E', 'e', 'e'],
+                ['\uE00F', 'U+E00F', 'f', 'ph'],
+                ['\uE010', 'U+E010', 'g', 'g'],
+                ['\uE011', 'U+E011', 'h', 'h'],
+                ['\uE012', 'U+E012', 'i', 'i'],
+                ['\uE013', 'U+E013', 'j', 'j'],
+                ['\uE014', 'U+E014', 'k', 'k'],
+                ['\uE015', 'U+E015', 'l', 'l'],
+                ['\uE016', 'U+E016', 'm', 'm'],
+                ['\uE017', 'U+E017', 'n', 'n'],
+                ['\uE018', 'U+E018', 'o', 'o'],
+                ['\uE019', 'U+E019', 'p', 'p'],
+                ['\uE01A', 'U+E01A', 'q', 'th'],
+                ['\uE01B', 'U+E01B', 'r', 'r'],
+                ['\uE01C', 'U+E01C', 's', 's'],
+                ['\uE01D', 'U+E01D', 't', 't'],
+                ['\uE01E', 'U+E01E', 'u', 'u'],
+                ['\uE01F', 'U+E01F', 'v', 'kh'],
+                ['\uE020', 'U+E020', 'w', 'w'],
+                ['\uE021', 'U+E021', 'x', 'ng'],
+                ['\uE022', 'U+E022', 'y', 'y'],
+                ['\uE023', 'U+E023', 'z', 'ɘ'],
+                ['\uE000', 'U+E000', '0', '0'],
+                ['\uE001', 'U+E001', '1', '1'],
+                ['\uE002', 'U+E002', '2', '2'],
+                ['\uE003', 'U+E003', '3', '3'],
+                ['\uE004', 'U+E004', '4', '4'],
+                ['\uE005', 'U+E005', '5', '5'],
+                ['\uE006', 'U+E006', '6', '6'],
+                ['\uE007', 'U+E007', '7', '7'],
+                ['\uE008', 'U+E008', '8', '8'],
+                ['\uE009', 'U+E009', '9', '9'],
+                ['\uE024', 'U+E024', 'pp (double‑tap)', 'TONE HIGH diacritic']
+            ];
+
+            // --------------------------------------------------------------
+            // 4. POPULATE UNICODE TABLE
+            // --------------------------------------------------------------
+            var tableBody = document.getElementById('unicodeTableBody');
+            if (tableBody) {
+                tableData.forEach(function(rowData) {
+                    var row = tableBody.insertRow();
+
+                    var glyphCell = row.insertCell(0);
+                    glyphCell.className = 'glyph-cell';
+                    glyphCell.textContent = rowData[0];
+
+                    var unicodeCell = row.insertCell(1);
+                    unicodeCell.textContent = rowData[1];
+
+                    var keyCell = row.insertCell(2);
+                    keyCell.textContent = rowData[2];
+
+                    var descCell = row.insertCell(3);
+                    descCell.textContent = rowData[3];
+
+                    var copyCell = row.insertCell(4);
+                    var copyBtn = document.createElement('button');
+                    copyBtn.textContent = 'Copy';
+                    copyBtn.className = 'copy-btn';
+                    var mapping = rowData[2] + ' = ' + rowData[0] + ' (' + rowData[1] + ') – ' + rowData[3];
+                    copyBtn.onclick = function() {
+                        navigator.clipboard.writeText(mapping).then(function() {
+                            alert('Copied: ' + mapping);
+                        });
+                    };
+                    copyCell.appendChild(copyBtn);
+                });
+            }
+
+            // --------------------------------------------------------------
+            // 5. COPY ALL MAPPINGS
+            // --------------------------------------------------------------
+            var copyAllBtn = document.getElementById('copyAllBtn');
+            if (copyAllBtn) {
+                copyAllBtn.addEventListener('click', function() {
+                    var allMappings = tableData.map(function(r) {
+                        return r[2] + ' = ' + r[0] + ' (' + r[1] + ') – ' + r[3];
+                    }).join('\n');
+                    navigator.clipboard.writeText(allMappings).then(function() {
+                        alert('Copied ' + tableData.length + ' mappings');
+                    });
+                });
+            }
+
+            // --------------------------------------------------------------
+            // 6. SMOOTH SCROLL FOR ANCHOR LINKS
+            // --------------------------------------------------------------
+            document.querySelectorAll('.btn[href^="#"]').forEach(function(anchor) {
+                anchor.addEventListener('click', function(e) {
+                    var targetId = this.getAttribute('href');
+                    if (targetId && targetId !== '#') {
+                        e.preventDefault();
+                        var target = document.querySelector(targetId);
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+                });
             });
-        }
 
-        // Unicode table data (includes tone glyph U+E024)
-        const tableData = [
-            ['\uE00A', 'U+E00A', 'a', 'a'], ['\uE00B', 'U+E00B', 'b', 'b'],
-            ['\uE00C', 'U+E00C', 'c', 'ch'], ['\uE00D', 'U+E00D', 'd', 'd'],
-            ['\uE00E', 'U+E00E', 'e', 'e'], ['\uE00F', 'U+E00F', 'f', 'ph'],
-            ['\uE010', 'U+E010', 'g', 'g'], ['\uE011', 'U+E011', 'h', 'h'],
-            ['\uE012', 'U+E012', 'i', 'i'], ['\uE013', 'U+E013', 'j', 'j'],
-            ['\uE014', 'U+E014', 'k', 'k'], ['\uE015', 'U+E015', 'l', 'l'],
-            ['\uE016', 'U+E016', 'm', 'm'], ['\uE017', 'U+E017', 'n', 'n'],
-            ['\uE018', 'U+E018', 'o', 'o'], ['\uE019', 'U+E019', 'p', 'p'],
-            ['\uE01A', 'U+E01A', 'q', 'th'], ['\uE01B', 'U+E01B', 'r', 'r'],
-            ['\uE01C', 'U+E01C', 's', 's'], ['\uE01D', 'U+E01D', 't', 't'],
-            ['\uE01E', 'U+E01E', 'u', 'u'], ['\uE01F', 'U+E01F', 'v', 'kh'],
-            ['\uE020', 'U+E020', 'w', 'w'], ['\uE021', 'U+E021', 'x', 'ng'],
-            ['\uE022', 'U+E022', 'y', 'y'], ['\uE023', 'U+E023', 'z', 'ɘ'],
-            ['\uE000', 'U+E000', '0', '0'], ['\uE001', 'U+E001', '1', '1'],
-            ['\uE002', 'U+E002', '2', '2'], ['\uE003', 'U+E003', '3', '3'],
-            ['\uE004', 'U+E004', '4', '4'], ['\uE005', 'U+E005', '5', '5'],
-            ['\uE006', 'U+E006', '6', '6'], ['\uE007', 'U+E007', '7', '7'],
-            ['\uE008', 'U+E008', '8', '8'], ['\uE009', 'U+E009', '9', '9'],
-            ['\uE024', 'U+E024', 'pp (double‑tap)', 'TONE HIGH diacritic']
-        ];
-
-        const tableBody = document.getElementById('unicodeTableBody');
-        if (tableBody) {
-            tableData.forEach(rowData => {
-                const row = tableBody.insertRow();
-                const glyphCell = row.insertCell(0);
-                glyphCell.className = 'glyph-cell';
-                glyphCell.textContent = rowData[0];
-                const unicodeCell = row.insertCell(1);
-                unicodeCell.textContent = rowData[1];
-                const keyCell = row.insertCell(2);
-                keyCell.textContent = rowData[2];
-                const descCell = row.insertCell(3);
-                descCell.textContent = rowData[3];
-                const copyCell = row.insertCell(4);
-                const copyBtn = document.createElement('button');
-                copyBtn.textContent = 'Copy';
-                copyBtn.className = 'copy-btn';
-                const mapping = `${rowData[2]} = ${rowData[0]} (${rowData[1]}) – ${rowData[3]}`;
-                copyBtn.onclick = () => {
-                    navigator.clipboard.writeText(mapping).then(() => alert(`Copied: ${mapping}`));
-                };
-                copyCell.appendChild(copyBtn);
-            });
-        }
-
-        // Copy all mappings
-        document.getElementById('copyAllBtn')?.addEventListener('click', () => {
-            const allMappings = tableData.map(r => `${r[2]} = ${r[0]} (${r[1]}) – ${r[3]}`).join('\n');
-            navigator.clipboard.writeText(allMappings).then(() => alert(`Copied ${tableData.length} mappings`));
-        });
-
-        // Smooth scroll for anchor links
-        document.querySelectorAll('.btn[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const targetId = this.getAttribute('href');
-                if (targetId && targetId !== '#') {
-                    e.preventDefault();
-                    const target = document.querySelector(targetId);
-                    if (target) target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-
-        // Disable right‑click, text selection, copy, and devtools shortcuts
-        document.addEventListener("contextmenu", function(e) { e.preventDefault(); });
-        document.addEventListener("selectstart", function(e) { e.preventDefault(); });
-        document.addEventListener("copy", function(e) { e.preventDefault(); });
-        document.addEventListener("keydown", function(e) {
-            if (e.key === "F12") e.preventDefault();
-            if (e.ctrlKey && e.key.toLowerCase() === "u") e.preventDefault();
-            if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "i") e.preventDefault();
-            if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "j") e.preventDefault();
-            if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "c") e.preventDefault();
-        });
+        })();
     </script>
+
 </body>
 </html>
