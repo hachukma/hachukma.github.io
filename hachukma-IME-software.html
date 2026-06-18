@@ -57,7 +57,6 @@
             padding-bottom: 10px;
         }
 
-        /* Back button – glass style on teal */
         .nav-back {
             display: inline-flex;
             align-items: center;
@@ -127,7 +126,6 @@
             border-bottom-color: rgba(255, 255, 255, 0.5);
         }
 
-        /* Nav button – glass style */
         .nav-links .btn-small {
             display: inline-block;
             padding: 0.35rem 0.7rem;
@@ -149,7 +147,7 @@
             border-bottom: none;
         }
 
-        /* ----- SECTIONS (full-width, no container) ----- */
+        /* ----- SECTIONS ----- */
         section {
             padding: 60px 24px;
             border-bottom: 1px solid #e2e8f0;
@@ -243,7 +241,6 @@
             margin-bottom: 12px;
         }
 
-        /* Primary buttons – teal #297c7c */
         .download-btn {
             display: inline-block;
             padding: 0.6rem 1.4rem;
@@ -313,15 +310,202 @@
             margin-bottom: 12px;
         }
 
-        /* ----- SCREENSHOT SECTION ----- */
+        /* ----- SECURITY DISCLAIMER (TEAL) ----- */
+        .security-notice {
+            background: #e6f4f4;
+            border-left: 6px solid #297c7c;
+            border-radius: 10px;
+            padding: 1.2rem 1.6rem;
+            margin: 1.2rem 0 1.8rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            box-shadow: 0 1px 4px rgba(41, 124, 124, 0.12);
+        }
+
+        .security-notice .icon {
+            font-size: 1.8rem;
+            line-height: 1.2;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .security-notice .content {
+            flex: 1;
+        }
+
+        .security-notice .content strong {
+            color: #1f6363;
+        }
+
+        .security-notice .content p {
+            margin: 0 0 4px 0;
+            color: #1f4a4a;
+            font-size: 0.92rem;
+        }
+
+        .security-notice .content .highlight {
+            background: #cbe8e8;
+            padding: 2px 10px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-top: 6px;
+            border: 1px solid #297c7c;
+            color: #1f4a4a;
+        }
+
+        .security-notice .content .highlight code {
+            background: transparent;
+            font-weight: 700;
+            color: #1f6363;
+        }
+
+        /* ----- PUA DISCLAIMER (TEAL) WITH CSUR LINK ----- */
+        .pua-notice {
+            background: #e6f4f4;
+            border-left: 6px solid #297c7c;
+            border-radius: 10px;
+            padding: 1.2rem 1.6rem;
+            margin: 1.2rem 0 1.8rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            box-shadow: 0 1px 4px rgba(41, 124, 124, 0.12);
+        }
+
+        .pua-notice .icon {
+            font-size: 1.8rem;
+            line-height: 1.2;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .pua-notice .content {
+            flex: 1;
+        }
+
+        .pua-notice .content strong {
+            color: #1f6363;
+        }
+
+        .pua-notice .content p {
+            margin: 0 0 4px 0;
+            color: #1f4a4a;
+            font-size: 0.92rem;
+        }
+
+        .pua-notice .content ul {
+            margin: 8px 0 8px 20px;
+            color: #1f4a4a;
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+
+        .pua-notice .content ul li {
+            margin-bottom: 2px;
+        }
+
+        .pua-notice .content .highlight {
+            background: #cbe8e8;
+            padding: 2px 10px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-top: 6px;
+            border: 1px solid #297c7c;
+            color: #1f4a4a;
+        }
+
+        .pua-notice .content a {
+            color: #1f6363;
+            font-weight: 600;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .pua-notice .content a:hover {
+            color: #0d3b3b;
+        }
+
+        /* ----- FEATURES SECTION ----- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin: 20px 0;
+        }
+
+        .feature-card {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            transition: 0.2s;
+        }
+
+        .feature-card:hover {
+            border-color: #297c7c;
+            transform: translateY(-4px);
+        }
+
+        .feature-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: #0f172a;
+        }
+
+        .feature-card p {
+            color: #475569;
+            font-size: 0.95rem;
+        }
+
+        .feature-card p kbd {
+            background: #e2e8f0;
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .example-box {
+            background: #f1f5f9;
+            border-radius: 8px;
+            padding: 10px 14px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            border-left: 3px solid #297c7c;
+        }
+
+        .example-box .correct {
+            color: #16a34a;
+            font-weight: 600;
+        }
+
+        .example-box .wrong {
+            color: #dc2626;
+            font-weight: 600;
+            text-decoration: line-through;
+        }
+
+        .example-box .strike-badge {
+            display: inline-block;
+            background: #297c7c;
+            color: white;
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 1px 8px;
+            border-radius: 12px;
+            margin: 0 2px;
+        }
+
+        /* ----- SCREENSHOT ----- */
         .screenshot-section {
             padding: 40px 24px 60px;
             max-width: 1200px;
             margin: 0 auto;
-        }
-
-        .screenshot-section h2 {
-            margin-bottom: 20px;
         }
 
         .screenshot-full {
@@ -429,7 +613,7 @@
             color: white;
         }
 
-        /* ----- METRICS & DISCLAIMER ----- */
+        /* ----- METRICS ----- */
         .disclaimer {
             background: #e8f5f5;
             border-left: 5px solid #297c7c;
@@ -487,7 +671,7 @@
             color: #1f6363;
         }
 
-        /* ----- GLOBAL BUTTONS (teal) ----- */
+        /* ----- BUTTONS (all teal) ----- */
         .btn {
             display: inline-block;
             padding: 0.6rem 1.4rem;
@@ -516,11 +700,6 @@
 
         .btn.primary:hover {
             background-color: #1f6363;
-            border-color: #1f6363;
-            transform: translateY(-2px);
-        }
-
-        .btn:hover:not(.disabled) {
             border-color: #1f6363;
             transform: translateY(-2px);
         }
@@ -561,6 +740,23 @@
             .screenshot-section {
                 padding: 30px 16px 40px;
             }
+            .security-notice,
+            .pua-notice {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+                padding: 1rem 1.2rem;
+            }
+            .security-notice .icon,
+            .pua-notice .icon {
+                font-size: 1.4rem;
+            }
+            .pua-notice .content ul {
+                margin-left: 16px;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 480px) {
@@ -580,29 +776,24 @@
 </head>
 <body>
 
-    <!-- ===== NAV BAR (teal #297c7c) ===== -->
     <nav class="navbar">
         <div class="navbar-inner">
-
-            <!-- TOP ROW: Back to Home – CENTERED -->
             <div class="nav-back-wrap">
                 <a href="index.html" class="nav-back">
                     <svg viewBox="0 0 24 24" width="18" height="18"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
                     Back to Home
                 </a>
             </div>
-
-            <!-- BOTTOM ROW: Brand + Nav Links -->
             <div class="nav-row">
                 <span class="nav-brand">HACHUKMA IME</span>
                 <div class="nav-links">
-            
+                    <a href="#download-ime">Download</a>
+                    <a href="#features">Features</a>
                     <a href="#keyboard">Guide</a>
-                    <a href="#unicode">Copy unicode</a>
+                    <a href="#unicode">Unicode</a>
                     <a href="#download-ime" class="btn-small">Get IME</a>
                 </div>
             </div>
-
         </div>
     </nav>
 
@@ -612,6 +803,17 @@
     <div id="download-ime" class="download-main">
         <h2>Hachukma IME Software – Desktop Version</h2>
         <p>Full offline input method for Windows 10/11. Real‑time Roman to Hachukma conversion.</p>
+
+        <!-- SECURITY DISCLAIMER -->
+        <div class="security-notice">
+            <div class="icon"></div>
+            <div class="content">
+                <p><strong>Code‑signing not implemented</strong> — This software is not yet signed with a digital certificate.</p>
+                <p>When you run the installer, Windows may show a <strong>"Windows protected your PC"</strong> or <strong>"Unknown publisher"</strong> warning. This is <strong>normal</strong> for unsigned software.</p>
+                <p><strong>✅ The software is safe</strong> — you can proceed by clicking <em>"More info"</em> → <em>"Run anyway"</em>.</p>
+                <span class="highlight">Publisher name in <strong>Control Panel &gt; Programs &amp; Features</strong>: <code>Anan Debbarma</code></span>
+            </div>
+        </div>
 
         <div class="ime-dual">
             <div class="ime-card">
@@ -625,7 +827,7 @@
                 <div class="version-badge">version v1.0</div>
                 <h3>Windows IME (GitHub)</h3>
                 <p>Download from GitHub Releases<br />ZIP / installer assets</p>
-                <a href="https://github.com/hachukma/Hachukma-IME-Software-PUA/releases/tag/v1.0" class="download-btn" class="download-btn">Download from GitHub</a>
+                <a href="https://github.com/hachukma/Hachukma-IME-Software-PUA/releases/tag/v1.0" class="download-btn">Download from GitHub</a>
                 <div class="github-note">Official release page – choose the IME installer package.</div>
             </div>
         </div>
@@ -656,18 +858,105 @@
         <div class="screenshot-note">The IME shows both Hachukma script and Roman transliteration side by side. Supports custom themes, word count, MonkeyType typing test, and tone diacritic via double‑tap 'p'.</div>
     </div>
 
+    <!-- ===== FEATURES SECTION ===== -->
+    <section id="features">
+        <h2>IME Features &amp; Smart Transliteration</h2>
+        <p class="lead" style="margin-bottom:16px;">The Hachukma IME is built for efficiency and accuracy. Here's what you get out of the box:</p>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>Visual Themes</h3>
+                <p>Switch between light, dark, and custom color schemes. Reduce eye strain and match your workspace aesthetic during long typing sessions.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>Font Scaling</h3>
+                <p>Adjust the displayed Hachukma glyph size — from <strong>small</strong> to <strong>big</strong> — in real-time. Perfect for high-DPI monitors and accessibility needs.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>Smart Digraph Engine</h3>
+                <p>Each independent consonant is typed as a single <strong>strike</strong>. Vowels (like <kbd>a</kbd>) are typed normally and are <strong>not</strong> counted as strikes.</p>
+                <ul style="margin: 8px 0 8px 18px; color: #475569; font-size: 0.9rem; line-height: 1.6;">
+                    <li><kbd>k</kbd> + <kbd>h</kbd> → <strong>kh</strong> (strike, mapped to <kbd>v</kbd>)</li>
+                    <li><kbd>c</kbd> + <kbd>h</kbd> → <strong>ch</strong> (strike, mapped to <kbd>c</kbd>)</li>
+                    <li><kbd>p</kbd> + <kbd>h</kbd> → <strong>ph</strong> (strike, mapped to <kbd>f</kbd>)</li>
+                    <li><kbd>t</kbd> + <kbd>h</kbd> → <strong>th</strong> (strike, mapped to <kbd>q</kbd>)</li>
+                    <li><kbd>n</kbd> + <kbd>g</kbd> → <strong>ng</strong> (strike, mapped to <kbd>x</kbd>)</li>
+                </ul>
+                <div class="example-box">
+                    <strong>Example — "thang" (2 strikes):</strong><br />
+                    <span class="correct">✅ th</span> <span style="color:#6b7280;font-size:0.7rem;">(strike 1)</span>
+                    <span style="color:#6b7280;">+</span>
+                    <span style="color:#6b7280;">a</span> <span style="color:#6b7280;font-size:0.7rem;">(vowel, not a strike)</span>
+                    <span style="color:#6b7280;">+</span>
+                    <span class="correct">ng</span> <span style="color:#6b7280;font-size:0.7rem;">(strike 2)</span>
+                    <span style="color:#6b7280;">→</span>
+                    <strong style="color:#16a34a;">thang</strong>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <h3>Visual Error Detection</h3>
+                <p>If you type individual consonants instead of the correct independent strikes, the IME automatically highlights the wrong letters in <strong style="color:#dc2626;">red</strong>. This gives you instant feedback and helps you learn proper Kokborok spelling.</p>
+                <div class="example-box">
+                    <strong>Wrong — "thang" typed with individual consonants:</strong><br />
+                    <span class="wrong">t</span> <span style="color:#6b7280;font-size:0.7rem;">(letter)</span>
+                    <span style="color:#6b7280;">+</span>
+                    <span class="wrong">h</span> <span style="color:#6b7280;font-size:0.7rem;">(letter)</span>
+                    <span style="color:#6b7280;">+</span>
+                    <span style="color:#6b7280;">a</span> <span style="color:#6b7280;font-size:0.7rem;">(vowel)</span>
+                    <span style="color:#6b7280;">+</span>
+                    <span class="wrong">n</span> <span style="color:#6b7280;font-size:0.7rem;">(letter)</span>
+                    <span style="color:#6b7280;">+</span>
+                    <span class="wrong">g</span> <span style="color:#6b7280;font-size:0.7rem;">(letter)</span>
+                    <span style="color:#6b7280;">→</span>
+                    <span style="color:#dc2626;font-weight:600;">t h a n g</span> <span style="color:#dc2626;font-size:0.8rem;">(wrong consonants in red)</span>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <h3>Save &amp; Share Your Rules</h3>
+                <p>Save your custom typing rules to a file and share it with anyone. Another person can load the same file on their computer — so everyone can type the same way, and your personalized setup travels with you wherever you work.</p>
+            </div>
+        </div>
+
+        <!-- Important note about independent consonants -->
+        <div class="disclaimer" style="background: #e0f2fe; border-left-color: #0284c7; margin-top: 10px;">
+            <strong>Important — Independent Letters:</strong> In the Kokborok script, <strong>kh</strong>, <strong>ch</strong>, <strong>ph</strong>, <strong>th</strong>, and <strong>ng</strong> are <strong>single, independent consonants</strong>, not combinations of two letters. Each is typed as <strong>one strike</strong>. Vowels like <kbd>a</kbd> are typed normally and do not count as strikes.
+        </div>
+    </section>
+
     <!-- KEYBOARD GUIDE -->
     <section id="keyboard">
-        <h2>Keyboard Guide (Roman Key → Glyph)</h2>
+        <h2>Keyboard Guide (Input Key → Glyph)</h2>
+        <p class="lead" style="margin-bottom:12px;">Press these keys on your physical keyboard to type the corresponding Hachukma glyph. Each key represents <strong>one strike</strong> (for consonants) or a regular vowel/digit.</p>
         <div class="keyboard" id="keyboardGrid"></div>
-        <p class="lead" style="margin-top:20px">Double‑tap <kbd>p</kbd> quickly → tone high diacritic
+        <p class="lead" style="margin-top:20px;">Double‑tap <kbd>p</kbd> quickly → tone high diacritic
             <span class="hachukma-glyph">&#xE024;</span> (custom diacritic – U+E024).
         </p>
     </section>
 
-    <!-- UNICODE REFERENCE + TONE METRICS -->
+    <!-- UNICODE REFERENCE -->
     <section id="unicode">
         <h2>Unicode Reference (PUA Mapping)</h2>
+
+        <!-- PUA DISCLAIMER – Corrected title and "not reserved" wording -->
+        <div class="pua-notice">
+            <div class="icon"></div>
+            <div class="content">
+                <p><strong>PUA Codepoint Status — Hachukma uses U+E000 to U+E025</strong></p>
+                <p>These glyphs are mapped to the Unicode <strong>Private Use Area (PUA)</strong>. Hachukma specifically uses the codepoints <strong>U+E000 through U+E025</strong>. 
+                <ul>
+                    <li><strong>Hachukma has NOT submitted a proposal</strong> to the Unicode Consortium to reserve these specific codepoints for Kokborok.</li>
+                    <li><strong>Hachukma has NOT been submitted to the <a href="https://en.wikipedia.org/wiki/ConScript_Unicode_Registry" target="_blank" rel="noopener">ConScript Unicode Registry (CSUR)</a></strong> — registration with CSUR is <strong>optional</strong>.</li>
+                    <li>These assignments are <strong>purely private</strong> — made solely within the Hachukma font and IME for the purpose of enabling digital typing.</li>
+                  
+                </ul>
+                <span class="highlight"> <strong>Future :</strong> A formal proposal will be submitted to the Unicode Consortium to allocate official, universal codepoints for the Kokborok script.</span>
+            </div>
+        </div>
+
         <div class="disclaimer"></div>
 
         <div class="metrics-box">
@@ -688,13 +977,13 @@
         </div>
 
         <p class="lead">Click copy to get mapping (e.g., <code>c =  (U+E00C) – ch</code>). “Copy All” for the full table.</p>
-        <div style="margin-bottom:15px">
+        <div style="margin-bottom:15px;">
             <button id="copyAllBtn" class="btn primary">Copy All Mappings</button>
         </div>
-        <div style="overflow-x:auto">
+        <div style="overflow-x:auto;">
             <table id="unicodeTable">
                 <thead>
-                    <tr><th>Glyph</th><th>Unicode</th><th>Roman Key</th><th>Description</th><th>Copy</th></tr>
+                    <tr><th>Glyph</th><th>Unicode</th><th>Input Key</th><th>Description</th><th>Copy</th></tr>
                 </thead>
                 <tbody id="unicodeTableBody"></tbody>
             </table>
@@ -703,7 +992,7 @@
 
     <!-- FOOTER -->
     <div class="footer">
-        Hachukma IME Software &middot; Preserving Kokborok script through digital tools
+        Hachukma IME Software &middot; Preserving Kokborok through digital tools
     </div>
 
     <script>
@@ -805,6 +1094,18 @@
                     if (target) target.scrollIntoView({ behavior: 'smooth' });
                 }
             });
+        });
+
+        // Disable right‑click, text selection, copy, and devtools shortcuts
+        document.addEventListener("contextmenu", function(e) { e.preventDefault(); });
+        document.addEventListener("selectstart", function(e) { e.preventDefault(); });
+        document.addEventListener("copy", function(e) { e.preventDefault(); });
+        document.addEventListener("keydown", function(e) {
+            if (e.key === "F12") e.preventDefault();
+            if (e.ctrlKey && e.key.toLowerCase() === "u") e.preventDefault();
+            if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "i") e.preventDefault();
+            if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "j") e.preventDefault();
+            if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "c") e.preventDefault();
         });
     </script>
 </body>
