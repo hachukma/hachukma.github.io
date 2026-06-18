@@ -26,10 +26,17 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
+            /* push content down so fixed navbar doesn't cover it */
+            padding-top: 82px;
         }
 
-        /* ── FULL-WIDTH NAVBAR with centered title ── */
+        /* ── FIXED FULL-WIDTH NAVBAR ── */
         .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
             width: 100%;
             background-color: #297c7c;
             padding: 14px 24px;
@@ -37,7 +44,7 @@
             grid-template-columns: 1fr auto 1fr;
             align-items: center;
             border-bottom: 2px solid #e8edf2;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
         }
 
         .navbar-left {
@@ -343,6 +350,9 @@
 
         /* ── responsive ── */
         @media (max-width: 700px) {
+            body {
+                padding-top: 100px;
+            }
             .navbar {
                 grid-template-columns: 1fr;
                 justify-items: center;
@@ -368,6 +378,9 @@
         }
 
         @media (max-width: 600px) {
+            body {
+                padding-top: 110px;
+            }
             .grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 15px;
@@ -393,7 +406,6 @@
             font-weight: normal;
         }
 
-     
         .notice-box {
             margin-top: 20px;
             padding: 14px 18px;
@@ -418,7 +430,7 @@
 
 <body>
 
-    <!-- ═══ FULL-WIDTH NAVBAR with centered title ═══ -->
+    <!-- ═══ FIXED FULL-WIDTH NAVBAR ═══ -->
     <nav class="navbar">
 
         <div class="navbar-left">
@@ -485,11 +497,6 @@
             <div class="card"><div class="letter">&#xE008;</div><div class="word">8</div></div>
             <div class="card"><div class="letter">&#xE009;</div><div class="word">9</div></div>
         </div>
-
-        <!-- CTA BUTTON - changed to "Development Complete" for a clean status label -->
-        <!-- <a href="#" class="btn-primary">✔ Development Complete</a> -->
-
-       
 
         <div class="notice-box">
             <strong>Hachukma Script Usage Notice:</strong>
