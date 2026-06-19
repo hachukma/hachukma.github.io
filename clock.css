@@ -8,10 +8,8 @@
     font-weight: 500;
     padding: 0.3rem 1rem;
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    color: #ff4d4d;
-    width: 20rem; /* Strictly fixed width for the entire container */
+    color: #fcf5f5;
+    width: 20rem; 
     box-sizing: border-box;
 }
 
@@ -20,11 +18,10 @@
 .clock-second,
 .clock-ms {
     font-variant-numeric: tabular-nums;
-    width: 100%; /* Fill the grid cell */
+    width: 100%; 
     text-align: center;
     padding: 0.1rem 0;
     border-radius: 4px;
-    background: rgba(255, 255, 255, 0.04);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,7 +36,7 @@
     width: 100%;
     text-align: center;
     opacity: 0.6;
-    font-family: Arial, sans-serif; /* Use standard font for separators to ensure consistent width */
+    font-family: Arial, sans-serif; 
 }
 
 .clock-ampm {
@@ -48,7 +45,6 @@
     font-size: 0.85rem;
     font-family: Arial, sans-serif;
     opacity: 0.9;
-    color: #ff4d4d;
     font-weight: bold;
 }
 
