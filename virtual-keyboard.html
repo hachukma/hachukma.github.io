@@ -1,0 +1,1938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hachukma — Kokborok Typing System</title>
+
+    <style>
+        @font-face {
+            font-family: "NewScript";
+            src: url("../Font/hachukma.woff") format("woff");
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        .key,
+        .smalldevice-key-cut,
+        .smalldevice-key-arrow,
+        .smalldevice-key,
+        .smalldevice-keys,
+        .syllabic-line,
+        .alphabet-item,
+        .number-item,
+        .big-number {
+            font-family: "NewScript", sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4f8;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0;
+            margin: 0;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            width: 100%;
+            background: #297c7c;
+            color: #f0f7f7;
+            padding: 0 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            min-height: 64px;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        .navbar .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #ffffff;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar .brand .hachukma-font {
+            font-family: 'NewScript', 'Segoe UI', Tahoma, sans-serif;
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .navbar .nav-links a {
+            color: #d4ece6;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            transition: background 0.2s, color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .navbar .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+        }
+
+        .navbar .nav-links a.active {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+        }
+
+        /* ===== CONTAINER ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            width: 100%;
+        }
+
+        /* ===== ARTICLE SECTION ===== */
+        .article-section {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 2rem 2.2rem;
+            border: 1.5px solid #dce8e8;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+            word-wrap: break-word;
+            max-width: 100%;
+        }
+
+        .article-section .article-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #0d2b2b;
+            margin-bottom: 0.6rem;
+            letter-spacing: -0.3px;
+            word-wrap: break-word;
+        }
+
+        .article-section .article-title .hachukma-word {
+            font-family: 'NewScript', 'Segoe UI', Tahoma, sans-serif;
+            color: #297c7c;
+        }
+
+        .article-section .article-meta {
+            font-size: 0.9rem;
+            color: #6a8a8a;
+            margin-bottom: 1.2rem;
+            border-bottom: 1px solid #e8f0f0;
+            padding-bottom: 0.8rem;
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            word-wrap: break-word;
+        }
+
+        .article-section .article-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            flex-wrap: wrap;
+            word-wrap: break-word;
+        }
+
+        .article-section .article-meta span kbd {
+            white-space: nowrap;
+        }
+
+        .article-section .article-body {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: #1a2a2a;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .article-section .article-body p {
+            margin-bottom: 0.8rem;
+            word-wrap: break-word;
+        }
+
+        .article-section .article-body .highlight {
+            background: rgba(41, 124, 124, 0.10);
+            padding: 0.05rem 0.3rem;
+            border-radius: 3px;
+            font-family: 'NewScript', 'Segoe UI', Tahoma, sans-serif;
+            font-size: 1.1em;
+        }
+
+        .article-section .article-body .code-block {
+            background: #f0f6f6;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-family: 'Segoe UI', monospace;
+            font-size: 0.9rem;
+            border: 1px solid #dce8e8;
+            display: inline-block;
+            margin: 0.1rem 0;
+            word-wrap: break-word;
+        }
+
+        .article-section .article-body .consonant-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 0.3rem 0.8rem;
+            background: #f8fbfb;
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            margin: 0.6rem 0;
+            border: 1px solid #e8f0f0;
+            overflow: hidden;
+        }
+
+        .article-section .article-body .consonant-grid .c-item {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.95rem;
+            flex-wrap: wrap;
+        }
+
+        .article-section .article-body .consonant-grid .c-item .c-script {
+            font-family: 'NewScript', 'Segoe UI', Tahoma, sans-serif;
+            font-size: 1.4rem;
+            min-width: 1.8rem;
+            text-align: center;
+        }
+
+        .article-section .article-body .consonant-grid .c-item .c-latin {
+            color: #3d5a5a;
+            font-size: 0.85rem;
+        }
+
+        /* ===== TEXT DISPLAY ===== */
+        .text-display {
+            background-color: #ffffff;
+            border-radius: 7px;
+            padding: 1.9rem;
+            min-height: 220px;
+            width: 1090px;
+            margin: 0.5rem 0px 0px 23px;
+            font-size: 2.9rem;
+            color: #000000;
+            border: 2px solid #2d2d2d;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 0;
+            border-color: #b3c5c5;
+            font-family: 'NewScript', 'Segoe UI', Tahoma, sans-serif;
+            cursor: text;
+            position: relative;
+            overflow-y: auto;
+            max-height: 200px;
+            overflow-x: hidden;
+            word-wrap: break-word;
+        }
+
+        .text-display:focus-within {
+            border-color: #297c7c;
+        }
+
+        .text-display .char-container {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-width: 0.4em;
+            position: relative;
+            transition: background 0.1s;
+            padding: 0 0.02em;
+            vertical-align: top;
+        }
+
+        .text-display .char-container .syllabic-line {
+            font-size: 2.2rem;
+            line-height: 1.3;
+            position: relative;
+            display: inline-block;
+            font-weight: 500;
+            color: #1a2a2a;
+            font-family: 'NewScript', 'Segoe UI', Tahoma, sans-serif;
+            min-height: 1.4em;
+        }
+
+        .text-display .char-container .alphabetic-line {
+            font-size: 0.7rem;
+            color: #6a8a8a;
+            line-height: 1;
+            margin-top: 0.1rem;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            min-height: 1em;
+        }
+
+        .text-display .char-container .high-tone {
+            position: absolute;
+            top: -0.25em;
+            left: 0;
+            transform: translateX(-50%);
+            font-size: 1.6em;
+            color: #0f0f0f;
+            font-weight: 700;
+        }
+
+        .text-display .char-container.active {
+            background: rgba(41, 124, 124, 0.12);
+            border-radius: 4px;
+        }
+
+        .text-display .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.4em;
+            background-color: #000;
+            margin-left: 2px;
+            animation: blink 1s step-end infinite;
+            vertical-align: middle;
+            flex-shrink: 0;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        /* ===== KEYBOARD WRAPPER ===== */
+        .keyboard-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 100%;
+            margin: 0 auto;
+            flex-shrink: 0;
+        }
+
+        /* ===== DESKTOP KEYBOARD ===== */
+        .keyboard-container {
+            background-color: #FFFFFF;
+            border-radius: 6px;
+            padding: 1.5rem;
+            border: 1px solid #585858;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.1);
+            order: -1;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            width: 100%;
+        }
+
+        .keyboard {
+            display: grid;
+            grid-template-columns: repeat(30, 32px);
+            grid-template-rows: repeat(6, 45px);
+            gap: 4px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            border: 3px solid #d6d4d4;
+            position: relative;
+            width: fit-content;
+            margin: 0 auto;
+        }
+
+        .key {
+            grid-column: span 2;
+            background: linear-gradient(145deg, #FFFFFF, #F0F0F0);
+            color: #222222;
+            border: 1px solid #CCCCCC;
+            border-radius: 4px;
+            padding: 4px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.08s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+            position: relative;
+            box-shadow: 0 3px 0 #D0D0D0, 0 4px 6px rgba(0, 0, 0, 0.15);
+            height: 100%;
+            font-family: 'NewScript', 'Segoe UI', Tahoma, sans-serif;
+            font-weight: 500;
+            line-height: 1.1;
+            text-align: center;
+            flex-direction: column;
+        }
+
+        #key-not-important {
+            grid-column: span 2;
+            background: linear-gradient(145deg, #19928c, #179172);
+            color: #222222;
+            border: 1px solid #CCCCCC;
+            border-radius: 4px;
+            padding: 0px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.08s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+            position: relative;
+            box-shadow: 0 3px 0 #D0D0D0, 0 4px 6px rgba(0, 0, 0, 0.15);
+            height: 100%;
+            font-family: 'NewScript', 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        .key[data-key="p"] {
+            background: linear-gradient(145deg, #a3d3bd, #e9ebda);
+        }
+
+        .key:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(145deg, #FFFFFF, #E8E8E8);
+        }
+
+        .key:active,
+        .key.active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            background: #c8d6d6;
+        }
+
+        .key.wide {
+            grid-column: span 3;
+        }
+
+        .key.wide-backspace-key {
+            grid-column: span 4;
+        }
+
+        .key.extra-wide {
+            grid-column: span 10;
+        }
+
+        .key.Enter-extra-wide {
+            grid-column: span 5;
+        }
+
+        .key[data-type="special"] {
+            font-size: 0.8rem;
+            color: #444444;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        .key[data-type="consonant"],
+        .key[data-type="vowel"] {
+            font-weight: bold;
+            color: #333333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.2;
+        }
+
+        .key[data-type="consonant"] br,
+        .key[data-type="vowel"] br {
+            margin: 2px 0;
+        }
+
+        .key[data-type="consonant"]:first-child,
+        .key[data-type="vowel"]:first-child {
+            font-size: 1rem;
+        }
+
+        .key[data-type="consonant"]:last-child,
+        .key[data-type="vowel"]:last-child {
+            font-size: 0.7rem;
+            color: #666666;
+        }
+
+        /* ===== PHONE KEYBOARD ===== */
+        .smalldevice-container {
+            display: none;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            flex-direction: column;
+            gap: 1rem;
+            width: 100%;
+        }
+
+        .smalldevice-keyboard-container {
+            background-color: #FFFFFF;
+            border-radius: 5px;
+            padding: 1.5rem;
+            border: 1px solid #585858;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.1);
+            order: -1;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .smalldevice-keyboard {
+            display: grid;
+            grid-template-columns: repeat(20, 30px);
+            grid-template-rows: repeat(5, 50px);
+            gap: 1px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            border: 3px solid #d6d4d4;
+            position: relative;
+            width: fit-content;
+            margin: 0 auto;
+            min-width: 690px;
+        }
+
+        .smalldevice-key {
+            grid-column: span 2;
+            background: linear-gradient(145deg, #FFFFFF, #F0F0F0);
+            color: #222222;
+            border: 1px solid #CCCCCC;
+            border-radius: 4px;
+            padding: 4px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.08s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+            position: relative;
+            box-shadow: 0 3px 0 #D0D0D0, 0 4px 6px rgba(0, 0, 0, 0.15);
+            height: 100%;
+            touch-action: manipulation;
+            font-family: 'NewScript', 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        .smalldevice-keys {
+            grid-column: span 2;
+            background: linear-gradient(145deg, #FFFFFF, #F0F0F0);
+            color: #222222;
+            border: 1px solid #CCCCCC;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.08s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+            position: relative;
+            box-shadow: 0 3px 0 #D0D0D0, 0 4px 6px rgba(0, 0, 0, 0.15);
+            height: 100%;
+            touch-action: manipulation;
+            font-family: 'NewScript', 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        .smalldevice-key-arrow {
+            grid-column: span 3;
+            background: linear-gradient(145deg, #FFFFFF, #F0F0F0);
+            color: #222222;
+            border: 1px solid #CCCCCC;
+            border-radius: 4px;
+            margin-left: 20px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.08s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+            position: relative;
+            box-shadow: 0 3px 0 #D0D0D0, 0 4px 6px rgba(0, 0, 0, 0.15);
+            height: 100%;
+            touch-action: manipulation;
+            font-family: 'NewScript', 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        .smalldevice-key-cut {
+            grid-column: span 3;
+            background: linear-gradient(145deg, #FFFFFF, #F0F0F0);
+            color: #222222;
+            border: 1px solid #CCCCCC;
+            border-radius: 4px;
+            margin-right: 20px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.08s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+            position: relative;
+            box-shadow: 0 3px 0 #D0D0D0, 0 4px 6px rgba(0, 0, 0, 0.15);
+            height: 100%;
+            touch-action: manipulation;
+            font-family: 'NewScript', 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        #smalldevice-two-set-key {
+            grid-column: span 2;
+            background: linear-gradient(145deg, #a3d3bd, #e9ebda);
+            color: #222222;
+            border: 1px solid #CCCCCC;
+            border-radius: 4px;
+            padding: 0px;
+            font-size: .7rem;
+            cursor: pointer;
+            transition: all 0.08s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+            position: relative;
+            box-shadow: 0 3px 0 #D0D0D0, 0 4px 6px rgba(0, 0, 0, 0.15);
+            height: 100%;
+            touch-action: manipulation;
+            font-family: 'NewScript', 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        #smalldevice-key-not-important {
+            grid-column: span 2;
+            background: linear-gradient(145deg, #19928c, #179172);
+            color: #222222;
+            border: 1px solid #CCCCCC;
+            border-radius: 4px;
+            padding: 0px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.08s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+            position: relative;
+            box-shadow: 0 3px 0 #D0D0D0, 0 4px 6px rgba(0, 0, 0, 0.15);
+            height: 100%;
+            touch-action: manipulation;
+            font-family: 'NewScript', 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        .smalldevice-key:hover,
+        .smalldevice-keys:hover,
+        .smalldevice-key-arrow:hover,
+        .smalldevice-key-cut:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(145deg, #FFFFFF, #E8E8E8);
+        }
+
+        .smalldevice-key:active,
+        .smalldevice-keys:active,
+        .smalldevice-key-arrow:active,
+        .smalldevice-key-cut:active,
+        .smalldevice-key.active,
+        .smalldevice-keys.active,
+        .smalldevice-key-arrow.active,
+        .smalldevice-key-cut.active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            background: #c8d6d6;
+        }
+
+        .smalldevice-key.extra-wide {
+            grid-column: span 12;
+        }
+
+        .smalldevice-key[data-type="special"] {
+            font-size: 0.8rem;
+            color: #444444;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        .smalldevice-key[data-type="consonant"],
+        .smalldevice-key[data-type="vowel"] {
+            font-weight: bold;
+            color: #333333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.2;
+        }
+
+        .smalldevice-key[data-type="consonant"] br,
+        .smalldevice-key[data-type="vowel"] br {
+            margin: 2px 0;
+        }
+
+        .smalldevice-key[data-type="consonant"]:first-child,
+        .smalldevice-key[data-type="vowel"]:first-child {
+            font-size: 1rem;
+        }
+
+        .smalldevice-key[data-type="consonant"]:last-child,
+        .smalldevice-key[data-type="vowel"]:last-child {
+            font-size: 0.7rem;
+            color: #666666;
+        }
+
+        /* ===== TONE & DIGRAPH POSITIONING ===== */
+        .syllabic-line {
+            position: relative;
+            display: inline-block;
+        }
+
+        .syllabic-line[data-key="ph"],
+        .syllabic-line[data-key="th"],
+        .syllabic-line[data-key="kh"],
+        .syllabic-line[data-key="ch"] {
+            padding-left: 17px;
+        }
+
+        .syllabic-line[data-key="chh"] {
+            padding-left: 39px;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media screen and (max-width: 1200px) {
+            .container {
+                padding: 1rem;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+            }
+            .text-display {
+                width: 85%;
+                margin: 2rem auto;
+                font-size: 2.2rem;
+                padding: 1.5rem;
+                min-height: 140px;
+                max-height: 250px;
+            }
+            .text-display .char-container .syllabic-line {
+                font-size: 1.8rem;
+            }
+            .keyboard-container {
+                width: 100%;
+                max-width: none;
+                padding: 1rem;
+                overflow-x: auto;
+            }
+            .keyboard {
+                transform: none;
+                grid-template-columns: repeat(30, 28px);
+                gap: 2px;
+                margin: 0 auto;
+            }
+            .article-section {
+                padding: 1.5rem;
+            }
+            .article-section .article-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media screen and (max-width: 992px) {
+            .text-display {
+                width: 90%;
+                font-size: 1.8rem;
+                padding: 1.2rem;
+                min-height: 120px;
+                max-height: 220px;
+                margin: 1.5rem auto;
+            }
+            .text-display .char-container .syllabic-line {
+                font-size: 1.6rem;
+            }
+            .text-display .char-container .alphabetic-line {
+                font-size: 0.6rem;
+            }
+            .keyboard {
+                grid-template-columns: repeat(30, 24px);
+                grid-template-rows: repeat(6, 40px);
+                gap: 2px;
+            }
+            .key {
+                font-size: 0.65rem;
+                padding: 2px;
+            }
+            .article-section .article-title {
+                font-size: 1.3rem;
+            }
+            .article-section .article-body {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.4rem;
+                padding: 0.6rem 1rem;
+            }
+            .navbar .nav-links {
+                justify-content: center;
+                gap: 1rem;
+            }
+            .navbar .nav-links a {
+                font-size: 0.9rem;
+                padding: 0.3rem 0.6rem;
+            }
+            .container {
+                padding: 0.8rem;
+            }
+            .text-display {
+                width: 95%;
+                font-size: 1.5rem;
+                padding: 1rem;
+                min-height: 100px;
+                max-height: 200px;
+                margin: 1rem auto;
+            }
+            .text-display .char-container .syllabic-line {
+                font-size: 1.3rem;
+            }
+            .text-display .char-container .alphabetic-line {
+                font-size: 0.55rem;
+            }
+            .text-display .cursor {
+                height: 1.2rem;
+            }
+            .keyboard-container {
+                padding: 0.5rem;
+                overflow-x: scroll;
+            }
+            .keyboard {
+                transform: none;
+                grid-template-columns: repeat(30, 22px);
+                grid-auto-rows: 38px;
+                gap: 2px;
+            }
+            .key {
+                font-size: 0.6rem;
+                padding: 2px;
+            }
+            .key.wide {
+                grid-column: span 3;
+            }
+            .key.Enter-extra-wide {
+                grid-column: span 4;
+            }
+            .article-section {
+                padding: 1.2rem;
+            }
+            .article-section .article-title {
+                font-size: 1.2rem;
+            }
+            .article-section .article-body {
+                font-size: 0.9rem;
+            }
+            .article-section .article-body .consonant-grid {
+                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+                padding: 0.6rem 0.8rem;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .text-display {
+                font-size: 1.2rem;
+                padding: 0.8rem;
+                min-height: 80px;
+                max-height: 180px;
+                width: 100%;
+                margin: 0.8rem auto;
+            }
+            .text-display .char-container .syllabic-line {
+                font-size: 1.1rem;
+                line-height: 1.4;
+            }
+            .text-display .char-container .alphabetic-line {
+                font-size: 0.5rem;
+            }
+            .text-display .cursor {
+                height: 1rem;
+            }
+            .text-display .char-container .high-tone {
+                font-size: 1.3em;
+                top: -0.2em;
+            }
+            .keyboard-container,
+            .keyboard {
+                display: none !important;
+            }
+            .smalldevice-container {
+                display: flex !important;
+                padding: 0.8rem 0.5rem;
+            }
+            .smalldevice-keyboard-container {
+                padding: 0.8rem;
+            }
+            .smalldevice-keyboard {
+                grid-template-columns: repeat(20, 20px);
+                grid-template-rows: repeat(5, 34px);
+                min-width: 410px;
+                gap: 1px;
+            }
+            .smalldevice-key,
+            .smalldevice-keys,
+            .smalldevice-key-arrow,
+            .smalldevice-key-cut {
+                font-size: 0.55rem;
+                padding: 2px;
+                border-radius: 3px;
+                box-shadow: 0 2px 0 #D0D0D0, 0 3px 5px rgba(0, 0, 0, 0.12);
+            }
+            .smalldevice-key-arrow {
+                margin-left: 12px;
+            }
+            .smalldevice-key-cut {
+                margin-right: 12px;
+            }
+            .smalldevice-keys {
+                margin-left: 12px;
+                font-size: 0.7rem;
+            }
+            .smalldevice-key.extra-wide {
+                grid-column: span 10;
+            }
+            .smalldevice-key[data-type="special"] {
+                font-size: 0.5rem;
+            }
+            .smalldevice-key[data-type="vowel"] {
+                font-size: 0.5rem;
+            }
+            .article-section {
+                padding: 0.8rem;
+            }
+            .article-section .article-title {
+                font-size: 1rem;
+            }
+            .article-section .article-body {
+                font-size: 0.8rem;
+                line-height: 1.6;
+            }
+            .article-section .article-body .consonant-grid {
+                grid-template-columns: repeat(auto-fill, minmax(65px, 1fr));
+                gap: 0.2rem 0.4rem;
+                padding: 0.4rem 0.6rem;
+            }
+            .article-section .article-body .consonant-grid .c-item {
+                font-size: 0.75rem;
+            }
+            .article-section .article-body .consonant-grid .c-item .c-script {
+                font-size: 1rem;
+                min-width: 1.2rem;
+            }
+            .article-section .article-meta {
+                font-size: 0.75rem;
+                gap: 0.8rem;
+            }
+            .article-section .article-meta span {
+                flex-wrap: wrap;
+            }
+            .article-section .article-meta span kbd {
+                font-size: 0.7rem;
+            }
+            .navbar .brand {
+                font-size: 1rem;
+            }
+            .navbar .nav-links a {
+                font-size: 0.8rem;
+                padding: 0.2rem 0.5rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .text-display {
+                font-size: 1rem;
+                padding: 0.6rem;
+                min-height: 65px;
+                max-height: 150px;
+            }
+            .text-display .char-container .syllabic-line {
+                font-size: 0.95rem;
+                line-height: 1.4;
+            }
+            .text-display .char-container .alphabetic-line {
+                font-size: 0.42rem;
+            }
+            .text-display .cursor {
+                height: 0.9rem;
+            }
+            .text-display .char-container .high-tone {
+                font-size: 1.2em;
+                top: -0.15em;
+            }
+            .smalldevice-keyboard {
+                grid-template-columns: repeat(20, 15px);
+                grid-template-rows: repeat(5, 26px);
+                min-width: 310px;
+                gap: 0.8px;
+            }
+            .smalldevice-key,
+            .smalldevice-keys,
+            .smalldevice-key-arrow,
+            .smalldevice-key-cut,
+            #smalldevice-two-set-key,
+            #smalldevice-key-not-important {
+                font-size: 0.45rem;
+                padding: 1px;
+                border-radius: 2px;
+                box-shadow: 0 1px 0 #D0D0D0, 0 2px 3px rgba(0, 0, 0, 0.1);
+            }
+            .smalldevice-key-arrow {
+                margin-left: 8px;
+            }
+            .smalldevice-key-cut {
+                margin-right: 8px;
+            }
+            .smalldevice-keys {
+                margin-left: 8px;
+                font-size: 0.5rem;
+            }
+            .smalldevice-key.extra-wide {
+                grid-column: span 12;
+            }
+            .smalldevice-key[data-type="special"] {
+                font-size: 0.4rem;
+            }
+            .smalldevice-key[data-type="vowel"] {
+                font-size: 0.4rem;
+            }
+            .article-section {
+                padding: 0.6rem;
+            }
+            .article-section .article-title {
+                font-size: 0.9rem;
+            }
+            .article-section .article-body {
+                font-size: 0.75rem;
+            }
+            .navbar .brand {
+                font-size: 0.9rem;
+            }
+            .navbar .nav-links {
+                gap: 0.4rem;
+            }
+        }
+
+        /* scroll styling */
+        .keyboard-container::-webkit-scrollbar,
+        .smalldevice-keyboard-container::-webkit-scrollbar {
+            height: 4px;
+        }
+        .keyboard-container::-webkit-scrollbar-track,
+        .smalldevice-keyboard-container::-webkit-scrollbar-track {
+            background: #eaf0f0;
+            border-radius: 4px;
+        }
+        .keyboard-container::-webkit-scrollbar-thumb,
+        .smalldevice-keyboard-container::-webkit-scrollbar-thumb {
+            background: #b8cece;
+            border-radius: 4px;
+        }
+
+        .text-display:focus-visible {
+            outline: 2px solid #297c7c;
+            outline-offset: 2px;
+        }
+
+        /* ===== PHONE TONE POSITIONING ===== */
+        @media (max-width: 768px) {
+            .syllabic-line[data-key="ph"],
+            .syllabic-line[data-key="th"],
+            .syllabic-line[data-key="kh"],
+            .syllabic-line[data-key="ch"] {
+                padding-left: 10px !important;
+            }
+            .syllabic-line[data-key="chh"] {
+                padding-left: 18px !important;
+            }
+            .text-display .char-container .high-tone {
+                top: -0.2em;
+                left: 0;
+                transform: translateX(-50%);
+                font-size: 1.4em;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .syllabic-line[data-key="ph"],
+            .syllabic-line[data-key="th"],
+            .syllabic-line[data-key="kh"],
+            .syllabic-line[data-key="ch"] {
+                padding-left: 6px !important;
+            }
+            .syllabic-line[data-key="chh"] {
+                padding-left: 12px !important;
+            }
+            .text-display .char-container .high-tone {
+                font-size: 1.2em;
+                top: -0.15em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar">
+        <div class="brand">
+            <span class="hachukma-font">Hachukma</span>
+        </div>
+        <div class="nav-links">
+            <a href="../index.php" id="navBack">Back to Home</a>
+        </div>
+    </nav>
+
+    <!-- ===== MAIN CONTAINER ===== -->
+    <div class="container">
+
+        <!-- ===== ARTICLE SECTION ===== -->
+        <div class="article-section" id="articleSection">
+            <div class="article-title">
+                Typing System &amp; <span class="hachukma-word">Virtual Keyboard</span>
+            </div>
+            <div class="article-meta">
+                <span>Kokborok Script</span>
+                <span>PUA + Hachukma Font</span>
+                <span>Auto‑replace: <kbd style="background:#e4ecec;padding:0.05rem 0.4rem;border-radius:3px;border:1px solid #c8d6d6;font-size:0.8rem;">f</kbd> → ph · <kbd style="background:#e4ecec;padding:0.05rem 0.4rem;border-radius:3px;border:1px solid #c8d6d6;font-size:0.8rem;">x</kbd> → ng · <kbd style="background:#e4ecec;padding:0.05rem 0.4rem;border-radius:3px;border:1px solid #c8d6d6;font-size:0.8rem;">q</kbd> → th · <kbd style="background:#e4ecec;padding:0.05rem 0.4rem;border-radius:3px;border:1px solid #c8d6d6;font-size:0.8rem;">z</kbd> → ɘ · <kbd style="background:#e4ecec;padding:0.05rem 0.4rem;border-radius:3px;border:1px solid #c8d6d6;font-size:0.8rem;">c</kbd> → ch · <kbd style="background:#e4ecec;padding:0.05rem 0.4rem;border-radius:3px;border:1px solid #c8d6d6;font-size:0.8rem;">v</kbd> → kh</span>
+                <span>Digraph composition: <kbd style="background:#e4ecec;padding:0.05rem 0.4rem;border-radius:3px;border:1px solid #c8d6d6;font-size:0.8rem;">t+h</kbd> → th · <kbd style="background:#e4ecec;padding:0.05rem 0.4rem;border-radius:3px;border:1px solid #c8d6d6;font-size:0.8rem;">n+g</kbd> → ng · <kbd style="background:#e4ecec;padding:0.05rem 0.4rem;border-radius:3px;border:1px solid #c8d6d6;font-size:0.8rem;">k+h</kbd> → kh · <kbd style="background:#e4ecec;padding:0.05rem 0.4rem;border-radius:3px;border:1px solid #c8d6d6;font-size:0.8rem;">p+h</kbd> → ph</span>
+            </div>
+            <div class="article-body">
+                <p>
+                    The <strong>Hachukma Script</strong> can be typed using a custom-designed virtual keyboard.
+                    The system includes a Roman-letter input helper, which allows users to type characters using the
+                    Latin alphabet with automatic substitution: <span class="code-block">f → ph</span>,
+                    <span class="code-block">x → ng</span>, <span class="code-block">q → th</span>,
+                    <span class="code-block">z → ɘ</span>, <span class="code-block">c → ch</span>,
+                    <span class="code-block">v → kh</span>.
+                    The system is based on the Unicode Private Use Area (PUA) and works together with the
+                    <strong>Hachukma</strong> custom font.
+                </p>
+
+                <p>
+                    <strong>Diacritic:</strong> High tone diacritic mark.
+                    <span style="background:#eaf0f0;padding:0.05rem 0.5rem;border-radius:4px;border:1px solid #dce8e8;">
+                        Desktop: double‑tap the <kbd style="background:#dce8e8;padding:0.05rem 0.4rem;border-radius:3px;border:1px solid #c8d6d6;">p</kbd> key
+                    </span>
+                    <span style="background:#eaf0f0;padding:0.05rem 0.5rem;border-radius:4px;border:1px solid #dce8e8;">
+                        Phone: type, then tap the dedicated <span style="font-family:'NewScript',sans-serif;"></span> tone key
+                    </span>
+                </p>
+
+                <p><strong>Consonants:</strong> The script includes 20 primary consonant characters, each representing a single consonant phoneme:</p>
+
+                <div class="consonant-grid">
+                    <div class="c-item"><span class="c-script"></span><span class="c-latin">t</span></div>
+                    <div class="c-item"><span class="c-script"></span><span class="c-latin">y</span></div>
+                    <div class="c-item"><span class="c-script"></span><span class="c-latin">s</span></div>
+                    <div class="c-item"><span class="c-script"></span><span class="c-latin">d</span></div>
+                    <div class="c-item"><span class="c-script"></span><span class="c-latin">p</span></div>
+                    <div class="c-item"><span class="c-script"></span><span class="c-latin">g</span></div>
+                    <div class="c-item"><span class="c-script"></span><span class="c-latin">h</span></div>
+                    <div class="c-item"><span class="c-script"></span><span class="c-latin">j</span></div>
+                    <div class="c-item"><span class="c-script"></span><span class="c-latin">k</span></div>
+                    <div class="c-item"><span class="c-script"></span><span class="c-latin">l</span></div>
+                    <div class="c-item"><span class="c-script"></span><span class="c-latin">b</span></div>
+                    <div class="c-item"><span class="c-script"></span><span class="c-latin">n</span></div>
+                    <div class="c-item"><span class="c-script"></span><span class="c-latin">m</span></div>
+                    <div class="c-item"><span class="c-script"></span><span class="c-latin">ng</span></div>
+                    <div class="c-item"><span class="c-script"></span><span class="c-latin">kh</span></div>
+                    <div class="c-item"><span class="c-script"></span><span class="c-latin">ch</span></div>
+                    <div class="c-item"><span class="c-script"></span><span class="c-latin">ph</span></div>
+                    <div class="c-item"><span class="c-script"></span><span class="c-latin">th</span></div>
+                    <div class="c-item"><span class="c-script"></span><span class="c-latin">r</span></div>
+                    <div class="c-item"><span class="c-script"></span><span class="c-latin">w</span></div>
+                </div>
+
+                <p>
+                    Each consonant is an independent pictographic character whose phonetic value follows the
+                    <strong>acrophonic principle</strong>, deriving its sound from the initial phonetic element.
+                    The character <span class="highlight">ng</span> ,<span class="highlight">ɘ</span>  is exceptional. In use, every symbol functions
+                    purely as a phoneme. The characters are arranged for intuitive keyboard input, with related
+                    sounds grouped together, ensuring clarity and ease of learning.
+                </p>
+            </div>
+        </div>
+
+        <!-- ===== TEXT DISPLAY ===== -->
+        <div id="textDisplay" class="text-display" tabindex="0">
+            <span class="cursor"></span>
+        </div>
+
+        <!-- ===== KEYBOARD WRAPPER ===== -->
+        <div class="keyboard-wrapper">
+
+            <!-- ===== DESKTOP KEYBOARD ===== -->
+            <div class="keyboard-container" id="desktopKbContainer">
+                <div class="keyboard" id="desktopKeyboard">
+
+                    <!-- Function Row -->
+                    <button class="key" data-type="special" data-key="">Esc</button>
+                    <button class="key" data-type="special" data-key="">F1</button>
+                    <button class="key" data-type="special" data-key="">F2</button>
+                    <button class="key" data-type="special" data-key="">F3</button>
+                    <button class="key" data-type="special" data-key="">F4</button>
+                    <button class="key" data-type="special" data-key="">F5</button>
+                    <button class="key" data-type="special" data-key="">F6</button>
+                    <button class="key" data-type="special" data-key="">F7</button>
+                    <button class="key" data-type="special" data-key="">F8</button>
+                    <button class="key" data-type="special" data-key="">F9</button>
+                    <button class="key" data-type="special" data-key="">F10</button>
+                    <button class="key" data-type="special" data-key="">F11</button>
+                    <button class="key" data-type="special" data-key="">F12</button>
+                    <button class="key" data-type="special" data-key="">PrtSc</button>
+                    <button class="key" data-type="special" data-key="">Scroll Lock</button>
+                    <button class="key" data-type="special" data-key="">Pause</button>
+
+                    <!-- Number Row -->
+                    <button class="key" data-type="vowel" data-key="1" data-char="&#xE001;"><br>&#xE001;<br>1</button>
+                    <button class="key" data-type="vowel" data-key="2" data-char="&#xE002;"><br>&#xE002;<br>2</button>
+                    <button class="key" data-type="vowel" data-key="3" data-char="&#xE003;"><br>&#xE003;<br>3</button>
+                    <button class="key" data-type="vowel" data-key="4" data-char="&#xE004;"><br>&#xE004;<br>4</button>
+                    <button class="key" data-type="vowel" data-key="5" data-char="&#xE005;"><br>&#xE005;<br>5</button>
+                    <button class="key" data-type="vowel" data-key="6" data-char="&#xE006;"><br>&#xE006;<br>6</button>
+                    <button class="key" data-type="vowel" data-key="7" data-char="&#xE007;"><br>&#xE007;<br>7</button>
+                    <button class="key" data-type="vowel" data-key="8" data-char="&#xE008;"><br>&#xE008;<br>8</button>
+                    <button class="key" data-type="vowel" data-key="9" data-char="&#xE009;"><br>&#xE009;<br>9</button>
+                    <button class="key" data-type="vowel" data-key="0" data-char="&#xE000;"><br>&#xE000;<br>0</button>
+                    <button class="key" data-type="special" data-key="-">-<br>_</button>
+                    <button class="key" data-type="special" data-key="=">=<br>+</button>
+                    <button class="key wide-backspace-key" data-type="special" data-key="Backspace">⌫ Backspace</button>
+
+                    <!-- QWERTY Row -->
+                    <button class="key wide" data-type="special">Tab</button>
+                    <button class="key" data-key="th" data-char="&#xE01A;">&#xE01A;<br>th</button>
+                    <button class="key" data-key="w" data-char="&#xE020;">&#xE020;<br>w</button>
+                    <button class="key" data-key="e" data-char="&#xE00E;">&#xE00E;<br>e</button>
+                    <button class="key" data-key="r" data-char="&#xE01B;">&#xE01B;<br>r</button>
+                    <button class="key" data-key="t" data-char="&#xE01D;">&#xE01D;<br>t</button>
+                    <button class="key" data-key="y" data-char="&#xE022;">&#xE022;<br>y</button>
+                    <button class="key" data-key="u" data-char="&#xE01E;">&#xE01E;<br>u</button>
+                    <button class="key" data-key="i" data-char="&#xE012;">&#xE012;<br>i</button>
+                    <button class="key" data-key="o" data-char="&#xE018;">&#xE018;<br>o</button>
+                    <button class="key" data-key="p" data-char="&#xE019;">&#xE019;<br>p</button>
+                    <button class="key" data-type="special" data-key="]">{<br>]</button>
+                    <button class="key" data-type="special" data-key="]">}<br>[</button>
+                    <button class="key wide" data-type="special" data-key="\">|<br>\</button>
+
+                    <!-- ASDF Row -->
+                    <button class="key wide" data-type="special">Caps Lock</button>
+                    <button class="key" data-key="a" data-char="&#xE00A;">&#xE00A;<br>a</button>
+                    <button class="key" data-key="s" data-char="&#xE01C;">&#xE01C;<br>s</button>
+                    <button class="key" data-key="d" data-char="&#xE00D;">&#xE00D;<br>d</button>
+                    <button class="key" data-key="ph" data-char="&#xE00F;">&#xE00F;<br>ph</button>
+                    <button class="key" data-key="g" data-char="&#xE010;">&#xE010;<br>g</button>
+                    <button class="key" data-key="h" data-char="&#xE011;">&#xE011;<br>h</button>
+                    <button class="key" data-key="j" data-char="&#xE013;">&#xE013;<br>j</button>
+                    <button class="key" data-key="k" data-char="&#xE014;">&#xE014;<br>k</button>
+                    <button class="key" data-key="l" data-char="&#xE015;">&#xE015;<br>l</button>
+                    <button class="key" data-type="special" data-key=";">:<br>;</button>
+                    <button class="key" data-type="special" data-key="'">"<br>'</button>
+                    <button class="key Enter-extra-wide" data-type="special" data-key="Enter">↵ Enter</button>
+
+                    <!-- ZXCV Row -->
+                    <button class="key Enter-extra-wide" data-type="special" data-key="Shift">⇧ Shift</button>
+                    <button class="key" data-key="ɘ" data-char="&#xE023;">&#xE023;<br>ɘ</button>
+                    <button class="key" data-key="ng" data-char="&#xE021;">&#xE021;<br>ng</button>
+                    <button class="key" data-key="ch" data-char="&#xE00C;">&#xE00C;<br>ch</button>
+                    <button class="key" data-key="kh" data-char="&#xE01F;">&#xE01F;<br>kh</button>
+                    <button class="key" data-key="b" data-char="&#xE00B;">&#xE00B;<br>b</button>
+                    <button class="key" data-key="n" data-char="&#xE017;">&#xE017;<br>n</button>
+                    <button class="key" data-key="m" data-char="&#xE016;">&#xE016;<br>m</button>
+                    <button class="key" data-type="special" data-key=","><<br>,</button>
+                    <button class="key" data-type="special" data-key=".">><br>.</button>
+                    <button class="key" data-type="special" data-key="/">?<br>/</button>
+                    <button class="key Enter-extra-wide" data-type="special" data-key="Shift">⇧ Shift</button>
+
+                    <!-- Control Row -->
+                    <button class="key" data-type="special">Fn</button>
+                    <button class="key" data-type="special">Ctrl</button>
+                    <button class="key" data-type="special">Win</button>
+                    <button class="key" data-type="special">Alt</button>
+                    <button class="key extra-wide" data-type="special" data-key="space">kokborok</button>
+                    <button class="key" data-type="special">Alt</button>
+                    <button class="key" data-type="special">Ctrl</button>
+
+                    <!-- Arrow Keys -->
+                    <button class="key" data-type="special" data-key="ArrowLeft">←</button>
+                    <button class="key" data-type="special" data-key="">↓</button>
+                    <button class="key" data-type="special" data-key="">↑</button>
+                    <button class="key" data-type="special" data-key="ArrowRight">→</button>
+                </div>
+            </div>
+
+            <!-- ===== PHONE KEYBOARD ===== -->
+            <div class="smalldevice-container" id="phoneKbContainer">
+                <div class="smalldevice-keyboard-container">
+                    <div class="smalldevice-keyboard" id="phoneKeyboard">
+
+                        <!-- Number Row -->
+                        <button class="smalldevice-key" data-type="vowel" data-key="1" data-char="&#xE001;"><br>&#xE001;<br>1</button>
+                        <button class="smalldevice-key" data-type="vowel" data-key="2" data-char="&#xE002;"><br>&#xE002;<br>2</button>
+                        <button class="smalldevice-key" data-type="vowel" data-key="3" data-char="&#xE003;"><br>&#xE003;<br>3</button>
+                        <button class="smalldevice-key" data-type="vowel" data-key="4" data-char="&#xE004;"><br>&#xE004;<br>4</button>
+                        <button class="smalldevice-key" data-type="vowel" data-key="5" data-char="&#xE005;"><br>&#xE005;<br>5</button>
+                        <button class="smalldevice-key" data-type="vowel" data-key="6" data-char="&#xE006;"><br>&#xE006;<br>6</button>
+                        <button class="smalldevice-key" data-type="vowel" data-key="7" data-char="&#xE007;"><br>&#xE007;<br>7</button>
+                        <button class="smalldevice-key" data-type="vowel" data-key="8" data-char="&#xE008;"><br>&#xE008;<br>8</button>
+                        <button class="smalldevice-key" data-type="vowel" data-key="9" data-char="&#xE009;"><br>&#xE009;<br>9</button>
+                        <button class="smalldevice-key" data-type="vowel" data-key="0" data-char="&#xE000;"><br>&#xE000;<br>0</button>
+
+                        <!-- QWERTY Row -->
+                        <button class="smalldevice-key" data-key="th" data-char="&#xE01A;">&#xE01A;<br>th</button>
+                        <button class="smalldevice-key" data-key="w" data-char="&#xE020;">&#xE020;<br>w</button>
+                        <button class="smalldevice-key" data-key="e" data-char="&#xE00E;">&#xE00E;<br>e</button>
+                        <button class="smalldevice-key" data-key="r" data-char="&#xE01B;">&#xE01B;<br>r</button>
+                        <button class="smalldevice-key" data-key="t" data-char="&#xE01D;">&#xE01D;<br>t</button>
+                        <button class="smalldevice-key" data-key="y" data-char="&#xE022;">&#xE022;<br>y</button>
+                        <button class="smalldevice-key" data-key="u" data-char="&#xE01E;">&#xE01E;<br>u</button>
+                        <button class="smalldevice-key" data-key="i" data-char="&#xE012;">&#xE012;<br>i</button>
+                        <button class="smalldevice-key" data-key="o" data-char="&#xE018;">&#xE018;<br>o</button>
+                        <button class="smalldevice-key" data-key="p" data-char="&#xE019;">&#xE019;<br>p</button>
+
+                        <!-- ASDF Row -->
+                        <button class="smalldevice-keys" id="smalldevice-two-set-key" data-key="" data-char="&#xE024;">&#xE024;<br></button>
+                        <button class="smalldevice-keys" data-key="a" data-char="&#xE00A;">&#xE00A;<br>a</button>
+                        <button class="smalldevice-keys" data-key="s" data-char="&#xE01C;">&#xE01C;<br>s</button>
+                        <button class="smalldevice-keys" data-key="d" data-char="&#xE00D;">&#xE00D;<br>d</button>
+                        <button class="smalldevice-keys" data-key="ph" data-char="&#xE00F;">&#xE00F;<br>ph</button>
+                        <button class="smalldevice-keys" data-key="g" data-char="&#xE010;">&#xE010;<br>g</button>
+                        <button class="smalldevice-keys" data-key="h" data-char="&#xE011;">&#xE011;<br>h</button>
+                        <button class="smalldevice-keys" data-key="j" data-char="&#xE013;">&#xE013;<br>j</button>
+                        <button class="smalldevice-keys" data-key="k" data-char="&#xE014;">&#xE014;<br>k</button>
+                        <button class="smalldevice-keys" data-key="l" data-char="&#xE015;">&#xE015;<br>l</button>
+                        <button class="smalldevice-key-arrow" data-type="special" data-key="">↑</button>
+
+                        <!-- ZXCV Row -->
+                        <button class="smalldevice-key" data-key="ɘ" data-char="&#xE023;">&#xE023;<br>ɘ</button>
+                        <button class="smalldevice-key" data-key="ng" data-char="&#xE021;">&#xE021;<br>ng</button>
+                        <button class="smalldevice-key" data-key="ch" data-char="&#xE00C;">&#xE00C;<br>ch</button>
+                        <button class="smalldevice-key" data-key="kh" data-char="&#xE01F;">&#xE01F;<br>kh</button>
+                        <button class="smalldevice-key" data-key="b" data-char="&#xE00B;">&#xE00B;<br>b</button>
+                        <button class="smalldevice-key" data-key="n" data-char="&#xE017;">&#xE017;<br>n</button>
+                        <button class="smalldevice-key" data-key="m" data-char="&#xE016;">&#xE016;<br>m</button>
+                        <button class="smalldevice-key-cut" data-type="special" data-key="X">⌫ X</button>
+                        <button class="smalldevice-key" data-type="special" data-key="!#1">!#1</button>
+                        <button class="smalldevice-key" data-type="special" data-key=",">,</button>
+
+                        <!-- Control Row -->
+                        <button class="smalldevice-key extra-wide" data-type="special" data-key="space">kokborok</button>
+
+                        <!-- Arrow Keys -->
+                        <button class="smalldevice-key" data-type="special" data-key=".">.</button>
+                        <button class="smalldevice-key" data-type="special" data-key="search">🔍</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        // ============================================================
+        //  PROTECTION: Silently block right-click & devtools shortcuts
+        // ============================================================
+
+        (function() {
+            'use strict';
+
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }, true);
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'F12' || e.keyCode === 123) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+                if (e.ctrlKey && e.shiftKey) {
+                    const key = e.key.toLowerCase ? e.key.toLowerCase() : '';
+                    if (key === 'i' || key === 'j' || key === 'c' || key === 'e') {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        return false;
+                    }
+                }
+                if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+                if (e.ctrlKey && (e.key === 's' || e.key === 'S')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+                if (e.ctrlKey && (e.key === 'p' || e.key === 'P')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+                return true;
+            }, true);
+
+            document.addEventListener('dragstart', function(e) {
+                e.preventDefault();
+                return false;
+            }, true);
+
+            document.addEventListener('copy', function(e) {
+                e.preventDefault();
+                return false;
+            }, true);
+            document.addEventListener('cut', function(e) {
+                e.preventDefault();
+                return false;
+            }, true);
+
+            const textDisplayEl = document.getElementById('textDisplay');
+            if (textDisplayEl) {
+                textDisplayEl.addEventListener('paste', function(e) {
+                    e.preventDefault();
+                    return false;
+                });
+            }
+
+            let devtoolsOpen = false;
+            const element = new Image();
+            Object.defineProperty(element, 'id', {
+                get: function() {
+                    devtoolsOpen = true;
+                    return '';
+                }
+            });
+            setInterval(function() {
+                devtoolsOpen = false;
+                console.log('%c', element);
+                console.clear();
+            }, 2000);
+
+            document.querySelectorAll('*').forEach(function(el) {
+                el.addEventListener('contextmenu', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }, true);
+            });
+
+            console.log('🛡️ Silent protection active: right-click & devtools blocked (no pop-up).');
+        })();
+
+
+
+        //  KOKBOROK TYPING SYSTEM — Full Implementation
+
+
+        // ---- DOM refs ----
+        const textDisplayEl = document.getElementById('textDisplay');
+
+        const desktopKb = document.getElementById('desktopKbContainer');
+        const phoneKb = document.getElementById('phoneKbContainer');
+
+        // ---- State ----
+        let typedChars = [];
+        let totalKeyPresses = 0;
+
+        // ---- Physical keyboard "p" double-tap tracking ----
+        let lastPhysicalPTime = 0;
+
+        // ---- Helper: check if a character is a numeral (0-9) ----
+        const NUMERAL_CHARS = [
+            '\uE000', '\uE001', '\uE002', '\uE003', '\uE004',
+            '\uE005', '\uE006', '\uE007', '\uE008', '\uE009'
+        ];
+
+        function isNumeralChar(char) {
+            return NUMERAL_CHARS.includes(char);
+        }
+
+        function isNumeralKey(key) {
+            return ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].includes(key);
+        }
+
+        // ---- Helper: PUA to Latin mapping ----
+        const puaToLatin = {
+            '\uE00A': 'a',
+            '\uE00B': 'b',
+            '\uE00C': 'ch',
+            '\uE00D': 'd',
+            '\uE00E': 'e',
+            '\uE00F': 'ph',
+            '\uE010': 'g',
+            '\uE011': 'h',
+            '\uE012': 'i',
+            '\uE013': 'j',
+            '\uE014': 'k',
+            '\uE015': 'l',
+            '\uE016': 'm',
+            '\uE017': 'n',
+            '\uE018': 'o',
+            '\uE019': 'p',
+            '\uE01A': 'th',
+            '\uE01B': 'r',
+            '\uE01C': 's',
+            '\uE01D': 't',
+            '\uE01E': 'u',
+            '\uE01F': 'kh',
+            '\uE020': 'w',
+            '\uE021': 'ng',
+            '\uE022': 'y',
+            '\uE023': 'ɘ',
+            '\uE024': ''
+        };
+
+        // ---- Digraph composition map ----
+        const digraphMap = {
+            'h': { 't': 'th', 'p': 'ph', 'k': 'kh', 'c': 'ch' },
+            'g': { 'n': 'ng' }
+        };
+
+        // ---- Render display ----
+        function renderDisplay() {
+            const cursor = textDisplayEl.querySelector('.cursor');
+            textDisplayEl.innerHTML = '';
+            typedChars.forEach((item) => {
+                const container = document.createElement('span');
+                container.className = 'char-container';
+
+                const syllabic = document.createElement('div');
+                syllabic.className = 'syllabic-line';
+                const latin = document.createElement('div');
+                latin.className = 'alphabetic-line';
+
+                const key = item.key || item.char || '';
+                const charEntity = item.char || '';
+
+                if (item.tone) {
+                    const base = charEntity.replace('\uE024', '');
+                    syllabic.innerHTML = `${base}<span class="high-tone">\uE024</span>`;
+                    syllabic.setAttribute('data-key', key);
+                    latin.textContent = (puaToLatin[base] || base) + '́';
+                } else {
+                    syllabic.innerHTML = charEntity;
+                    syllabic.setAttribute('data-key', key);
+                    if (charEntity === ' ' || key === 'space') {
+                        latin.textContent = '';
+                    } else {
+                        latin.textContent = puaToLatin[charEntity] || key || charEntity;
+                    }
+                }
+
+                container.appendChild(syllabic);
+                container.appendChild(latin);
+                textDisplayEl.appendChild(container);
+            });
+            const newCursor = document.createElement('span');
+            newCursor.className = 'cursor';
+            textDisplayEl.appendChild(newCursor);
+
+            // Auto-scroll to bottom
+            textDisplayEl.scrollTop = textDisplayEl.scrollHeight;
+        }
+
+        // ---- Insert character with digraph composition ----
+        function insertChar(charData) {
+            const newKey = charData.key;
+            const newChar = charData.char;
+
+            if (typedChars.length > 0 && newChar !== ' ' && newKey !== 'space') {
+                const prev = typedChars[typedChars.length - 1];
+                const prevKey = prev.key;
+
+                let digraphKey = null;
+                if (digraphMap[newKey] && digraphMap[newKey][prevKey]) {
+                    digraphKey = digraphMap[newKey][prevKey];
+                }
+
+                if (digraphKey) {
+                    let digraphChar = null;
+                    const foundKey = document.querySelector(
+                        `#desktopKeyboard .key[data-key="${digraphKey}"], #phoneKeyboard .smalldevice-key[data-key="${digraphKey}"], #phoneKeyboard .smalldevice-keys[data-key="${digraphKey}"]`
+                    );
+                    if (foundKey) {
+                        digraphChar = foundKey.getAttribute('data-char');
+                    }
+                    if (!digraphChar) {
+                        const digraphMapPUA = {
+                            'th': '\uE01A',
+                            'ph': '\uE00F',
+                            'kh': '\uE01F',
+                            'ch': '\uE00C',
+                            'ng': '\uE021'
+                        };
+                        digraphChar = digraphMapPUA[digraphKey] || digraphKey;
+                    }
+
+                    typedChars.pop();
+                    typedChars.push({
+                        char: digraphChar,
+                        key: digraphKey,
+                        tone: prev.tone || false
+                    });
+                    totalKeyPresses++;
+                    renderDisplay();
+                    return;
+                }
+            }
+
+            typedChars.push(charData);
+            totalKeyPresses++;
+            renderDisplay();
+        }
+
+        // ---- Backspace ----
+        function doBackspace() {
+            if (typedChars.length === 0) return;
+            typedChars.pop();
+            totalKeyPresses++;
+            renderDisplay();
+        }
+
+        // ---- Clear all ----
+        function doClear() {
+            typedChars = [];
+            totalKeyPresses = 0;
+            renderDisplay();
+        }
+
+        // ---- Reset ----
+        function doReset() {
+            doClear();
+        }
+
+        // ---- Apply high tone to last character (with numeral protection) ----
+        function applyHighToneToLastChar() {
+            if (typedChars.length === 0) return;
+
+            const last = typedChars[typedChars.length - 1];
+
+            if (last.tone) return;
+            if (last.char === ' ' || last.key === 'space') return;
+
+            const baseChar = last.char.replace('\uE024', '');
+            if (isNumeralChar(baseChar)) return;
+            if (isNumeralKey(last.key)) return;
+
+            last.tone = true;
+            if (!last.char.includes('\uE024')) {
+                last.char = last.char + '\uE024';
+            }
+            totalKeyPresses++;
+            renderDisplay();
+        }
+
+        // ---- Handle key press from UI ----
+        function handleKeyPress(keyChar, isSpecial = false, charEntity = null) {
+            if (keyChar === 'Backspace') {
+                doBackspace();
+                return;
+            }
+            if (keyChar === 'Enter' || keyChar === 'ArrowLeft' || keyChar === 'ArrowRight' || keyChar === 'ArrowUp' ||
+                keyChar === 'ArrowDown') {
+                return;
+            }
+            if (keyChar === 'space' || keyChar === ' ' || keyChar === 'Spacebar') {
+                insertChar({ char: ' ', key: 'space', tone: false });
+                return;
+            }
+
+            const displayChar = charEntity || keyChar;
+
+            if (displayChar === '\uE024') {
+                applyHighToneToLastChar();
+                return;
+            }
+
+            insertChar({ char: displayChar, key: keyChar, tone: false });
+        }
+
+        // ---- Auto-responsive keyboard ----
+        function handleResponsiveKeyboard() {
+            const width = window.innerWidth;
+            if (width <= 600) {
+                desktopKb.style.display = 'none';
+                phoneKb.style.display = 'flex';
+            } else {
+                desktopKb.style.display = 'block';
+                phoneKb.style.display = 'none';
+            }
+        }
+
+        // ============================================================
+        //  KEYBOARD BINDING
+        // ============================================================
+
+        // ---- Desktop keyboard ----
+        const desktopKeys = document.querySelectorAll('#desktopKeyboard .key');
+        desktopKeys.forEach(key => {
+            let holdTimer = null;
+            const keyData = key.getAttribute('data-key');
+
+            if (keyData === 'Backspace') {
+                key.addEventListener('mousedown', () => {
+                    holdTimer = setInterval(() => {
+                        doBackspace();
+                    }, 120);
+                });
+                key.addEventListener('mouseup', () => {
+                    clearInterval(holdTimer);
+                    holdTimer = null;
+                });
+                key.addEventListener('mouseleave', () => {
+                    clearInterval(holdTimer);
+                    holdTimer = null;
+                });
+            }
+
+            key.addEventListener('click', (e) => {
+                const k = key.getAttribute('data-key');
+                const charEntity = key.getAttribute('data-char');
+
+                if (!k && !charEntity) return;
+                if (['Shift', 'Ctrl', 'Alt', 'Win', 'Fn', 'Tab', 'Caps Lock'].includes(k)) return;
+
+                if (k === 'p') {
+                    const lastTap = parseInt(key.dataset.lastTap || '0');
+                    const now = Date.now();
+                    if (now - lastTap < 400) {
+                        if (typedChars.length > 0) {
+                            const last = typedChars[typedChars.length - 1];
+                            if (last.key === 'p' && !last.tone) {
+                                typedChars.pop();
+                                applyHighToneToLastChar();
+                            } else {
+                                applyHighToneToLastChar();
+                            }
+                        }
+                        key.dataset.lastTap = '0';
+                        key.classList.add('active');
+                        setTimeout(() => key.classList.remove('active'), 150);
+                        return;
+                    }
+                    key.dataset.lastTap = now;
+                }
+
+                if (charEntity === '\uE024' || k === '\uE024') {
+                    applyHighToneToLastChar();
+                    key.classList.add('active');
+                    setTimeout(() => key.classList.remove('active'), 150);
+                    return;
+                }
+
+                if (k === 'space' || k === ' ') {
+                    handleKeyPress('space');
+                } else if (charEntity) {
+                    handleKeyPress(k, false, charEntity);
+                } else if (k) {
+                    handleKeyPress(k);
+                }
+
+                key.classList.add('active');
+                setTimeout(() => key.classList.remove('active'), 150);
+            });
+        });
+
+        // ---- Phone keyboard ----
+        const phoneKeys = document.querySelectorAll('#phoneKeyboard .smalldevice-key, #phoneKeyboard .smalldevice-keys, #phoneKeyboard .smalldevice-key-arrow, #phoneKeyboard .smalldevice-key-cut');
+        phoneKeys.forEach(key => {
+            const k = key.getAttribute('data-key');
+            let holdTimer = null;
+
+            if (k === 'X') {
+                key.addEventListener('mousedown', () => {
+                    holdTimer = setInterval(() => {
+                        doBackspace();
+                    }, 120);
+                });
+                key.addEventListener('mouseup', () => {
+                    clearInterval(holdTimer);
+                    holdTimer = null;
+                });
+                key.addEventListener('mouseleave', () => {
+                    clearInterval(holdTimer);
+                    holdTimer = null;
+                });
+            }
+
+            key.addEventListener('click', (e) => {
+                const keyVal = key.getAttribute('data-key');
+                const charEntity = key.getAttribute('data-char');
+
+                if (['Shift', 'Ctrl', 'Alt', 'Win', 'Fn', '!#1', 'search', '↑', '↓', '←', '→'].includes(keyVal)) return;
+
+                if (keyVal === 'X') {
+                    doBackspace();
+                    key.classList.add('active');
+                    setTimeout(() => key.classList.remove('active'), 150);
+                    return;
+                }
+
+                if (charEntity === '\uE024' || keyVal === '\uE024') {
+                    applyHighToneToLastChar();
+                    key.classList.add('active');
+                    setTimeout(() => key.classList.remove('active'), 150);
+                    return;
+                }
+
+                if (keyVal === 'space' || keyVal === ' ') {
+                    handleKeyPress('space');
+                    key.classList.add('active');
+                    setTimeout(() => key.classList.remove('active'), 150);
+                    return;
+                }
+
+                if (charEntity) {
+                    handleKeyPress(keyVal, false, charEntity);
+                } else if (keyVal) {
+                    handleKeyPress(keyVal);
+                }
+
+                key.classList.add('active');
+                setTimeout(() => key.classList.remove('active'), 150);
+            });
+        });
+
+        // ---- Physical keyboard with auto-replace, digraph composition, and "pp" double-tap ----
+        const keyMapping = {
+            'f': 'ph',
+            'x': 'ng',
+            'q': 'th',
+            'z': 'ɘ',
+            'c': 'ch',
+            'v': 'kh'
+        };
+
+        document.addEventListener('keydown', (e) => {
+            const key = e.key;
+            if (key === 'Backspace') {
+                e.preventDefault();
+                doBackspace();
+                return;
+            }
+            if (key === 'Escape' || key === 'Enter' || key === 'Tab' || key === 'Shift' || key === 'Control' || key === 'Alt' ||
+                key === 'Meta' || key === 'ArrowLeft' || key === 'ArrowRight' || key === 'ArrowUp' || key === 'ArrowDown') {
+                return;
+            }
+            if (key === ' ') {
+                e.preventDefault();
+                handleKeyPress('space');
+                return;
+            }
+
+            const lower = key.toLowerCase();
+
+            if (lower === 'p') {
+                const now = Date.now();
+                if (now - lastPhysicalPTime < 400) {
+                    e.preventDefault();
+                    if (typedChars.length > 0) {
+                        const last = typedChars[typedChars.length - 1];
+                        if (last.key === 'p' && !last.tone) {
+                            typedChars.pop();
+                            applyHighToneToLastChar();
+                        } else {
+                            applyHighToneToLastChar();
+                        }
+                    }
+                    lastPhysicalPTime = 0;
+                    const pKey = document.querySelector('#desktopKeyboard .key[data-key="p"]');
+                    if (pKey) {
+                        pKey.classList.add('active');
+                        setTimeout(() => pKey.classList.remove('active'), 150);
+                    }
+                    return;
+                }
+                lastPhysicalPTime = now;
+            }
+
+            let targetKey = lower;
+            if (keyMapping[lower]) {
+                targetKey = keyMapping[lower];
+                e.preventDefault();
+                const foundKey = document.querySelector(
+                    `#desktopKeyboard .key[data-key="${targetKey}"], #phoneKeyboard .smalldevice-key[data-key="${targetKey}"], #phoneKeyboard .smalldevice-keys[data-key="${targetKey}"]`
+                );
+                if (foundKey) {
+                    const charEntity = foundKey.getAttribute('data-char');
+                    if (charEntity) {
+                        handleKeyPress(targetKey, false, charEntity);
+                    } else {
+                        handleKeyPress(targetKey);
+                    }
+                    foundKey.classList.add('active');
+                    setTimeout(() => foundKey.classList.remove('active'), 150);
+                }
+                return;
+            }
+
+            const foundKey = document.querySelector(
+                `#desktopKeyboard .key[data-key="${targetKey}"], #phoneKeyboard .smalldevice-key[data-key="${targetKey}"], #phoneKeyboard .smalldevice-keys[data-key="${targetKey}"]`
+            );
+
+            if (foundKey) {
+                e.preventDefault();
+                const charEntity = foundKey.getAttribute('data-char');
+                if (charEntity) {
+                    handleKeyPress(targetKey, false, charEntity);
+                } else {
+                    handleKeyPress(targetKey);
+                }
+                foundKey.classList.add('active');
+                setTimeout(() => foundKey.classList.remove('active'), 150);
+                return;
+            }
+
+            if (key.length === 1 && !e.ctrlKey && !e.altKey && !e.metaKey) {
+                e.preventDefault();
+                handleKeyPress(key);
+            }
+        });
+
+        // ---- Focus on display ----
+        textDisplayEl.addEventListener('click', () => textDisplayEl.focus());
+
+        // ---- Init ----
+        handleResponsiveKeyboard();
+        doReset();
+
+        window.addEventListener('resize', handleResponsiveKeyboard);
+
+        console.log('✅ Hachukma Kokborok Typing System ready!');
+        console.log('🔤 Auto-replace: f→ph, x→ng, q→th, z→ɘ, c→ch, v→kh');
+        console.log('🔗 Digraph composition: t+h→th, n+g→ng, k+h→kh, p+h→ph');
+        console.log('🔤 Double-tap "p" on desktop OR physical keyboard → apply tone');
+        console.log('🚫 Tone is NOT applied to numerals (0-9)');
+        console.log('📱 On phone, use the tone key (U+E024) to apply tone.');
+        console.log('🛡️ Silent protection active: right-click and devtools are blocked without pop-up.');
+    </script>
+
+</body>
+</html>
