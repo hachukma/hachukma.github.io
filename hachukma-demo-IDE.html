@@ -4,9 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
     <title>Kokborok · Hachukma IDE | Digital Script + PUA Numerals</title>
-    <link rel="stylesheet" href="IDE.css" />
-    <link rel="stylesheet" href="clock.css" />
+    <link rel="stylesheet" href="clock.css">
     <script src="clock.js"></script>
+  
+
 
     <style>
 
@@ -499,8 +500,8 @@
     <!-- ===== HEADER / NAVBAR (full width, teal) ===== -->
     <header class="app-header">
         <div class="brand">
-            <h1>Hachukma Script · Future Compatibility Demo</h1>
-            <p>Hachukma · Future computing showcase</p>
+            <h1>Future Compatibility Demo</h1>
+            <p>Hachukma · Future computing</p>
         </div>
 
         <div id="unicode-clock" class="unicode-clock">
@@ -509,13 +510,13 @@
             <span class="clock-minute"></span>
             <span class="separator">:</span>
             <span class="clock-second"></span>
-            <span class="separator">.</span>
-            <span class="clock-ms"></span>
+            <!-- <span class="separator">.</span> -->
+            <!-- <span class="clock-ms"></span> -->
             <span class="clock-ampm"></span>
         </div>
 
         <div class="nav-actions">
-            <a href="index.html" class="btn-back-home">← Back Home</a>
+            <a href="../index.php" class="btn-back-home">← Back Home</a>
         </div>
     </header>
 
@@ -888,7 +889,7 @@
             const observer = new MutationObserver(() => {
                 let val = msElement.textContent.trim();
                 if (/^\d+$/.test(val)) {
-                    val = val.padStart(2, '0');
+                    val = val.padStart(3, '0');
                     if (msElement.textContent !== val) {
                         msElement.textContent = val;
                     }
@@ -900,7 +901,7 @@
             setInterval(() => {
                 let val = msElement.textContent.trim();
                 if (/^\d+$/.test(val)) {
-                    const padded = val.padStart(2, '0');
+                    const padded = val.padStart(3, '0');
                     if (msElement.textContent !== padded) {
                         msElement.textContent = padded;
                     }
@@ -909,4 +910,4 @@
         })();
     </script>
 </body>
-</html>
+</html> 
