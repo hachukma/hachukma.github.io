@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Hachukma Script – Kokborok: A Modern Pictographic Alphabetic Writing System</title>
+    <meta name="description" content="Discover the Hachukma Script – Kokborok, a modern pictographic alphabetic writing system for the Kokborok language. 26 characters, 10 numerals, writing speed 1.8–6.8 seconds. Learn the Kokborok alphabet, acrophonic principles, and how this indigenous script preserves Borok culture." />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large" />
+    <meta name="keywords" content="Kokborok script, Hachukma script, Kokborok alphabet, Tripuri script, Borok language script, pictographic alphabet, acrophonic principle, indigenous script, Kokborok writing system, Tripura script, neography, Borok culture" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <style>
+        @font-face {
+            font-family: "NewScript";
+            src: url("hachukma.woff") format("woff");
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: #f6f9fa;
+            color: #1e2e2e;
+            padding-top: 68px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 68px;
+            background: #297c7c;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 3rem;
+            box-shadow: 0 2px 16px rgba(41, 124, 124, 0.25);
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            font-size: 1.15rem;
+            color: #ffffff;
+            text-decoration: none;
+            letter-spacing: 0.01em;
+        }
+
+        .navbar-brand .brand-glyph {
+            font-family: "NewScript", sans-serif;
+            font-size: 1.8rem;
+            color: #f5d742;
+            line-height: 1;
+        }
+
+        .navbar-links {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            list-style: none;
+        }
+
+        .navbar-links li a {
+            padding: 0.4rem 1.1rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 4px;
+            text-decoration: none;
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .navbar-links li a:hover {
+            background: rgba(255, 255, 255, 0.18);
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .navbar-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 6px 4px;
+        }
+
+        .navbar-toggle span {
+            display: block;
+            width: 26px;
+            height: 2.5px;
+            background: #ffffff;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-toggle.open span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .navbar-toggle.open span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        .navbar-toggle.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            background: #ffffff;
+            border-radius: 0 0 4px 4px;
+            padding: 3rem 3rem 2.8rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.02);
+            border-bottom: 4px solid #297c7c;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 2.6rem;
+            font-weight: 800;
+            color: #297c7c;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            margin-bottom: 0.8rem;
+        }
+
+        .hero-text h1 .accent {
+            color: #c7929e;
+        }
+
+        .hero-text .lead {
+            font-size: 1.1rem;
+            color: #2a4242;
+            line-height: 1.9;
+            margin-bottom: 0.4rem;
+        }
+
+        .hero-text .lead strong {
+            color: #297c7c;
+        }
+
+        .hero-text .cultural-note {
+            font-size: 0.95rem;
+            color: #3a5a5a;
+            background: #ecf5f5;
+            padding: 0.8rem 1.2rem;
+            border-radius: 4px;
+            border-left: 3px solid #297c7c;
+            margin-top: 0.8rem;
+        }
+
+        .hero-showcase {
+            background: #f0f6f6;
+            border-radius: 4px;
+            padding: 1.8rem 1.8rem 1.6rem;
+            border: 1px solid #dce8e8;
+        }
+
+        .hero-showcase .label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #5a7a7a;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+        }
+
+        .hero-showcase .grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .hero-showcase .sample-char {
+            font-family: "NewScript", sans-serif;
+            font-size: 1.8rem;
+            color: #297c7c;
+            background: #ffffff;
+            padding: 0.15rem 0.6rem;
+            border-radius: 2px;
+            border: 1px solid #d0e0e0;
+            min-width: 2.6rem;
+            text-align: center;
+            transition: all 0.12s ease;
+        }
+
+        .hero-showcase .sample-char:hover {
+            transform: scale(1.04);
+            background: #e4efef;
+            border-color: #297c7c;
+        }
+
+        .hero-showcase .sample-char .roman {
+            font-family: "Inter", sans-serif;
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: #5a7a7a;
+            display: block;
+            margin-top: -0.2rem;
+        }
+
+        .hero-showcase .note {
+            font-size: 0.8rem;
+            color: #4a6a6a;
+            margin-top: 0.8rem;
+            border-top: 1px solid #dce8e8;
+            padding-top: 0.6rem;
+        }
+
+        .section-head {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .section-head h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #297c7c;
+            letter-spacing: -0.02em;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.6rem;
+        }
+
+        .section-head h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #297c7c, #b89a2e);
+            border-radius: 2px;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            background: #ffffff;
+            border-radius: 4px;
+            padding: 2.2rem 2.5rem;
+            margin-bottom: 1.8rem;
+            border: 1px solid #eaf0f0;
+            transition: all 0.2s ease;
+            align-items: center;
+        }
+
+        .row:hover {
+            box-shadow: 0 4px 24px rgba(41, 124, 124, 0.05);
+        }
+
+        .row h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #297c7c;
+            margin-bottom: 0.4rem;
+        }
+
+        .row p {
+            font-size: 1rem;
+            color: #2a3e3e;
+            line-height: 1.8;
+            margin-bottom: 0.4rem;
+        }
+
+        .row p:last-child {
+            margin-bottom: 0;
+        }
+
+        .row-full {
+            grid-column: 1 / -1;
+        }
+
+        .row ul li strong {
+            font-family: "NewScript", sans-serif;
+            font-size: 1rem;
+            font-weight: 400;
+            color: #297c7c;
+            letter-spacing: 0.02em;
+        }
+
+        /* ─── CONSONANTS GRID ─── */
+        .consonants-section {
+            background: #ffffff;
+            border-radius: 4px;
+            padding: 2rem 2.2rem 2.2rem;
+            border: 1px solid #eaf0f0;
+            margin-bottom: 1.8rem;
+        }
+
+        .consonants-section h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #297c7c;
+            margin-bottom: 0.6rem;
+            text-align: center;
+        }
+
+        .consonants-section .sub {
+            text-align: center;
+            font-size: 0.95rem;
+            color: #4a6a6a;
+            margin-bottom: 1.2rem;
+        }
+
+        .consonants-grid {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 0.5rem;
+        }
+
+        .consonants-grid .char-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0.3rem 0.2rem;
+            background: #f6fafb;
+            border-radius: 4px;
+            border: 1px solid #eaf0f0;
+            transition: all 0.15s ease;
+        }
+
+        .consonants-grid .char-item:hover {
+            background: #ecf5f5;
+            border-color: #297c7c;
+            transform: scale(1.03);
+        }
+
+        .consonants-grid .char-item .symbol {
+            font-family: "NewScript", sans-serif;
+            font-size: 1.6rem;
+            color: #297c7c;
+            line-height: 1.2;
+        }
+
+        .consonants-grid .char-item .ipa {
+            font-size: 0.65rem;
+            color: #5a7a7a;
+            font-weight: 500;
+        }
+
+        /* ─── VOWELS SECTION ─── */
+        .vowels-section {
+            background: #ffffff;
+            border-radius: 4px;
+            padding: 1.6rem 2.2rem 1.8rem;
+            border: 1px solid #eaf0f0;
+            margin-bottom: 1.8rem;
+        }
+
+        .vowels-section h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #297c7c;
+            margin-bottom: 0.4rem;
+            text-align: center;
+        }
+
+        .vowels-section .sub {
+            text-align: center;
+            font-size: 0.95rem;
+            color: #4a6a6a;
+            margin-bottom: 1rem;
+        }
+
+        .vowels-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem 2rem;
+        }
+
+        .vowels-grid .vowel-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0.3rem 1rem;
+            background: #f6fafb;
+            border-radius: 4px;
+            border: 1px solid #dce8e8;
+            min-width: 2.8rem;
+            transition: all 0.15s ease;
+        }
+
+        .vowels-grid .vowel-item:hover {
+            background: #ecf5f5;
+            border-color: #297c7c;
+            transform: scale(1.04);
+        }
+
+        .vowels-grid .vowel-item .symbol {
+            font-family: "NewScript", sans-serif;
+            font-size: 2rem;
+            color: #297c7c;
+            line-height: 1.2;
+        }
+
+        .vowels-grid .vowel-item .ipa {
+            font-size: 0.7rem;
+            color: #5a7a7a;
+            font-weight: 500;
+        }
+
+        /* ─── NUMERALS ─── */
+        .numerals-section {
+            background: #ffffff;
+            border-radius: 4px;
+            padding: 2rem 2.2rem 2.2rem;
+            border: 1px solid #eaf0f0;
+            margin-bottom: 1.8rem;
+        }
+
+        .numerals-section h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #297c7c;
+            margin-bottom: 0.6rem;
+            text-align: center;
+        }
+
+        .numerals-section .sub {
+            text-align: center;
+            font-size: 0.95rem;
+            color: #4a6a6a;
+            margin-bottom: 1.2rem;
+        }
+
+        .numerals-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem 1.5rem;
+        }
+
+        .numerals-grid .num-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0.3rem 0.8rem;
+            background: #f6fafb;
+            border-radius: 4px;
+            border: 1px solid #eaf0f0;
+            min-width: 2.6rem;
+        }
+
+        .numerals-grid .num-item .symbol {
+            font-family: "NewScript", sans-serif;
+            font-size: 1.8rem;
+            color: #297c7c;
+            line-height: 1.2;
+        }
+
+        .numerals-grid .num-item .value {
+            font-size: 0.7rem;
+            color: #5a7a7a;
+            font-weight: 500;
+        }
+
+        /* ─── TONE DIACRITIC ─── */
+        .tone-section {
+            background: #ffffff;
+            border-radius: 4px;
+            padding: 2rem 2.2rem 2.2rem;
+            border: 1px solid #eaf0f0;
+            margin-bottom: 1.8rem;
+        }
+
+        .tone-section h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #297c7c;
+            margin-bottom: 0.6rem;
+            text-align: center;
+        }
+
+        .tone-section .sub {
+            text-align: center;
+            font-size: 0.95rem;
+            color: #4a6a6a;
+            margin-bottom: 1rem;
+        }
+
+        .tone-display {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tone-display .tone-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0.4rem 1.2rem;
+            background: #f6fafb;
+            border-radius: 4px;
+            border: 1px solid #eaf0f0;
+        }
+
+        .tone-display .tone-item .symbol {
+            font-family: "NewScript", sans-serif;
+            font-size: 2.4rem;
+            color: #297c7c;
+            line-height: 1.2;
+        }
+
+        .tone-display .tone-item .label {
+            font-size: 0.7rem;
+            color: #5a7a7a;
+            font-weight: 500;
+        }
+
+        .tone-display .tone-note {
+            font-size: 0.9rem;
+            color: #2a3e3e;
+            max-width: 400px;
+            line-height: 1.7;
+        }
+
+        .tone-display .tone-note strong {
+            color: #297c7c;
+        }
+
+        /* ─── SAMPLE TEXT ─── */
+        .sample-section {
+            background: #ffffff;
+            border-radius: 4px;
+            padding: 2rem 2.2rem 2.2rem;
+            border: 1px solid #eaf0f0;
+            margin-bottom: 1.8rem;
+        }
+
+        .sample-section h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #297c7c;
+            margin-bottom: 0.6rem;
+            text-align: center;
+        }
+
+        .sample-section .sub {
+            text-align: center;
+            font-size: 0.95rem;
+            color: #4a6a6a;
+            margin-bottom: 1.2rem;
+        }
+
+        .sample-display {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .sample-display .hachukma-text {
+            font-family: "NewScript", sans-serif;
+            font-size: 3rem;
+            color: #297c7c;
+            line-height: 1.3;
+            letter-spacing: 0.1em;
+            padding: 0.5rem 1.5rem;
+            background: #f0f6f6;
+            border-radius: 4px;
+            border: 1px solid #dce8e8;
+        }
+
+        .sample-display .translation {
+            font-size: 1rem;
+            color: #4a6a6a;
+            font-weight: 500;
+        }
+
+        .sample-display .translation .kokborok {
+            font-weight: 700;
+            color: #297c7c;
+        }
+
+        /* ─── DOWNLOAD / CTA ─── */
+        .cta-section {
+            background: #297c7c;
+            border-radius: 4px;
+            padding: 2.5rem 2.5rem;
+            margin-bottom: 1.8rem;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .cta-section h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+        }
+
+        .cta-section p {
+            font-size: 1rem;
+            line-height: 1.8;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto 1.2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.7rem 2rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            border: 2px solid transparent;
+        }
+
+        .cta-btn .btn-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .cta-btn.primary {
+            background: #ffffff;
+            color: #297c7c;
+        }
+
+        .cta-btn.primary:hover {
+            background: rgba(255, 255, 255, 0.85);
+            transform: translateY(-2px);
+        }
+
+        .cta-btn.secondary {
+            background: transparent;
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .cta-btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #4a6a6a;
+            padding: 1.2rem 0.5rem 0.8rem;
+            border-top: 1px solid #e0e8e8;
+            margin-top: 0.5rem;
+            line-height: 1.8;
+            background: #ffffff;
+        }
+
+        .footer .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .footer .social-links a {
+            color: #4a6a6a;
+            transition: color 0.2s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer .social-links a:hover {
+            color: #297c7c;
+        }
+
+        .footer .social-links a svg {
+            display: block;
+        }
+
+        .footer .footer-meta {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.3rem 1rem;
+            font-size: 0.8rem;
+            color: #5a7a7a;
+        }
+
+        .footer .nowrap {
+            white-space: nowrap;
+        }
+
+        .visitor-wrapper {
+            display: inline-block;
+            background: #f0f6f6;
+            padding: 0.2rem 0.8rem;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        .visitor-counter {
+            color: #297c7c;
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 1.8rem;
+                padding: 2.4rem 2rem 2rem;
+            }
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+            .row {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+                padding: 1.8rem 1.8rem;
+            }
+            .consonants-grid {
+                grid-template-columns: repeat(8, 1fr);
+            }
+        }
+
+        @media (max-width: 820px) {
+            .hero {
+                padding: 1.8rem 1.5rem 1.6rem;
+            }
+            .hero-text h1 {
+                font-size: 1.8rem;
+            }
+            .hero-text .lead {
+                font-size: 1rem;
+            }
+            .section-head h2 {
+                font-size: 1.8rem;
+            }
+            .consonants-grid {
+                grid-template-columns: repeat(6, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 60px;
+            }
+            .navbar {
+                height: 60px;
+                padding: 0 1.2rem;
+            }
+            .navbar-brand {
+                font-size: 1rem;
+            }
+            .navbar-brand .brand-glyph {
+                font-size: 1.5rem;
+            }
+            .navbar-links {
+                gap: 0.3rem;
+            }
+            .navbar-links li a {
+                padding: 0.3rem 0.7rem;
+                font-size: 0.78rem;
+            }
+            .container {
+                padding: 0 1rem;
+            }
+            .hero {
+                padding: 1.6rem 1.2rem 1.4rem;
+                border-bottom-width: 3px;
+                border-radius: 0 0 4px 4px;
+            }
+            .hero-text h1 {
+                font-size: 1.6rem;
+            }
+            .hero-text .lead {
+                font-size: 0.95rem;
+                line-height: 1.8;
+            }
+            .hero-showcase {
+                padding: 1.2rem 1rem 1rem;
+            }
+            .hero-showcase .sample-char {
+                font-size: 1.4rem;
+                min-width: 2.2rem;
+                padding: 0.1rem 0.4rem;
+            }
+            .section-head h2 {
+                font-size: 1.6rem;
+            }
+            .section-head h2::after {
+                width: 60px;
+            }
+            .row {
+                padding: 1.4rem 1.2rem;
+                border-radius: 4px;
+                margin-bottom: 1.2rem;
+                gap: 0.8rem;
+            }
+            .row h3 {
+                font-size: 1.1rem;
+            }
+            .row p {
+                font-size: 0.9rem;
+            }
+            .consonants-section,
+            .vowels-section,
+            .numerals-section,
+            .tone-section,
+            .sample-section,
+            .cta-section {
+                padding: 1.2rem 1rem 1.4rem;
+            }
+            .consonants-grid {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 0.4rem;
+            }
+            .consonants-grid .char-item .symbol {
+                font-size: 1.3rem;
+            }
+            .vowels-grid {
+                gap: 0.5rem 1.2rem;
+            }
+            .vowels-grid .vowel-item .symbol {
+                font-size: 1.6rem;
+            }
+            .numerals-grid {
+                gap: 0.5rem 1rem;
+            }
+            .tone-display {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            .sample-display .hachukma-text {
+                font-size: 2.2rem;
+            }
+            .cta-section {
+                padding: 1.8rem 1.2rem;
+            }
+            .cta-section h3 {
+                font-size: 1.3rem;
+            }
+            .footer {
+                font-size: 0.78rem;
+                padding: 0.8rem 0.5rem;
+            }
+            .footer .social-links {
+                gap: 0.8rem;
+            }
+            .footer .nowrap {
+                white-space: normal;
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding-top: 56px;
+            }
+            .navbar {
+                height: 56px;
+                padding: 0 0.9rem;
+            }
+            .navbar-brand {
+                font-size: 0.9rem;
+            }
+            .navbar-brand .brand-glyph {
+                font-size: 1.3rem;
+            }
+            .navbar-toggle {
+                display: flex;
+            }
+            .navbar-links {
+                position: absolute;
+                top: 56px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: #297c7c;
+                padding: 0.6rem 1rem 1.2rem;
+                gap: 0.3rem;
+                box-shadow: 0 12px 28px rgba(41, 124, 124, 0.25);
+                transform: scaleY(0);
+                transform-origin: top center;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+                border-radius: 0 0 4px 4px;
+                border-top: 1px solid rgba(255, 255, 255, 0.08);
+                pointer-events: none;
+            }
+            .navbar-links.open {
+                transform: scaleY(1);
+                opacity: 1;
+                visibility: visible;
+                pointer-events: auto;
+            }
+            .navbar-links li a {
+                width: 100%;
+                text-align: center;
+                padding: 0.5rem 0.8rem;
+                font-size: 0.9rem;
+                background: rgba(255, 255, 255, 0.06);
+                border-radius: 4px;
+            }
+            .navbar-links li a:hover {
+                background: rgba(255, 255, 255, 0.14);
+            }
+            .hero {
+                padding: 1.2rem 0.9rem 1rem;
+                border-radius: 0 0 4px 4px;
+            }
+            .hero-text h1 {
+                font-size: 1.4rem;
+            }
+            .hero-text .lead {
+                font-size: 0.88rem;
+                line-height: 1.7;
+            }
+            .hero-showcase .sample-char {
+                font-size: 1.1rem;
+                min-width: 1.8rem;
+                padding: 0.05rem 0.3rem;
+            }
+            .hero-showcase .sample-char .roman {
+                font-size: 0.5rem;
+            }
+            .section-head h2 {
+                font-size: 1.4rem;
+            }
+            .section-head h2::after {
+                width: 50px;
+                height: 2.5px;
+            }
+            .row {
+                padding: 1rem 0.9rem;
+                border-radius: 4px;
+            }
+            .row h3 {
+                font-size: 1rem;
+            }
+            .row p {
+                font-size: 0.85rem;
+                line-height: 1.7;
+            }
+            .consonants-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 0.3rem;
+            }
+            .consonants-grid .char-item .symbol {
+                font-size: 1.1rem;
+            }
+            .consonants-grid .char-item .ipa {
+                font-size: 0.55rem;
+            }
+            .vowels-grid .vowel-item .symbol {
+                font-size: 1.4rem;
+            }
+            .vowels-grid .vowel-item .ipa {
+                font-size: 0.6rem;
+            }
+            .numerals-grid .num-item .symbol {
+                font-size: 1.4rem;
+            }
+            .sample-display .hachukma-text {
+                font-size: 1.8rem;
+                padding: 0.3rem 0.8rem;
+            }
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .cta-btn {
+                width: 100%;
+                max-width: 280px;
+                text-align: center;
+                justify-content: center;
+            }
+            .footer {
+                font-size: 0.72rem;
+                padding: 0.6rem 0.5rem;
+            }
+            .footer .social-links {
+                gap: 0.6rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            body {
+                padding-top: 50px;
+            }
+            .navbar {
+                height: 50px;
+                padding: 0 0.6rem;
+            }
+            .navbar-brand {
+                font-size: 0.8rem;
+            }
+            .navbar-brand .brand-glyph {
+                font-size: 1.1rem;
+            }
+            .navbar-links {
+                top: 50px;
+            }
+            .hero-text h1 {
+                font-size: 1.2rem;
+            }
+            .hero-text .lead {
+                font-size: 0.8rem;
+            }
+            .row h3 {
+                font-size: 0.9rem;
+            }
+            .row p {
+                font-size: 0.8rem;
+            }
+            .consonants-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media print {
+            .navbar {
+                position: static;
+                box-shadow: none;
+                background: #297c7c !important;
+            }
+            body {
+                padding-top: 0;
+            }
+            .navbar-toggle {
+                display: none !important;
+            }
+            .navbar-links {
+                display: flex !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                transform: none !important;
+                position: static !important;
+                background: transparent !important;
+                box-shadow: none !important;
+                border: none !important;
+                padding: 0 !important;
+                pointer-events: auto !important;
+            }
+            .navbar-links li a {
+                color: #fff !important;
+                background: rgba(255, 255, 255, 0.12) !important;
+                border-color: rgba(255, 255, 255, 0.15) !important;
+            }
+            .hero {
+                background: #f5f5f5 !important;
+                box-shadow: none !important;
+                border-bottom: 2px solid #ccc !important;
+                border-radius: 0 !important;
+            }
+            .row,
+            .consonants-section,
+            .vowels-section,
+            .numerals-section,
+            .tone-section,
+            .sample-section,
+            .cta-section {
+                border: 1px solid #ccc !important;
+                box-shadow: none !important;
+                break-inside: avoid;
+            }
+            .row:hover {
+                box-shadow: none !important;
+            }
+            .footer {
+                border-top: 1px solid #ccc !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar" role="navigation">
+        <a href="" class="navbar-brand">
+            <span>Hachukma Script</span>
+        </a>
+
+        <button class="navbar-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <ul class="navbar-links" id="navLinks">
+            <li><a href="acrophonic.html">Acrophonic</a></li>
+            <li><a href="script.html">Phonology & Script </a></li>
+            <li><a href="hachukma-chart.html">Hachukma Chart</a></li>
+            <li><a href="virtual-keyboard.html">Virtual Keyboard</a></li>
+            <!-- <li><a href="dropped-glyphs.html">Dropped-glyphs</a></li> -->
+            <li><a href="hachukma-IME-software.html">Download</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+
+        <header class="hero">
+            <div class="hero-text">
+                <h1>Hachukma Script – <span class="accent">Kokborok</span></h1>
+
+                <p class="lead">
+                    The <strong>Hachukma Script – Kokborok</strong> is a modern <strong>pictographic alphabetic writing system</strong> for the Kokborok language. Designed on the <strong>acrophonic principle</strong>, it transforms <strong>26 culturally significant objects, tools, and natural elements</strong> of Borok life into a high-speed script for the digital age. Alongside the Kokborok alphabet, the script includes <strong>10 numerals</strong> and a <strong>high-tone diacritic</strong> — making a complete writing system of <strong>37 glyphs</strong>. The writing speed ranges from <strong>1.8 seconds</strong> for short words to <strong>6.8 seconds</strong> for longer ones.
+                </p>
+
+                <div class="cultural-note">
+                    <strong>The name Hachukma</strong> comes from the Kokborok word <em>hachuk</em> (hill or mountain). This Kokborok script honours the cultural landscape of the Tripuri people — its symbols are drawn from <strong>traditional tools, household items, body parts, arthropods, birds, and plants</strong> that are part of everyday Borok life. Each character visually represents an object, but functions purely as a phonetic sign in actual use.
+                </div>
+            </div>
+
+            <div class="hero-showcase">
+                <div class="label">Kokborok alphabet</div>
+                <div class="grid">
+                    <!-- Sorted alphabetically: a, b, ch, d, e, g, h, i, j, k, kh, l, m, n, ng, o, p, ph, r, s, t, th, u, w, y, ɘ -->
+                    <span class="sample-char">&#xE00A;<span class="roman">a</span></span>
+                    <span class="sample-char">&#xE00B;<span class="roman">b</span></span>
+                    <span class="sample-char">&#xE00C;<span class="roman">ch</span></span>
+                    <span class="sample-char">&#xE00D;<span class="roman">d</span></span>
+                    <span class="sample-char">&#xE00E;<span class="roman">e</span></span>
+                    <span class="sample-char">&#xE010;<span class="roman">g</span></span>
+                    <span class="sample-char">&#xE011;<span class="roman">h</span></span>
+                    <span class="sample-char">&#xE012;<span class="roman">i</span></span>
+                    <span class="sample-char">&#xE013;<span class="roman">j</span></span>
+                    <span class="sample-char">&#xE014;<span class="roman">k</span></span>
+                    <span class="sample-char">&#xE01F;<span class="roman">kh</span></span>
+                    <span class="sample-char">&#xE015;<span class="roman">l</span></span>
+                    <span class="sample-char">&#xE016;<span class="roman">m</span></span>
+                    <span class="sample-char">&#xE017;<span class="roman">n</span></span>
+                    <span class="sample-char">&#xE021;<span class="roman">ng</span></span>
+                    <span class="sample-char">&#xE018;<span class="roman">o</span></span>
+                    <span class="sample-char">&#xE019;<span class="roman">p</span></span>
+                    <span class="sample-char">&#xE00F;<span class="roman">ph</span></span>
+                    <span class="sample-char">&#xE01B;<span class="roman">r</span></span>
+                    <span class="sample-char">&#xE01C;<span class="roman">s</span></span>
+                    <span class="sample-char">&#xE01D;<span class="roman">t</span></span>
+                    <span class="sample-char">&#xE01A;<span class="roman">th</span></span>
+                    <span class="sample-char">&#xE01E;<span class="roman">u</span></span>
+                    <span class="sample-char">&#xE020;<span class="roman">w</span></span>
+                    <span class="sample-char">&#xE022;<span class="roman">y</span></span>
+                    <span class="sample-char">&#xE023;<span class="roman">ɘ</span></span>
+                </div>
+                <div class="note">26 alphabetic characters — vowels, consonants, and a tone diacritic</div>
+            </div>
+        </header>
+
+        <!-- ─── SECTION: ABOUT ─── -->
+        <div class="section-head">
+            <h2>About the Kokborok Script</h2>
+        </div>
+
+        <!-- Row: Kokborok Language & Speakers -->
+        <div class="row row-full">
+            <div>
+                <h3>Kokborok Language</h3>
+                <p>
+                    <strong>Kokborok</strong> (also known as Tripuri or Tiprakok) is a <strong>Tibeto-Burman language</strong> spoken primarily in the Indian state of <strong>Tripura</strong> and neighbouring areas of <strong>Bangladesh</strong>, including the Chittagong and Sylhet divisions. The name <em>Kokborok</em> comes from <em>kók</em> meaning "verbal" or "language" and <em>borok</em> meaning "people" or "human".
+                </p>
+                <p>
+                    According to the 2011 Census, there are approximately <strong>1.3 million</strong> native speakers of Kokborok. In Tripura, the language is spoken by <strong>880,537</strong> people, accounting for <strong>23.97%</strong> of the state's population. There are also about <strong>320,000</strong> speakers in Bangladesh. Kokborok is spoken by various indigenous communities across the region.
+                </p>
+                <p>
+                    Kokborok was recognised as an official language of Tripura in <strong>1979</strong>, and it has been taught in schools since the 1980s.
+            </div>
+            <div>
+                <h3>Ancient Roots</h3>
+                <p>
+                    Kokborok is one of the <strong>ancient languages of Northeast India</strong>, with its existence attested since at least the <strong>1st century AD</strong>. The earliest known writing in Kokborok dates from this period and was recorded in a script called <strong>Koloma</strong>.
+                </p>
+                <p>
+                    Historical records of the Tripuri kings were written down in a book called the <strong>Rajratnakar</strong> or <strong>Rajmala</strong> using the Koloma script. From the 19th century, Kokborok was relegated to a common people's dialect during the rule of the Tripuri kings. In <strong>1897</strong>, the first Kokborok grammar — <em>Kokboroma</em> by Daulat Ahmed — was written using the <strong>Bengali alphabet</strong>. Later, with the influence of British colonial administration and increased literacy efforts, Kokborok began to be written with the <strong>Latin (Roman) alphabet</strong>.
+                </p>
+                <p>
+                    Today, Kokborok speakers predominantly use the <strong>Latin script</strong>, which has become the standard for education, literature, social media, and daily communication. The Bengali script is still used in some official and academic contexts, but the Latin script is the most widely adopted and practical writing system for the language. The <strong>Hachukma Script</strong> is a new neography, created to address the modern needs of the Kokborok-speaking community, combining cultural authenticity with digital adaptability and speed.
+                </p>
+            </div>
+        </div>
+
+        <!-- Row: Direct vs Indirect Pictographs -->
+        <div class="row row-full">
+            <div>
+                <h3>Direct Pictographs</h3>
+                <p>
+                    The majority of Hachukma characters are <strong>direct pictographs</strong> — the visual form is taken directly from a physical object. Examples include:
+                </p>
+                <ul style="margin:0.4rem 0 0.4rem 1.5rem; color:#2a3e3e; line-height:1.8;">
+                    <li><strong>&#xE00B; /b/</strong> — <em>Buphang</em> (death tree)</li>
+                    <li><strong>&#xE00D; /d/</strong> — <em>Dangdol</em> (bamboo clothesline)</li>
+                    <li><strong>&#xE010; /g/</strong> — <em>Golari</em> (slingshot)</li>
+                    <li><strong>&#xE014; /k/</strong> — <em>Kowai-buphang</em> (areca nut tree)</li>
+                    <li><strong>&#xE01D; /t/</strong> — <em>Tok-thunta</em> (woodpecker)</li>
+                    <li><strong>&#xE020; /w/</strong> — <em>Wa</em> (bamboo)</li>
+                </ul>
+                <p>
+                    These direct pictographs ensure strong mnemonic reinforcement, as the symbol and the object are one and the same.
+                </p>
+                <p style="margin-top:0.6rem; padding:0.6rem 0.8rem; background:#eaf3f3; border-radius:4px; border-left:3px solid #297c7c;">
+                    <strong>Acrophonic Exception:</strong> <em>Wasung</em> (bamboo tube) is a <strong>direct pictograph</strong> (physical object), but it represents the <strong>final sound /ŋ/</strong> rather than its initial /w/. This deliberate exception was made because the bamboo tube's visual form is beautiful and fast to write, and it neatly fits the phonological need for a final nasal.
+                </p>
+            </div>
+            <div>
+                <h3>Indirect Pictographs</h3>
+                <p>
+                    For certain sounds, a <strong>direct pictograph</strong> based on a physical object was either unavailable or would have resulted in a character that was <strong>not beautiful</strong> or <strong>not fast to write</strong>. In these cases, <strong>Hachukma uses indirect pictographs</strong> — symbols derived from <strong>conceptual words or abstract ideas</strong>.
+                </p>
+                <p>
+                    The indirect pictographs in this Kokborok script are:
+                </p>
+                <ul style="margin:0.4rem 0 0.4rem 1.5rem; color:#2a3e3e; line-height:1.8;">
+                    <li><strong>&#xE00A; /a/</strong> — from <em>Ang</em> (self / "I")</li>
+                    <li><strong>&#xE012; /i/</strong> — from <em>aikha</em> (morning)</li>
+                    <li><strong>&#xE00C; /ch/</strong> — from <em>Chɘng</em> (we / "us")</li>
+                    <li><strong>&#xE00E; /e/</strong> — from <em>imang</em> (dream)</li>
+                    <li><strong>&#xE023; /ɘ/</strong> — from <em>rɘ</em> (to give), representing its vowel sound</li>
+                </ul>
+                <p>
+                    These abstract concepts provide meaningful, culturally resonant symbols that maintain the script's visual coherence and speed.
+                </p>
+            </div>
+        </div>
+
+        <!-- Row: Design Philosophy — Selection of Pictographs and Memorability -->
+        <div class="row row-full">
+            <div>
+                <h3>Selection of Pictographs — Only the Best Chosen</h3>
+                <p>
+                    <strong>I began</strong> the creation of the Hachukma Kokborok script with an extensive exploration of Borok material culture. A wide range of potential pictographs — from tools, animals, plants, body parts, and daily objects — were sketched and evaluated. Through careful selection, only the most elegant and efficient forms were retained.
+                </p>
+                <p>
+                    This careful selection ensures that every character is both culturally meaningful and exceptionally quick to write, without sacrificing aesthetic harmony.
+                </p>
+            </div>
+            <div>
+                <h3>Acrophonic Principle — Why an Alphabetic System?</h3>
+                <p>
+                    The Hachukma Kokborok script follows the <strong>acrophonic principle</strong>, where each character derives its phonetic value from the <strong>initial sound</strong> of the object it depicts. <strong>This is a deliberate choice</strong> for three key reasons:
+                </p>
+                <ul style="margin:0.4rem 0 0.4rem 1.5rem; color:#2a3e3e; line-height:1.8;">
+                    <li><strong>Memorability.</strong> By linking each character to a familiar object — <em>Golari</em> (slingshot) for /g/, <em>Dangdol</em> (clothesline) for /d/, and so on — Hachukma leverages existing knowledge. A learner can recall the sound by remembering the object's name, making the entire Kokborok alphabet <strong>memorisable within weeks, not decades</strong>.</li>
+                    <li><strong>Technological compatibility.</strong> An alphabetic system uses a small, manageable set of characters — just 26 letters, 10 numerals, and a single diacritic. This minimal inventory is essential for digital processing, keyboard efficiency, and programming applications.</li>
+                </ul>
+                <p style="margin-top:0.6rem;">
+                    This is not a random design choice — it is a <strong>deliberate, practical decision</strong> to create a Kokborok script that is beautiful to write, easy to learn, and ready for the digital age.
+                </p>
+            </div>
+        </div>
+
+        <!-- Row: Technology & Future Compatibility -->
+        <div class="row row-full">
+            <div>
+                <h3>Technology &amp; Future Compatibility</h3>
+                <p>
+                    The Hachukma Kokborok script was designed with <strong>technology and future digital applications</strong> in mind. Its alphabetic nature makes it inherently compatible with modern computing, programming languages, and digital communication systems.
+                </p>
+                <p>
+                    The vision extends beyond writing. The script's systematic, phonemic structure makes it a strong candidate for <strong>Kokborok-based programming languages</strong>. Just as English and other languages have influenced programming syntax, Hachukma could enable native speakers to <strong>code in their own mother tongue</strong>, fostering computational thinking and technological sovereignty within the Tripuri community.
+                </p>
+                <p>
+                    This compatibility with technology is not an afterthought — it is a core design consideration. Hachukma is not merely a writing system but a <strong>bridge between tradition and innovation</strong>, empowering the Borok people to participate fully in the digital future.
+                </p>
+            </div>
+            <div>
+                <h3>Historical Context: The Koloma Script</h3>
+                <p>
+                    Kokborok, the language of the Tripuri people, is not without a history of indigenous writing. Historically, the <strong>Koloma script</strong> was used to write Kokborok, particularly within the royal palace of Tripura and among the literate elite. It was an integral part of the region's cultural and administrative heritage.
+                </p>
+                <p>
+                    However, over the centuries — due to a gradual decline in active use — the Koloma script <strong>fell out of active use</strong> and has now vanished completely, surviving only in the memory of a few cultural scholars and in historical records.
+                </p>
+                <p>
+                    The Hachukma Kokborok script is <strong>not a revival of Koloma</strong>. It is a <strong>new neography</strong>, created specifically to address the modern needs of the Kokborok-speaking community. By combining cultural authenticity with digital adaptability and speed, Hachukma offers a fresh, practical, and beautiful writing system that fills the gap left by the historical script while looking towards the future of the Borok people.
+                </p>
+            </div>
+        </div>
+
+        <!-- Row: Design & Development Process -->
+        <div class="row row-full">
+            <div>
+                <h3>Design &amp; Development</h3>
+                <p>
+                    <strong>I oversaw</strong> a rigorous <strong>eight‑month development cycle (October 2025 – May 2026)</strong> focused on visual distinctiveness, cultural authenticity, and writing speed. <strong>I refined</strong> each character to minimise writing time while maintaining clear recognisability through iterative testing and feedback from native speakers.
+                </p>
+                <p>
+                    During the research phase, a wide range of existing pictographic notations and informal script sketches was reviewed. In the process, <strong>I found</strong> that certain pictographic symbols unintentionally resembled other undocumented marks. To safeguard the originality and distinct visual identity of Hachukma, <strong>I systematically removed and redesigned</strong> these characters. This deliberate refinement ensured that only the most beautiful, culturally authentic, and fast‑to‑write symbols were retained for the final Kokborok alphabet.
+                </p>
+            </div>
+            <div>
+                <h3>Design Principles</h3>
+                <p>
+                    <strong>My design philosophy</strong> for the Hachukma Kokborok script is clear: create a writing system that is culturally authentic, visually beautiful, and exceptionally fast to write. This philosophy balances acrophonic logic with carefully chosen indirect pictographs — such as <em>Ang</em> (self) for /a/, <em>aikha</em> (morning) for /i/, and <em>Chɘng</em> (we) for /ch/ — to ensure both aesthetic harmony and writing efficiency.
+                </p>
+                <p>
+                    The result is a Kokborok script where each character is not a random shape but a meaningful visual distillation of Borok culture.
+                </p>
+            </div>
+        </div>
+
+
+         <!-- ─── VOWELS SECTION (NO ROMAN) ─── -->
+        <div class="vowels-section">
+            <h3>Vowels</h3>
+            <p class="sub">The six vowel characters of the Hachukma Kokborok script</p>
+            <div class="vowels-grid">
+                <div class="vowel-item"><span class="symbol">&#xE00A;</span><span class="ipa">/a/</span></div>
+                <div class="vowel-item"><span class="symbol">&#xE00E;</span><span class="ipa">/e/</span></div>
+                <div class="vowel-item"><span class="symbol">&#xE012;</span><span class="ipa">/i/</span></div>
+                <div class="vowel-item"><span class="symbol">&#xE018;</span><span class="ipa">/o/</span></div>
+                <div class="vowel-item"><span class="symbol">&#xE01E;</span><span class="ipa">/u/</span></div>
+                <div class="vowel-item"><span class="symbol">&#xE023;</span><span class="ipa">/ɘ/</span></div>
+            </div>
+        </div>
+
+        <!-- ─── CONSONANTS GRID (A–Z ORDER, NO ROMAN) ─── -->
+        <div class="consonants-section">
+            <h3>Consonants</h3>
+            <p class="sub">All 20 consonant characters with IPA pronunciation</p>
+            <div class="consonants-grid">
+                <!-- b -->
+                <div class="char-item"><span class="symbol">&#xE00B;</span><span class="ipa">/b/</span></div>
+                <!-- ch -->
+                <div class="char-item"><span class="symbol">&#xE00C;</span><span class="ipa">/tʃ/</span></div>
+                <!-- d -->
+                <div class="char-item"><span class="symbol">&#xE00D;</span><span class="ipa">/d/</span></div>
+                <!-- g -->
+                <div class="char-item"><span class="symbol">&#xE010;</span><span class="ipa">/g/</span></div>
+                <!-- h -->
+                <div class="char-item"><span class="symbol">&#xE011;</span><span class="ipa">/h/</span></div>
+                <!-- j -->
+                <div class="char-item"><span class="symbol">&#xE013;</span><span class="ipa">/dʒ/</span></div>
+                <!-- k -->
+                <div class="char-item"><span class="symbol">&#xE014;</span><span class="ipa">/k/</span></div>
+                <!-- kh -->
+                <div class="char-item"><span class="symbol">&#xE01F;</span><span class="ipa">/kʰ/</span></div>
+                <!-- l -->
+                <div class="char-item"><span class="symbol">&#xE015;</span><span class="ipa">/l/</span></div>
+                <!-- m -->
+                <div class="char-item"><span class="symbol">&#xE016;</span><span class="ipa">/m/</span></div>
+                <!-- n -->
+                <div class="char-item"><span class="symbol">&#xE017;</span><span class="ipa">/n/</span></div>
+                <!-- ng -->
+                <div class="char-item"><span class="symbol">&#xE021;</span><span class="ipa">/ŋ/</span></div>
+                <!-- p -->
+                <div class="char-item"><span class="symbol">&#xE019;</span><span class="ipa">/p/</span></div>
+                <!-- ph -->
+                <div class="char-item"><span class="symbol">&#xE00F;</span><span class="ipa">/pʰ/</span></div>
+                <!-- r -->
+                <div class="char-item"><span class="symbol">&#xE01B;</span><span class="ipa">/r/</span></div>
+                <!-- s -->
+                <div class="char-item"><span class="symbol">&#xE01C;</span><span class="ipa">/s/</span></div>
+                <!-- t -->
+                <div class="char-item"><span class="symbol">&#xE01D;</span><span class="ipa">/t/</span></div>
+                <!-- th -->
+                <div class="char-item"><span class="symbol">&#xE01A;</span><span class="ipa">/tʰ/</span></div>
+                <!-- w -->
+                <div class="char-item"><span class="symbol">&#xE020;</span><span class="ipa">/w/</span></div>
+                <!-- y -->
+                <div class="char-item"><span class="symbol">&#xE022;</span><span class="ipa">/j/</span></div>
+            </div>
+        </div>
+
+       
+
+        <!-- ─── NUMERALS ─── -->
+        <div class="numerals-section">
+            <h3>Numerals</h3>
+            <p class="sub">The Hachukma numeral system from 0 to 9</p>
+            <div class="numerals-grid">
+                <div class="num-item"><span class="symbol">&#xE000;</span><span class="value">0</span></div>
+                <div class="num-item"><span class="symbol">&#xE001;</span><span class="value">1</span></div>
+                <div class="num-item"><span class="symbol">&#xE002;</span><span class="value">2</span></div>
+                <div class="num-item"><span class="symbol">&#xE003;</span><span class="value">3</span></div>
+                <div class="num-item"><span class="symbol">&#xE004;</span><span class="value">4</span></div>
+                <div class="num-item"><span class="symbol">&#xE005;</span><span class="value">5</span></div>
+                <div class="num-item"><span class="symbol">&#xE006;</span><span class="value">6</span></div>
+                <div class="num-item"><span class="symbol">&#xE007;</span><span class="value">7</span></div>
+                <div class="num-item"><span class="symbol">&#xE008;</span><span class="value">8</span></div>
+                <div class="num-item"><span class="symbol">&#xE009;</span><span class="value">9</span></div>
+            </div>
+        </div>
+
+        <!-- ─── TONE DIACRITIC ─── -->
+        <div class="tone-section">
+            <h3>Tone Diacritic</h3>
+            <p class="sub">High-tone marker used for tonal variation in Kokborok</p>
+            <div class="tone-display">
+                <div class="tone-item">
+                    <span class="symbol">&#xE024;</span>
+                    <span class="label">tone mark</span>
+                </div>
+                <div class="tone-note">
+                    <strong>Desktop:</strong> double‑tap the <strong>P</strong> key to apply the high tone.<br />
+                    <strong>Mobile:</strong> tap the dedicated tone key (&#xE024;) after typing the base character.
+                </div>
+            </div>
+        </div>
+
+        <!-- ─── SAMPLE TEXT ─── -->
+        <div class="sample-section">
+            <h3>Sample Text</h3>
+            <p class="sub">See the Kokborok script in action</p>
+            <div class="sample-display">
+                <div class="hachukma-text">&#xE014;&#xE018;&#xE014;&#xE00B;&#xE018;&#xE01B;&#xE018;&#xE014;</div>
+                <div class="translation">
+                    <span class="kokborok">Kokborok</span> — written in the Hachukma Script
+                </div>
+            </div>
+        </div>
+
+        <!-- ─── CALL TO ACTION / DOWNLOAD ─── -->
+        <div class="cta-section">
+            <h3>Start Using the Kokborok Script Today</h3>
+            <p>
+                Download the Hachukma IME software for Windows, install the custom font, and start typing in Kokborok using this pictographic alphabetic script.
+            </p>
+            <div class="cta-buttons">
+                <a href="hachukma-IME-software.html" class="cta-btn primary">
+                    <span class="btn-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    </span>
+                    Download IME
+                </a>
+                <a href="hachukma-chart.html" class="cta-btn secondary">
+                    <span class="btn-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                    </span>
+                    View Full Chart
+                </a>
+                <a href="virtual-keyboard.html" class="cta-btn secondary">
+                    <span class="btn-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01"/><path d="M10 10h.01"/><path d="M14 10h.01"/><path d="M18 10h.01"/><path d="M6 14h.01"/><path d="M10 14h.01"/><path d="M14 14h.01"/><path d="M18 14h.01"/><path d="M6 10h.01"/><path d="M10 10h.01"/><path d="M14 10h.01"/><path d="M18 10h.01"/></svg>
+                    </span>
+                    Virtual Keyboard
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <div class="social-links">
+            <a href="https://www.facebook.com/hachukma" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/channel/hachukma" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+        </div>
+        <div class="footer-meta">
+            <span>Official website of the Kokborok Script — Hachukma.</span>
+            <span class="nowrap">Designed and developed by <strong>Anan Debbarma</strong>.</span>
+            <span class="nowrap">&copy; 2025 – 2026.</span>  
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            const toggle = document.getElementById('navToggle');
+            const links = document.getElementById('navLinks');
+
+            if (toggle && links) {
+                toggle.addEventListener('click', function() {
+                    const isOpen = links.classList.toggle('open');
+                    toggle.classList.toggle('open');
+                    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                });
+
+                links.querySelectorAll('a').forEach(function(link) {
+                    link.addEventListener('click', function() {
+                        links.classList.remove('open');
+                        toggle.classList.remove('open');
+                        toggle.setAttribute('aria-expanded', 'false');
+                    });
+                });
+
+                document.addEventListener('click', function(e) {
+                    const nav = document.querySelector('.navbar');
+                    if (nav && !nav.contains(e.target) && links.classList.contains('open')) {
+                        links.classList.remove('open');
+                        toggle.classList.remove('open');
+                        toggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+        })();
+    </script>
+
+</body>
+</html>
