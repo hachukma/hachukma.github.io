@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -305,7 +303,6 @@
             grid-column: 1 / -1;
         }
 
-        /* ─── FIX: apply custom font to list items containing script characters ─── */
         .row ul li strong {
             font-family: "NewScript", sans-serif;
             font-size: 1rem;
@@ -314,8 +311,8 @@
             letter-spacing: 0.02em;
         }
 
-        /* ─── FULL ALPHABET GRID ─── */
-        .alphabet-grid-section {
+        /* ─── CONSONANTS GRID ─── */
+        .consonants-section {
             background: #ffffff;
             border-radius: 4px;
             padding: 2rem 2.2rem 2.2rem;
@@ -323,7 +320,7 @@
             margin-bottom: 1.8rem;
         }
 
-        .alphabet-grid-section h3 {
+        .consonants-section h3 {
             font-size: 1.3rem;
             font-weight: 700;
             color: #297c7c;
@@ -331,20 +328,20 @@
             text-align: center;
         }
 
-        .alphabet-grid-section .sub {
+        .consonants-section .sub {
             text-align: center;
             font-size: 0.95rem;
             color: #4a6a6a;
             margin-bottom: 1.2rem;
         }
 
-        .alphabet-grid {
+        .consonants-grid {
             display: grid;
-            grid-template-columns: repeat(13, 1fr);
+            grid-template-columns: repeat(10, 1fr);
             gap: 0.5rem;
         }
 
-        .alphabet-grid .char-item {
+        .consonants-grid .char-item {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -355,33 +352,85 @@
             transition: all 0.15s ease;
         }
 
-        .alphabet-grid .char-item:hover {
+        .consonants-grid .char-item:hover {
             background: #ecf5f5;
             border-color: #297c7c;
             transform: scale(1.03);
         }
 
-        .alphabet-grid .char-item .symbol {
+        .consonants-grid .char-item .symbol {
             font-family: "NewScript", sans-serif;
             font-size: 1.6rem;
             color: #297c7c;
             line-height: 1.2;
         }
 
-        .alphabet-grid .char-item .ipa {
+        .consonants-grid .char-item .ipa {
             font-size: 0.65rem;
             color: #5a7a7a;
             font-weight: 500;
         }
 
-        .alphabet-grid .char-item .roman {
-            font-size: 0.6rem;
+        /* ─── VOWELS SECTION ─── */
+        .vowels-section {
+            background: #ffffff;
+            border-radius: 4px;
+            padding: 1.6rem 2.2rem 1.8rem;
+            border: 1px solid #eaf0f0;
+            margin-bottom: 1.8rem;
+        }
+
+        .vowels-section h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #297c7c;
+            margin-bottom: 0.4rem;
+            text-align: center;
+        }
+
+        .vowels-section .sub {
+            text-align: center;
+            font-size: 0.95rem;
             color: #4a6a6a;
-            font-weight: 600;
-            background: rgba(0, 0, 0, 0.04);
-            padding: 0.02rem 0.4rem;
-            border-radius: 2px;
-            margin-top: 0.05rem;
+            margin-bottom: 1rem;
+        }
+
+        .vowels-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem 2rem;
+        }
+
+        .vowels-grid .vowel-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0.3rem 1rem;
+            background: #f6fafb;
+            border-radius: 4px;
+            border: 1px solid #dce8e8;
+            min-width: 2.8rem;
+            transition: all 0.15s ease;
+        }
+
+        .vowels-grid .vowel-item:hover {
+            background: #ecf5f5;
+            border-color: #297c7c;
+            transform: scale(1.04);
+        }
+
+        .vowels-grid .vowel-item .symbol {
+            font-family: "NewScript", sans-serif;
+            font-size: 2rem;
+            color: #297c7c;
+            line-height: 1.2;
+        }
+
+        .vowels-grid .vowel-item .ipa {
+            font-size: 0.7rem;
+            color: #5a7a7a;
+            font-weight: 500;
         }
 
         /* ─── NUMERALS ─── */
@@ -680,7 +729,6 @@
             white-space: nowrap;
         }
 
-        /* ─── VISITOR WRAPPER STYLES ─── */
         .visitor-wrapper {
             display: inline-block;
             background: #f0f6f6;
@@ -707,8 +755,8 @@
                 gap: 1.2rem;
                 padding: 1.8rem 1.8rem;
             }
-            .alphabet-grid {
-                grid-template-columns: repeat(10, 1fr);
+            .consonants-grid {
+                grid-template-columns: repeat(8, 1fr);
             }
         }
 
@@ -725,8 +773,8 @@
             .section-head h2 {
                 font-size: 1.8rem;
             }
-            .alphabet-grid {
-                grid-template-columns: repeat(8, 1fr);
+            .consonants-grid {
+                grid-template-columns: repeat(6, 1fr);
             }
         }
 
@@ -792,19 +840,26 @@
             .row p {
                 font-size: 0.9rem;
             }
-            .alphabet-grid-section,
+            .consonants-section,
+            .vowels-section,
             .numerals-section,
             .tone-section,
             .sample-section,
             .cta-section {
                 padding: 1.2rem 1rem 1.4rem;
             }
-            .alphabet-grid {
-                grid-template-columns: repeat(6, 1fr);
+            .consonants-grid {
+                grid-template-columns: repeat(5, 1fr);
                 gap: 0.4rem;
             }
-            .alphabet-grid .char-item .symbol {
+            .consonants-grid .char-item .symbol {
                 font-size: 1.3rem;
+            }
+            .vowels-grid {
+                gap: 0.5rem 1.2rem;
+            }
+            .vowels-grid .vowel-item .symbol {
+                font-size: 1.6rem;
             }
             .numerals-grid {
                 gap: 0.5rem 1rem;
@@ -924,18 +979,21 @@
                 font-size: 0.85rem;
                 line-height: 1.7;
             }
-            .alphabet-grid {
+            .consonants-grid {
                 grid-template-columns: repeat(4, 1fr);
                 gap: 0.3rem;
             }
-            .alphabet-grid .char-item .symbol {
+            .consonants-grid .char-item .symbol {
                 font-size: 1.1rem;
             }
-            .alphabet-grid .char-item .ipa {
+            .consonants-grid .char-item .ipa {
                 font-size: 0.55rem;
             }
-            .alphabet-grid .char-item .roman {
-                font-size: 0.5rem;
+            .vowels-grid .vowel-item .symbol {
+                font-size: 1.4rem;
+            }
+            .vowels-grid .vowel-item .ipa {
+                font-size: 0.6rem;
             }
             .numerals-grid .num-item .symbol {
                 font-size: 1.4rem;
@@ -992,7 +1050,7 @@
             .row p {
                 font-size: 0.8rem;
             }
-            .alphabet-grid {
+            .consonants-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
         }
@@ -1033,7 +1091,8 @@
                 border-radius: 0 !important;
             }
             .row,
-            .alphabet-grid-section,
+            .consonants-section,
+            .vowels-section,
             .numerals-section,
             .tone-section,
             .sample-section,
@@ -1070,6 +1129,7 @@
             <li><a href="script.html">Phonology & Script </a></li>
             <li><a href="hachukma-chart.html">Hachukma Chart</a></li>
             <li><a href="virtual-keyboard.html">Virtual Keyboard</a></li>
+            <!-- <li><a href="dropped-glyphs.html">Dropped-glyphs</a></li> -->
             <li><a href="hachukma-IME-software.html">Download</a></li>
         </ul>
     </nav>
@@ -1092,25 +1152,33 @@
             <div class="hero-showcase">
                 <div class="label">Kokborok alphabet</div>
                 <div class="grid">
+                    <!-- Sorted alphabetically: a, b, ch, d, e, g, h, i, j, k, kh, l, m, n, ng, o, p, ph, r, s, t, th, u, w, y, ɘ -->
                     <span class="sample-char">&#xE00A;<span class="roman">a</span></span>
-                    <span class="sample-char">&#xE00E;<span class="roman">e</span></span>
-                    <span class="sample-char">&#xE012;<span class="roman">i</span></span>
-                    <span class="sample-char">&#xE018;<span class="roman">o</span></span>
-                    <span class="sample-char">&#xE01E;<span class="roman">u</span></span>
-                    <span class="sample-char">&#xE023;<span class="roman">ɘ</span></span>
-                    <span class="sample-char">&#xE01D;<span class="roman">t</span></span>
-                    <span class="sample-char">&#xE01C;<span class="roman">s</span></span>
-                    <span class="sample-char">&#xE019;<span class="roman">p</span></span>
-                    <span class="sample-char">&#xE010;<span class="roman">g</span></span>
-                    <span class="sample-char">&#xE014;<span class="roman">k</span></span>
-                    <span class="sample-char">&#xE015;<span class="roman">l</span></span>
                     <span class="sample-char">&#xE00B;<span class="roman">b</span></span>
-                    <span class="sample-char">&#xE016;<span class="roman">m</span></span>
-                    <span class="sample-char">&#xE021;<span class="roman">ng</span></span>
-                    <span class="sample-char">&#xE01F;<span class="roman">kh</span></span>
                     <span class="sample-char">&#xE00C;<span class="roman">ch</span></span>
+                    <span class="sample-char">&#xE00D;<span class="roman">d</span></span>
+                    <span class="sample-char">&#xE00E;<span class="roman">e</span></span>
+                    <span class="sample-char">&#xE010;<span class="roman">g</span></span>
+                    <span class="sample-char">&#xE011;<span class="roman">h</span></span>
+                    <span class="sample-char">&#xE012;<span class="roman">i</span></span>
+                    <span class="sample-char">&#xE013;<span class="roman">j</span></span>
+                    <span class="sample-char">&#xE014;<span class="roman">k</span></span>
+                    <span class="sample-char">&#xE01F;<span class="roman">kh</span></span>
+                    <span class="sample-char">&#xE015;<span class="roman">l</span></span>
+                    <span class="sample-char">&#xE016;<span class="roman">m</span></span>
+                    <span class="sample-char">&#xE017;<span class="roman">n</span></span>
+                    <span class="sample-char">&#xE021;<span class="roman">ng</span></span>
+                    <span class="sample-char">&#xE018;<span class="roman">o</span></span>
+                    <span class="sample-char">&#xE019;<span class="roman">p</span></span>
                     <span class="sample-char">&#xE00F;<span class="roman">ph</span></span>
+                    <span class="sample-char">&#xE01B;<span class="roman">r</span></span>
+                    <span class="sample-char">&#xE01C;<span class="roman">s</span></span>
+                    <span class="sample-char">&#xE01D;<span class="roman">t</span></span>
                     <span class="sample-char">&#xE01A;<span class="roman">th</span></span>
+                    <span class="sample-char">&#xE01E;<span class="roman">u</span></span>
+                    <span class="sample-char">&#xE020;<span class="roman">w</span></span>
+                    <span class="sample-char">&#xE022;<span class="roman">y</span></span>
+                    <span class="sample-char">&#xE023;<span class="roman">ɘ</span></span>
                 </div>
                 <div class="note">26 alphabetic characters — vowels, consonants, and a tone diacritic</div>
             </div>
@@ -1144,7 +1212,7 @@
                 </p>
                 <p>
                     Today, Kokborok speakers predominantly use the <strong>Latin script</strong>, which has become the standard for education, literature, social media, and daily communication. The Bengali script is still used in some official and academic contexts, but the Latin script is the most widely adopted and practical writing system for the language. The <strong>Hachukma Script</strong> is a new neography, created to address the modern needs of the Kokborok-speaking community, combining cultural authenticity with digital adaptability and speed.
-                </p> 
+                </p>
             </div>
         </div>
 
@@ -1210,8 +1278,8 @@
                 <ul style="margin:0.4rem 0 0.4rem 1.5rem; color:#2a3e3e; line-height:1.8;">
                     <li><strong>Memorability.</strong> By linking each character to a familiar object — <em>Golari</em> (slingshot) for /g/, <em>Dangdol</em> (clothesline) for /d/, and so on — Hachukma leverages existing knowledge. A learner can recall the sound by remembering the object's name, making the entire Kokborok alphabet <strong>memorisable within weeks, not decades</strong>.</li>
                     <li><strong>Technological compatibility.</strong> An alphabetic system uses a small, manageable set of characters — just 26 letters, 10 numerals, and a single diacritic. This minimal inventory is essential for digital processing, keyboard efficiency, and programming applications.</li>
-                </ul> 
-                 <p style="margin-top:0.6rem;">
+                </ul>
+                <p style="margin-top:0.6rem;">
                     This is not a random design choice — it is a <strong>deliberate, practical decision</strong> to create a Kokborok script that is beautiful to write, easy to learn, and ready for the digital age.
                 </p>
             </div>
@@ -1267,37 +1335,65 @@
             </div>
         </div>
 
-        <!-- ─── FULL ALPHABET GRID ─── -->
-        <div class="alphabet-grid-section">
-            <h3>Complete Kokborok Alphabet</h3>
-            <p class="sub">All 26 alphabetic characters with IPA pronunciation and Roman equivalents</p>
-            <div class="alphabet-grid">
-                <div class="char-item"><span class="symbol">&#xE00A;</span><span class="ipa">/a/</span><span class="roman">a</span></div>
-                <div class="char-item"><span class="symbol">&#xE00E;</span><span class="ipa">/e/</span><span class="roman">e</span></div>
-                <div class="char-item"><span class="symbol">&#xE012;</span><span class="ipa">/i/</span><span class="roman">i</span></div>
-                <div class="char-item"><span class="symbol">&#xE018;</span><span class="ipa">/o/</span><span class="roman">o</span></div>
-                <div class="char-item"><span class="symbol">&#xE01E;</span><span class="ipa">/u/</span><span class="roman">u</span></div>
-                <div class="char-item"><span class="symbol">&#xE023;</span><span class="ipa">/ɘ/</span><span class="roman">ɘ</span></div>
-                <div class="char-item"><span class="symbol">&#xE01D;</span><span class="ipa">/t/</span><span class="roman">t</span></div>
-                <div class="char-item"><span class="symbol">&#xE022;</span><span class="ipa">/j/</span><span class="roman">y</span></div>
-                <div class="char-item"><span class="symbol">&#xE01C;</span><span class="ipa">/s/</span><span class="roman">s</span></div>
-                <div class="char-item"><span class="symbol">&#xE00D;</span><span class="ipa">/d/</span><span class="roman">d</span></div>
-                <div class="char-item"><span class="symbol">&#xE019;</span><span class="ipa">/p/</span><span class="roman">p</span></div>
-                <div class="char-item"><span class="symbol">&#xE010;</span><span class="ipa">/g/</span><span class="roman">g</span></div>
-                <div class="char-item"><span class="symbol">&#xE011;</span><span class="ipa">/h/</span><span class="roman">h</span></div>
-                <div class="char-item"><span class="symbol">&#xE013;</span><span class="ipa">/dʒ/</span><span class="roman">j</span></div>
-                <div class="char-item"><span class="symbol">&#xE014;</span><span class="ipa">/k/</span><span class="roman">k</span></div>
-                <div class="char-item"><span class="symbol">&#xE015;</span><span class="ipa">/l/</span><span class="roman">l</span></div>
-                <div class="char-item"><span class="symbol">&#xE00B;</span><span class="ipa">/b/</span><span class="roman">b</span></div>
-                <div class="char-item"><span class="symbol">&#xE017;</span><span class="ipa">/n/</span><span class="roman">n</span></div>
-                <div class="char-item"><span class="symbol">&#xE016;</span><span class="ipa">/m/</span><span class="roman">m</span></div>
-                <div class="char-item"><span class="symbol">&#xE021;</span><span class="ipa">/ŋ/</span><span class="roman">ng</span></div>
-                <div class="char-item"><span class="symbol">&#xE01F;</span><span class="ipa">/kʰ/</span><span class="roman">kh</span></div>
-                <div class="char-item"><span class="symbol">&#xE00C;</span><span class="ipa">/tʃ/</span><span class="roman">ch</span></div>
-                <div class="char-item"><span class="symbol">&#xE00F;</span><span class="ipa">/pʰ/</span><span class="roman">ph</span></div>
-                <div class="char-item"><span class="symbol">&#xE01A;</span><span class="ipa">/tʰ/</span><span class="roman">th</span></div>
-                <div class="char-item"><span class="symbol">&#xE01B;</span><span class="ipa">/r/</span><span class="roman">r</span></div>
-                <div class="char-item"><span class="symbol">&#xE020;</span><span class="ipa">/w/</span><span class="roman">w</span></div>
+        <!-- ─── CONSONANTS GRID (A–Z ORDER, NO ROMAN) ─── -->
+        <div class="consonants-section">
+            <h3>Consonants</h3>
+            <p class="sub">All 20 consonant characters with IPA pronunciation — ordered A to Z</p>
+            <div class="consonants-grid">
+                <!-- b -->
+                <div class="char-item"><span class="symbol">&#xE00B;</span><span class="ipa">/b/</span></div>
+                <!-- ch -->
+                <div class="char-item"><span class="symbol">&#xE00C;</span><span class="ipa">/tʃ/</span></div>
+                <!-- d -->
+                <div class="char-item"><span class="symbol">&#xE00D;</span><span class="ipa">/d/</span></div>
+                <!-- g -->
+                <div class="char-item"><span class="symbol">&#xE010;</span><span class="ipa">/g/</span></div>
+                <!-- h -->
+                <div class="char-item"><span class="symbol">&#xE011;</span><span class="ipa">/h/</span></div>
+                <!-- j -->
+                <div class="char-item"><span class="symbol">&#xE013;</span><span class="ipa">/dʒ/</span></div>
+                <!-- k -->
+                <div class="char-item"><span class="symbol">&#xE014;</span><span class="ipa">/k/</span></div>
+                <!-- kh -->
+                <div class="char-item"><span class="symbol">&#xE01F;</span><span class="ipa">/kʰ/</span></div>
+                <!-- l -->
+                <div class="char-item"><span class="symbol">&#xE015;</span><span class="ipa">/l/</span></div>
+                <!-- m -->
+                <div class="char-item"><span class="symbol">&#xE016;</span><span class="ipa">/m/</span></div>
+                <!-- n -->
+                <div class="char-item"><span class="symbol">&#xE017;</span><span class="ipa">/n/</span></div>
+                <!-- ng -->
+                <div class="char-item"><span class="symbol">&#xE021;</span><span class="ipa">/ŋ/</span></div>
+                <!-- p -->
+                <div class="char-item"><span class="symbol">&#xE019;</span><span class="ipa">/p/</span></div>
+                <!-- ph -->
+                <div class="char-item"><span class="symbol">&#xE00F;</span><span class="ipa">/pʰ/</span></div>
+                <!-- r -->
+                <div class="char-item"><span class="symbol">&#xE01B;</span><span class="ipa">/r/</span></div>
+                <!-- s -->
+                <div class="char-item"><span class="symbol">&#xE01C;</span><span class="ipa">/s/</span></div>
+                <!-- t -->
+                <div class="char-item"><span class="symbol">&#xE01D;</span><span class="ipa">/t/</span></div>
+                <!-- th -->
+                <div class="char-item"><span class="symbol">&#xE01A;</span><span class="ipa">/tʰ/</span></div>
+                <!-- w -->
+                <div class="char-item"><span class="symbol">&#xE020;</span><span class="ipa">/w/</span></div>
+                <!-- y -->
+                <div class="char-item"><span class="symbol">&#xE022;</span><span class="ipa">/j/</span></div>
+            </div>
+        </div>
+
+        <!-- ─── VOWELS SECTION (NO ROMAN) ─── -->
+        <div class="vowels-section">
+            <h3>Vowels</h3>
+            <p class="sub">The six vowel characters of the Hachukma Kokborok script</p>
+            <div class="vowels-grid">
+                <div class="vowel-item"><span class="symbol">&#xE00A;</span><span class="ipa">/a/</span></div>
+                <div class="vowel-item"><span class="symbol">&#xE00E;</span><span class="ipa">/e/</span></div>
+                <div class="vowel-item"><span class="symbol">&#xE012;</span><span class="ipa">/i/</span></div>
+                <div class="vowel-item"><span class="symbol">&#xE018;</span><span class="ipa">/o/</span></div>
+                <div class="vowel-item"><span class="symbol">&#xE01E;</span><span class="ipa">/u/</span></div>
+                <div class="vowel-item"><span class="symbol">&#xE023;</span><span class="ipa">/ɘ/</span></div>
             </div>
         </div>
 
@@ -1373,7 +1469,7 @@
                     Virtual Keyboard
                 </a>
             </div>
-        </div> 
+        </div>
 
     </main>
 
@@ -1389,8 +1485,7 @@
         <div class="footer-meta">
             <span>Official website of the Kokborok Script — Hachukma.</span>
             <span class="nowrap">Designed and developed by <strong>Anan Debbarma</strong>.</span>
-            <span class="nowrap">&copy; 2025 – 2026.</span>
-        </div>
+            <span class="nowrap">&copy; 2025 – 2026.</span>  
         </div>
     </footer>
 
@@ -1425,8 +1520,6 @@
             }
         })();
     </script>
-
-
 
 </body>
 </html>
