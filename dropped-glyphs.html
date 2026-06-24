@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dropped Glyphs · Hachukma Script</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <style>
+        @font-face {
+            font-family: "NewScript";
+            src: url("../Font/hachukma.woff") format("woff");
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: #f6f9fa;
+            color: #1e2e2e;
+            padding-top: 68px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 68px;
+            background: #297c7c;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 3rem;
+            box-shadow: 0 2px 16px rgba(41, 124, 124, 0.25);
+        }
+
+        .navbar-title {
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: 0.02em;
+        }
+
+        .navbar-title .accent {
+            color: #f5d742;
+        }
+
+        .navbar-links {
+            display: flex;
+            align-items: center;
+            list-style: none;
+        }
+
+        .navbar-links li a {
+            padding: 0.4rem 1.1rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 4px;
+            text-decoration: none;
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .navbar-links li a:hover {
+            background: rgba(255, 255, 255, 0.18);
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .navbar-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 6px 4px;
+        }
+
+        .navbar-toggle span {
+            display: block;
+            width: 26px;
+            height: 2.5px;
+            background: #ffffff;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-toggle.open span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .navbar-toggle.open span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        .navbar-toggle.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem 2rem;
+        }
+
+        .page-header {
+            background: #ffffff;
+            border-radius: 0 0 4px 4px;
+            padding: 2rem 2.5rem 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.02);
+        }
+
+        .page-header h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #297c7c;
+            letter-spacing: -0.03em;
+            line-height: 1.2;
+            margin-bottom: 0.2rem;
+        }
+
+        .page-header h1 .accent {
+            color: #c7929e;
+        }
+
+        .page-header .sub {
+            font-size: 0.95rem;
+            color: #3a5a5a;
+            line-height: 1.7;
+            margin-bottom: 0.6rem;
+        }
+
+        .page-header .sub strong {
+            color: #297c7c;
+        }
+
+        .page-header .explanation {
+            font-size: 0.95rem;
+            color: #1e3a3a;
+            line-height: 1.9;
+            background: #f0f6f6;
+            padding: 1rem 1.4rem;
+            border-radius: 4px;
+            border-left: 4px solid #297c7c;
+            margin-top: 0.4rem;
+        }
+
+        .page-header .explanation strong {
+            color: #297c7c;
+        }
+
+        .page-header .explanation p {
+            margin: 0.3rem 0;
+        }
+
+        .table-wrapper {
+            background: #ffffff;
+            border-radius: 4px;
+            border: 1px solid #eaf0f0;
+            padding: 1.2rem 1rem;
+            overflow-x: auto;
+            margin-bottom: 2rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            min-width: 400px;
+        }
+
+        thead {
+            background: #ecf5f5;
+            border-bottom: 2px solid #297c7c;
+        }
+
+        th {
+            padding: 0.5rem 0.7rem;
+            text-align: left;
+            font-weight: 700;
+            color: #297c7c;
+            font-size: 0.75rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        td {
+            padding: 0.5rem 0.7rem;
+            border-bottom: 1px solid #eaeef0;
+            color: #1e2e2e;
+            vertical-align: top;
+        }
+
+        tbody tr:hover {
+            background: #f6fafb;
+        }
+
+        /* --- Specific styling for the three matching rows --- */
+        /* Name column → red background + red text */
+        .match-other td:first-child {
+            background-color: #fce8e8;
+            color: #b33c3c;
+            font-weight: 700;
+        }
+        .match-other:hover td:first-child {
+            background-color: #fad4d4;
+        }
+
+        /* Replaced By column → green background + green text */
+        .match-other td:last-child {
+            background-color: #e8f8ec;
+            color: #1f8b4c;
+            font-weight: 700;
+        }
+        .match-other:hover td:last-child {
+            background-color: #d4f0dc;
+        }
+
+        /* Sound column → neutral (light grey) */
+        .match-other td:not(:first-child):not(:last-child) {
+            background-color: #f8f8f8;
+        }
+        .match-other:hover td:not(:first-child):not(:last-child) {
+            background-color: #f0f0f0;
+        }
+
+        .concept-section {
+            background: #ffffff;
+            border-radius: 4px;
+            border: 1px solid #eaf0f0;
+            padding: 1.2rem 1rem;
+            overflow-x: auto;
+            margin-top: 1rem;
+        }
+
+        .concept-section .section-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #1e3a3a;
+            margin-bottom: 0.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+
+        .concept-section .section-title .badge {
+            background: #c7929e;
+            color: #fff;
+            font-size: 0.65rem;
+            font-weight: 600;
+            padding: 0.2rem 0.7rem;
+            border-radius: 20px;
+            letter-spacing: 0.02em;
+        }
+
+        .concept-section .section-title .count-badge {
+            background: #297c7c;
+            color: #fff;
+            font-size: 0.65rem;
+            font-weight: 600;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            letter-spacing: 0.02em;
+        }
+
+        .concept-section .section-desc {
+            font-size: 0.9rem;
+            color: #3a5a5a;
+            margin-bottom: 1rem;
+        }
+
+        .concept-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 1.2rem;
+            padding: 0.2rem 0 0.4rem;
+        }
+
+        .concept-item {
+            background: #f2f8f8;
+            padding: 0.2rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #1e3a3a;
+            border: 1px solid #dce8e8;
+            letter-spacing: 0.01em;
+        }
+
+        .concept-item .sound-tag {
+            font-weight: 400;
+            color: #5a7a7a;
+            font-size: 0.7rem;
+            margin-left: 0.2rem;
+        }
+
+        .note-box {
+            background: #f8f4f0;
+            border-left: 4px solid #c7929e;
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+            color: #4a5a5a;
+        }
+
+        .note-box strong {
+            color: #297c7c;
+        }
+
+        .total-count {
+            font-weight: 700;
+            color: #297c7c;
+        }
+
+        /* legend for the table colors */
+        .table-legend {
+            font-size: 0.8rem;
+            color: #3a5a5a;
+            background: #fafafa;
+            padding: 0.5rem 0.9rem;
+            border-radius: 4px;
+            border: 1px solid #e0e8e8;
+            margin-top: 0.8rem;
+            display: inline-block;
+            line-height: 1.6;
+        }
+
+        .table-legend .swatch-red {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            background: #fce8e8;
+            border: 1px solid #b33c3c;
+            vertical-align: middle;
+            margin-right: 4px;
+            border-radius: 2px;
+        }
+        .table-legend .swatch-green {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            background: #e8f8ec;
+            border: 1px solid #1f8b4c;
+            vertical-align: middle;
+            margin-right: 4px;
+            border-radius: 2px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 60px;
+            }
+            .navbar {
+                height: 60px;
+                padding: 0 1.2rem;
+            }
+            .container {
+                padding: 0 1rem 1rem;
+            }
+            .page-header {
+                padding: 1.2rem 1.2rem;
+            }
+            .page-header h1 {
+                font-size: 1.5rem;
+            }
+            .page-header .sub,
+            .page-header .explanation {
+                font-size: 0.85rem;
+            }
+            .page-header .explanation {
+                padding: 0.7rem 1rem;
+            }
+            .table-wrapper {
+                padding: 0.8rem 0.5rem;
+            }
+            table {
+                font-size: 0.8rem;
+                min-width: 320px;
+            }
+            th,
+            td {
+                padding: 0.35rem 0.4rem;
+            }
+            .concept-section {
+                padding: 0.8rem 0.5rem;
+            }
+            .concept-item {
+                font-size: 0.8rem;
+                padding: 0.15rem 0.7rem;
+            }
+            .table-legend {
+                font-size: 0.7rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding-top: 56px;
+            }
+            .navbar {
+                height: 56px;
+                padding: 0 0.9rem;
+            }
+            .navbar-title {
+                font-size: 0.9rem;
+            }
+            .navbar-toggle {
+                display: flex;
+            }
+            .navbar-links {
+                position: absolute;
+                top: 56px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: #297c7c;
+                padding: 0.6rem 1rem 1.2rem;
+                gap: 0.3rem;
+                box-shadow: 0 12px 28px rgba(41, 124, 124, 0.25);
+                transform: scaleY(0);
+                transform-origin: top center;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+                border-radius: 0 0 4px 4px;
+                border-top: 1px solid rgba(255, 255, 255, 0.08);
+                pointer-events: none;
+            }
+            .navbar-links.open {
+                transform: scaleY(1);
+                opacity: 1;
+                visibility: visible;
+                pointer-events: auto;
+            }
+            .navbar-links li a {
+                width: 100%;
+                text-align: center;
+                padding: 0.5rem 0.8rem;
+                font-size: 0.9rem;
+                background: rgba(255, 255, 255, 0.06);
+                border-radius: 4px;
+            }
+            .navbar-links li a:hover {
+                background: rgba(255, 255, 255, 0.14);
+            }
+            .page-header h1 {
+                font-size: 1.3rem;
+            }
+            .page-header .sub,
+            .page-header .explanation {
+                font-size: 0.8rem;
+            }
+            .page-header .explanation {
+                padding: 0.5rem 0.8rem;
+            }
+            table {
+                font-size: 0.72rem;
+                min-width: 280px;
+            }
+            th,
+            td {
+                padding: 0.25rem 0.3rem;
+            }
+            .concept-item {
+                font-size: 0.75rem;
+                padding: 0.1rem 0.6rem;
+            }
+            .table-legend {
+                font-size: 0.65rem;
+            }
+        }
+
+        @media print {
+            .navbar {
+                position: static;
+                box-shadow: none;
+                background: #297c7c !important;
+            }
+            body {
+                padding-top: 0;
+            }
+            .navbar-toggle {
+                display: none !important;
+            }
+            .navbar-links {
+                display: flex !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                transform: none !important;
+                position: static !important;
+                background: transparent !important;
+                box-shadow: none !important;
+                border: none !important;
+                padding: 0 !important;
+                pointer-events: auto !important;
+            }
+            .navbar-links li a {
+                color: #fff !important;
+                background: rgba(255, 255, 255, 0.12) !important;
+                border-color: rgba(255, 255, 255, 0.15) !important;
+            }
+            .page-header {
+                background: #f5f5f5 !important;
+                box-shadow: none !important;
+                border-bottom: 2px solid #ccc !important;
+            }
+            .page-header .explanation {
+                background: #f0f0f0 !important;
+                border-left: 3px solid #666 !important;
+            }
+            .table-wrapper {
+                border: 1px solid #ccc !important;
+                box-shadow: none !important;
+            }
+            thead {
+                background: #eaeaea !important;
+                border-bottom: 2px solid #888 !important;
+            }
+            th {
+                color: #222 !important;
+            }
+            .match-other td:first-child {
+                background: #f0d0d0 !important;
+                color: #a00 !important;
+            }
+            .match-other td:last-child {
+                background: #d0f0d0 !important;
+                color: #060 !important;
+            }
+            .match-other td:not(:first-child):not(:last-child) {
+                background: #f5f5f5 !important;
+            }
+            .concept-section {
+                border: 1px solid #ccc !important;
+            }
+            .concept-item {
+                background: #f0f0f0 !important;
+                border-color: #aaa !important;
+            }
+            .table-legend {
+                border: 1px solid #aaa !important;
+                background: #f5f5f5 !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar" role="navigation">
+        <span class="navbar-title">Dropped <span class="accent">Glyphs</span></span>
+
+        <button class="navbar-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <ul class="navbar-links" id="navLinks">
+            <li><a href="index.php">← Back to home</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+
+        <div class="page-header">
+            <h1>Dropped kokborok Acrophonic <span class="accent">Letters</span></h1>
+            <p class="sub">
+                24 letters that were removed from the Hachukma Kokborok alphabet
+                during the design refinement phase (October 2025 – May 2026).
+            </p>
+
+            <div class="explanation">
+                <p>
+                    <strong>What is Hachukma?</strong> Hachukma is an independent alphabetic script, not based on the Roman alphabet – each letter stands for a sound, not a whole object. It works on the acrophonic principle, which means each letter gets its shape from an object whose name starts with that sound. For example, the letter for <strong>'b'</strong> comes from <em>Buphang-kwthwi</em> (death tree), and the letter for <strong>'g'</strong> comes from <em>Golari</em> (slingshot).
+                </p>
+                <p>
+                    <strong>Why were these letters removed?</strong> While creating the alphabet, a few problems
+                    appeared. First, some letters I had drawn unintentionally matched symbols from other
+                    neography scripts that were also made for Kokborok. This was my mistake — I should have
+                    researched those existing scripts beforehand, but I was unaware of them at the time, largely
+                    because their script type and formation principle do not match Hachukma's acrophonic
+                    system. Nevertheless, the accidental visual overlap still caused confusion. To keep the
+                    script clear and unique, those letters were removed. Second, some letters looked too similar
+                    to other letters already in the alphabet, which would cause confusion when reading or
+                    writing, so the extra ones were dropped. Third, some letters had too many strokes or curves,
+                    making them slow to write, so they were replaced with faster, simpler ones.
+                </p>
+                <p>
+                    <strong>Numerals were also refined during the design process.</strong> Early numeral designs
+                    were dropped because they unintentionally matched symbols from other existing script.
+                    To avoid confusion and keep the script unique, those numeral designs were removed
+                    and replaced with the distinct Hachukma numerals we see today.
+                </p>
+                <p style="margin-bottom:0;">
+                    The table below shows all the removed letters, their sounds, and their replacements.
+                    (Numerals are not included in this table.) The names printed in <span style="color:#b33c3c;font-weight:700;">red</span> mark the glyphs that unintentionally matched other Kokborok neography scripts. The corresponding replacements, shown in <span style="color:#1f8b4c;font-weight:700;">green</span>, are the distinct Hachukma letters adopted for those sounds instead.
+                </p>
+            </div>
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Sound</th>
+                        <th>Replaced By</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Thalik</strong></td><td>/tʰ/</td><td>thaichumui</td></tr>
+                    <tr class="match-other"><td><strong>Hapong</strong></td><td>/h/</td><td>hangwrai</td></tr>
+                    <tr class="match-other"><td><strong>Mayung</strong></td><td>/m/</td><td>mwsui-bokhorok</td></tr>
+                    <tr><td><strong>Khangwrai</strong></td><td>/kʰ/</td><td>khunta</td></tr>
+                    <tr><td><strong>Chuwan</strong></td><td>/tʃ/</td><td>chɘng</td></tr>
+                    <tr><td><strong>Kheto</strong></td><td>/kʰ/</td><td>khunta</td></tr>
+                    <tr><td><strong>Awang-bagwi</strong></td><td>/a/</td><td>ang</td></tr>
+                    <tr><td><strong>Athok</strong></td><td>/a/</td><td>ang</td></tr>
+                    <tr><td><strong>Langi</strong></td><td>/l/</td><td>—</td></tr>
+                    <tr><td><strong>Garing</strong></td><td>/g/</td><td>—</td></tr>
+                    <tr><td><strong>Goria-mwtai</strong></td><td>/g/</td><td>golari</td></tr>
+                    <tr><td><strong>Borok</strong></td><td>/b/</td><td>buphang</td></tr>
+                    <tr class="match-other"><td><strong>Dapa</strong></td><td>/d/</td><td>dangdol</td></tr>
+                    <tr><td><strong>Takhuk</strong></td><td>/t/</td><td>tok‑thunta</td></tr>
+                    <tr><td><strong>Tobak</strong></td><td>/t/</td><td>tok-thunta</td></tr>
+                    <tr><td><strong>Narika-bwthai</strong></td><td>/n/</td><td>noboraisa</td></tr>
+                    <tr><td><strong>Geagoma</strong></td><td>/g/</td><td>golari</td></tr>
+                    <tr><td><strong>Wacheng</strong></td><td>/w/</td><td>wa</td></tr>
+                    <tr><td><strong>Risa</strong></td><td>/r/</td><td>romo</td></tr>
+                    <tr><td><strong>Thaipong-buthai</strong></td><td>/tʰ/</td><td>thaichumui</td></tr>
+                    <tr><td><strong>Jabara</strong></td><td>/dʒ/</td><td>jubar-bubar</td></tr>
+                    <tr><td><strong>Pokhori</strong></td><td>/p/</td><td>potdo-bubar</td></tr>
+                    <tr><td><strong>Pun</strong></td><td>/p/</td><td>potdo-bubar</td></tr>
+                </tbody>
+            </table>
+            <div class="table-legend">
+                <span class="swatch-red"></span> Red background = glyph matched another Kokborok neography script &nbsp;·&nbsp;
+                <span class="swatch-green"></span> Green background = distinct Hachukma letter adopted instead
+            </div>
+        </div>
+
+        <!-- Concept letters that were never used -->
+        <div class="concept-section">
+            <div class="section-title">
+                <span>Concept letters (never used)</span>
+                <span class="count-badge">25 total</span>
+            </div>
+            <p class="section-desc">
+                These letter-forms were sketched and considered during the early design phase,
+                but they never made it into any official alphabet. They remain as concept
+                studies — interesting ideas that were set aside for various reasons.
+            </p>
+
+            <div class="concept-grid">
+                <span class="concept-item">bwswlai<span class="sound-tag">/b/</span></span>
+                <span class="concept-item">yungla<span class="sound-tag">/y/</span></span>
+                <span class="concept-item">mokol <span class="sound-tag">/m/</span></span>          
+                <span class="concept-item">ah<span class="sound-tag">/a/</span></span>
+                <span class="concept-item">dogolam <span class="sound-tag">/d/</span></span>
+                <span class="concept-item">phorki <span class="sound-tag">/pʰ/</span></span>
+                <span class="concept-item">nok <span class="sound-tag">/n/</span></span>
+                <span class="concept-item">noksi <span class="sound-tag">/n/</span></span>
+                <span class="concept-item">bwlai <span class="sound-tag">/b/</span></span>
+                <span class="concept-item">aming <span class="sound-tag">/a/</span></span>
+                <span class="concept-item">daroma <span class="sound-tag">/d/</span></span>
+                <span class="concept-item">dasa<span class="sound-tag">/d/</span></span>
+                <span class="concept-item">godal <span class="sound-tag">/g/</span></span>
+                <span class="concept-item">ura<span class="sound-tag">/u/</span></span>
+                <span class="concept-item">omothwi <span class="sound-tag">/o/</span></span>
+                <span class="concept-item">siching <span class="sound-tag">/s/</span></span>
+                <span class="concept-item">mikhomo <span class="sound-tag">/m/</span></span>
+                <span class="concept-item">bomborai <span class="sound-tag">/b/</span></span>
+                <span class="concept-item">dom<span class="sound-tag">/d/</span></span>
+                <span class="concept-item">toktwi <span class="sound-tag">/t/</span></span>
+                <span class="concept-item">kapaik <span class="sound-tag">/k/</span></span>
+                <span class="concept-item">dol<span class="sound-tag">/d/</span></span>
+                <span class="concept-item">wayung <span class="sound-tag">/w/</span></span>
+                <span class="concept-item">wak <span class="sound-tag">/w/</span></span>
+                <span class="concept-item">kheremok <span class="sound-tag">/kʰ/</span></span>
+            </div>
+            <p style="font-size:0.8rem; color:#4a6a6a; margin-top:0.5rem; border-top:1px dashed #d0e0e0; padding-top:0.5rem;">
+                These <span class="total-count">25</span> glyphs were never part of the official alphabet and are not used in writing.
+            </p>
+        </div>
+
+        <div class="note-box">
+            <strong>Reference note:</strong> All letters shown here were removed from the final Hachukma alphabet.
+            The replacement letters in the last column are the official characters now used in the script.
+            The concept letters listed above were only experimental sketches and were never adopted.
+            In total, <strong>25 concept glyphs</strong> were never used.
+        </div>
+
+    </main>
+
+    <script>
+        (function() {
+            const toggle = document.getElementById('navToggle');
+            const links = document.getElementById('navLinks');
+
+            if (toggle && links) {
+                toggle.addEventListener('click', function() {
+                    const isOpen = links.classList.toggle('open');
+                    toggle.classList.toggle('open');
+                    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                });
+
+                links.querySelectorAll('a').forEach(function(link) {
+                    link.addEventListener('click', function() {
+                        links.classList.remove('open');
+                        toggle.classList.remove('open');
+                        toggle.setAttribute('aria-expanded', 'false');
+                    });
+                });
+
+                document.addEventListener('click', function(e) {
+                    const nav = document.querySelector('.navbar');
+                    if (nav && !nav.contains(e.target) && links.classList.contains('open')) {
+                        links.classList.remove('open');
+                        toggle.classList.remove('open');
+                        toggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+        })();
+    </script>
+
+</body>
+</html>
