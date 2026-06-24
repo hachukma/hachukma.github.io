@@ -1100,7 +1100,7 @@
     <!-- ===== NAVBAR ===== -->
     <nav class="navbar">
         <div class="brand">
-            <span class="hachukma-font">Hachukma</span>
+            <span class="hachukma-font">Hachukma Virtual Keyboard</span>
         </div>
         <div class="nav-links">
             <a href="index.html" id="navBack">Back to Home</a>
@@ -1119,7 +1119,7 @@
                 <span>Kokborok Script</span>
                 <span>PUA + Hachukma Font</span>
                 <span>Auto‑replace: <kbd style="background:#e4ecec;padding:0.05rem 0.4rem;border-radius:3px;border:1px solid #c8d6d6;font-size:0.8rem;">f</kbd> → ph · <kbd style="background:#e4ecec;padding:0.05rem 0.4rem;border-radius:3px;border:1px solid #c8d6d6;font-size:0.8rem;">x</kbd> → ng · <kbd style="background:#e4ecec;padding:0.05rem 0.4rem;border-radius:3px;border:1px solid #c8d6d6;font-size:0.8rem;">q</kbd> → th · <kbd style="background:#e4ecec;padding:0.05rem 0.4rem;border-radius:3px;border:1px solid #c8d6d6;font-size:0.8rem;">z</kbd> → ɘ · <kbd style="background:#e4ecec;padding:0.05rem 0.4rem;border-radius:3px;border:1px solid #c8d6d6;font-size:0.8rem;">c</kbd> → ch · <kbd style="background:#e4ecec;padding:0.05rem 0.4rem;border-radius:3px;border:1px solid #c8d6d6;font-size:0.8rem;">v</kbd> → kh</span>
-                <span>Digraph composition: <kbd style="background:#e4ecec;padding:0.05rem 0.4rem;border-radius:3px;border:1px solid #c8d6d6;font-size:0.8rem;">t+h</kbd> → th · <kbd style="background:#e4ecec;padding:0.05rem 0.4rem;border-radius:3px;border:1px solid #c8d6d6;font-size:0.8rem;">n+g</kbd> → ng · <kbd style="background:#e4ecec;padding:0.05rem 0.4rem;border-radius:3px;border:1px solid #c8d6d6;font-size:0.8rem;">k+h</kbd> → kh · <kbd style="background:#e4ecec;padding:0.05rem 0.4rem;border-radius:3px;border:1px solid #c8d6d6;font-size:0.8rem;">p+h</kbd> → ph</span>
+                <!-- <span>Digraph composition: <kbd style="background:#e4ecec;padding:0.05rem 0.4rem;border-radius:3px;border:1px solid #c8d6d6;font-size:0.8rem;">t+h</kbd> → th · <kbd style="background:#e4ecec;padding:0.05rem 0.4rem;border-radius:3px;border:1px solid #c8d6d6;font-size:0.8rem;">n+g</kbd> → ng · <kbd style="background:#e4ecec;padding:0.05rem 0.4rem;border-radius:3px;border:1px solid #c8d6d6;font-size:0.8rem;">k+h</kbd> → kh · <kbd style="background:#e4ecec;padding:0.05rem 0.4rem;border-radius:3px;border:1px solid #c8d6d6;font-size:0.8rem;">p+h</kbd> → ph</span> -->
             </div>
             <div class="article-body">
                 <p>
@@ -1133,17 +1133,20 @@
                     <strong>Hachukma</strong> custom font.
                 </p>
 
-                <p>
-                    <strong>Diacritic:</strong> High tone diacritic mark.
-                    <span style="background:#eaf0f0;padding:0.05rem 0.5rem;border-radius:4px;border:1px solid #dce8e8;">
-                        Desktop: double‑tap the <kbd style="background:#dce8e8;padding:0.05rem 0.4rem;border-radius:3px;border:1px solid #c8d6d6;">p</kbd> key
-                    </span>
-                    <span style="background:#eaf0f0;padding:0.05rem 0.5rem;border-radius:4px;border:1px solid #dce8e8;">
-                        Phone: type, then tap the dedicated <span style="font-family:'NewScript',sans-serif;"></span> tone key
-                    </span>
-                </p>
+                <!-- Vowels description -->
+                <p><strong>Vowels:</strong> The vowel system of Kokborok consists of six vowels: <strong>a</strong>, <strong>e</strong>, <strong>i</strong>, <strong>o</strong>, <strong>u</strong>, and the central vowel <strong>ɘ</strong>. Each of these phonemes is represented by a distinct character in the Hachukma script, and they form the core of the syllabic structure. The characters are designed to be visually distinctive and follow the acrophonic principle where possible.</p>
 
-                <p><strong>Consonants:</strong> The script includes 20 primary consonant characters, each representing a single consonant phoneme:</p>
+                <div class="consonant-grid">
+                    <div class="c-item"><span class="c-script"></span><span class="c-latin">a</span></div>
+                    <div class="c-item"><span class="c-script"></span><span class="c-latin">e</span></div>
+                    <div class="c-item"><span class="c-script"></span><span class="c-latin">i</span></div>
+                    <div class="c-item"><span class="c-script"></span><span class="c-latin">o</span></div>
+                    <div class="c-item"><span class="c-script"></span><span class="c-latin">u</span></div>
+                    <div class="c-item"><span class="c-script"></span><span class="c-latin">ɘ</span></div>
+                </div>
+
+                <!-- Consonants description -->
+                <p><strong>Consonants:</strong> The consonant inventory comprises 20 primary consonants that cover the full range of stops, fricatives, nasals, and approximants found in Kokborok. Each consonant is an independent pictographic character whose phonetic value follows the <strong>acrophonic principle</strong>—the glyph is inspired by the initial sound it represents. The set includes: <strong>t, y, s, d, p, g, h, j, k, l, b, n, m, ng, kh, ch, ph, th, r, w</strong>. The character <strong>ng</strong> and the vowel <strong>ɘ</strong> are exceptional in their design, but they function purely as phonemes in the writing system.</p>
 
                 <div class="consonant-grid">
                     <div class="c-item"><span class="c-script"></span><span class="c-latin">t</span></div>
@@ -1169,11 +1172,19 @@
                 </div>
 
                 <p>
-                    Each consonant is an independent pictographic character whose phonetic value follows the
-                    <strong>acrophonic principle</strong>, deriving its sound from the initial phonetic element.
-                    The character <span class="highlight">ng</span> ,<span class="highlight">ɘ</span>  is exceptional. In use, every symbol functions
-                    purely as a phoneme. The characters are arranged for intuitive keyboard input, with related
-                    sounds grouped together, ensuring clarity and ease of learning.
+                    <strong>Diacritic:</strong> High tone diacritic mark.
+                    <span style="background:#eaf0f0;padding:0.05rem 0.5rem;border-radius:4px;border:1px solid #dce8e8;">
+                        Desktop: double‑tap the <kbd style="background:#dce8e8;padding:0.05rem 0.4rem;border-radius:3px;border:1px solid #c8d6d6;">p</kbd> key
+                    </span>
+                    <span style="background:#eaf0f0;padding:0.05rem 0.5rem;border-radius:4px;border:1px solid #dce8e8;">
+                        Phone: type, then tap the dedicated <span style="font-family:'NewScript',sans-serif;"></span> tone key
+                    </span>
+                </p>
+
+                <p>
+                    The characters are arranged on the keyboard for intuitive input, grouping related sounds together.
+                    This layout, combined with the automatic digraph composition and Latin‑to‑script substitution,
+                    ensures a smooth typing experience for both beginners and advanced users.
                 </p>
             </div>
         </div>
@@ -1354,9 +1365,7 @@
     </div>
 
     <script>
-        // ============================================================
-        //  PROTECTION: Silently block right-click & devtools shortcuts
-        // ============================================================
+      
 
         (function() {
             'use strict';
