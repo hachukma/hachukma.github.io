@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Kokborok Numerals – Lekhamung</title>
+    <meta name="description" content="A complete guide to Kokborok numerals (Lekhamung) using the Hachukma script digits and PUA letters, with Roman numerals (no zero)." />
+    <meta name="robots" content="index, follow" />
+
+    <style>
+        @font-face {
+            font-family: 'Hachukma';
+            src: url('hachukma.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: #f6f9fa;
+            color: #1e2e2e;
+            padding-top: 68px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 68px;
+            background: #297c7c;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 3rem;
+            box-shadow: 0 2px 16px rgba(41, 124, 124, 0.25);
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            font-size: 1.15rem;
+            color: #ffffff;
+            text-decoration: none;
+            letter-spacing: 0.01em;
+        }
+
+        .navbar-home {
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 0.4rem 1rem;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.13);
+            transition: background 0.2s ease;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .navbar-home:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .block {
+            background: #ffffff;
+            border-radius: 4px;
+            padding: 2rem 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid #eaf0f0;
+            transition: all 0.2s ease;
+        }
+
+        .block:hover {
+            box-shadow: 0 4px 24px rgba(41, 124, 124, 0.05);
+        }
+
+        .block h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #297c7c;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.4rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 3px solid #eaf0f0;
+            position: relative;
+        }
+
+        .block h2::after {
+            content: "";
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #297c7c, #b89a2e);
+            border-radius: 2px;
+        }
+
+        .block h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #297c7c;
+            margin: 1.2rem 0 0.4rem 0;
+        }
+
+        .block p {
+            font-size: 1rem;
+            color: #2a3e3e;
+            line-height: 1.8;
+            margin-bottom: 0.8rem;
+        }
+
+        .block ul {
+            margin: 0.4rem 0 0.8rem 1.8rem;
+            color: #2a3e3e;
+            line-height: 1.8;
+        }
+
+        .block ul li strong {
+            color: #297c7c;
+        }
+
+        .hero {
+            background: #ffffff;
+            border-radius: 4px;
+            padding: 2.5rem 2.5rem 2rem;
+            margin-bottom: 2rem;
+            border-bottom: 4px solid #297c7c;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.02);
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 800;
+            color: #297c7c;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            margin-bottom: 0.6rem;
+        }
+
+        .hero h1 .accent {
+            color: #c7929e;
+        }
+
+        .hero .subtitle {
+            font-size: 1.1rem;
+            color: #2a4242;
+            line-height: 1.9;
+        }
+
+        .hero .subtitle strong {
+            color: #297c7c;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        table thead {
+            background: #297c7c;
+            color: #ffffff;
+        }
+
+        table th,
+        table td {
+            padding: 0.6rem 1rem;
+            text-align: left;
+            border: 1px solid #eaf0f0;
+            vertical-align: middle;
+        }
+
+        table tbody tr:hover {
+            background: #f4f8f8;
+        }
+
+        table tbody tr:nth-child(even) {
+            background: #fafcfc;
+        }
+
+        table tbody tr:nth-child(even):hover {
+            background: #f0f5f5;
+        }
+
+        .hachukma {
+            font-family: 'Hachukma', sans-serif;
+            font-size: 1.8rem;
+            line-height: 1.4;
+            color: #297c7c;
+            letter-spacing: 0.03em;
+        }
+
+        .hachukma.small {
+            font-size: 1.4rem;
+        }
+ 
+        #large-numbers table {
+            font-size: 0.78rem;
+        }
+
+        #large-numbers table th,
+        #large-numbers table td {
+            padding: 0.4rem 0.5rem;
+        }
+
+        #large-numbers .hachukma-digit-col {
+            font-family: 'Hachukma', sans-serif;
+            font-size: 0.8rem;
+            line-height: 1.2;
+            color: #297c7c;
+            letter-spacing: 0.01em;
+            word-break: break-all;
+            white-space: normal;
+        }
+
+        .digit-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.8rem;
+            margin: 1rem 0;
+        }
+
+        .digit-item {
+            background: #fafcfc;
+            padding: 0.8rem 0.5rem;
+            border-radius: 4px;
+            border: 1px solid #eaf0f0;
+            text-align: center;
+        }
+
+        .digit-item .digit {
+            font-family: 'Hachukma', sans-serif;
+            font-size: 2.5rem;
+            color: #297c7c;
+            display: block;
+        }
+
+        .digit-item .label {
+            font-size: 0.8rem;
+            color: #4a6a6a;
+            margin-top: 0.2rem;
+        }
+
+        .digit-item .value {
+            font-size: 0.7rem;
+            color: #8a9a9a;
+            font-weight: 500;
+        }
+
+        .roman-numeral {
+            font-weight: 400;
+            font-size: 0.9em;
+            color: #4a6a6a;
+        }
+
+
+        .pua-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 0.6rem;
+            margin: 1rem 0;
+        }
+
+        .pua-item {
+            background: #fafcfc;
+            border: 1px solid #eaf0f0;
+            border-radius: 4px;
+            padding: 0.5rem 0.4rem;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        .pua-item .glyph {
+            font-family: 'Hachukma', sans-serif;
+            font-size: 2.4rem;
+            color: #297c7c;
+            display: block;
+            line-height: 1.3;
+        }
+
+        .pua-item .code {
+            font-size: 0.7rem;
+            color: #6a8a8a;
+            font-weight: 500;
+            font-family: "SF Mono", "Cascadia Code", monospace;
+            background: #ecf3f3;
+            padding: 0.1rem 0.4rem;
+            border-radius: 2px;
+            display: inline-block;
+            margin-top: 0.1rem;
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 60px;
+            }
+            .navbar {
+                height: 60px;
+                padding: 0 1.2rem;
+            }
+            .navbar-brand {
+                font-size: 1rem;
+            }
+            .navbar-home {
+                font-size: 0.85rem;
+                padding: 0.3rem 0.8rem;
+            }
+            .container {
+                padding: 0 1rem;
+            }
+            .hero {
+                padding: 1.5rem 1.2rem;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .hero .subtitle {
+                font-size: 1rem;
+            }
+            .block {
+                padding: 1.2rem;
+            }
+            .block h2 {
+                font-size: 1.5rem;
+            }
+            .block h3 {
+                font-size: 1.1rem;
+            }
+            .digit-grid {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 0.5rem;
+            }
+            .digit-item .digit {
+                font-size: 2rem;
+            }
+            .hachukma {
+                font-size: 1.5rem;
+            }
+            .hachukma.small {
+                font-size: 1.2rem;
+            }
+            table {
+                font-size: 0.8rem;
+            }
+            table th,
+            table td {
+                padding: 0.4rem 0.6rem;
+            }
+            #large-numbers table {
+                font-size: 0.7rem;
+            }
+            #large-numbers table th,
+            #large-numbers table td {
+                padding: 0.3rem 0.4rem;
+            }
+            #large-numbers .hachukma-digit-col {
+                font-size: 0.7rem;
+            }
+            .pua-grid {
+                grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            }
+            .pua-item .glyph {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding-top: 56px;
+            }
+            .navbar {
+                height: 56px;
+                padding: 0 0.9rem;
+            }
+            .navbar-brand {
+                font-size: 0.9rem;
+            }
+            .navbar-home {
+                font-size: 0.75rem;
+                padding: 0.25rem 0.6rem;
+            }
+            .hero {
+                padding: 1rem 0.9rem;
+            }
+            .hero h1 {
+                font-size: 1.4rem;
+            }
+            .hero .subtitle {
+                font-size: 0.9rem;
+            }
+            .block {
+                padding: 0.9rem;
+            }
+            .block h2 {
+                font-size: 1.3rem;
+            }
+            .block p,
+            .block ul {
+                font-size: 0.9rem;
+            }
+            .digit-grid {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 0.3rem;
+            }
+            .digit-item {
+                padding: 0.4rem 0.2rem;
+            }
+            .digit-item .digit {
+                font-size: 1.6rem;
+            }
+            .digit-item .label {
+                font-size: 0.7rem;
+            }
+            .hachukma {
+                font-size: 1.3rem;
+            }
+            .hachukma.small {
+                font-size: 1.0rem;
+            }
+            table {
+                font-size: 0.7rem;
+            }
+            table th,
+            table td {
+                padding: 0.25rem 0.4rem;
+            }
+            .note-box p {
+                font-size: 0.85rem;
+            }
+            #large-numbers table {
+                font-size: 0.6rem;
+            }
+            #large-numbers table th,
+            #large-numbers table td {
+                padding: 0.2rem 0.3rem;
+            }
+            #large-numbers .hachukma-digit-col {
+                font-size: 0.6rem;
+            }
+            .pua-grid {
+                grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+            }
+            .pua-item .glyph {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media print {
+            .navbar {
+                position: static;
+                box-shadow: none;
+                background: #297c7c !important;
+            }
+            body {
+                padding-top: 0;
+            }
+            .hero {
+                background: #f5f5f5 !important;
+                box-shadow: none !important;
+                border-bottom: 2px solid #ccc !important;
+                border-radius: 0 !important;
+            }
+            .block {
+                border: 1px solid #ccc !important;
+                box-shadow: none !important;
+                break-inside: avoid;
+            }
+            .block:hover {
+                box-shadow: none !important;
+            }
+            .navbar-home {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar" role="navigation">
+        <span class="navbar-brand">Kokborok Numerals</span>
+        <a href="index.html" class="navbar-home">Back</a>
+    </nav>
+
+    <main class="container">
+
+        <header class="hero">
+            <h1>Kokborok <span class="accent">Numerals</span></h1>
+            <p class="subtitle">
+                <strong>Lekhamung</strong> — the Kokborok counting system. This page presents the numerals using the <strong>Hachukma</strong> script. Numbers are shown with Arabic numerals, Hachukma digit representations, the Kokborok word, its spelling in Hachukma PUA characters, and Roman numerals (where applicable; Roman has no zero).
+            </p>
+        </header>
+
+     
+        <div class="block" id="digits">
+            <h2>Hachukma Digits (0–9)</h2>
+            <p>
+                The Hachukma script has its own set of numeral symbols. The table below lists the <strong>digits</strong> (the individual symbols) 0 through 9, showing each Hachukma glyph alongside its corresponding Arabic digit and Roman numeral equivalent. Since the Roman numeral system has no symbol for zero, that entry is marked with an em dash (—).
+            </p>
+
+            <div class="digit-grid">
+                <div class="digit-item">
+                    <span class="digit">&#xE000;</span>
+                    <span class="label">0</span>
+                    <span class="value" style="font-style:italic;">—</span>
+                </div>
+                <div class="digit-item">
+                    <span class="digit">&#xE001;</span>
+                    <span class="label">1</span>
+                    <span class="value">I</span>
+                </div>
+                <div class="digit-item">
+                    <span class="digit">&#xE002;</span>
+                    <span class="label">2</span>
+                    <span class="value">II</span>
+                </div>
+                <div class="digit-item">
+                    <span class="digit">&#xE003;</span>
+                    <span class="label">3</span>
+                    <span class="value">III</span>
+                </div>
+                <div class="digit-item">
+                    <span class="digit">&#xE004;</span>
+                    <span class="label">4</span>
+                    <span class="value">IV</span>
+                </div>
+                <div class="digit-item">
+                    <span class="digit">&#xE005;</span>
+                    <span class="label">5</span>
+                    <span class="value">V</span>
+                </div>
+                <div class="digit-item">
+                    <span class="digit">&#xE006;</span>
+                    <span class="label">6</span>
+                    <span class="value">VI</span>
+                </div>
+                <div class="digit-item">
+                    <span class="digit">&#xE007;</span>
+                    <span class="label">7</span>
+                    <span class="value">VII</span>
+                </div>
+                <div class="digit-item">
+                    <span class="digit">&#xE008;</span>
+                    <span class="label">8</span>
+                    <span class="value">VIII</span>
+                </div>
+                <div class="digit-item">
+                    <span class="digit">&#xE009;</span>
+                    <span class="label">9</span>
+                    <span class="value">IX</span>
+                </div>
+            </div>
+        </div>
+
+    
+        <div class="block" id="basic-numbers">
+            <h2>Basic Kokborok Numerals (0–10)</h2>
+            <p>
+                The fundamental counting <strong>numbers</strong> in Kokborok. These are the building blocks for all larger numbers. Each <strong>numeral</strong> is shown with its Arabic number, Roman numeral, Hachukma digit representation, Kokborok word, and Hachukma spelling.
+            </p>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Number</th>
+                            <th>Roman</th>
+                            <th>Hachukma Digit</th>
+                            <th>Kokborok Word</th>
+                            <th>Hachukma Spelling</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0</td>
+                            <td></td>
+                            <td><span class="hachukma">&#xE000;</span></td>
+                            <td><strong>bukcha</strong></td>
+                            <td><span class="hachukma small">&#xE00B;&#xE01E;&#xE014;&#xE00C;&#xE00A;</span></td>
+                            <td>zero</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>I</td>
+                            <td><span class="hachukma">&#xE001;</span></td>
+                            <td><strong>sa</strong></td>
+                            <td><span class="hachukma small">&#xE01C;&#xE00A;</span></td>
+                            <td>one</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>II</td>
+                            <td><span class="hachukma">&#xE002;</span></td>
+                            <td><strong>nɘi</strong></td>
+                            <td><span class="hachukma small">&#xE017;&#xE023;&#xE012;</span></td>
+                            <td>two</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>III</td>
+                            <td><span class="hachukma">&#xE003;</span></td>
+                            <td><strong>tham</strong></td>
+                            <td><span class="hachukma small">&#xE01A;&#xE00A;&#xE016;</span></td>
+                            <td>three</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>IV</td>
+                            <td><span class="hachukma">&#xE004;</span></td>
+                            <td><strong>brɘi</strong></td>
+                            <td><span class="hachukma small">&#xE00B;&#xE01B;&#xE023;&#xE012;</span></td>
+                            <td>four</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>V</td>
+                            <td><span class="hachukma">&#xE005;</span></td>
+                            <td><strong>ba</strong></td>
+                            <td><span class="hachukma small">&#xE00B;&#xE00A;</span></td>
+                            <td>five</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>VI</td>
+                            <td><span class="hachukma">&#xE006;</span></td>
+                            <td><strong>dok</strong></td>
+                            <td><span class="hachukma small">&#xE00D;&#xE018;&#xE014;</span></td>
+                            <td>six</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>VII</td>
+                            <td><span class="hachukma">&#xE007;</span></td>
+                            <td><strong>sni</strong></td>
+                            <td><span class="hachukma small">&#xE01C;&#xE017;&#xE012;</span></td>
+                            <td>seven</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>VIII</td>
+                            <td><span class="hachukma">&#xE008;</span></td>
+                            <td><strong>char</strong></td>
+                            <td><span class="hachukma small">&#xE00C;&#xE00A;&#xE01B;</span></td>
+                            <td>eight</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>IX</td>
+                            <td><span class="hachukma">&#xE009;</span></td>
+                            <td><strong>chuku</strong></td>
+                            <td><span class="hachukma small">&#xE00C;&#xE01E;&#xE014;&#xE01E;</span></td>
+                            <td>nine</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>X</td>
+                            <td><span class="hachukma">&#xE001;&#xE000;</span></td>
+                            <td><strong>chi</strong></td>
+                            <td><span class="hachukma small">&#xE00C;&#xE012;</span></td>
+                            <td>ten</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+     
+        <div class="block" id="higher-numbers">
+            <h2>Higher Kokborok Numerals (20–1000)</h2>
+            <p>
+                Numbers beyond 10 are formed by combining the basic numerals with multipliers.
+            </p>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Number</th>
+                            <th>Roman</th>
+                            <th>Hachukma Digit</th>
+                            <th>Kokborok Word</th>
+                            <th>Hachukma Spelling</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>20</td>
+                            <td>XX</td>
+                            <td><span class="hachukma">&#xE002;&#xE000;</span></td>
+                            <td><strong>nɘichi</strong></td>
+                            <td><span class="hachukma small">&#xE017;&#xE023;&#xE012;&#xE00C;&#xE012;</span></td>
+                            <td>twenty</td>
+                        </tr>
+                        <tr>
+                            <td>100</td>
+                            <td>C</td>
+                            <td><span class="hachukma">&#xE001;&#xE000;&#xE000;</span></td>
+                            <td><strong>ra</strong></td>
+                            <td><span class="hachukma small">&#xE01B;&#xE00A;</span></td>
+                            <td>one hundred</td>
+                        </tr>
+                        <tr>
+                            <td>101</td>
+                            <td>CI</td>
+                            <td><span class="hachukma">&#xE001;&#xE000;&#xE000;&#xE001;</span></td>
+                            <td><strong>ra sa</strong></td>
+                            <td><span class="hachukma small">&#xE01B;&#xE00A; &#xE01C;&#xE00A;</span></td>
+                            <td>one hundred one</td>
+                        </tr>
+                        <tr>
+                            <td>200</td>
+                            <td>CC</td>
+                            <td><span class="hachukma">&#xE002;&#xE000;&#xE000;</span></td>
+                            <td><strong>nɘira</strong></td>
+                            <td><span class="hachukma small">&#xE017;&#xE023;&#xE012;&#xE01B;&#xE00A;</span></td>
+                            <td>two hundred</td>
+                        </tr>
+                        <tr>
+                            <td>1000</td>
+                            <td>M</td>
+                            <td><span class="hachukma">&#xE001;&#xE000;&#xE000;&#xE000;</span></td>
+                            <td><strong>sai</strong></td>
+                            <td><span class="hachukma small">&#xE01C;&#xE00A;&#xE012;</span></td>
+                            <td>one thousand</td>
+                        </tr>
+                        <tr>
+                            <td>1001</td>
+                            <td>MI</td>
+                            <td><span class="hachukma">&#xE001;&#xE000;&#xE000;&#xE000;&#xE001;</span></td>
+                            <td><strong>sai sa</strong></td>
+                            <td><span class="hachukma small">&#xE01C;&#xE00A;&#xE012; &#xE01C;&#xE00A;</span></td>
+                            <td>one thousand one</td>
+                        </tr>
+                        <tr>
+                            <td>2000</td>
+                            <td>MM</td>
+                            <td><span class="hachukma">&#xE002;&#xE000;&#xE000;&#xE000;</span></td>
+                            <td><strong>nɘi sai</strong></td>
+                            <td><span class="hachukma small">&#xE017;&#xE023;&#xE012; &#xE01C;&#xE00A;&#xE012;</span></td>
+                            <td>two thousand</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <div class="block" id="large-numbers">
+            <h2>Large Kokborok Numerals (10,000 – 10²⁰)</h2>
+            <p>
+                Kokborok has specific words for larger units. These are used in formal counting and traditional contexts. Roman numerals are provided for reference (using overlines for thousands, etc.). The Hachukma digit column shows the number written with Hachukma glyphs.
+            </p>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Number</th>
+                            <th>Roman</th>
+                            <th>Hachukma Digit</th>
+                            <th>Kokborok Word</th>
+                            <th>Hachukma Spelling</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>10,000</td>
+                            <td><span class="roman-numeral">X̅</span></td>
+                            <td><span class="hachukma-digit-col">&#xE001;&#xE000;&#xE000;&#xE000;&#xE000;</span></td>
+                            <td><strong>chisai</strong></td>
+                            <td><span class="hachukma small">&#xE00C;&#xE012;&#xE01C;&#xE00A;&#xE012;</span></td>
+                            <td>ten thousand</td>
+                        </tr>
+                        <tr>
+                            <td>20,000</td>
+                            <td><span class="roman-numeral">X̅X̅</span></td>
+                            <td><span class="hachukma-digit-col">&#xE002;&#xE000;&#xE000;&#xE000;&#xE000;</span></td>
+                            <td><strong>nɘichi sai</strong></td>
+                            <td><span class="hachukma small">&#xE017;&#xE023;&#xE012;&#xE00C;&#xE012; &#xE01C;&#xE00A;&#xE012;</span></td>
+                            <td>twenty thousand</td>
+                        </tr>
+                        <tr>
+                            <td>100,000</td>
+                            <td><span class="roman-numeral">C̅</span></td>
+                            <td><span class="hachukma-digit-col">&#xE001;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;</span></td>
+                            <td><strong>rasai</strong></td>
+                            <td><span class="hachukma small">&#xE01B;&#xE00A;&#xE01C;&#xE00A;&#xE012;</span></td>
+                            <td>one hundred thousand</td>
+                        </tr>
+                        <tr>
+                            <td>200,000</td>
+                            <td><span class="roman-numeral">C̅C̅</span></td>
+                            <td><span class="hachukma-digit-col">&#xE002;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;</span></td>
+                            <td><strong>nɘi rasai</strong></td>
+                            <td><span class="hachukma small">&#xE017;&#xE023;&#xE012; &#xE01B;&#xE00A;&#xE01C;&#xE00A;&#xE012;</span></td>
+                            <td>two hundred thousand</td>
+                        </tr>
+                        <tr>
+                            <td>1,000,000</td>
+                            <td><span class="roman-numeral">M̅</span></td>
+                            <td><span class="hachukma-digit-col">&#xE001;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;</span></td>
+                            <td><strong>chirasai</strong></td>
+                            <td><span class="hachukma small">&#xE00C;&#xE012;&#xE01B;&#xE00A;&#xE01C;&#xE00A;&#xE012;</span></td>
+                            <td>one million</td>
+                        </tr>
+                        <tr>
+                            <td>2,000,000</td>
+                            <td><span class="roman-numeral">M̅M̅</span></td>
+                            <td><span class="hachukma-digit-col">&#xE002;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;</span></td>
+                            <td><strong>nɘichi rasai</strong></td>
+                            <td><span class="hachukma small">&#xE017;&#xE023;&#xE012;&#xE00C;&#xE012; &#xE01B;&#xE00A;&#xE01C;&#xE00A;&#xE012;</span></td>
+                            <td>two million</td>
+                        </tr>
+                        <tr>
+                            <td>10,000,000</td>
+                            <td><span class="roman-numeral">X̅̅</span></td>
+                            <td><span class="hachukma-digit-col">&#xE001;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;</span></td>
+                            <td><strong>rɘjak</strong></td>
+                            <td><span class="hachukma small">&#xE01B;&#xE023;&#xE013;&#xE00A;&#xE014;</span></td>
+                            <td>ten million</td>
+                        </tr>
+                        <tr>
+                            <td>20,000,000</td>
+                            <td><span class="roman-numeral">X̅̅X̅̅</span></td>
+                            <td><span class="hachukma-digit-col">&#xE002;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;</span></td>
+                            <td><strong>nɘi rɘjak</strong></td>
+                            <td><span class="hachukma small">&#xE017;&#xE023;&#xE012; &#xE01B;&#xE023;&#xE013;&#xE00A;&#xE014;</span></td>
+                            <td>twenty million</td>
+                        </tr>
+                        <tr>
+                            <td>1,000,000,000</td>
+                            <td><span class="roman-numeral">M̅̅</span></td>
+                            <td><span class="hachukma-digit-col">&#xE001;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;</span></td>
+                            <td><strong>rarɘjak</strong></td>
+                            <td><span class="hachukma small">&#xE01B;&#xE00A;&#xE01B;&#xE023;&#xE013;&#xE00A;&#xE014;</span></td>
+                            <td>one billion</td>
+                        </tr>
+                        <tr>
+                            <td>1,000,000,000,000</td>
+                            <td><span class="roman-numeral">M̅̅M̅̅</span> (approx)</td>
+                            <td><span class="hachukma-digit-col">&#xE001;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;</span></td>
+                            <td><strong>sai rarɘjak</strong></td>
+                            <td><span class="hachukma small">&#xE01C;&#xE00A;&#xE012; &#xE01B;&#xE00A;&#xE01B;&#xE023;&#xE013;&#xE00A;&#xE014;</span></td>
+                            <td>one trillion</td>
+                        </tr>
+                        <tr>
+                            <td>100,000,000,000,000,000,000</td>
+                            <td><span class="roman-numeral">C̅̅C̅̅M̅̅?</span> (complex)</td>
+                            <td><span class="hachukma-digit-col">&#xE001;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;&#xE000;</span></td>
+                            <td><strong>rasaisai rarɘjak</strong></td>
+                            <td><span class="hachukma small">&#xE01B;&#xE00A;&#xE01C;&#xE00A;&#xE012;&#xE01C;&#xE00A;&#xE012; &#xE01B;&#xE00A;&#xE01B;&#xE023;&#xE013;&#xE00A;&#xE014;</span></td>
+                            <td>1 × 10²⁰</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+        <div class="block" id="pua-reference">
+            <h2>Unicode PUA Reference</h2>
+            <p>
+                The Hachukma numeral glyphs used in the tables above are mapped to the following <strong>Private Use Area (PUA)</strong> codepoints. This reference covers the numerals 0 through 9 only.
+            </p>
+
+            <div class="pua-grid">
+                <div class="pua-item">
+                    <span class="glyph">&#xE000;</span>
+                    <span class="code">U+E000</span>
+                </div>
+                <div class="pua-item">
+                    <span class="glyph">&#xE001;</span>
+                    <span class="code">U+E001</span>
+                </div>
+                <div class="pua-item">
+                    <span class="glyph">&#xE002;</span>
+                    <span class="code">U+E002</span>
+                </div>
+                <div class="pua-item">
+                    <span class="glyph">&#xE003;</span>
+                    <span class="code">U+E003</span>
+                </div>
+                <div class="pua-item">
+                    <span class="glyph">&#xE004;</span>
+                    <span class="code">U+E004</span>
+                </div>
+                <div class="pua-item">
+                    <span class="glyph">&#xE005;</span>
+                    <span class="code">U+E005</span>
+                </div>
+                <div class="pua-item">
+                    <span class="glyph">&#xE006;</span>
+                    <span class="code">U+E006</span>
+                </div>
+                <div class="pua-item">
+                    <span class="glyph">&#xE007;</span>
+                    <span class="code">U+E007</span>
+                </div>
+                <div class="pua-item">
+                    <span class="glyph">&#xE008;</span>
+                    <span class="code">U+E008</span>
+                </div>
+                <div class="pua-item">
+                    <span class="glyph">&#xE009;</span>
+                    <span class="code">U+E009</span>
+                </div>
+            </div>
+
+            <p style="margin-top: 0.8rem; font-size: 0.9rem; color: #5a7a7a;">
+                These codepoints are used with the <strong>Hachukma</strong> font to render the numeric glyphs. The font maps these private-use values to the appropriate Lekhamung script numerals.
+            </p>
+        </div>
+
+    </main>
+
+</body>
+</html>
