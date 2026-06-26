@@ -218,24 +218,57 @@
         .hachukma.small {
             font-size: 1.4rem;
         }
- 
+
+        /* ─── LARGE NUMBERS – NO SCROLL, FIT TO CONTAINER ─── */
+        #large-numbers .table-wrap {
+            overflow-x: visible;
+        }
+
         #large-numbers table {
-            font-size: 0.78rem;
+            font-size: 0.6rem;
+            table-layout: fixed;
+            width: 100%;
         }
 
         #large-numbers table th,
         #large-numbers table td {
-            padding: 0.4rem 0.5rem;
+            padding: 0.2rem 0.3rem;
+            word-break: break-word;
         }
 
         #large-numbers .hachukma-digit-col {
             font-family: 'Hachukma', sans-serif;
-            font-size: 0.8rem;
+            font-size: 0.6rem;
             line-height: 1.2;
             color: #297c7c;
-            letter-spacing: 0.01em;
             word-break: break-all;
-            white-space: normal;
+            overflow-wrap: break-word;
+            hyphens: auto;
+        }
+
+        #large-numbers table th:first-child,
+        #large-numbers table td:first-child {
+            width: 12%;
+        }
+        #large-numbers table th:nth-child(2),
+        #large-numbers table td:nth-child(2) {
+            width: 10%;
+        }
+        #large-numbers table th:nth-child(3),
+        #large-numbers table td:nth-child(3) {
+            width: 25%;
+        }
+        #large-numbers table th:nth-child(4),
+        #large-numbers table td:nth-child(4) {
+            width: 18%;
+        }
+        #large-numbers table th:nth-child(5),
+        #large-numbers table td:nth-child(5) {
+            width: 20%;
+        }
+        #large-numbers table th:nth-child(6),
+        #large-numbers table td:nth-child(6) {
+            width: 15%;
         }
 
         .digit-grid {
@@ -251,6 +284,11 @@
             border-radius: 4px;
             border: 1px solid #eaf0f0;
             text-align: center;
+        }
+
+        .digit-item.zero-box {
+            border: 2px solid #297c7c;
+            background: transparent;
         }
 
         .digit-item .digit {
@@ -272,12 +310,16 @@
             font-weight: 500;
         }
 
+        .zero-hachukma {
+            border: 2px solid #297c7c !important;
+            background: transparent !important;
+        }
+
         .roman-numeral {
             font-weight: 400;
             font-size: 0.9em;
             color: #4a6a6a;
         }
-
 
         .pua-grid {
             display: grid;
@@ -315,7 +357,47 @@
             margin-top: 0.1rem;
         }
 
-        /* ─── RESPONSIVE ─── */
+        .ref-links-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1.2rem;
+        }
+
+        .ref-link-box {
+            background: #fafcfc;
+            border: 1px solid #eaf0f0;
+            border-radius: 4px;
+            padding: 1rem 1.2rem;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .ref-link-box:hover {
+            background: #f4f8f8;
+            border-color: #297c7c;
+            box-shadow: 0 2px 8px rgba(41, 124, 124, 0.08);
+        }
+
+        .ref-link-box a {
+            display: block;
+            font-weight: 600;
+            color: #297c7c;
+            text-decoration: none;
+            font-size: 1.05rem;
+        }
+
+        .ref-link-box a::before {
+            content: "🔗 ";
+            opacity: 0.7;
+        }
+
+        .ref-link-box .sub {
+            font-size: 0.85rem;
+            color: #5a7a7a;
+            margin-top: 0.2rem;
+        }
+
         @media (max-width: 768px) {
             body {
                 padding-top: 60px;
@@ -373,20 +455,19 @@
                 padding: 0.4rem 0.6rem;
             }
             #large-numbers table {
-                font-size: 0.7rem;
-            }
-            #large-numbers table th,
-            #large-numbers table td {
-                padding: 0.3rem 0.4rem;
+                font-size: 0.55rem;
             }
             #large-numbers .hachukma-digit-col {
-                font-size: 0.7rem;
+                font-size: 0.55rem;
             }
             .pua-grid {
                 grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
             }
             .pua-item .glyph {
                 font-size: 2rem;
+            }
+            .ref-links-grid {
+                grid-template-columns: 1fr 1fr;
             }
         }
 
@@ -450,24 +531,20 @@
             table td {
                 padding: 0.25rem 0.4rem;
             }
-            .note-box p {
-                font-size: 0.85rem;
-            }
             #large-numbers table {
-                font-size: 0.6rem;
-            }
-            #large-numbers table th,
-            #large-numbers table td {
-                padding: 0.2rem 0.3rem;
+                font-size: 0.5rem;
             }
             #large-numbers .hachukma-digit-col {
-                font-size: 0.6rem;
+                font-size: 0.5rem;
             }
             .pua-grid {
                 grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
             }
             .pua-item .glyph {
                 font-size: 1.6rem;
+            }
+            .ref-links-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -513,11 +590,11 @@
         <header class="hero">
             <h1>Kokborok <span class="accent">Numerals</span></h1>
             <p class="subtitle">
-                <strong>Lekhamung</strong> — the Kokborok counting system. This page presents the numerals using the <strong>Hachukma</strong> script. Numbers are shown with Arabic numerals, Hachukma digit representations, the Kokborok word, its spelling in Hachukma PUA characters, and Roman numerals (where applicable; Roman has no zero).
+                <strong>Lekhamung</strong> — the Kokborok counting system. This page presents the numerals using the <strong>Hachukma</strong> script. Numbers are shown with Arabic numerals, Hachukma digit representations, the Kokborok numeral, its representation in Hachukma PUA characters, and Roman numerals (where applicable; Roman has no zero).
             </p>
         </header>
 
-     
+        <!-- Hachukma Digits -->
         <div class="block" id="digits">
             <h2>Hachukma Digits (0–9)</h2>
             <p>
@@ -525,7 +602,7 @@
             </p>
 
             <div class="digit-grid">
-                <div class="digit-item">
+                <div class="digit-item zero-box">
                     <span class="digit">&#xE000;</span>
                     <span class="label">0</span>
                     <span class="value" style="font-style:italic;">—</span>
@@ -578,11 +655,11 @@
             </div>
         </div>
 
-    
+        <!-- Basic Numerals -->
         <div class="block" id="basic-numbers">
             <h2>Basic Kokborok Numerals (0–10)</h2>
             <p>
-                The fundamental counting <strong>numbers</strong> in Kokborok. These are the building blocks for all larger numbers. Each <strong>numeral</strong> is shown with its Arabic number, Roman numeral, Hachukma digit representation, Kokborok word, and Hachukma spelling.
+                The fundamental counting <strong>numbers</strong> in Kokborok. These are the building blocks for all larger numbers. Each <strong>numeral</strong> is shown with its Arabic number, Roman numeral, Hachukma digit representation, Kokborok numeral, and Hachukma script.
             </p>
 
             <div class="table-wrap">
@@ -592,16 +669,16 @@
                             <th>Number</th>
                             <th>Roman</th>
                             <th>Hachukma Digit</th>
-                            <th>Kokborok </th>
-                            <th>Hachukma Spelling</th>
+                            <th>Kokborok Numeral</th>
+                            <th>Hachukma Script</th>
                             <th>English</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>0</td>
-                            <td></td>
-                            <td><span class="hachukma">&#xE000;</span></td>
+                            <td class="zero-hachukma">—</td>
+                            <td class="hachukma"><span class="hachukma">&#xE000;</span></td>
                             <td><strong>bukcha</strong></td>
                             <td><span class="hachukma small">&#xE00B;&#xE01E;&#xE014;&#xE00C;&#xE00A;</span></td>
                             <td>zero</td>
@@ -691,7 +768,7 @@
             </div>
         </div>
 
-     
+        <!-- Higher Numerals -->
         <div class="block" id="higher-numbers">
             <h2>Higher Kokborok Numerals (20–1000)</h2>
             <p>
@@ -705,8 +782,8 @@
                             <th>Number</th>
                             <th>Roman</th>
                             <th>Hachukma Digit</th>
-                            <th>Kokborok </th>
-                            <th>Hachukma Spelling</th>
+                            <th>Kokborok Numeral</th>
+                            <th>Hachukma Script</th>
                             <th>English</th>
                         </tr>
                     </thead>
@@ -772,11 +849,11 @@
             </div>
         </div>
 
-
+        <!-- Large Numerals – FIXED NO SCROLL -->
         <div class="block" id="large-numbers">
             <h2>Large Kokborok Numerals (10,000 – 10²⁰)</h2>
             <p>
-                Kokborok has specific words for larger units. These are used in formal counting and traditional contexts. Roman numerals are provided for reference (using overlines for thousands, etc.). The Hachukma digit column shows the number written with Hachukma glyphs.
+                Kokborok has specific names for larger units. These are used in formal counting and traditional contexts. Roman numerals are provided for reference (using overlines for thousands, etc.). The Hachukma digit column shows the number written with Hachukma glyphs.
             </p>
 
             <div class="table-wrap">
@@ -786,8 +863,8 @@
                             <th>Number</th>
                             <th>Roman</th>
                             <th>Hachukma Digit</th>
-                            <th>Kokborok </th>
-                            <th>Hachukma Spelling</th>
+                            <th>Kokborok Numeral</th>
+                            <th>Hachukma Script</th>
                             <th>English</th>
                         </tr>
                     </thead>
@@ -885,8 +962,7 @@
             </div>
         </div>
 
-
-
+        <!-- Unicode PUA Reference -->
         <div class="block" id="pua-reference">
             <h2>Unicode PUA Reference</h2>
             <p>
@@ -938,6 +1014,38 @@
 
             <p style="margin-top: 0.8rem; font-size: 0.9rem; color: #5a7a7a;">
                 These codepoints are used with the <strong>Hachukma</strong> font to render the numeric glyphs. The font maps these private-use values to the appropriate Lekhamung script numerals.
+            </p>
+        </div>
+
+        <!-- Reference Links -->
+        <div class="block" id="references">
+            <h2>Reference</h2>
+            <p>
+                Learn more about the numeral systems and the Kokborok language:
+            </p>
+
+            <div class="ref-links-grid">
+                <div class="ref-link-box">
+                    <a href="https://en.wikipedia.org/wiki/Kokborok" target="_blank" rel="noopener noreferrer">
+                        Kokborok
+                    </a>
+                    <div class="sub">The language and its number system</div>
+                </div>
+                <div class="ref-link-box">
+                    <a href="https://en.wikipedia.org/wiki/Roman_numerals" target="_blank" rel="noopener noreferrer">
+                        Roman numerals
+                    </a>
+                    <div class="sub">History, notation, and modern use</div>
+                </div>
+                <div class="ref-link-box">
+                    <a href="https://en.wikipedia.org/wiki/Arabic_numerals" target="_blank" rel="noopener noreferrer">
+                        Arabic numerals
+                    </a>
+                    <div class="sub">The positional system used worldwide</div>
+                </div>
+            </div>
+            <p style="margin-top: 0.8rem; font-size: 0.9rem; color: #5a7a7a;">
+                These external resources provide in‑depth information about the numeral systems and language referenced on this page.
             </p>
         </div>
 
