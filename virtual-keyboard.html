@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hachukma — Kokborok Typing System</title>
+    <title>Hachukma — Kokborok Neography Script</title>
 
     <style>
         @font-face {
@@ -21,7 +21,8 @@
         .syllabic-line,
         .alphabet-item,
         .number-item,
-        .big-number {
+        .big-number,
+        .prediction-item {
             font-family: "NewScript", sans-serif;
         }
 
@@ -46,7 +47,6 @@
             -ms-user-select: none;
         }
 
-        /* ===== NAVBAR ===== */
         .navbar {
             width: 100%;
             background: #297c7c;
@@ -111,7 +111,6 @@
             color: #ffffff;
         }
 
-        /* ===== CONTAINER ===== */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -122,7 +121,6 @@
             width: 100%;
         }
 
-        /* ===== ARTICLE SECTION ===== */
         .article-section {
             background: #ffffff;
             border-radius: 12px;
@@ -185,14 +183,6 @@
             word-wrap: break-word;
         }
 
-        .article-section .article-body .highlight {
-            background: rgba(41, 124, 124, 0.10);
-            padding: 0.05rem 0.3rem;
-            border-radius: 3px;
-            font-family: 'NewScript', 'Segoe UI', Tahoma, sans-serif;
-            font-size: 1.1em;
-        }
-
         .article-section .article-body .code-block {
             background: #f0f6f6;
             padding: 0.3rem 0.8rem;
@@ -205,55 +195,228 @@
             word-wrap: break-word;
         }
 
-        .article-section .article-body .consonant-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-            gap: 0.3rem 0.8rem;
-            background: #f8fbfb;
+        .article-section .article-body .highlight-box {
+            background: #f4fafa;
             padding: 0.8rem 1.2rem;
+            border-radius: 6px;
+            border-left: 4px solid #297c7c;
+            margin: 1rem 0;
+        }
+
+        .article-section .article-body .community-note {
+            background: #f4fafa;
+            padding: 0.8rem 1.2rem;
+            border-radius: 6px;
+            border-left: 4px solid #297c7c;
+            margin: 1rem 0;
+        }
+
+        .article-section .article-body .ime-experiment {
+            background: #eaf5f5;
+            padding: 0.8rem 1.2rem;
+            border-radius: 6px;
+            border: 1.5px solid #297c7c;
+            margin: 1rem 0;
+        }
+
+        .article-section .article-body .ime-experiment a {
+            color: #297c7c;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 2px solid #297c7c;
+        }
+
+        .article-section .article-body .ime-experiment a:hover {
+            border-bottom-color: #1a5a5a;
+        }
+
+        /* Digraph + Auto‑replace feature highlight */
+        .article-section .article-body .digraph-highlight {
+            background: #f0f9f9;
+            padding: 0.8rem 1.2rem;
+            border-radius: 6px;
+            border-left: 4px solid #1a7a7a;
+            margin: 1rem 0;
+        }
+
+        .article-section .article-body .digraph-highlight code {
+            background: #dce8e8;
+            padding: 0.1rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Segoe UI', monospace;
+            font-size: 0.9rem;
+        }
+
+        .article-section .article-body .digraph-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 0.5rem;
+            margin: 0.8rem 0 1.2rem 0;
+        }
+
+        .article-section .article-body .digraph-grid .digraph-box {
+            background: #f8fbfb;
+            border: 1.5px solid #dce8e8;
             border-radius: 8px;
-            margin: 0.6rem 0;
-            border: 1px solid #e8f0f0;
+            padding: 0.4rem 0.2rem;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        .article-section .article-body .digraph-grid .digraph-box .digraph-keys {
+            font-weight: 600;
+            color: #0d2b2b;
+            font-family: 'Segoe UI', monospace;
+        }
+
+        .article-section .article-body .digraph-grid .digraph-box .digraph-arrow {
+            color: #6a8a8a;
+            margin: 0 0.2rem;
+        }
+
+        .article-section .article-body .digraph-grid .digraph-box .digraph-result {
+            font-family: 'NewScript', 'Segoe UI', Tahoma, sans-serif;
+            font-size: 1.6rem;
+            color: #297c7c;
+        }
+
+        /* ---- Vowels / Consonants Grid ---- */
+        .letter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+            gap: 0.6rem;
+            margin: 1rem 0 1.5rem 0;
+        }
+
+        .letter-box {
+            background: #f8fbfb;
+            border: 1.5px solid #dce8e8;
+            border-radius: 10px;
+            padding: 0.5rem 0.2rem;
+            text-align: center;
+            transition: all 0.15s ease;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+        }
+
+        .letter-box:hover {
+            border-color: #297c7c;
+            background: #f0f6f6;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(41, 124, 124, 0.10);
+        }
+
+        .letter-box .script {
+            font-family: 'NewScript', 'Segoe UI', Tahoma, sans-serif;
+            font-size: 1.8rem;
+            line-height: 1.2;
+            color: #0d2b2b;
+            display: block;
+        }
+
+        .letter-box .ipa {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            font-size: 0.75rem;
+            color: #3d5a5a;
+            font-weight: 500;
+            display: block;
+            margin-top: 0.05rem;
+        }
+
+        .letter-box .latin {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            font-size: 0.7rem;
+            color: #6a8a8a;
+            display: block;
+            margin-top: 0.05rem;
+        }
+
+        /* ---- Text display wrapper ---- */
+        .text-display-wrapper {
+            position: relative;
+            width: 1090px;
+            margin: 0.5rem 0px 0px 23px;
+            border: 2px solid #b3c5c5;
+            border-radius: 7px;
+            background: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            transition: border-color 0.2s;
+            max-height: 340px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .text-display-wrapper:focus-within {
+            border-color: #297c7c;
+        }
+
+        /* ---- Prediction Bar: fixed chips, no scroll ---- */
+        .prediction-bar {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 8px;
+            padding: 10px 16px;
+            align-items: center;
+            min-height: 60px;
+            background: #f8fbfb;
+            border-bottom: 2px solid #dce8e8;
             overflow: hidden;
         }
 
-        .article-section .article-body .consonant-grid .c-item {
+        .prediction-bar .prediction-item {
+            flex: 0 0 auto;
+            padding: 6px 18px;
+            border-radius: 30px;
+            background: #ffffff;
+            border: 1.5px solid #d0dbdb;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+            cursor: pointer;
+            white-space: nowrap;
+            font-size: 0.95rem;
+            transition: all 0.15s ease;
             display: flex;
             align-items: center;
-            gap: 0.3rem;
-            font-size: 0.95rem;
-            flex-wrap: wrap;
+            gap: 8px;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
         }
 
-        .article-section .article-body .consonant-grid .c-item .c-script {
+        .prediction-bar .prediction-item:hover {
+            background: #f0f6f6;
+            border-color: #b0c8c8;
+        }
+
+        .prediction-bar .prediction-item.active {
+            border-color: #297c7c;
+            background: #eaf5f5;
+            box-shadow: 0 2px 8px rgba(41, 124, 124, 0.15);
+        }
+
+        .prediction-bar .prediction-item .pua-preview {
             font-family: 'NewScript', 'Segoe UI', Tahoma, sans-serif;
-            font-size: 1.4rem;
-            min-width: 1.8rem;
-            text-align: center;
+            font-size: 1.2rem;
+            color: #297c7c;
+            opacity: 0.8;
         }
 
-        .article-section .article-body .consonant-grid .c-item .c-latin {
-            color: #3d5a5a;
-            font-size: 0.85rem;
+        .prediction-bar .prediction-empty {
+            color: #8aaaaa;
+            font-size: 0.9rem;
+            font-style: italic;
+            padding: 0.2rem 0.4rem;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            flex: 0 0 auto;
         }
 
-        /* ===== TEXT DISPLAY ===== */
+        /* ---- Main text display ---- */
         .text-display {
-            background-color: #ffffff;
-            border-radius: 7px;
-            padding: 1.9rem;
-            min-height: 220px;
-            width: 1090px;
-            margin: 0.5rem 0px 0px 23px;
-            font-size: 2.9rem;
+            padding: 1.2rem 1.5rem;
+            min-height: 140px;
+            font-size: 2.4rem;
             color: #000000;
-            border: 2px solid #2d2d2d;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             display: flex;
             flex-wrap: wrap;
             align-items: flex-start;
             gap: 0;
-            border-color: #b3c5c5;
             font-family: 'NewScript', 'Segoe UI', Tahoma, sans-serif;
             cursor: text;
             position: relative;
@@ -261,10 +424,8 @@
             max-height: 200px;
             overflow-x: hidden;
             word-wrap: break-word;
-        }
-
-        .text-display:focus-within {
-            border-color: #297c7c;
+            flex: 1;
+            background: #ffffff;
         }
 
         .text-display .char-container {
@@ -291,7 +452,7 @@
         }
 
         .text-display .char-container .alphabetic-line {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: #6a8a8a;
             line-height: 1;
             margin-top: 0.1rem;
@@ -333,7 +494,11 @@
             }
         }
 
-        /* ===== KEYBOARD WRAPPER ===== */
+        .text-display .char-container .syllabic-line.space-char {
+            min-width: 0.5em;
+        }
+
+        /* ===== KEYBOARD ===== */
         .keyboard-wrapper {
             display: flex;
             flex-direction: column;
@@ -343,7 +508,6 @@
             flex-shrink: 0;
         }
 
-        /* ===== DESKTOP KEYBOARD ===== */
         .keyboard-container {
             background-color: #FFFFFF;
             border-radius: 6px;
@@ -390,26 +554,6 @@
             line-height: 1.1;
             text-align: center;
             flex-direction: column;
-        }
-
-        #key-not-important {
-            grid-column: span 2;
-            background: linear-gradient(145deg, #19928c, #179172);
-            color: #222222;
-            border: 1px solid #CCCCCC;
-            border-radius: 4px;
-            padding: 0px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.08s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            user-select: none;
-            position: relative;
-            box-shadow: 0 3px 0 #D0D0D0, 0 4px 6px rgba(0, 0, 0, 0.15);
-            height: 100%;
-            font-family: 'NewScript', 'Segoe UI', Tahoma, sans-serif;
         }
 
         .key[data-key="p"] {
@@ -460,22 +604,6 @@
             align-items: center;
             justify-content: center;
             line-height: 1.2;
-        }
-
-        .key[data-type="consonant"] br,
-        .key[data-type="vowel"] br {
-            margin: 2px 0;
-        }
-
-        .key[data-type="consonant"]:first-child,
-        .key[data-type="vowel"]:first-child {
-            font-size: 1rem;
-        }
-
-        .key[data-type="consonant"]:last-child,
-        .key[data-type="vowel"]:last-child {
-            font-size: 0.7rem;
-            color: #666666;
         }
 
         /* ===== PHONE KEYBOARD ===== */
@@ -681,23 +809,6 @@
             line-height: 1.2;
         }
 
-        .smalldevice-key[data-type="consonant"] br,
-        .smalldevice-key[data-type="vowel"] br {
-            margin: 2px 0;
-        }
-
-        .smalldevice-key[data-type="consonant"]:first-child,
-        .smalldevice-key[data-type="vowel"]:first-child {
-            font-size: 1rem;
-        }
-
-        .smalldevice-key[data-type="consonant"]:last-child,
-        .smalldevice-key[data-type="vowel"]:last-child {
-            font-size: 0.7rem;
-            color: #666666;
-        }
-
-        /* ===== TONE & DIGRAPH POSITIONING ===== */
         .syllabic-line {
             position: relative;
             display: inline-block;
@@ -722,16 +833,26 @@
                 display: flex;
                 justify-content: center;
             }
-            .text-display {
+            .text-display-wrapper {
                 width: 85%;
                 margin: 2rem auto;
-                font-size: 2.2rem;
-                padding: 1.5rem;
-                min-height: 140px;
-                max-height: 250px;
+            }
+            .text-display {
+                font-size: 2.0rem;
+                padding: 1.2rem;
+                min-height: 120px;
+                max-height: 200px;
             }
             .text-display .char-container .syllabic-line {
                 font-size: 1.8rem;
+            }
+            .prediction-bar {
+                min-height: 56px;
+                padding: 8px 12px;
+            }
+            .prediction-bar .prediction-item {
+                font-size: 0.9rem;
+                padding: 5px 14px;
             }
             .keyboard-container {
                 width: 100%;
@@ -754,19 +875,33 @@
         }
 
         @media screen and (max-width: 992px) {
-            .text-display {
+            .text-display-wrapper {
                 width: 90%;
-                font-size: 1.8rem;
-                padding: 1.2rem;
-                min-height: 120px;
-                max-height: 220px;
                 margin: 1.5rem auto;
             }
-            .text-display .char-container .syllabic-line {
+            .text-display {
                 font-size: 1.6rem;
+                padding: 1rem;
+                min-height: 100px;
+                max-height: 180px;
+            }
+            .text-display .char-container .syllabic-line {
+                font-size: 1.5rem;
             }
             .text-display .char-container .alphabetic-line {
-                font-size: 0.6rem;
+                font-size: 0.55rem;
+            }
+            .prediction-bar {
+                min-height: 50px;
+                padding: 6px 10px;
+                gap: 6px;
+            }
+            .prediction-bar .prediction-item {
+                font-size: 0.85rem;
+                padding: 4px 12px;
+            }
+            .prediction-bar .prediction-item .pua-preview {
+                font-size: 1rem;
             }
             .keyboard {
                 grid-template-columns: repeat(30, 24px);
@@ -803,22 +938,37 @@
             .container {
                 padding: 0.8rem;
             }
-            .text-display {
+            .text-display-wrapper {
                 width: 95%;
-                font-size: 1.5rem;
-                padding: 1rem;
-                min-height: 100px;
-                max-height: 200px;
                 margin: 1rem auto;
             }
-            .text-display .char-container .syllabic-line {
+            .text-display {
                 font-size: 1.3rem;
+                padding: 0.8rem;
+                min-height: 80px;
+                max-height: 160px;
+            }
+            .text-display .char-container .syllabic-line {
+                font-size: 1.2rem;
             }
             .text-display .char-container .alphabetic-line {
-                font-size: 0.55rem;
+                font-size: 0.5rem;
             }
             .text-display .cursor {
                 height: 1.2rem;
+            }
+            .prediction-bar {
+                min-height: 46px;
+                padding: 6px 10px;
+                gap: 6px;
+            }
+            .prediction-bar .prediction-item {
+                font-size: 0.8rem;
+                padding: 4px 12px;
+                gap: 4px;
+            }
+            .prediction-bar .prediction-item .pua-preview {
+                font-size: 0.9rem;
             }
             .keyboard-container {
                 padding: 0.5rem;
@@ -849,27 +999,26 @@
             .article-section .article-body {
                 font-size: 0.9rem;
             }
-            .article-section .article-body .consonant-grid {
-                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-                padding: 0.6rem 0.8rem;
-            }
         }
 
         @media screen and (max-width: 600px) {
-            .text-display {
-                font-size: 1.2rem;
-                padding: 0.8rem;
-                min-height: 80px;
-                max-height: 180px;
+            .text-display-wrapper {
                 width: 100%;
                 margin: 0.8rem auto;
+                max-height: 280px;
+            }
+            .text-display {
+                font-size: 1.1rem;
+                padding: 0.6rem;
+                min-height: 65px;
+                max-height: 150px;
             }
             .text-display .char-container .syllabic-line {
-                font-size: 1.1rem;
+                font-size: 1.0rem;
                 line-height: 1.4;
             }
             .text-display .char-container .alphabetic-line {
-                font-size: 0.5rem;
+                font-size: 0.45rem;
             }
             .text-display .cursor {
                 height: 1rem;
@@ -877,6 +1026,23 @@
             .text-display .char-container .high-tone {
                 font-size: 1.3em;
                 top: -0.2em;
+            }
+            .prediction-bar {
+                min-height: 40px;
+                padding: 4px 8px;
+                gap: 4px;
+            }
+            .prediction-bar .prediction-item {
+                font-size: 0.7rem;
+                padding: 3px 10px;
+                border-radius: 20px;
+                gap: 4px;
+            }
+            .prediction-bar .prediction-item .pua-preview {
+                font-size: 0.8rem;
+            }
+            .prediction-bar .prediction-empty {
+                font-size: 0.7rem;
             }
             .keyboard-container,
             .keyboard {
@@ -933,18 +1099,6 @@
                 font-size: 0.8rem;
                 line-height: 1.6;
             }
-            .article-section .article-body .consonant-grid {
-                grid-template-columns: repeat(auto-fill, minmax(65px, 1fr));
-                gap: 0.2rem 0.4rem;
-                padding: 0.4rem 0.6rem;
-            }
-            .article-section .article-body .consonant-grid .c-item {
-                font-size: 0.75rem;
-            }
-            .article-section .article-body .consonant-grid .c-item .c-script {
-                font-size: 1rem;
-                min-width: 1.2rem;
-            }
             .article-section .article-meta {
                 font-size: 0.75rem;
                 gap: 0.8rem;
@@ -962,28 +1116,61 @@
                 font-size: 0.8rem;
                 padding: 0.2rem 0.5rem;
             }
+            .letter-grid {
+                grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+                gap: 0.4rem;
+            }
+            .letter-box .script {
+                font-size: 1.5rem;
+            }
+            .letter-box .ipa {
+                font-size: 0.65rem;
+            }
+            .letter-box .latin {
+                font-size: 0.6rem;
+            }
         }
 
         @media (max-width: 400px) {
+            .text-display-wrapper {
+                max-height: 240px;
+            }
             .text-display {
-                font-size: 1rem;
-                padding: 0.6rem;
-                min-height: 65px;
-                max-height: 150px;
+                font-size: 0.95rem;
+                padding: 0.4rem;
+                min-height: 55px;
+                max-height: 130px;
             }
             .text-display .char-container .syllabic-line {
-                font-size: 0.95rem;
-                line-height: 1.4;
+                font-size: 0.85rem;
+                line-height: 1.3;
             }
             .text-display .char-container .alphabetic-line {
-                font-size: 0.42rem;
+                font-size: 0.4rem;
             }
             .text-display .cursor {
-                height: 0.9rem;
+                height: 0.85rem;
             }
             .text-display .char-container .high-tone {
                 font-size: 1.2em;
                 top: -0.15em;
+            }
+            .prediction-bar {
+                min-height: 34px;
+                padding: 4px 6px;
+                gap: 4px;
+            }
+            .prediction-bar .prediction-item {
+                font-size: 0.6rem;
+                padding: 2px 8px;
+                border-radius: 16px;
+                gap: 3px;
+            }
+            .prediction-bar .prediction-item .pua-preview {
+                font-size: 0.7rem;
+            }
+            .prediction-bar .prediction-empty {
+                font-size: 0.6rem;
             }
             .smalldevice-keyboard {
                 grid-template-columns: repeat(20, 15px);
@@ -1036,9 +1223,24 @@
             .navbar .nav-links {
                 gap: 0.4rem;
             }
+            .letter-grid {
+                grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+                gap: 0.3rem;
+            }
+            .letter-box {
+                padding: 0.3rem 0.1rem;
+            }
+            .letter-box .script {
+                font-size: 1.2rem;
+            }
+            .letter-box .ipa {
+                font-size: 0.55rem;
+            }
+            .letter-box .latin {
+                font-size: 0.5rem;
+            }
         }
 
-        /* scroll styling */
         .keyboard-container::-webkit-scrollbar,
         .smalldevice-keyboard-container::-webkit-scrollbar {
             height: 4px;
@@ -1055,11 +1257,9 @@
         }
 
         .text-display:focus-visible {
-            outline: 2px solid #297c7c;
-            outline-offset: 2px;
+            outline: none;
         }
 
-        /* ===== PHONE TONE POSITIONING ===== */
         @media (max-width: 768px) {
             .syllabic-line[data-key="ph"],
             .syllabic-line[data-key="th"],
@@ -1093,115 +1293,263 @@
                 top: -0.15em;
             }
         }
+
+        .feedback-footer {
+            text-align: center;
+            padding: 1.5rem;
+            background: #f4fafa;
+            border-radius: 8px;
+            border: 1px solid #dce8e8;
+            margin-top: 1rem;
+            width: 100%;
+        }
+
+        .feedback-footer p {
+            font-size: 1rem;
+            color: #1a2a2a;
+            margin: 0;
+        }
+
+        .feedback-footer a {
+            color: #297c7c;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 1px solid #297c7c;
+            transition: border-color 0.2s;
+        }
+
+        .feedback-footer a:hover {
+            border-bottom-color: #1a5a5a;
+        }
+
+        .operator-keys {
+            font-family: 'Segoe UI', monospace;
+            background: #f0f6f6;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            border: 1px solid #dce8e8;
+            font-size: 0.9rem;
+            word-break: break-all;
+        }
     </style>
 </head>
 <body>
 
-    <!-- ===== NAVBAR ===== -->
     <nav class="navbar">
         <div class="brand">
-            <span class="hachukma-font">Hachukma Virtual Keyboard</span>
+            <span class="hachukma-font">Hachukma — Virtual keyboard</span>
         </div>
         <div class="nav-links">
-            <a href="index.html" id="navBack">Back to Home</a>
+            <a href="index.html" id="navBack">← Back</a>
         </div>
     </nav>
 
-    <!-- ===== MAIN CONTAINER ===== -->
     <div class="container">
 
-        <!-- ===== ARTICLE SECTION ===== -->
+        <!-- ===== ARTICLE 1: Main Introduction ===== -->
         <div class="article-section" id="articleSection">
             <div class="article-title">
-                Typing System &amp; <span class="hachukma-word">Virtual Keyboard</span>
+                Hachukma — <span class="hachukma-word">A Modern Script for Kokborok</span>
             </div>
             <div class="article-meta">
-                <span>Kokborok Script</span>
-                <span>PUA + Hachukma Font</span>
-                <span>Auto‑replace: <kbd style="background:#e4ecec;padding:0.05rem 0.4rem;border-radius:3px;border:1px solid #c8d6d6;font-size:0.8rem;">f</kbd> → ph · <kbd style="background:#e4ecec;padding:0.05rem 0.4rem;border-radius:3px;border:1px solid #c8d6d6;font-size:0.8rem;">x</kbd> → ng · <kbd style="background:#e4ecec;padding:0.05rem 0.4rem;border-radius:3px;border:1px solid #c8d6d6;font-size:0.8rem;">q</kbd> → th · <kbd style="background:#e4ecec;padding:0.05rem 0.4rem;border-radius:3px;border:1px solid #c8d6d6;font-size:0.8rem;">z</kbd> → ɘ · <kbd style="background:#e4ecec;padding:0.05rem 0.4rem;border-radius:3px;border:1px solid #c8d6d6;font-size:0.8rem;">c</kbd> → ch · <kbd style="background:#e4ecec;padding:0.05rem 0.4rem;border-radius:3px;border:1px solid #c8d6d6;font-size:0.8rem;">v</kbd> → kh</span>
-                <span>Digraph composition: <kbd style="background:#e4ecec;padding:0.05rem 0.4rem;border-radius:3px;border:1px solid #c8d6d6;font-size:0.8rem;">t+h</kbd> → th · <kbd style="background:#e4ecec;padding:0.05rem 0.4rem;border-radius:3px;border:1px solid #c8d6d6;font-size:0.8rem;">n+g</kbd> → ng · <kbd style="background:#e4ecec;padding:0.05rem 0.4rem;border-radius:3px;border:1px solid #c8d6d6;font-size:0.8rem;">k+h</kbd> → kh · <kbd style="background:#e4ecec;padding:0.05rem 0.4rem;border-radius:3px;border:1px solid #c8d6d6;font-size:0.8rem;">p+h</kbd> → ph</span> 
+                <span>Designed for Physical Keyboards · 2025–2026</span>
             </div>
             <div class="article-body">
-                <p>
-                    The <strong>Hachukma Script</strong> can be typed using a custom-designed virtual keyboard.
-                    The system includes a Roman-letter input helper, which allows users to type characters using the
-                    Latin alphabet with automatic substitution: <span class="code-block">f → ph</span>,
-                    <span class="code-block">x → ng</span>, <span class="code-block">q → th</span>,
-                    <span class="code-block">z → ɘ</span>, <span class="code-block">c → ch</span>,
-                    <span class="code-block">v → kh</span>.
-                    The system is based on the Unicode Private Use Area (PUA) and works together with the
-                    <strong>Hachukma</strong> custom font.
-                </p>
-
-                <!-- Vowels description -->
-                <p><strong>Vowels:</strong> The vowel system of Kokborok consists of six vowels: <strong>a</strong>, <strong>e</strong>, <strong>i</strong>, <strong>o</strong>, <strong>u</strong>, and the central vowel <strong>ɘ</strong>. Each of these phonemes is represented by a distinct character in the Hachukma script, and they form the core of the syllabic structure. The characters are designed to be visually distinctive and follow the acrophonic principle where possible.</p>
-
-                <div class="consonant-grid">
-                    <div class="c-item"><span class="c-script"></span><span class="c-latin">a</span></div>
-                    <div class="c-item"><span class="c-script"></span><span class="c-latin">e</span></div>
-                    <div class="c-item"><span class="c-script"></span><span class="c-latin">i</span></div>
-                    <div class="c-item"><span class="c-script"></span><span class="c-latin">o</span></div>
-                    <div class="c-item"><span class="c-script"></span><span class="c-latin">u</span></div>
-                    <div class="c-item"><span class="c-script"></span><span class="c-latin">ɘ</span></div>
-                </div>
-
-                <!-- Consonants description -->
-                <p><strong>Consonants:</strong> The consonant inventory comprises 20 primary consonants that cover the full range of stops, fricatives, nasals, and approximants found in Kokborok. Each consonant is an independent pictographic character whose phonetic value follows the <strong>acrophonic principle</strong>—the glyph is inspired by the initial sound it represents. The set includes: <strong>t, y, s, d, p, g, h, j, k, l, b, n, m, ng, kh, ch, ph, th, r, w</strong>. The character <strong>ng</strong> and the vowel <strong>ɘ</strong> are exceptional in their design, but they function purely as phonemes in the writing system.</p>
-
-                <div class="consonant-grid">
-                    <div class="c-item"><span class="c-script"></span><span class="c-latin">t</span></div>
-                    <div class="c-item"><span class="c-script"></span><span class="c-latin">y</span></div>
-                    <div class="c-item"><span class="c-script"></span><span class="c-latin">s</span></div>
-                    <div class="c-item"><span class="c-script"></span><span class="c-latin">d</span></div>
-                    <div class="c-item"><span class="c-script"></span><span class="c-latin">p</span></div>
-                    <div class="c-item"><span class="c-script"></span><span class="c-latin">g</span></div>
-                    <div class="c-item"><span class="c-script"></span><span class="c-latin">h</span></div>
-                    <div class="c-item"><span class="c-script"></span><span class="c-latin">j</span></div>
-                    <div class="c-item"><span class="c-script"></span><span class="c-latin">k</span></div>
-                    <div class="c-item"><span class="c-script"></span><span class="c-latin">l</span></div>
-                    <div class="c-item"><span class="c-script"></span><span class="c-latin">b</span></div>
-                    <div class="c-item"><span class="c-script"></span><span class="c-latin">n</span></div>
-                    <div class="c-item"><span class="c-script"></span><span class="c-latin">m</span></div>
-                    <div class="c-item"><span class="c-script"></span><span class="c-latin">ng</span></div>
-                    <div class="c-item"><span class="c-script"></span><span class="c-latin">kh</span></div>
-                    <div class="c-item"><span class="c-script"></span><span class="c-latin">ch</span></div>
-                    <div class="c-item"><span class="c-script"></span><span class="c-latin">ph</span></div>
-                    <div class="c-item"><span class="c-script"></span><span class="c-latin">th</span></div>
-                    <div class="c-item"><span class="c-script"></span><span class="c-latin">r</span></div>
-                    <div class="c-item"><span class="c-script"></span><span class="c-latin">w</span></div>
-                </div>
 
                 <p>
-                    <strong>Diacritic:</strong> High tone diacritic mark.
-                    <span style="background:#eaf0f0;padding:0.05rem 0.5rem;border-radius:4px;border:1px solid #dce8e8;">
-                        Desktop: double‑tap the <kbd style="background:#dce8e8;padding:0.05rem 0.4rem;border-radius:3px;border:1px solid #c8d6d6;">p</kbd> key
-                    </span>
-                    <span style="background:#eaf0f0;padding:0.05rem 0.5rem;border-radius:4px;border:1px solid #dce8e8;">
-                        Phone: type, then tap the dedicated <span style="font-family:'NewScript',sans-serif;"></span> tone key
-                    </span>
+                    <strong>Hachukma</strong> is a contemporary writing system I created for the Kokborok language. It is designed to work seamlessly on the physical keyboards you use every day—whether you're writing a document, sending an email, or exploring the world of coding. Developed throughout 2025–2026, Hachukma uses the <strong>Private Use Area (PUA)</strong> of Unicode, ensuring that each character has a unique digital identity and can be displayed beautifully on any modern device.
                 </p>
 
                 <p>
-                    The characters are arranged on the keyboard for intuitive input, grouping related sounds together.
-                    This layout, combined with the automatic digraph composition and Latin‑to‑script substitution,
-                    ensures a smooth typing experience for both beginners and advanced users.
+                    <strong>A Writing System That Fits Your Keyboard</strong> — Hachukma respects the layout of a standard physical computer keyboard. This means you don't need to buy a special keyboard or learn a completely new typing layout. The most important symbols for programming, math, and everyday computing — like <span class="operator-keys">; ' [ ] , . / \ = - ( ) < > | ` " { } ! @ # $ % ^ &amp; * _ +</span> — stay exactly where they are. This ensures that as the Kokborok community grows in the digital age, we can write code, work with data, and use software without any barriers.
+                </p>
+
+                <p>
+                    <strong>Tone Mark vs. Future Punctuation:</strong> The tone mark used in Hachukma is a phonetic marker. It is <strong>not</strong> a punctuation mark and is not intended to replace or interfere with future Kokborok punctuation marks. I have intentionally kept the tone mark separate so that the community can later decide on its own punctuation system, which can be developed independently.
+                </p>
+
+                <p>
+                    <strong>Why the Tone Mark is on the <kbd>p</kbd> Key (Double‑Tap)</strong> — In Kokborok, the tone mark is essential for pronunciation and meaning. In Hachukma, you can add this tone mark by simply double‑tapping the <kbd>p</kbd> key. Why <kbd>p</kbd>? Because it keeps all the math and coding symbols free and functional. This "multi‑tap" approach is fast, intuitive, and ensures that your writing flows smoothly without disrupting your work.
+                </p>
+
+                <!-- ========================================================= -->
+                <!--  IME EXPERIMENT — CLEAR & FUTURE-FOCUSED                    -->
+                <!-- ========================================================= -->
+                <div class="ime-experiment">
+                    <p><strong>🧪 Software Experiment — A Note‑Pad for Hachukma</strong></p>
+                    <p>
+                        A small note‑pad style software is available at
+                        <a href="https://hachukma.github.io/hachukma-IME-software.html" target="_blank">https://hachukma.github.io/hachukma-IME-software.html</a>.
+                        This is <strong>not</strong> a full IME. It is simply an early experiment that demonstrates how Hachukma characters can be typed using the multi‑tap system and tone marking.
+                    </p>
+                    <p>
+                        <strong>What about the future?</strong> As soon as official Unicode codepoints are assigned to Hachukma, developing a complete system‑wide IME (Input Method Editor) will be straightforward. Such an IME would solve the multi‑tap system entirely in software — meaning no special hardware would be required. Users would be able to type in Hachukma on <em>any</em> standard keyboard, in <em>any</em> application.
+                    </p>
+                    <p>
+                        <strong>And hardware keyboards?</strong> In the future, physical hardware keyboards with Hachukma layouts can also be manufactured. These keyboards will be fully compatible <strong>without needing any external software</strong> — the multi‑tap logic and character mapping will be built directly into the keyboard's firmware. This means you can simply plug in the keyboard and start typing in Hachukma, no drivers or special software required.
+                    </p>
+                    <p>
+                        <strong>Important:</strong> The full IME and the hardware keyboards have <strong>not been built yet</strong>. I am talking about future possibilities. The current note‑pad experiment is a step toward understanding how these systems might work, gathering feedback, and refining the user experience.
+                    </p>
+                </div>
+
+                <!-- ========================================================= -->
+                <!--  NEW: DIGRAPH MAPS & AUTO‑REPLACE SECTION                  -->
+                <!-- ========================================================= -->
+                <div class="digraph-highlight">
+                    <p><strong>🔤 Digraph Maps &amp; Auto‑Replace — How Typing Really Works</strong></p>
+                    <p>
+                        One of the core design decisions I made for Hachukma is that typing should feel <em>natural</em>.
+                        In Kokborok, certain sounds are represented by two letters together — these are called <strong>digraphs</strong>:
+                        <code>th</code>, <code>ph</code>, <code>kh</code>, <code>ch</code>, and <code>ng</code>.
+                        Instead of forcing you to memorise a separate key for each digraph, I built an <strong>auto‑replace</strong> system
+                        right into the typing engine.
+                    </p>
+                    <p>
+                        Here's how it works: when you type two characters that form a valid digraph, the system automatically
+                        <strong>replaces</strong> the pair with the corresponding Hachukma character. For example:
+                    </p>
+
+                    <div class="digraph-grid">
+                        <div class="digraph-box">
+                            <span class="digraph-keys">t</span>
+                            <span class="digraph-arrow">+</span>
+                            <span class="digraph-keys">h</span>
+                            <span class="digraph-arrow">→</span>
+                            <span class="digraph-result"></span>
+                            <div style="font-size:0.7rem;color:#6a8a8a;">/tʰ/</div>
+                        </div>
+                        <div class="digraph-box">
+                            <span class="digraph-keys">p</span>
+                            <span class="digraph-arrow">+</span>
+                            <span class="digraph-keys">h</span>
+                            <span class="digraph-arrow">→</span>
+                            <span class="digraph-result"></span>
+                            <div style="font-size:0.7rem;color:#6a8a8a;">/pʰ/</div>
+                        </div>
+                        <div class="digraph-box">
+                            <span class="digraph-keys">k</span>
+                            <span class="digraph-arrow">+</span>
+                            <span class="digraph-keys">h</span>
+                            <span class="digraph-arrow">→</span>
+                            <span class="digraph-result"></span>
+                            <div style="font-size:0.7rem;color:#6a8a8a;">/kʰ/</div>
+                        </div>
+                        <div class="digraph-box">
+                            <span class="digraph-keys">c</span>
+                            <span class="digraph-arrow">+</span>
+                            <span class="digraph-keys">h</span>
+                            <span class="digraph-arrow">→</span>
+                            <span class="digraph-result"></span>
+                            <div style="font-size:0.7rem;color:#6a8a8a;">/tʃ/</div>
+                        </div>
+                        <div class="digraph-box">
+                            <span class="digraph-keys">n</span>
+                            <span class="digraph-arrow">+</span>
+                            <span class="digraph-keys">g</span>
+                            <span class="digraph-arrow">→</span>
+                            <span class="digraph-result"></span>
+                            <div style="font-size:0.7rem;color:#6a8a8a;">/ŋ/</div>
+                        </div>
+                    </div>
+
+                    <p>
+                        The mapping is simple and consistent. When you type a character that <em>could</em> form a digraph
+                        with the previous character, the engine checks the digraph map and performs the replacement instantly.
+                        This means you can type <code>t</code> then <code>h</code>, and before you even lift your finger,
+                        the two characters have already become a single <strong>th</strong> character in the Hachukma script.
+                    </p>
+
+                    <p>
+                        <strong>Why this matters:</strong> This auto‑replace feature makes typing in Hachukma feel
+                        just like typing in any other language. You don't have to think about "special keys" or "alternate
+                        layouts" — you just type the sounds as you hear them, and the system handles the rest. It's a
+                        small detail, but it makes a huge difference in daily use.
+                    </p>
+
+                    <p>
+                        <strong>What about the tone mark?</strong> Digraphs like <code>ng</code>, <code>ch</code>,
+                        <code>ph</code>, <code>kh</code>, and <code>th</code> are <strong>excluded</strong> from tone
+                        marking. This is intentional — in Kokborok, these sounds do not carry tone in the same way that
+                        other consonants do. The system respects this linguistic rule automatically.
+                    </p>
+
+                    <p style="margin-top:0.6rem;background:#ffffff;padding:0.4rem 0.8rem;border-radius:4px;border:1px dashed #b0c8c8;">
+                        <span style="font-weight:600;">🗺️ Under the hood:</span> The digraph map is defined in the
+                        JavaScript as <code>digraphMap</code> — it's a simple object that maps second characters to first
+                        characters. When you type, the engine checks if the current key + the previous key form a valid
+                        digraph, and if so, it replaces the pair. This logic is <strong>not</strong> a proof-of-concept —
+                        it's the actual production code running in this demo.
+                    </p>
+                </div>
+
+                <p>
+                    <strong>Smart Typing with Predictions</strong> — To make typing even easier, Hachukma includes a smart prediction engine. As you start typing a word, a list of possible words appears above the text area. For example, typing <span class="code-block">a</span> will show predictions like <strong>ama</strong> and <strong>awang</strong>. You can simply click or tap on the word you want, and it will be inserted in the beautiful Hachukma script. This feature is designed to make writing in Kokborok faster and more enjoyable for everyone.
+                </p>
+
+                <p>
+                    <strong>The Building Blocks of Hachukma</strong> — The script is built on the sounds of Kokborok. It includes six vowels: <strong>a</strong>, <strong>e</strong>, <strong>i</strong>, <strong>o</strong>, <strong>u</strong>, and the central vowel <strong>ɘ</strong>. It also features 20 consonants that cover the full range of Kokborok sounds. Each character is designed to be visually distinct and easy to learn. Below you can see the complete set, along with their Latin equivalents and IPA pronunciations.
+                </p>
+
+                <!-- Vowels Grid -->
+                <div class="letter-grid">
+                    <div class="letter-box"><span class="script"></span><span class="ipa">/a/</span><span class="latin">a</span></div>
+                    <div class="letter-box"><span class="script"></span><span class="ipa">/e/</span><span class="latin">e</span></div>
+                    <div class="letter-box"><span class="script"></span><span class="ipa">/i/</span><span class="latin">i</span></div>
+                    <div class="letter-box"><span class="script"></span><span class="ipa">/o/</span><span class="latin">o</span></div>
+                    <div class="letter-box"><span class="script"></span><span class="ipa">/u/</span><span class="latin">u</span></div>
+                    <div class="letter-box"><span class="script"></span><span class="ipa">/ɘ/</span><span class="latin">ɘ</span></div>
+                </div>
+
+                <!-- Consonants Grid -->
+                <div class="letter-grid">
+                    <div class="letter-box"><span class="script"></span><span class="ipa">/t/</span><span class="latin">t</span></div>
+                    <div class="letter-box"><span class="script"></span><span class="ipa">/y/</span><span class="latin">y</span></div>
+                    <div class="letter-box"><span class="script"></span><span class="ipa">/s/</span><span class="latin">s</span></div>
+                    <div class="letter-box"><span class="script"></span><span class="ipa">/d/</span><span class="latin">d</span></div>
+                    <div class="letter-box"><span class="script"></span><span class="ipa">/p/</span><span class="latin">p</span></div>
+                    <div class="letter-box"><span class="script"></span><span class="ipa">/g/</span><span class="latin">g</span></div>
+                    <div class="letter-box"><span class="script"></span><span class="ipa">/h/</span><span class="latin">h</span></div>
+                    <div class="letter-box"><span class="script"></span><span class="ipa">/j/</span><span class="latin">j</span></div>
+                    <div class="letter-box"><span class="script"></span><span class="ipa">/k/</span><span class="latin">k</span></div>
+                    <div class="letter-box"><span class="script"></span><span class="ipa">/l/</span><span class="latin">l</span></div>
+                    <div class="letter-box"><span class="script"></span><span class="ipa">/b/</span><span class="latin">b</span></div>
+                    <div class="letter-box"><span class="script"></span><span class="ipa">/n/</span><span class="latin">n</span></div>
+                    <div class="letter-box"><span class="script"></span><span class="ipa">/m/</span><span class="latin">m</span></div>
+                    <div class="letter-box"><span class="script"></span><span class="ipa">/ŋ/</span><span class="latin">ng</span></div>
+                    <div class="letter-box"><span class="script"></span><span class="ipa">/kʰ/</span><span class="latin">kh</span></div>
+                    <div class="letter-box"><span class="script"></span><span class="ipa">/tʃ/</span><span class="latin">ch</span></div>
+                    <div class="letter-box"><span class="script"></span><span class="ipa">/pʰ/</span><span class="latin">ph</span></div>
+                    <div class="letter-box"><span class="script"></span><span class="ipa">/tʰ/</span><span class="latin">th</span></div>
+                    <div class="letter-box"><span class="script"></span><span class="ipa">/r/</span><span class="latin">r</span></div>
+                    <div class="letter-box"><span class="script"></span><span class="ipa">/w/</span><span class="latin">w</span></div>
+                </div>
+
+                <p>
+                    This is a project for the community, by the community. I invite you to explore, use, and share your feedback. Together, we can ensure that the Kokborok language continues to flourish in the digital world.
+                </p>
+
+                <p style="margin-top:0.8rem;background:#f4fafa;padding:0.6rem 1rem;border-radius:6px;border-left:4px solid #297c7c;">
+                    <strong>📖 About this Demo:</strong> This is an independent, ongoing project. I am solely responsible for its current state and future direction. The demo is provided as a functional testbed to explore the Hachukma script and its typing mechanics. It is not a finished product, and expectations should be set accordingly.
                 </p>
             </div>
         </div>
 
-        <!-- ===== TEXT DISPLAY ===== -->
-        <div id="textDisplay" class="text-display" tabindex="0">
-            <span class="cursor"></span>
+        <!-- ===== TEXT DISPLAY with PREDICTION BAR ===== -->
+        <div class="text-display-wrapper" id="textDisplayWrapper">
+            <div class="prediction-bar" id="predictionBar">
+                <div class="prediction-empty">Start typing to see predictions …</div>
+            </div>
+            <div id="textDisplay" class="text-display" tabindex="0">
+                <span class="cursor"></span>
+            </div>
         </div>
 
-        <!-- ===== KEYBOARD WRAPPER ===== -->
         <div class="keyboard-wrapper">
 
-            <!-- ===== DESKTOP KEYBOARD ===== -->
             <div class="keyboard-container" id="desktopKbContainer">
                 <div class="keyboard" id="desktopKeyboard">
 
-                    <!-- Function Row -->
                     <button class="key" data-type="special" data-key="">Esc</button>
                     <button class="key" data-type="special" data-key="">F1</button>
                     <button class="key" data-type="special" data-key="">F2</button>
@@ -1219,7 +1567,6 @@
                     <button class="key" data-type="special" data-key="">Scroll Lock</button>
                     <button class="key" data-type="special" data-key="">Pause</button>
 
-                    <!-- Number Row -->
                     <button class="key" data-type="vowel" data-key="1" data-char="&#xE001;"><br>&#xE001;<br>1</button>
                     <button class="key" data-type="vowel" data-key="2" data-char="&#xE002;"><br>&#xE002;<br>2</button>
                     <button class="key" data-type="vowel" data-key="3" data-char="&#xE003;"><br>&#xE003;<br>3</button>
@@ -1234,7 +1581,6 @@
                     <button class="key" data-type="special" data-key="=">=<br>+</button>
                     <button class="key wide-backspace-key" data-type="special" data-key="Backspace">⌫ Backspace</button>
 
-                    <!-- QWERTY Row -->
                     <button class="key wide" data-type="special">Tab</button>
                     <button class="key" data-key="th" data-char="&#xE01A;">&#xE01A;<br>th</button>
                     <button class="key" data-key="w" data-char="&#xE020;">&#xE020;<br>w</button>
@@ -1250,7 +1596,6 @@
                     <button class="key" data-type="special" data-key="]">}<br>[</button>
                     <button class="key wide" data-type="special" data-key="\">|<br>\</button>
 
-                    <!-- ASDF Row -->
                     <button class="key wide" data-type="special">Caps Lock</button>
                     <button class="key" data-key="a" data-char="&#xE00A;">&#xE00A;<br>a</button>
                     <button class="key" data-key="s" data-char="&#xE01C;">&#xE01C;<br>s</button>
@@ -1265,7 +1610,6 @@
                     <button class="key" data-type="special" data-key="'">"<br>'</button>
                     <button class="key Enter-extra-wide" data-type="special" data-key="Enter">↵ Enter</button>
 
-                    <!-- ZXCV Row -->
                     <button class="key Enter-extra-wide" data-type="special" data-key="Shift">⇧ Shift</button>
                     <button class="key" data-key="ɘ" data-char="&#xE023;">&#xE023;<br>ɘ</button>
                     <button class="key" data-key="ng" data-char="&#xE021;">&#xE021;<br>ng</button>
@@ -1279,7 +1623,6 @@
                     <button class="key" data-type="special" data-key="/">?<br>/</button>
                     <button class="key Enter-extra-wide" data-type="special" data-key="Shift">⇧ Shift</button>
 
-                    <!-- Control Row -->
                     <button class="key" data-type="special">Fn</button>
                     <button class="key" data-type="special">Ctrl</button>
                     <button class="key" data-type="special">Win</button>
@@ -1288,7 +1631,6 @@
                     <button class="key" data-type="special">Alt</button>
                     <button class="key" data-type="special">Ctrl</button>
 
-                    <!-- Arrow Keys -->
                     <button class="key" data-type="special" data-key="ArrowLeft">←</button>
                     <button class="key" data-type="special" data-key="">↓</button>
                     <button class="key" data-type="special" data-key="">↑</button>
@@ -1296,12 +1638,10 @@
                 </div>
             </div>
 
-            <!-- ===== PHONE KEYBOARD ===== -->
             <div class="smalldevice-container" id="phoneKbContainer">
                 <div class="smalldevice-keyboard-container">
                     <div class="smalldevice-keyboard" id="phoneKeyboard">
 
-                        <!-- Number Row -->
                         <button class="smalldevice-key" data-type="vowel" data-key="1" data-char="&#xE001;"><br>&#xE001;<br>1</button>
                         <button class="smalldevice-key" data-type="vowel" data-key="2" data-char="&#xE002;"><br>&#xE002;<br>2</button>
                         <button class="smalldevice-key" data-type="vowel" data-key="3" data-char="&#xE003;"><br>&#xE003;<br>3</button>
@@ -1313,7 +1653,6 @@
                         <button class="smalldevice-key" data-type="vowel" data-key="9" data-char="&#xE009;"><br>&#xE009;<br>9</button>
                         <button class="smalldevice-key" data-type="vowel" data-key="0" data-char="&#xE000;"><br>&#xE000;<br>0</button>
 
-                        <!-- QWERTY Row -->
                         <button class="smalldevice-key" data-key="th" data-char="&#xE01A;">&#xE01A;<br>th</button>
                         <button class="smalldevice-key" data-key="w" data-char="&#xE020;">&#xE020;<br>w</button>
                         <button class="smalldevice-key" data-key="e" data-char="&#xE00E;">&#xE00E;<br>e</button>
@@ -1325,7 +1664,6 @@
                         <button class="smalldevice-key" data-key="o" data-char="&#xE018;">&#xE018;<br>o</button>
                         <button class="smalldevice-key" data-key="p" data-char="&#xE019;">&#xE019;<br>p</button>
 
-                        <!-- ASDF Row -->
                         <button class="smalldevice-keys" id="smalldevice-two-set-key" data-key="" data-char="&#xE024;">&#xE024;<br></button>
                         <button class="smalldevice-keys" data-key="a" data-char="&#xE00A;">&#xE00A;<br>a</button>
                         <button class="smalldevice-keys" data-key="s" data-char="&#xE01C;">&#xE01C;<br>s</button>
@@ -1338,7 +1676,6 @@
                         <button class="smalldevice-keys" data-key="l" data-char="&#xE015;">&#xE015;<br>l</button>
                         <button class="smalldevice-key-arrow" data-type="special" data-key="">↑</button>
 
-                        <!-- ZXCV Row -->
                         <button class="smalldevice-key" data-key="ɘ" data-char="&#xE023;">&#xE023;<br>ɘ</button>
                         <button class="smalldevice-key" data-key="ng" data-char="&#xE021;">&#xE021;<br>ng</button>
                         <button class="smalldevice-key" data-key="ch" data-char="&#xE00C;">&#xE00C;<br>ch</button>
@@ -1350,10 +1687,8 @@
                         <button class="smalldevice-key" data-type="special" data-key="!#1">!#1</button>
                         <button class="smalldevice-key" data-type="special" data-key=",">,</button>
 
-                        <!-- Control Row -->
                         <button class="smalldevice-key extra-wide" data-type="special" data-key="space">kokborok</button>
 
-                        <!-- Arrow Keys -->
                         <button class="smalldevice-key" data-type="special" data-key=".">.</button>
                         <button class="smalldevice-key" data-type="special" data-key="search">🔍</button>
                     </div>
@@ -1362,14 +1697,22 @@
 
         </div>
 
+        <!-- ===== FEEDBACK FOOTER ===== -->
+        <div class="feedback-footer">
+            <p>
+                Have feedback or ideas for improving Hachukma? I'd love to hear from you.
+                <br>
+                <a href="mailto:hachukma@gmail.com">hachukma@gmail.com</a>
+            </p>
+        </div>
+
     </div>
 
     <script>
-      
-
         (function() {
             'use strict';
 
+            // ---- Silent protection ----
             document.addEventListener('contextmenu', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
@@ -1456,18 +1799,21 @@
         })();
 
 
-
-        //  KOKBOROK TYPING SYSTEM — Full Implementation
-
+        // ================================================================
+        //  HACHUKMA PREDICTIVE TYPING SYSTEM — Full Implementation
+        // ================================================================
 
         // ---- DOM refs ----
         const textDisplayEl = document.getElementById('textDisplay');
-
+        const predictionBar = document.getElementById('predictionBar');
         const desktopKb = document.getElementById('desktopKbContainer');
         const phoneKb = document.getElementById('phoneKbContainer');
 
         // ---- State ----
         let typedChars = [];
+        let currentInput = '';
+        let predictionList = [];
+        let selectedIndex = -1;
         let totalKeyPresses = 0;
 
         // ---- Physical keyboard "p" double-tap tracking ----
@@ -1487,7 +1833,10 @@
             return ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].includes(key);
         }
 
-        // ---- Helper: PUA to Latin mapping ----
+        // ---- Digraphs that should NOT receive tone ----
+        const NO_TONE_DIGRAPHS = ['ng', 'ch', 'ph', 'kh', 'th'];
+
+        // ---- PUA to Latin mapping (for display) ----
         const puaToLatin = {
             '\uE00A': 'a',
             '\uE00B': 'b',
@@ -1524,7 +1873,92 @@
             'g': { 'n': 'ng' }
         };
 
-        // ---- Render display ----
+        // ---- Token → PUA mapping (built from keyboard keys) ----
+        const tokenToPUA = {
+            'a': '\uE00A',
+            'b': '\uE00B',
+            'ch': '\uE00C',
+            'd': '\uE00D',
+            'e': '\uE00E',
+            'ph': '\uE00F',
+            'g': '\uE010',
+            'h': '\uE011',
+            'i': '\uE012',
+            'j': '\uE013',
+            'k': '\uE014',
+            'l': '\uE015',
+            'm': '\uE016',
+            'n': '\uE017',
+            'o': '\uE018',
+            'p': '\uE019',
+            'r': '\uE01B',
+            's': '\uE01C',
+            't': '\uE01D',
+            'u': '\uE01E',
+            'w': '\uE020',
+            'y': '\uE022',
+            'ng': '\uE021',
+            'kh': '\uE01F',
+            'th': '\uE01A',
+            'ɘ': '\uE023'
+        };
+
+        // ---- Sorted list of tokens for longest-match tokenization ----
+        const tokens = Object.keys(tokenToPUA).sort((a, b) => b.length - a.length);
+
+        // ---- Convert romanized word to PUA string ----
+        function romanToPUA(word) {
+            const clean = word.replace(/[-]/g, '');
+            let pua = '';
+            let i = 0;
+            while (i < clean.length) {
+                let matched = false;
+                for (const token of tokens) {
+                    if (clean.substr(i, token.length).toLowerCase() === token) {
+                        pua += tokenToPUA[token];
+                        i += token.length;
+                        matched = true;
+                        break;
+                    }
+                }
+                if (!matched) {
+                    pua += clean[i];
+                    i++;
+                }
+            }
+            return pua;
+        }
+
+        // ---- Vocabulary: only romanized words ----
+        const wordList = [
+            "ama", "awang"
+        ].sort();
+
+        // ---- Get predictions ----
+        function getPredictions(prefix) {
+            if (!prefix || prefix.length === 0) return [];
+            const lowerPrefix = prefix.toLowerCase();
+            const results = [];
+            for (const word of wordList) {
+                if (word.toLowerCase().startsWith(lowerPrefix)) {
+                    results.push(word);
+                }
+                if (results.length >= 10) break;
+            }
+            return results;
+        }
+
+        // ---- Get max chips ----
+        function getMaxChips() {
+            const w = window.innerWidth;
+            if (w <= 600) return 4;
+            return 8;
+        }
+
+        // ================================================================
+        //  RENDER FUNCTIONS
+        // ================================================================
+
         function renderDisplay() {
             const cursor = textDisplayEl.querySelector('.cursor');
             textDisplayEl.innerHTML = '';
@@ -1546,11 +1980,13 @@
                     syllabic.setAttribute('data-key', key);
                     latin.textContent = (puaToLatin[base] || base) + '́';
                 } else {
-                    syllabic.innerHTML = charEntity;
-                    syllabic.setAttribute('data-key', key);
                     if (charEntity === ' ' || key === 'space') {
+                        syllabic.innerHTML = '&nbsp;';
+                        syllabic.className = 'syllabic-line space-char';
                         latin.textContent = '';
                     } else {
+                        syllabic.innerHTML = charEntity;
+                        syllabic.setAttribute('data-key', key);
                         latin.textContent = puaToLatin[charEntity] || key || charEntity;
                     }
                 }
@@ -1563,11 +1999,90 @@
             newCursor.className = 'cursor';
             textDisplayEl.appendChild(newCursor);
 
-            // Auto-scroll to bottom
             textDisplayEl.scrollTop = textDisplayEl.scrollHeight;
         }
 
-        // ---- Insert character with digraph composition ----
+        function renderPredictions() {
+            predictionBar.innerHTML = '';
+            const maxChips = getMaxChips();
+            const show = predictionList.slice(0, maxChips);
+
+            if (show.length === 0) {
+                const empty = document.createElement('div');
+                empty.className = 'prediction-empty';
+                empty.textContent = currentInput.length > 0 ? 'No matching words' : 'Start typing to see predictions …';
+                predictionBar.appendChild(empty);
+                return;
+            }
+
+            for (let i = 0; i < show.length; i++) {
+                const word = show[i];
+                const div = document.createElement('div');
+                div.className = 'prediction-item';
+                if (i === selectedIndex) {
+                    div.classList.add('active');
+                }
+                const spanRoman = document.createElement('span');
+                spanRoman.textContent = word;
+                div.appendChild(spanRoman);
+                const pua = romanToPUA(word);
+                if (pua) {
+                    const spanPua = document.createElement('span');
+                    spanPua.className = 'pua-preview';
+                    spanPua.textContent = pua;
+                    div.appendChild(spanPua);
+                }
+                div.dataset.word = word;
+                div.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    selectPrediction(this.dataset.word);
+                });
+                div.addEventListener('mouseenter', function() {
+                    document.querySelectorAll('.prediction-item').forEach(el => el.classList.remove('active'));
+                    this.classList.add('active');
+                });
+                div.addEventListener('mouseleave', function() {
+                    document.querySelectorAll('.prediction-item').forEach((el, idx) => {
+                        el.classList.remove('active');
+                        if (idx === selectedIndex) {
+                            el.classList.add('active');
+                        }
+                    });
+                });
+                predictionBar.appendChild(div);
+            }
+        }
+
+        // ---- Select a prediction: remove typed chars, insert full word ----
+        function selectPrediction(word) {
+            if (!word) return;
+            const pua = romanToPUA(word);
+            if (!pua) return;
+
+            // Remove the characters that correspond to currentInput
+            const inputPUA = romanToPUA(currentInput);
+            const inputLength = inputPUA.length;
+            for (let i = 0; i < inputLength && typedChars.length > 0; i++) {
+                typedChars.pop();
+            }
+
+            // Add the prediction characters
+            const chars = [...pua];
+            for (const ch of chars) {
+                const key = puaToLatin[ch] || ch;
+                typedChars.push({ char: ch, key: key, tone: false });
+            }
+            typedChars.push({ char: ' ', key: 'space', tone: false });
+
+            currentInput = '';
+            predictionList = [];
+            selectedIndex = -1;
+            renderDisplay();
+            renderPredictions();
+            textDisplayEl.focus();
+        }
+
+        // ---- Insert a single character with digraph composition ----
         function insertChar(charData) {
             const newKey = charData.key;
             const newChar = charData.char;
@@ -1606,45 +2121,85 @@
                         key: digraphKey,
                         tone: prev.tone || false
                     });
-                    totalKeyPresses++;
+                    if (currentInput.length > 0) {
+                        currentInput = currentInput.slice(0, -1) + digraphKey;
+                    } else {
+                        currentInput = digraphKey;
+                    }
                     renderDisplay();
+                    updatePredictions();
                     return;
                 }
             }
 
             typedChars.push(charData);
-            totalKeyPresses++;
+
+            if (newChar !== ' ' && newKey !== 'space') {
+                currentInput += newKey;
+            } else {
+                currentInput = '';
+                predictionList = [];
+                selectedIndex = -1;
+                renderPredictions();
+                renderDisplay();
+                return;
+            }
+
             renderDisplay();
+            updatePredictions();
         }
 
-        // ---- Backspace ----
+        function updatePredictions() {
+            if (currentInput.length === 0) {
+                predictionList = [];
+                selectedIndex = -1;
+                renderPredictions();
+                return;
+            }
+            predictionList = getPredictions(currentInput);
+            selectedIndex = predictionList.length > 0 ? 0 : -1;
+            renderPredictions();
+        }
+
         function doBackspace() {
-            if (typedChars.length === 0) return;
+            if (typedChars.length === 0) {
+                if (currentInput.length > 0) {
+                    currentInput = currentInput.slice(0, -1);
+                    updatePredictions();
+                }
+                return;
+            }
+            const last = typedChars[typedChars.length - 1];
+            if (last.char === ' ' || last.key === 'space') {
+                typedChars.pop();
+                currentInput = '';
+                predictionList = [];
+                selectedIndex = -1;
+                renderPredictions();
+                renderDisplay();
+                return;
+            }
             typedChars.pop();
-            totalKeyPresses++;
+            let temp = '';
+            for (let i = typedChars.length - 1; i >= 0; i--) {
+                const item = typedChars[i];
+                if (item.char === ' ' || item.key === 'space') break;
+                temp = (puaToLatin[item.char] || item.key) + temp;
+            }
+            currentInput = temp;
             renderDisplay();
+            updatePredictions();
         }
 
-        // ---- Clear all ----
-        function doClear() {
-            typedChars = [];
-            totalKeyPresses = 0;
-            renderDisplay();
-        }
-
-        // ---- Reset ----
-        function doReset() {
-            doClear();
-        }
-
-        // ---- Apply high tone to last character (with numeral protection) ----
+        // ---- Apply high tone — skip digraphs: ng, ch, ph, kh, th ----
         function applyHighToneToLastChar() {
             if (typedChars.length === 0) return;
-
             const last = typedChars[typedChars.length - 1];
-
             if (last.tone) return;
             if (last.char === ' ' || last.key === 'space') return;
+
+            // Skip digraphs that should not receive tone
+            if (NO_TONE_DIGRAPHS.includes(last.key)) return;
 
             const baseChar = last.char.replace('\uE024', '');
             if (isNumeralChar(baseChar)) return;
@@ -1654,27 +2209,56 @@
             if (!last.char.includes('\uE024')) {
                 last.char = last.char + '\uE024';
             }
-            totalKeyPresses++;
             renderDisplay();
         }
 
-        // ---- Handle key press from UI ----
+        function doClear() {
+            typedChars = [];
+            totalKeyPresses = 0;
+            currentInput = '';
+            predictionList = [];
+            selectedIndex = -1;
+            renderDisplay();
+            renderPredictions();
+        }
+
         function handleKeyPress(keyChar, isSpecial = false, charEntity = null) {
             if (keyChar === 'Backspace') {
                 doBackspace();
                 return;
             }
-            if (keyChar === 'Enter' || keyChar === 'ArrowLeft' || keyChar === 'ArrowRight' || keyChar === 'ArrowUp' ||
-                keyChar === 'ArrowDown') {
+            if (keyChar === 'Enter' || keyChar === 'ArrowLeft' || keyChar === 'ArrowRight' ||
+                keyChar === 'ArrowUp' || keyChar === 'ArrowDown') {
+                if (keyChar === 'ArrowDown' || keyChar === 'ArrowUp') {
+                    if (predictionList.length === 0) return;
+                    const step = keyChar === 'ArrowDown' ? 1 : -1;
+                    let newIdx = selectedIndex + step;
+                    if (newIdx < 0) newIdx = predictionList.length - 1;
+                    if (newIdx >= predictionList.length) newIdx = 0;
+                    const maxChips = getMaxChips();
+                    if (newIdx >= maxChips) newIdx = maxChips - 1;
+                    selectedIndex = newIdx;
+                    renderPredictions();
+                    return;
+                }
+                if (keyChar === 'Enter') {
+                    if (selectedIndex >= 0 && selectedIndex < predictionList.length) {
+                        selectPrediction(predictionList[selectedIndex]);
+                    }
+                    return;
+                }
                 return;
             }
             if (keyChar === 'space' || keyChar === ' ' || keyChar === 'Spacebar') {
+                if (selectedIndex >= 0 && selectedIndex < predictionList.length) {
+                    selectPrediction(predictionList[selectedIndex]);
+                    return;
+                }
                 insertChar({ char: ' ', key: 'space', tone: false });
                 return;
             }
 
             const displayChar = charEntity || keyChar;
-
             if (displayChar === '\uE024') {
                 applyHighToneToLastChar();
                 return;
@@ -1683,7 +2267,6 @@
             insertChar({ char: displayChar, key: keyChar, tone: false });
         }
 
-        // ---- Auto-responsive keyboard ----
         function handleResponsiveKeyboard() {
             const width = window.innerWidth;
             if (width <= 600) {
@@ -1693,13 +2276,13 @@
                 desktopKb.style.display = 'block';
                 phoneKb.style.display = 'none';
             }
+            renderPredictions();
         }
 
-        // ============================================================
+        // ================================================================
         //  KEYBOARD BINDING
-        // ============================================================
+        // ================================================================
 
-        // ---- Desktop keyboard ----
         const desktopKeys = document.querySelectorAll('#desktopKeyboard .key');
         desktopKeys.forEach(key => {
             let holdTimer = null;
@@ -1769,26 +2352,46 @@
             });
         });
 
-        // ---- Phone keyboard ----
+        // ---- Phone keyboard (with long-press clear for X) ----
         const phoneKeys = document.querySelectorAll('#phoneKeyboard .smalldevice-key, #phoneKeyboard .smalldevice-keys, #phoneKeyboard .smalldevice-key-arrow, #phoneKeyboard .smalldevice-key-cut');
+
         phoneKeys.forEach(key => {
             const k = key.getAttribute('data-key');
-            let holdTimer = null;
 
             if (k === 'X') {
-                key.addEventListener('mousedown', () => {
-                    holdTimer = setInterval(() => {
-                        doBackspace();
-                    }, 120);
+                let longPressTimer = null;
+                let longPressTriggered = false;
+
+                key.addEventListener('pointerdown', (e) => {
+                    longPressTriggered = false;
+                    clearTimeout(longPressTimer);
+                    longPressTimer = setTimeout(() => {
+                        longPressTriggered = true;
+                        doClear();
+                        key.classList.add('active');
+                        setTimeout(() => key.classList.remove('active'), 150);
+                    }, 600);
                 });
-                key.addEventListener('mouseup', () => {
-                    clearInterval(holdTimer);
-                    holdTimer = null;
+
+                key.addEventListener('pointerup', () => {
+                    clearTimeout(longPressTimer);
                 });
-                key.addEventListener('mouseleave', () => {
-                    clearInterval(holdTimer);
-                    holdTimer = null;
+
+                key.addEventListener('pointerleave', () => {
+                    clearTimeout(longPressTimer);
                 });
+
+                key.addEventListener('click', (e) => {
+                    if (longPressTriggered) {
+                        longPressTriggered = false;
+                        return;
+                    }
+                    doBackspace();
+                    key.classList.add('active');
+                    setTimeout(() => key.classList.remove('active'), 150);
+                });
+
+                return;
             }
 
             key.addEventListener('click', (e) => {
@@ -1796,13 +2399,7 @@
                 const charEntity = key.getAttribute('data-char');
 
                 if (['Shift', 'Ctrl', 'Alt', 'Win', 'Fn', '!#1', 'search', '↑', '↓', '←', '→'].includes(keyVal)) return;
-
-                if (keyVal === 'X') {
-                    doBackspace();
-                    key.classList.add('active');
-                    setTimeout(() => key.classList.remove('active'), 150);
-                    return;
-                }
+                if (keyVal === 'X') return;
 
                 if (charEntity === '\uE024' || keyVal === '\uE024') {
                     applyHighToneToLastChar();
@@ -1829,7 +2426,7 @@
             });
         });
 
-        // ---- Physical keyboard with auto-replace, digraph composition, and "pp" double-tap ----
+        // ---- Physical keyboard ----
         const keyMapping = {
             'f': 'ph',
             'x': 'ng',
@@ -1846,8 +2443,18 @@
                 doBackspace();
                 return;
             }
-            if (key === 'Escape' || key === 'Enter' || key === 'Tab' || key === 'Shift' || key === 'Control' || key === 'Alt' ||
-                key === 'Meta' || key === 'ArrowLeft' || key === 'ArrowRight' || key === 'ArrowUp' || key === 'ArrowDown') {
+            if (key === 'Escape' || key === 'Tab' || key === 'Shift' || key === 'Control' ||
+                key === 'Alt' || key === 'Meta') {
+                return;
+            }
+            if (key === 'ArrowDown' || key === 'ArrowUp' || key === 'ArrowLeft' || key === 'ArrowRight') {
+                e.preventDefault();
+                handleKeyPress(key);
+                return;
+            }
+            if (key === 'Enter') {
+                e.preventDefault();
+                handleKeyPress('Enter');
                 return;
             }
             if (key === ' ') {
@@ -1925,22 +2532,22 @@
             }
         });
 
-        // ---- Focus on display ----
         textDisplayEl.addEventListener('click', () => textDisplayEl.focus());
 
-        // ---- Init ----
         handleResponsiveKeyboard();
-        doReset();
+        renderDisplay();
+        renderPredictions();
 
         window.addEventListener('resize', handleResponsiveKeyboard);
 
-        console.log('✅ Hachukma Kokborok Typing System ready!');
-        console.log('🔤 Auto-replace: f→ph, x→ng, q→th, z→ɘ, c→ch, v→kh');
-        console.log('🔗 Digraph composition: t+h→th, n+g→ng, k+h→kh, p+h→ph');
-        console.log('🔤 Double-tap "p" on desktop OR physical keyboard → apply tone');
-        console.log('🚫 Tone is NOT applied to numerals (0-9)');
-        console.log('📱 On phone, use the tone key (U+E024) to apply tone.');
-        console.log('🛡️ Silent protection active: right-click and devtools are blocked without pop-up.');
+        console.log('✅ Hachukma Typing System ready!');
+        console.log('📖 Vocabulary size: ' + wordList.length + ' words');
+        console.log('🔤 Type any letter to see predictions.');
+        console.log('⬆️⬇️ Use arrow keys to navigate chips, Enter to select.');
+        console.log('🔄 PUA conversion is automatic.');
+        console.log('📱 Phone: Tap X to delete one char, hold X to clear all text.');
+        console.log('🚫 Tone is NOT applied to: ng, ch, ph, kh, th');
+        console.log('🛡️ Silent protection active.');
     </script>
 
 </body>
