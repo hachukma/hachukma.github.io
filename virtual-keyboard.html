@@ -1344,7 +1344,7 @@
                 Hachukma — <span class="hachukma-word">A Modern Script for Kokborok</span>
             </div>
             <div class="article-meta">
-                <span>Designed for Virtual & Physical Keyboards · 2025–2026</span>
+                <span>Designed for Virtual & Physical Keyboards · 2025–2026 </span>
             </div>
             <div class="article-body">
 
@@ -1372,10 +1372,10 @@
                 <!--  IME EXPERIMENT — CLEAR & FUTURE-FOCUSED                    -->
                 <!-- ========================================================= -->
                 <div class="ime-experiment">
-                    <p><strong>🧪 Software Experiment — A Note‑Pad for Hachukma</strong></p>
+                    <p><strong>Software Experiment — A Note‑Pad for Hachukma</strong></p>
                     <p>
                         A small note‑pad style software is available at
-                        <a href="https://hachukma.github.io/hachukma-IME-software.html" target="_blank" target="_blank">hachukma.github.io/hachukma-IME-software.html" target="_blank</a>.
+                        <a href="https://hachukma.github.io/hachukma-IME-software.html" target="_blank">https://hachukma.github.io/hachukma-IME-software.html" target="_blank"</a>.
                         This is <strong>not</strong> a full IME. It's an early experiment that shows how Hachukma characters can be typed using the multi‑tap system and tone marking.
                     </p>
                     <p>
@@ -1393,7 +1393,7 @@
                 <!--  DIGRAPH MAPS & AUTO‑REPLACE SECTION                       -->
                 <!-- ========================================================= -->
                 <div class="digraph-highlight">
-                    <p><strong>🔤 Digraph Maps &amp; Auto‑Replace — How Typing Really Works</strong></p>
+                    <p><strong>Digraph Maps &amp; Auto‑Replace — How Typing Really Works</strong></p>
                     <p>
                         One of the core design decisions I made for Hachukma is that typing should feel <em>natural</em>.
                         In Kokborok, certain sounds are represented by two letters together — these are called <strong>digraphs</strong>:
@@ -1470,7 +1470,7 @@
                     </p>
 
                     <p style="margin-top:0.6rem;background:#ffffff;padding:0.4rem 0.8rem;border-radius:4px;border:1px dashed #b0c8c8;">
-                        <span style="font-weight:600;">🗺️ Under the hood:</span> The digraph map is defined in the
+                        <span style="font-weight:600;">Under the hood:</span> The digraph map is defined in the
                         JavaScript as <code>digraphMap</code> — it's a simple object that maps second characters to first
                         characters. When you type, the engine checks if the current key + the previous key form a valid
                         digraph, and if so, it replaces the pair. This is the actual production code running in this demo.
@@ -1524,7 +1524,7 @@
                 </p>
 
                 <p style="margin-top:0.8rem;background:#f4fafa;padding:0.6rem 1rem;border-radius:6px;border-left:4px solid #297c7c;">
-                    <strong>📖 About this Demo:</strong> This is an independent, ongoing project. I am solely responsible for its current state and future direction. The demo is provided as a functional testbed to explore the Hachukma script and its typing mechanics. It is not a finished product, and expectations should be set accordingly.
+                    <strong>About this Demo:</strong> This is an independent, ongoing project. I am solely responsible for its current state and future direction. The demo is provided as a functional testbed to explore the Hachukma script and its typing mechanics. It is not a finished product, and expectations should be set accordingly.
                 </p>
             </div>
         </div>
@@ -1694,10 +1694,10 @@
         <!-- ===== FEEDBACK FOOTER ===== -->
         <div class="feedback-footer">
             <p>
-             If you have any feedback, suggestions, or questions about the Hachukma key mapping, please contact:
-              <br>
-           <a href="mailto:hachukma@gmail.com">hachukma@gmail.com</a>
-          </p>
+           If you have any feedback, suggestions, or questions about the Hachukma key mapping, please contact:
+          <br>
+          <a href="mailto:hachukma@gmail.com">hachukma@gmail.com</a>
+         </p>
         </div>
 
     </div>
@@ -1826,6 +1826,9 @@
         function isNumeralKey(key) {
             return ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].includes(key);
         }
+
+        // ---- Digraph keys that should NOT have tone ----
+        const DIGRAPH_KEYS_WITHOUT_TONE = ['th', 'ph', 'kh', 'ch', 'ng'];
 
         // ---- PUA to Latin mapping (for display) ----
         const puaToLatin = {
@@ -2110,7 +2113,7 @@
                     typedChars.push({
                         char: digraphChar,
                         key: digraphKey,
-                        tone: prev.tone || false
+                        tone: false  // digraphs never inherit tone
                     });
                     if (currentInput.length > 0) {
                         currentInput = currentInput.slice(0, -1) + digraphKey;
@@ -2182,12 +2185,15 @@
             updatePredictions();
         }
 
-        // ---- Apply high tone — now applies to all characters (including digraphs) ----
+        // ---- Apply high tone — now skips digraphs: ch, ng, ph, kh, th ----
         function applyHighToneToLastChar() {
             if (typedChars.length === 0) return;
             const last = typedChars[typedChars.length - 1];
             if (last.tone) return;
             if (last.char === ' ' || last.key === 'space') return;
+
+            // Skip digraphs: ch, ng, ph, kh, th
+            if (DIGRAPH_KEYS_WITHOUT_TONE.includes(last.key)) return;
 
             const baseChar = last.char.replace('\uE024', '');
             if (isNumeralChar(baseChar)) return;
@@ -2238,7 +2244,6 @@
                 return;
             }
             if (keyChar === 'space' || keyChar === ' ' || keyChar === 'Spacebar') {
-                // Just insert a space — no auto‑selection
                 insertChar({ char: ' ', key: 'space', tone: false });
                 return;
             }
@@ -2531,7 +2536,7 @@
         console.log('⬆️⬇️ Use arrow keys to navigate chips, Enter to select.');
         console.log('🔄 PUA conversion is automatic.');
         console.log('📱 Phone: Tap X to delete one char, hold X to clear all text.');
-        console.log('🎵 Tone mark applies to all characters, including digraphs.');
+        console.log('🎵 Tone mark skips digraphs: ch, ng, ph, kh, th.');
         console.log('🛡️ Silent protection active.');
         console.log('⌨️  Space bar inserts a plain space — no auto‑selection.');
     </script>
