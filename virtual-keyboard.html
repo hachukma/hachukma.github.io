@@ -230,7 +230,6 @@
             border-bottom-color: #1a5a5a;
         }
 
-        /* Digraph + Auto‑replace feature highlight */
         .article-section .article-body .digraph-highlight {
             background: #f0f9f9;
             padding: 0.8rem 1.2rem;
@@ -280,7 +279,6 @@
             color: #297c7c;
         }
 
-        /* ---- Vowels / Consonants Grid ---- */
         .letter-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
@@ -330,7 +328,6 @@
             margin-top: 0.05rem;
         }
 
-        /* ---- Text display wrapper ---- */
         .text-display-wrapper {
             position: relative;
             width: 1090px;
@@ -350,7 +347,6 @@
             border-color: #297c7c;
         }
 
-        /* ---- Prediction Bar: fixed chips, no scroll ---- */
         .prediction-bar {
             display: flex;
             flex-wrap: nowrap;
@@ -407,7 +403,6 @@
             flex: 0 0 auto;
         }
 
-        /* ---- Main text display ---- */
         .text-display {
             padding: 1.2rem 1.5rem;
             min-height: 140px;
@@ -498,7 +493,6 @@
             min-width: 0.5em;
         }
 
-        /* ===== KEYBOARD ===== */
         .keyboard-wrapper {
             display: flex;
             flex-direction: column;
@@ -606,7 +600,6 @@
             line-height: 1.2;
         }
 
-        /* ===== PHONE KEYBOARD ===== */
         .smalldevice-container {
             display: none;
             max-width: 1000px;
@@ -825,7 +818,6 @@
             padding-left: 39px;
         }
 
-        /* ===== RESPONSIVE ===== */
         @media screen and (max-width: 1200px) {
             .container {
                 padding: 1rem;
@@ -1337,7 +1329,7 @@
 
     <nav class="navbar">
         <div class="brand">
-            <span class="hachukma-font">Hachukma — Virtual keyboard</span>
+            <span class="hachukma-font">Hachukma — Kokborok Script</span>
         </div>
         <div class="nav-links">
             <a href="index.html" id="navBack">← Back</a>
@@ -1357,19 +1349,23 @@
             <div class="article-body">
 
                 <p>
-                    <strong>Hachukma</strong> is a contemporary writing system I created for the Kokborok language. It is designed to work seamlessly on the physical keyboards you use every day—whether you're writing a document, sending an email, or exploring the world of coding. Developed throughout 2025–2026, Hachukma uses the <strong>Private Use Area (PUA)</strong> of Unicode, ensuring that each character has a unique digital identity and can be displayed beautifully on any modern device.
+                    <strong>Hachukma</strong> is a contemporary writing system I created for the Kokborok language. It is designed to work seamlessly on the physical keyboards you use every day—whether you're writing a document, sending an email, or just typing notes. Developed throughout 2025–2026, Hachukma uses the <strong>Private Use Area (PUA)</strong> of Unicode, so each character has a unique digital identity and can be displayed on any modern device.
                 </p>
 
                 <p>
-                    <strong>A Writing System That Fits Your Keyboard</strong> — Hachukma respects the layout of a standard physical computer keyboard. This means you don't need to buy a special keyboard or learn a completely new typing layout. The most important symbols for programming, math, and everyday computing — like <span class="operator-keys">; ' [ ] , . / \ = - ( ) < > | ` " { } ! @ # $ % ^ &amp; * _ +</span> — stay exactly where they are. This ensures that as the Kokborok community grows in the digital age, we can write code, work with data, and use software without any barriers.
+                    <strong>A Writing System That Fits Your Keyboard</strong> — Hachukma follows the layout of a standard physical computer keyboard. You don't need a special keyboard or a completely new typing layout. The symbols you already know — like <span class="operator-keys">; ' [ ] , . / \ = - ( ) < > | ` " { } ! @ # $ % ^ &amp; * _ +</span> — stay in their usual places. This means you can type in Kokborok without relearning where the keys are.
                 </p>
 
                 <p>
-                    <strong>Tone Mark vs. Future Punctuation:</strong> The tone mark used in Hachukma is a phonetic marker. It is <strong>not</strong> a punctuation mark and is not intended to replace or interfere with future Kokborok punctuation marks. I have intentionally kept the tone mark separate so that the community can later decide on its own punctuation system, which can be developed independently.
+                    <strong>Built for Practical, Everyday Use</strong> — Hachukma is built for practical, everyday use. The script is designed to work on your computer right now, and the keyboard layout is straightforward. The tone system and digraph auto‑replace are designed to be efficient. It's a script made for the Kokborok language, ready to be used today and in the future.
                 </p>
 
                 <p>
-                    <strong>Why the Tone Mark is on the <kbd>p</kbd> Key (Double‑Tap)</strong> — In Kokborok, the tone mark is essential for pronunciation and meaning. In Hachukma, you can add this tone mark by simply double‑tapping the <kbd>p</kbd> key. Why <kbd>p</kbd>? Because it keeps all the math and coding symbols free and functional. This "multi‑tap" approach is fast, intuitive, and ensures that your writing flows smoothly without disrupting your work.
+                    <strong>Tone Mark vs. Punctuation:</strong> The tone mark in Hachukma is a phonetic marker, not a punctuation mark. It does not replace or take up the slots of future Kokborok punctuation marks. The tone mark is placed on the <strong><kbd>p</kbd> key</strong> (via double‑tap), leaving all punctuation keys (<kbd>;</kbd>, <kbd>'</kbd>, <kbd>,</kbd>, <kbd>.</kbd>, <kbd>/</kbd>, etc.) completely free for their standard uses and for any future Kokborok punctuation that the community decides to adopt.
+                </p>
+
+                <p>
+                    <strong>Why the Tone Mark is on the <kbd>p</kbd> Key (Double‑Tap)</strong> — In Kokborok, the tone mark is important for pronunciation and meaning. In Hachukma, you add it by double‑tapping the <kbd>p</kbd> key. Why <kbd>p</kbd>? Because it keeps all the other keys free for their normal jobs, like punctuation and symbols. This "multi‑tap" approach is fast and intuitive.
                 </p>
 
                 <!-- ========================================================= -->
@@ -1379,22 +1375,22 @@
                     <p><strong>🧪 Software Experiment — A Note‑Pad for Hachukma</strong></p>
                     <p>
                         A small note‑pad style software is available at
-                        <a href="https://hachukma.github.io/hachukma-IME-software.html" target="_blank">https://hachukma.github.io/hachukma-IME-software.html</a>.
-                        This is <strong>not</strong> a full IME. It is simply an early experiment that demonstrates how Hachukma characters can be typed using the multi‑tap system and tone marking.
+                        <a href="https://hachukma.github.io/hachukma-IME-software.html" target="_blank" target="_blank">hachukma.github.io/hachukma-IME-software.html" target="_blank</a>.
+                        This is <strong>not</strong> a full IME. It's an early experiment that shows how Hachukma characters can be typed using the multi‑tap system and tone marking.
                     </p>
                     <p>
-                        <strong>What about the future?</strong> As soon as official Unicode codepoints are assigned to Hachukma, developing a complete system‑wide IME (Input Method Editor) will be straightforward. Such an IME would solve the multi‑tap system entirely in software — meaning no special hardware would be required. Users would be able to type in Hachukma on <em>any</em> standard keyboard, in <em>any</em> application.
+                        <strong>What about the future?</strong> Once official Unicode codepoints are assigned to Hachukma, building a full system‑wide IME (Input Method Editor) will be straightforward. Such an IME would handle the multi‑tap system entirely in software — no special hardware needed. You'd be able to type in Hachukma on <em>any</em> standard keyboard, in <em>any</em> application.
                     </p>
                     <p>
-                        <strong>And hardware keyboards?</strong> In the future, physical hardware keyboards with Hachukma layouts can also be manufactured. These keyboards will be fully compatible <strong>without needing any external software</strong> — the multi‑tap logic and character mapping will be built directly into the keyboard's firmware. This means you can simply plug in the keyboard and start typing in Hachukma, no drivers or special software required.
+                        <strong>And hardware keyboards?</strong> In the future, physical keyboards with Hachukma layouts could be manufactured. These keyboards would work <strong>without any external software</strong> — the multi‑tap logic and character mapping would be built directly into the keyboard's firmware. Just plug it in and start typing.
                     </p>
                     <p>
-                        <strong>Important:</strong> The full IME and the hardware keyboards have <strong>not been built yet</strong>. I am talking about future possibilities. The current note‑pad experiment is a step toward understanding how these systems might work, gathering feedback, and refining the user experience.
+                        <strong>Important:</strong> The full IME and hardware keyboards have <strong>not been built yet</strong>. I'm talking about future possibilities. The current note‑pad experiment is a step toward understanding how these systems might work and gathering feedback.
                     </p>
                 </div>
 
                 <!-- ========================================================= -->
-                <!--  NEW: DIGRAPH MAPS & AUTO‑REPLACE SECTION                  -->
+                <!--  DIGRAPH MAPS & AUTO‑REPLACE SECTION                       -->
                 <!-- ========================================================= -->
                 <div class="digraph-highlight">
                     <p><strong>🔤 Digraph Maps &amp; Auto‑Replace — How Typing Really Works</strong></p>
@@ -1463,28 +1459,26 @@
                     <p>
                         <strong>Why this matters:</strong> This auto‑replace feature makes typing in Hachukma feel
                         just like typing in any other language. You don't have to think about "special keys" or "alternate
-                        layouts" — you just type the sounds as you hear them, and the system handles the rest. It's a
-                        small detail, but it makes a huge difference in daily use.
+                        layouts" — you just type the sounds as you hear them, and the system handles the rest.
                     </p>
 
                     <p>
-                        <strong>What about the tone mark?</strong> Digraphs like <code>ng</code>, <code>ch</code>,
-                        <code>ph</code>, <code>kh</code>, and <code>th</code> are <strong>excluded</strong> from tone
-                        marking. This is intentional — in Kokborok, these sounds do not carry tone in the same way that
-                        other consonants do. The system respects this linguistic rule automatically.
+                        <strong>Tone marking across all characters:</strong> Hachukma applies the tone mark uniformly to
+                        all phonetic characters, including digraphs. This ensures that every sound can carry a tone,
+                        which is essential for accurate Kokborok pronunciation. The tone mark is added via double‑tap
+                        on <kbd>p</kbd> and works seamlessly with the auto‑replace logic.
                     </p>
 
                     <p style="margin-top:0.6rem;background:#ffffff;padding:0.4rem 0.8rem;border-radius:4px;border:1px dashed #b0c8c8;">
                         <span style="font-weight:600;">🗺️ Under the hood:</span> The digraph map is defined in the
                         JavaScript as <code>digraphMap</code> — it's a simple object that maps second characters to first
                         characters. When you type, the engine checks if the current key + the previous key form a valid
-                        digraph, and if so, it replaces the pair. This logic is <strong>not</strong> a proof-of-concept —
-                        it's the actual production code running in this demo.
+                        digraph, and if so, it replaces the pair. This is the actual production code running in this demo.
                     </p>
                 </div>
 
                 <p>
-                    <strong>Smart Typing with Predictions</strong> — To make typing even easier, Hachukma includes a smart prediction engine. As you start typing a word, a list of possible words appears above the text area. For example, typing <span class="code-block">a</span> will show predictions like <strong>ama</strong> and <strong>awang</strong>. You can simply click or tap on the word you want, and it will be inserted in the beautiful Hachukma script. This feature is designed to make writing in Kokborok faster and more enjoyable for everyone.
+                    <strong>Smart Typing with Predictions</strong> — To make typing faster, Hachukma includes a prediction engine. As you start typing a word, a list of possible words appears above the text area. For example, typing <span class="code-block">a</span> will show predictions like <strong>ama</strong> and <strong>awang</strong>. You can select a prediction by clicking it or using the arrow keys and Enter. I'll be adding more words to the vocabulary in future updates.
                 </p>
 
                 <p>
@@ -1700,7 +1694,7 @@
         <!-- ===== FEEDBACK FOOTER ===== -->
         <div class="feedback-footer">
             <p>
-                Have feedback or ideas for improving Hachukma? I'd love to hear from you.
+                For feedback, suggestions, or professional inquiries regarding the Hachukma script, please contact:
                 <br>
                 <a href="mailto:hachukma@gmail.com">hachukma@gmail.com</a>
             </p>
@@ -1832,9 +1826,6 @@
         function isNumeralKey(key) {
             return ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].includes(key);
         }
-
-        // ---- Digraphs that should NOT receive tone ----
-        const NO_TONE_DIGRAPHS = ['ng', 'ch', 'ph', 'kh', 'th'];
 
         // ---- PUA to Latin mapping (for display) ----
         const puaToLatin = {
@@ -2191,15 +2182,12 @@
             updatePredictions();
         }
 
-        // ---- Apply high tone — skip digraphs: ng, ch, ph, kh, th ----
+        // ---- Apply high tone — now applies to all characters (including digraphs) ----
         function applyHighToneToLastChar() {
             if (typedChars.length === 0) return;
             const last = typedChars[typedChars.length - 1];
             if (last.tone) return;
             if (last.char === ' ' || last.key === 'space') return;
-
-            // Skip digraphs that should not receive tone
-            if (NO_TONE_DIGRAPHS.includes(last.key)) return;
 
             const baseChar = last.char.replace('\uE024', '');
             if (isNumeralChar(baseChar)) return;
@@ -2250,10 +2238,7 @@
                 return;
             }
             if (keyChar === 'space' || keyChar === ' ' || keyChar === 'Spacebar') {
-                if (selectedIndex >= 0 && selectedIndex < predictionList.length) {
-                    selectPrediction(predictionList[selectedIndex]);
-                    return;
-                }
+                // Just insert a space — no auto‑selection
                 insertChar({ char: ' ', key: 'space', tone: false });
                 return;
             }
@@ -2546,8 +2531,9 @@
         console.log('⬆️⬇️ Use arrow keys to navigate chips, Enter to select.');
         console.log('🔄 PUA conversion is automatic.');
         console.log('📱 Phone: Tap X to delete one char, hold X to clear all text.');
-        console.log('🚫 Tone is NOT applied to: ng, ch, ph, kh, th');
+        console.log('🎵 Tone mark applies to all characters, including digraphs.');
         console.log('🛡️ Silent protection active.');
+        console.log('⌨️  Space bar inserts a plain space — no auto‑selection.');
     </script>
 
 </body>
