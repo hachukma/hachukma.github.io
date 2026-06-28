@@ -347,60 +347,91 @@
             border-color: #297c7c;
         }
 
+        /* ─── PREDICTION BAR — VERTICAL BAR STYLE ─── */
         .prediction-bar {
             display: flex;
             flex-wrap: nowrap;
-            gap: 8px;
-            padding: 10px 16px;
             align-items: center;
-            min-height: 60px;
+            justify-content: center;
+            gap: 0.4rem;
+            padding: 8px 16px;
+            min-height: 50px;
             background: #f8fbfb;
             border-bottom: 2px solid #dce8e8;
-            overflow: hidden;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scrollbar-width: thin;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        .prediction-bar::-webkit-scrollbar {
+            height: 3px;
+        }
+        .prediction-bar::-webkit-scrollbar-track {
+            background: #eaf0f0;
+        }
+        .prediction-bar::-webkit-scrollbar-thumb {
+            background: #b8cece;
+            border-radius: 3px;
         }
 
         .prediction-bar .prediction-item {
             flex: 0 0 auto;
-            padding: 6px 18px;
-            border-radius: 30px;
-            background: #ffffff;
-            border: 1.5px solid #d0dbdb;
-            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+            padding: 2px 10px;
+            font-size: 0.95rem;
             cursor: pointer;
             white-space: nowrap;
-            font-size: 0.95rem;
-            transition: all 0.15s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
             font-family: 'Segoe UI', Tahoma, sans-serif;
+            color: #1a2a2a;
+            transition: color 0.15s, background 0.15s;
+            border-radius: 2px;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            line-height: 1.6;
         }
 
         .prediction-bar .prediction-item:hover {
-            background: #f0f6f6;
-            border-color: #b0c8c8;
+            color: #297c7c;
+            background: rgba(41, 124, 124, 0.06);
         }
 
         .prediction-bar .prediction-item.active {
-            border-color: #297c7c;
-            background: #eaf5f5;
-            box-shadow: 0 2px 8px rgba(41, 124, 124, 0.15);
+            color: #297c7c;
+            font-weight: 600;
+            background: rgba(41, 124, 124, 0.08);
+            border-radius: 2px;
         }
 
         .prediction-bar .prediction-item .pua-preview {
             font-family: 'NewScript', 'Segoe UI', Tahoma, sans-serif;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #297c7c;
-            opacity: 0.8;
+            opacity: 0.7;
+            font-weight: 400;
+        }
+
+        .prediction-bar .prediction-separator {
+            flex: 0 0 auto;
+            color: #b8cece;
+            font-size: 1.2rem;
+            font-weight: 300;
+            line-height: 1;
+            padding: 0 2px;
+            user-select: none;
         }
 
         .prediction-bar .prediction-empty {
             color: #8aaaaa;
             font-size: 0.9rem;
             font-style: italic;
-            padding: 0.2rem 0.4rem;
             font-family: 'Segoe UI', Tahoma, sans-serif;
-            flex: 0 0 auto;
+            text-align: center;
+            width: 100%;
+            padding: 0.2rem 0;
         }
 
         .text-display {
@@ -839,12 +870,19 @@
                 font-size: 1.8rem;
             }
             .prediction-bar {
-                min-height: 56px;
-                padding: 8px 12px;
+                min-height: 48px;
+                padding: 6px 12px;
+                gap: 0.3rem;
             }
             .prediction-bar .prediction-item {
                 font-size: 0.9rem;
-                padding: 5px 14px;
+                padding: 2px 8px;
+            }
+            .prediction-bar .prediction-item .pua-preview {
+                font-size: 1rem;
+            }
+            .prediction-bar .prediction-separator {
+                font-size: 1rem;
             }
             .keyboard-container {
                 width: 100%;
@@ -884,16 +922,19 @@
                 font-size: 0.55rem;
             }
             .prediction-bar {
-                min-height: 50px;
+                min-height: 44px;
                 padding: 6px 10px;
-                gap: 6px;
+                gap: 0.2rem;
             }
             .prediction-bar .prediction-item {
                 font-size: 0.85rem;
-                padding: 4px 12px;
+                padding: 2px 6px;
             }
             .prediction-bar .prediction-item .pua-preview {
-                font-size: 1rem;
+                font-size: 0.9rem;
+            }
+            .prediction-bar .prediction-separator {
+                font-size: 0.9rem;
             }
             .keyboard {
                 grid-template-columns: repeat(30, 24px);
@@ -950,17 +991,20 @@
                 height: 1.2rem;
             }
             .prediction-bar {
-                min-height: 46px;
-                padding: 6px 10px;
-                gap: 6px;
+                min-height: 40px;
+                padding: 4px 10px;
+                gap: 0.15rem;
             }
             .prediction-bar .prediction-item {
                 font-size: 0.8rem;
-                padding: 4px 12px;
+                padding: 2px 6px;
                 gap: 4px;
             }
             .prediction-bar .prediction-item .pua-preview {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
+            }
+            .prediction-bar .prediction-separator {
+                font-size: 0.8rem;
             }
             .keyboard-container {
                 padding: 0.5rem;
@@ -1020,18 +1064,21 @@
                 top: -0.2em;
             }
             .prediction-bar {
-                min-height: 40px;
+                min-height: 34px;
                 padding: 4px 8px;
-                gap: 4px;
+                gap: 0.1rem;
             }
             .prediction-bar .prediction-item {
                 font-size: 0.7rem;
-                padding: 3px 10px;
-                border-radius: 20px;
-                gap: 4px;
+                padding: 1px 5px;
+                gap: 3px;
             }
             .prediction-bar .prediction-item .pua-preview {
-                font-size: 0.8rem;
+                font-size: 0.75rem;
+            }
+            .prediction-bar .prediction-separator {
+                font-size: 0.7rem;
+                padding: 0 1px;
             }
             .prediction-bar .prediction-empty {
                 font-size: 0.7rem;
@@ -1148,18 +1195,21 @@
                 top: -0.15em;
             }
             .prediction-bar {
-                min-height: 34px;
-                padding: 4px 6px;
-                gap: 4px;
+                min-height: 30px;
+                padding: 3px 6px;
+                gap: 0;
             }
             .prediction-bar .prediction-item {
                 font-size: 0.6rem;
-                padding: 2px 8px;
-                border-radius: 16px;
-                gap: 3px;
+                padding: 1px 4px;
+                gap: 2px;
             }
             .prediction-bar .prediction-item .pua-preview {
-                font-size: 0.7rem;
+                font-size: 0.65rem;
+            }
+            .prediction-bar .prediction-separator {
+                font-size: 0.6rem;
+                padding: 0 1px;
             }
             .prediction-bar .prediction-empty {
                 font-size: 0.6rem;
@@ -1360,16 +1410,12 @@
                     <strong>Built for Practical, Everyday Use</strong> — Hachukma is built for practical, everyday use. The script is designed to work on your computer right now, and the keyboard layout is straightforward. The tone system and digraph auto‑replace are designed to be efficient. It's a script made for the Kokborok language, ready to be used today and in the future.
                 </p>
 
-                <!-- NEW PARAGRAPH: DIGITAL AGE -->
-             
-                 <p>
-                <strong>Hachukma</strong> is designed not only for literature and everyday writing, but also for the future of <strong>computing</strong> and <strong>programming</strong> in its own script. It preserves familiar punctuation keys (<code>, . / ; [ ] { }</code>) in their standard positions, making it practical for coding while supporting efficient digital typing.
+                <p>
+                    <strong>Hachukma</strong> is designed not only for literature and everyday writing, but also for the future of <strong>computing</strong> and <strong>programming</strong> in its own script. It preserves familiar punctuation keys (<code>, . / ; [ ] { }</code>) in their standard positions, making it practical for coding while supporting efficient digital typing.
                 </p>
 
-
-
                 <p>
-                    <strong>Tone Mark vs. Punctuation:</strong> The tone mark in Hachukma is a phonetic marker, not a punctuation mark. It does not replace or take up the slots of future Kokborok punctuation marks. The tone mark is placed on the <strong><kbd>p</kbd> key</strong> (via double‑tap), leaving all punctuation keys (<kbd>;</kbd>, <kbd>'</kbd>, <kbd>,</kbd>, <kbd>.</kbd>, <kbd>/</kbd>, etc.) completely free for their standard uses and for any future Kokborok punctuation that the community decides to adopt.
+                    <strong>Tone Mark & Punctuation:</strong> The tone mark in Hachukma is a phonetic marker, not a punctuation mark. It does not replace or take up the slots of future Kokborok punctuation marks. The tone mark is placed on the <strong><kbd>p</kbd> key</strong> (via double‑tap), leaving all punctuation keys (<kbd>;</kbd>, <kbd>'</kbd>, <kbd>,</kbd>, <kbd>.</kbd>, <kbd>/</kbd>, etc.) completely free for their standard uses and for any future Kokborok punctuation that the community decides to adopt.
                 </p>
 
                 <p>
@@ -1383,7 +1429,7 @@
                     <p><strong>Software Experiment — A Note‑Pad for Hachukma</strong></p>
                     <p>
                         A small note‑pad style software is available at
-                        <a href="https://hachukma.github.io/hachukma-IME-software.html">hachukma.github.io/hachukma-IME-software.html</a>.
+                        <a href="https://hachukma.github.io/hachukma-IME-software.html" target="_blank">hachukma.github.io/hachukma-IME-software.html</a>.
                         This is <strong>not</strong> a full IME. It's an early experiment that shows how Hachukma characters can be typed using the multi‑tap system and tone marking.
                     </p>
                     <p>
@@ -1702,10 +1748,10 @@
         <!-- ===== FEEDBACK FOOTER ===== -->
         <div class="feedback-footer">
             <p>
-           If you have any feedback, suggestions, or questions about the Hachukma key mapping, please contact:
-          <br>
-          <a href="mailto:hachukma@gmail.com">hachukma@gmail.com</a>
-         </p>
+                If you have any feedback, suggestions, or questions about the Hachukma key mapping, please contact:
+                <br>
+                <a href="mailto:hachukma@gmail.com">hachukma@gmail.com</a>
+            </p>
         </div>
 
     </div>
@@ -1801,9 +1847,10 @@
         })();
 
 
-        // ================================================================
+
         //  HACHUKMA PREDICTIVE TYPING SYSTEM — Full Implementation
-        // ================================================================
+        //  with SUBSTRING matching + VERTICAL BAR separators
+ 
 
         // ---- DOM refs ----
         const textDisplayEl = document.getElementById('textDisplay');
@@ -1931,28 +1978,23 @@
             return pua;
         }
 
-        // ].sort();
-       //   const wordList = [
-       //  "ama", "awang",
-       
-       // ].sort();
-
-        const wordList = [ "ama", "awang",
+        // ---- Vocabulary: only romanized words ----
+        const wordList = [  "ama", "awang",
   "bacha", "khunju", "nahar", "nono", "norok", "nɘng", "o", "omaio",
-  "phai", "tabuk", "takhukrok", "tamo", "tei", "thang", "aboh", "aboni", "abono",
+  "phai", "tabuk", "takhukrok,", "tamo", "tei", "thang", "aboni", "abono",
   "ang", "ani", "apha", "aphuru", "ba", "bini", "bo", "borok", "bɘsa", "bɘsano",
   "bɘrɘima", "bɘkhnai", "chini", "choba", "ha", "joto", "juda",
-  "kaham", "kai", "kerongno", "khajak", "khoroksa", "kothoma", "kotor", "kɘplai",
-  "kɘthar", "kɘthɘi", "lamthai", "langma", "musi", "nahar", "naisik", "nokhao",
-  "nono", "norok", "norokni", "nɘng", "orono", "pai", "phola", "sabo", "sinai",
-  "sindrai", "sɘkango", "ta", "tabuk", "tabuk", "takhukrok,", "tamni", "tamo",
+  "kaham","kerongno", "khajak", "khoroksa", "kothoma", "kotor", "kɘplai",
+  "kɘthar", "kɘthɘi", "lamthai", "langma", "musi",  "naisik", "nokhao",
+  "nono", "norok", "norokni", "nɘng", "orono", "pai", "phola", "sinai",
+  "sindrai", "sɘkango", "ta", "takhukrok", "tamni", "tamo",
   "tatal", "tei", "tong", "tɘimuk", "ulo", "yak", "yang", "abo", "achugui",
   "achuk", "achukjak", "agi", "agini", "agibo", "ainani", "aitor", "ama",
-  "amjokna", "ang", "ani", "ano", "antɘi", "aphuru", "aro", "aroni",
+  "amjokna", "ang", "ani", "ano", "antɘi", "aphuru", "arirokno", "aro", "aroni",
   "asɘk", "athukiri", "aɘang", "bacha", "bachai", "bagɘi", "bai", "baithang",
   "baksa", "bao", "bebak", "bedek", "belai", "bera", "bini", "birjak", "birman",
   "birɘi", "bisingni", "bisiktham", "bithi", "blɘisa", "bobo", "boh", "bohok",
-  "bohrok", "bono", "borok", "borokrok", "bororokni",
+  "bohrok", "bono", "bori", "borok", "borokrok", "bororokni",
   "bororokno", "bosong", "bosong,", "bosongni,", "bosongno", "brum", "brɘi",
   "brɘio", "bujak", "bukhuk", "bukhugo", "bului", "bumukhang", "bumun", "buro",
   "buya", "bɘcha", "bɘchap", "bɘdam", "bɘkhak", "bɘkha", "bɘkhnai", "bɘkrang",
@@ -1963,20 +2005,20 @@
   "gɘnang", "haino", "hai", "hambai", "hamjak", "hamya", "hao", "hasing",
   "hatai", "haya", "holong", "homchang", "hor", "horljaini", "huijak", "hɘn",
   "hɘnjak", "hɘno", "hɘnɘi", "jabra", "jak", "jolijak", "jora", "jorsa",
-  "jotoni", "jotono", "kaisa", "kang", "kangsa", "kangnɘi", "kanjak", "kaya",
+  "jotoni", "jotono", "kaisa", "kangsa", "kangnɘi", "kanjak", "kaya",
   "kebeng", "kebo", "kha", "khaching", "khajaknaino;", "khajuri", "khak",
   "khaksa", "khakthamni", "kham", "khar", "kharɘi", "kheno", "khibinai",
   "khitar", "khlai", "kho", "khobjak,", "khogɘi", "khok", "kholob", "khorang",
   "khoroksa", "khoroksani", "khoroksano", "khoroktham", "khulum", "khɘi",
   "kiching", "kirima", "kiri", "kisa", "klaijak", "klai", "klaiɘi", "kok",
-  "kolok", "kormolele", "koro", "kotor,", "kotorma", "kotorni", "kotoi",
-  "kotoino", "kotorrok", "kothor", "krai", "kraima", "kubui", "kukthorarok",
+  "kolok",  "kotor,", "kotorma", 
+  "kotoino", "kotorrok", "kothor", "kubui", 
   "kuphur", "kuphurbo", "kuplung", "kutung", "kutungbo", "kusu", "kutukma",
   "kɘbangma", "kɘbangma", "kɘchak", "kɘchak.", "kɘchang", "kɘchar",
   "kɘcharo", "kɘcharni", "kɘchɘng", "kɘkhrang", "kɘma", "kɘmai", "kɘnɘi",
   "kɘplai", "kɘplairok", "kɘrɘi", "kɘrɘng", "kɘsa", "kɘtal", "kɘthang",
-  "kɘthar", "kɘthɘi", "kɘthɘngrok", "kɘtɘi", "lai",
-  "laijak", "laina", "laio", "laiɘi", "lam", "lama", "lamsa",
+  "kɘthar", "kɘthɘi", "kɘthɘngrok", "kɘtɘi",  "lai",
+  "laijak", "laina", "laio", "laiɘi", "lam", "lama", 
   "langta", "lobmani", "logi", "mani", "mano", "manthok", "manɘi", "mari",
   "masano", "modu", "motok", "muchung", "muchungma", "muktɘi", "mung",
   "mungsa", "mɘsa", "naidi", "nang", "nango", "nini", "nobar", "nogo",
@@ -1994,27 +2036,30 @@
   "simino", "sina", "sini", "sinino", "sio", "sitra", "skango", "smai",
   "snamjak", "snamnai", "snamo", "sokdi", "songni", "sɘi", "sɘijak",
   "sɘkdi", "sɘkagɘi", "sɘkak", "sɘkakma", "sɘkango", "sɘndɘk", "sɘng",
-  "sɘngchar-", "sɘngcharni", "sɘngcharno", "ta", "ta", "takhuk", "tak",
-  "tal", "tamo", "tamni", "tamna", "tamono", "tang", "tangma", "tangmani",
+  "sɘngchar", "sɘngcharni", "sɘngcharno", "takhuk", "tak",
+  "tal", "tamni", "tamna", "tamono", "tang", "tangma", "tangmani",
   "tangna", "tangnai", "tangsa", "tapsa", "tatal", "tei", "tekto", "tektoni",
   "thai", "thango", "thani", "thɘi", "thɘima", "toling", "tongdi", "tɘi",
-  "tɘimuk", "ulo", "ɘng", "ɘngjak", "yabrɘini",
+  "tɘimuk", "ulo", "ɘng", "ɘngjak", 
   "yabrɘi", "yachak", "yakung", "yaksi", "yang", "yaphango",
-  "yapharjak", "yarok", "yarokno", "yasku" ,"watɘi" , "wa", ,"wasung" , "wacheng" 
+  "yapharjak", "yarok", "yarokno", "yasku" ,"watɘi" , "wa", ,"wasung" , "wacheng" ,"thang",
 ].sort();
  
 
-        // ---- Get predictions ----
+        // ---- Get predictions using SUBSTRING match (contains) ----
         function getPredictions(prefix) {
             if (!prefix || prefix.length === 0) return [];
             const lowerPrefix = prefix.toLowerCase();
             const results = [];
             for (const word of wordList) {
-                if (word.toLowerCase().startsWith(lowerPrefix)) {
+                // substring match: word contains the typed sequence anywhere
+                if (word.toLowerCase().includes(lowerPrefix)) {
                     results.push(word);
                 }
-                if (results.length >= 10) break;
+                if (results.length >= 20) break;
             }
+            // Sort by length (shorter first) for cleaner display
+            results.sort((a, b) => a.length - b.length);
             return results;
         }
 
@@ -2022,7 +2067,7 @@
         function getMaxChips() {
             const w = window.innerWidth;
             if (w <= 600) return 3;
-            return 6;
+            return 7;
         }
 
         // ================================================================
@@ -2095,6 +2140,7 @@
                 const spanRoman = document.createElement('span');
                 spanRoman.textContent = word;
                 div.appendChild(spanRoman);
+
                 const pua = romanToPUA(word);
                 if (pua) {
                     const spanPua = document.createElement('span');
@@ -2103,6 +2149,7 @@
                     div.appendChild(spanPua);
                 }
                 div.dataset.word = word;
+
                 div.addEventListener('click', function(e) {
                     e.stopPropagation();
                     selectPrediction(this.dataset.word);
@@ -2119,7 +2166,16 @@
                         }
                     });
                 });
+
                 predictionBar.appendChild(div);
+
+                // Add separator after each item except the last
+                if (i < show.length - 1) {
+                    const sep = document.createElement('span');
+                    sep.className = 'prediction-separator';
+                    sep.textContent = '|';
+                    predictionBar.appendChild(sep);
+                }
             }
         }
 
@@ -2189,7 +2245,7 @@
                     typedChars.push({
                         char: digraphChar,
                         key: digraphKey,
-                        tone: false  // digraphs never inherit tone
+                        tone: false
                     });
                     if (currentInput.length > 0) {
                         currentInput = currentInput.slice(0, -1) + digraphKey;
@@ -2261,14 +2317,13 @@
             updatePredictions();
         }
 
-        // ---- Apply high tone — now skips digraphs: ch, ng, ph, kh, th ----
+        // ---- Apply high tone — skips digraphs: ch, ng, ph, kh, th ----
         function applyHighToneToLastChar() {
             if (typedChars.length === 0) return;
             const last = typedChars[typedChars.length - 1];
             if (last.tone) return;
             if (last.char === ' ' || last.key === 'space') return;
 
-            // Skip digraphs: ch, ng, ph, kh, th
             if (DIGRAPH_KEYS_WITHOUT_TONE.includes(last.key)) return;
 
             const baseChar = last.char.replace('\uE024', '');
@@ -2608,13 +2663,14 @@
 
         console.log('✅ Hachukma Typing System ready!');
         console.log('📖 Vocabulary size: ' + wordList.length + ' words');
+        console.log('🔍 Prediction uses SUBSTRING matching (contains)');
         console.log('🔤 Type any letter to see predictions.');
         console.log('⬆️⬇️ Use arrow keys to navigate chips, Enter to select.');
-        console.log('🔄 PUA conversion is automatic.');
         console.log('📱 Phone: Tap X to delete one char, hold X to clear all text.');
         console.log('🎵 Tone mark skips digraphs: ch, ng, ph, kh, th.');
         console.log('🛡️ Silent protection active.');
         console.log('⌨️  Space bar inserts a plain space — no auto‑selection.');
+        console.log('│  Prediction bar uses vertical bar separators.');
     </script>
 
 </body>
