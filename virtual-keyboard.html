@@ -598,6 +598,13 @@
             background: #c8d6d6;
         }
 
+        /* ---- ENHANCED BLINK EFFECT for desktop keys ---- */
+        .key.active {
+            background: #dae4e4 !important;
+            transform: scale(1.02);
+            transition: background 0.1s, box-shadow 0.1s, transform 0.1s;
+        }
+
         .key.wide {
             grid-column: span 3;
         }
@@ -810,6 +817,17 @@
             transform: translateY(2px);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
             background: #c8d6d6;
+        }
+
+        /* ---- ENHANCED BLINK EFFECT for phone keys ---- */
+        .smalldevice-key.active,
+        .smalldevice-keys.active,
+        .smalldevice-key-arrow.active,
+        .smalldevice-key-cut.active {
+            background: #ffd966 !important;
+            box-shadow: 0 0 20px #ffd966, 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+            transform: scale(1.02);
+            transition: background 0.1s, box-shadow 0.1s, transform 0.1s;
         }
 
         .smalldevice-key.extra-wide {
@@ -1847,10 +1865,10 @@
         })();
 
 
-
+        // ================================================================
         //  HACHUKMA PREDICTIVE TYPING SYSTEM — Full Implementation
         //  with SUBSTRING matching + VERTICAL BAR separators
- 
+        // ================================================================
 
         // ---- DOM refs ----
         const textDisplayEl = document.getElementById('textDisplay');
@@ -2044,7 +2062,6 @@
   "yabrɘi", "yachak", "yakung", "yaksi", "yang", "yaphango",
   "yapharjak", "yarok", "yarokno", "yasku" ,"watɘi" , "wa", ,"wasung" , "wacheng" ,"thang",
 ].sort();
- 
 
         // ---- Get predictions using SUBSTRING match (contains) ----
         function getPredictions(prefix) {
@@ -2052,13 +2069,11 @@
             const lowerPrefix = prefix.toLowerCase();
             const results = [];
             for (const word of wordList) {
-                // substring match: word contains the typed sequence anywhere
                 if (word.toLowerCase().includes(lowerPrefix)) {
                     results.push(word);
                 }
                 if (results.length >= 20) break;
             }
-            // Sort by length (shorter first) for cleaner display
             results.sort((a, b) => a.length - b.length);
             return results;
         }
@@ -2067,7 +2082,7 @@
         function getMaxChips() {
             const w = window.innerWidth;
             if (w <= 600) return 3;
-            return 7;
+            return 6;
         }
 
         // ================================================================
@@ -2169,7 +2184,6 @@
 
                 predictionBar.appendChild(div);
 
-                // Add separator after each item except the last
                 if (i < show.length - 1) {
                     const sep = document.createElement('span');
                     sep.className = 'prediction-separator';
@@ -2179,20 +2193,17 @@
             }
         }
 
-        // ---- Select a prediction: remove typed chars, insert full word ----
         function selectPrediction(word) {
             if (!word) return;
             const pua = romanToPUA(word);
             if (!pua) return;
 
-            // Remove the characters that correspond to currentInput
             const inputPUA = romanToPUA(currentInput);
             const inputLength = inputPUA.length;
             for (let i = 0; i < inputLength && typedChars.length > 0; i++) {
                 typedChars.pop();
             }
 
-            // Add the prediction characters
             const chars = [...pua];
             for (const ch of chars) {
                 const key = puaToLatin[ch] || ch;
@@ -2208,7 +2219,6 @@
             textDisplayEl.focus();
         }
 
-        // ---- Insert a single character with digraph composition ----
         function insertChar(charData) {
             const newKey = charData.key;
             const newChar = charData.char;
@@ -2317,7 +2327,6 @@
             updatePredictions();
         }
 
-        // ---- Apply high tone — skips digraphs: ch, ng, ph, kh, th ----
         function applyHighToneToLastChar() {
             if (typedChars.length === 0) return;
             const last = typedChars[typedChars.length - 1];
@@ -2447,7 +2456,7 @@
                         }
                         key.dataset.lastTap = '0';
                         key.classList.add('active');
-                        setTimeout(() => key.classList.remove('active'), 150);
+                        setTimeout(() => key.classList.remove('active'), 250);
                         return;
                     }
                     key.dataset.lastTap = now;
@@ -2456,7 +2465,7 @@
                 if (charEntity === '\uE024' || k === '\uE024') {
                     applyHighToneToLastChar();
                     key.classList.add('active');
-                    setTimeout(() => key.classList.remove('active'), 150);
+                    setTimeout(() => key.classList.remove('active'), 250);
                     return;
                 }
 
@@ -2469,11 +2478,10 @@
                 }
 
                 key.classList.add('active');
-                setTimeout(() => key.classList.remove('active'), 150);
+                setTimeout(() => key.classList.remove('active'), 250);
             });
         });
 
-        // ---- Phone keyboard (with long-press clear for X) ----
         const phoneKeys = document.querySelectorAll('#phoneKeyboard .smalldevice-key, #phoneKeyboard .smalldevice-keys, #phoneKeyboard .smalldevice-key-arrow, #phoneKeyboard .smalldevice-key-cut');
 
         phoneKeys.forEach(key => {
@@ -2490,7 +2498,7 @@
                         longPressTriggered = true;
                         doClear();
                         key.classList.add('active');
-                        setTimeout(() => key.classList.remove('active'), 150);
+                        setTimeout(() => key.classList.remove('active'), 250);
                     }, 600);
                 });
 
@@ -2509,7 +2517,7 @@
                     }
                     doBackspace();
                     key.classList.add('active');
-                    setTimeout(() => key.classList.remove('active'), 150);
+                    setTimeout(() => key.classList.remove('active'), 250);
                 });
 
                 return;
@@ -2525,14 +2533,14 @@
                 if (charEntity === '\uE024' || keyVal === '\uE024') {
                     applyHighToneToLastChar();
                     key.classList.add('active');
-                    setTimeout(() => key.classList.remove('active'), 150);
+                    setTimeout(() => key.classList.remove('active'), 250);
                     return;
                 }
 
                 if (keyVal === 'space' || keyVal === ' ') {
                     handleKeyPress('space');
                     key.classList.add('active');
-                    setTimeout(() => key.classList.remove('active'), 150);
+                    setTimeout(() => key.classList.remove('active'), 250);
                     return;
                 }
 
@@ -2543,7 +2551,7 @@
                 }
 
                 key.classList.add('active');
-                setTimeout(() => key.classList.remove('active'), 150);
+                setTimeout(() => key.classList.remove('active'), 250);
             });
         });
 
@@ -2603,7 +2611,7 @@
                     const pKey = document.querySelector('#desktopKeyboard .key[data-key="p"]');
                     if (pKey) {
                         pKey.classList.add('active');
-                        setTimeout(() => pKey.classList.remove('active'), 150);
+                        setTimeout(() => pKey.classList.remove('active'), 250);
                     }
                     return;
                 }
@@ -2625,7 +2633,7 @@
                         handleKeyPress(targetKey);
                     }
                     foundKey.classList.add('active');
-                    setTimeout(() => foundKey.classList.remove('active'), 150);
+                    setTimeout(() => foundKey.classList.remove('active'), 250);
                 }
                 return;
             }
@@ -2643,7 +2651,7 @@
                     handleKeyPress(targetKey);
                 }
                 foundKey.classList.add('active');
-                setTimeout(() => foundKey.classList.remove('active'), 150);
+                setTimeout(() => foundKey.classList.remove('active'), 250);
                 return;
             }
 
@@ -2671,6 +2679,7 @@
         console.log('🛡️ Silent protection active.');
         console.log('⌨️  Space bar inserts a plain space — no auto‑selection.');
         console.log('│  Prediction bar uses vertical bar separators.');
+        console.log('✨ Keys now flash with a bright blink on press.');
     </script>
 
 </body>
