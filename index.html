@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,13 +64,110 @@
             color: #ffffff;
             text-decoration: none;
             letter-spacing: 0.01em;
+            min-height: 2.4rem;
         }
 
         .navbar-brand .brand-glyph {
             font-family: "NewScript", sans-serif;
             font-size: 1.8rem;
-            color: #f5d742;
+            color: #c6d9e9;
             line-height: 1;
+            display: inline-block;
+            letter-spacing: 0.04em;
+        }
+
+        /* ─── typing container ─── */
+        .typing-wrap {
+            display: flex;
+            align-items: center;
+            gap: 0.05rem;
+            position: relative;
+        }
+
+        .typing-wrap .pua-char {
+            font-family: "NewScript", sans-serif;
+            font-size: 1.9rem;
+            color: #c6d9e9; 
+            line-height: 1;
+            display: inline-block;
+            opacity: 0;
+            transform: scale(0.6) rotate(-6deg);
+            animation: popIn 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        .typing-wrap .pua-char.show {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+
+        @keyframes popIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.4) rotate(-8deg);
+            }
+            60% {
+                opacity: 1;
+                transform: scale(1.2) rotate(2deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        .typing-wrap .cursor-blink {
+            display: inline-block;
+            width: 2px;
+            height: 1.8rem;
+            background:  #c6d9e9;
+            margin-left: 0.1rem;
+            border-radius: 1px;
+            animation: blink 0.9s step-end infinite;
+            vertical-align: middle;
+        }
+
+        .typing-wrap .cursor-blink.done {
+            animation: none;
+            opacity: 0;
+        }
+
+        @keyframes blink {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .navbar-brand .brand-label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.7);
+            letter-spacing: 0.06em;
+            margin-left: 0.2rem;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .navbar-brand .brand-label.visible {
+            opacity: 1;
+        }
+
+        .navbar-brand .brand-roman {
+            font-size: 0.72rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.45);
+            letter-spacing: 0.04em;
+            margin-left: 0.4rem;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            font-family: "Inter", sans-serif;
+        }
+
+        .navbar-brand .brand-roman.visible {
+            opacity: 1;
         }
 
         .navbar-links {
@@ -776,6 +875,18 @@
             .consonants-grid {
                 grid-template-columns: repeat(6, 1fr);
             }
+            .typing-wrap .pua-char {
+                font-size: 1.5rem;
+            }
+            .typing-wrap .cursor-blink {
+                height: 1.4rem;
+            }
+            .navbar-brand .brand-label {
+                font-size: 0.65rem;
+            }
+            .navbar-brand .brand-roman {
+                font-size: 0.55rem;
+            }
         }
 
         @media (max-width: 768px) {
@@ -788,6 +899,7 @@
             }
             .navbar-brand {
                 font-size: 1rem;
+                min-height: 2rem;
             }
             .navbar-brand .brand-glyph {
                 font-size: 1.5rem;
@@ -887,6 +999,18 @@
             .footer .nowrap {
                 white-space: normal;
             }
+            .typing-wrap .pua-char {
+                font-size: 1.4rem;
+            }
+            .typing-wrap .cursor-blink {
+                height: 1.3rem;
+            }
+            .navbar-brand .brand-label {
+                font-size: 0.6rem;
+            }
+            .navbar-brand .brand-roman {
+                font-size: 0.5rem;
+            }
         }
 
         @media (max-width: 600px) {
@@ -899,6 +1023,7 @@
             }
             .navbar-brand {
                 font-size: 0.9rem;
+                min-height: 1.8rem;
             }
             .navbar-brand .brand-glyph {
                 font-size: 1.3rem;
@@ -1019,6 +1144,18 @@
             .footer .social-links {
                 gap: 0.6rem;
             }
+            .typing-wrap .pua-char {
+                font-size: 1.2rem;
+            }
+            .typing-wrap .cursor-blink {
+                height: 1.1rem;
+            }
+            .navbar-brand .brand-label {
+                font-size: 0.5rem;
+            }
+            .navbar-brand .brand-roman {
+                font-size: 0.45rem;
+            }
         }
 
         @media (max-width: 400px) {
@@ -1031,6 +1168,7 @@
             }
             .navbar-brand {
                 font-size: 0.8rem;
+                min-height: 1.6rem;
             }
             .navbar-brand .brand-glyph {
                 font-size: 1.1rem;
@@ -1052,6 +1190,19 @@
             }
             .consonants-grid {
                 grid-template-columns: repeat(3, 1fr);
+            }
+            .typing-wrap .pua-char {
+                font-size: 1rem;
+            }
+            .typing-wrap .cursor-blink {
+                height: 0.9rem;
+            }
+            .navbar-brand .brand-label {
+                font-size: 0.45rem;
+                margin-left: 0.1rem;
+            }
+            .navbar-brand .brand-roman {
+                display: none;
             }
         }
 
@@ -1107,6 +1258,20 @@
             .footer {
                 border-top: 1px solid #ccc !important;
             }
+            .typing-wrap .pua-char {
+                opacity: 1 !important;
+                transform: none !important;
+                animation: none !important;
+            }
+            .typing-wrap .cursor-blink {
+                display: none !important;
+            }
+            .navbar-brand .brand-label {
+                opacity: 1 !important;
+            }
+            .navbar-brand .brand-roman {
+                opacity: 1 !important;
+            }
         }
     </style>
 </head>
@@ -1115,7 +1280,12 @@
 
     <nav class="navbar" role="navigation">
         <a href="" class="navbar-brand">
-            <span>Hachukma Script</span>
+            <span class="typing-wrap" id="typingWrap">
+                <!-- PUA chars injected by JS -->
+                <span class="cursor-blink" id="cursorBlink"></span>
+            </span>
+            <span class="brand-label" id="brandLabel">Script</span>
+            <span class="brand-roman" id="brandRoman">/hɑtʃukmɑ/</span>
         </a>
 
         <button class="navbar-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -1126,11 +1296,10 @@
 
         <ul class="navbar-links" id="navLinks">
             <li><a href="acrophonic.html">Acrophonic</a></li>
-            <li><a href="script.html">Script </a></li>
-            <li><a href="numerals.html">Numerals</a></li>
-            <li><a href="hachukma-chart.html">Chart</a></li>
+            <li><a href="script.html">Phonology & Script </a></li>
+            <li><a href="hachukma-chart.html">Hachukma Chart</a></li>
             <li><a href="virtual-keyboard.html">Virtual Keyboard</a></li>
-            <li><a href="dropped-glyphs.html">Dropped-glyphs</a></li>
+            <!-- <li><a href="dropped-glyphs.html">Dropped-glyphs</a></li> -->
             <li><a href="hachukma-IME-software.html">Download</a></li>
         </ul>
     </nav>
@@ -1225,7 +1394,7 @@
                     The majority of Hachukma characters are <strong>direct pictographs</strong> — the visual form is taken directly from a physical object. Examples include:
                 </p>
                 <ul style="margin:0.4rem 0 0.4rem 1.5rem; color:#2a3e3e; line-height:1.8;">
-                    <li><strong>&#xE00B; /b/</strong> — <em>Buphang-kɘthɘi</em> (death tree)</li>
+                    <li><strong>&#xE00B; /b/</strong> — <em>Buphang</em> (death tree)</li>
                     <li><strong>&#xE00D; /d/</strong> — <em>Dangdol</em> (bamboo clothesline)</li>
                     <li><strong>&#xE010; /g/</strong> — <em>Golari</em> (slingshot)</li>
                     <li><strong>&#xE014; /k/</strong> — <em>Kowai-buphang</em> (areca nut tree)</li>
@@ -1278,7 +1447,7 @@
                 </p>
                 <ul style="margin:0.4rem 0 0.4rem 1.5rem; color:#2a3e3e; line-height:1.8;">
                     <li><strong>Memorability.</strong> By linking each character to a familiar object — <em>Golari</em> (slingshot) for /g/, <em>Dangdol</em> (clothesline) for /d/, and so on — Hachukma leverages existing knowledge. A learner can recall the sound by remembering the object's name, making the entire Kokborok alphabet <strong>memorisable within weeks, not decades</strong>.</li>
-                    <li><strong>Technological compatibility.</strong> An alphabetic system uses a small, manageable set of characters — just 26 letters, 10 numerals, and a single diacritic. This minimal inventory is essential for digital processing, Physical-keyboard efficiency, and programming applications.</li>
+                    <li><strong>Technological compatibility.</strong> An alphabetic system uses a small, manageable set of characters — just 26 letters, 10 numerals, and a single diacritic. This minimal inventory is essential for digital processing, keyboard efficiency, and programming applications.</li>
                 </ul>
                 <p style="margin-top:0.6rem;">
                     This is not a random design choice — it is a <strong>deliberate, practical decision</strong> to create a Kokborok script that is beautiful to write, easy to learn, and ready for the digital age.
@@ -1478,8 +1647,8 @@
     </main>
 
     <footer class="footer">
-        <!-- <div class="social-links">
-            <a href="https://www.facebook.com/hachukma" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+        <div class="social-links">
+            <!-- <a href="https://www.facebook.com/hachukma" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
             </a>
             <a href="https://www.youtube.com/channel/hachukma" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
@@ -1487,6 +1656,7 @@
             </a>
         </div> -->
         <div class="footer-meta">
+            <span>Official website of the Kokborok Script — Hachukma.</span>
             <span class="nowrap">Designed and developed by <strong>Anan Debbarma</strong>.</span>
             <span class="nowrap">&copy; 2025 – 2026.</span>
             <span class="nowrap">Contact: <a href="mailto:hachukma@gmail.com" style="color:#297c7c; text-decoration:none; font-weight:500;">hachukma@gmail.com</a></span>
@@ -1495,6 +1665,7 @@
 
     <script>
         (function() {
+            // ─── Nav toggle ───
             const toggle = document.getElementById('navToggle');
             const links = document.getElementById('navLinks');
 
@@ -1522,6 +1693,65 @@
                     }
                 });
             }
+
+            // ─── Typing effect with PUA glyphs ───
+            // Mapping: "Hachukma" → PUA glyphs
+            // H → U+E011 (h), a → U+E00A (a), c → U+E00C (ch),
+            // u → U+E01E (u), k → U+E014 (k), m → U+E016 (m), a → U+E00A (a)
+            const puaChars = [
+                { glyph: '\uE011', roman: 'h' },
+                { glyph: '\uE00A', roman: 'a' },
+                { glyph: '\uE00C', roman: 'ch' },
+                { glyph: '\uE01E', roman: 'u' },
+                { glyph: '\uE014', roman: 'k' },
+                { glyph: '\uE016', roman: 'm' },
+                { glyph: '\uE00A', roman: 'a' }
+            ];
+
+            const wrap = document.getElementById('typingWrap');
+            const cursor = document.getElementById('cursorBlink');
+            const label = document.getElementById('brandLabel');
+            const roman = document.getElementById('brandRoman');
+
+            if (!wrap || !cursor) return;
+
+            let index = 0;
+            const total = puaChars.length;
+            const delay = 180; // ms per char
+
+            // Clear initial content (keep cursor)
+            wrap.innerHTML = '';
+            wrap.appendChild(cursor);
+
+            function typeNext() {
+                if (index >= total) {
+                    // All done: hide cursor, show label + roman
+                    cursor.classList.add('done');
+                    if (label) label.classList.add('visible');
+                    if (roman) roman.classList.add('visible');
+                    return;
+                }
+
+                const data = puaChars[index];
+                const span = document.createElement('span');
+                span.className = 'pua-char';
+                span.textContent = data.glyph;
+                span.dataset.roman = data.roman;
+
+                // Insert before cursor
+                wrap.insertBefore(span, cursor);
+
+                // Trigger pop-in animation
+                requestAnimationFrame(() => {
+                    span.classList.add('show');
+                });
+
+                index++;
+                setTimeout(typeNext, delay);
+            }
+
+            // Start after a tiny delay so the page settles
+            setTimeout(typeNext, 400);
         })();
     </script>
 
