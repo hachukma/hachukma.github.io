@@ -915,23 +915,21 @@
             </div>
         </div>
 
-        <!-- Metrics Box -->
-        <div class="metrics-box">
-            <h3>Tone Glyph Metrics (U+E024) – Font‑Internal Values</h3>
+         !-- Metrics Box – corrected font-internal values -->
+       <div class="metrics-box">
+          <h3>Tone Glyph Metrics (U+E024) – Font‑Internal Values</h3>
             <p>These are the exact OpenType metrics and anchor coordinates used in the <strong>Hachukma-Regular.ttf</strong> font to position the tone high diacritic above the base letter. These values were tuned to work correctly in the Windows IME and on the web.</p>
-            <div class="metrics-table">
+             <div class="metrics-table">
                 <span class="label">Width:</span><span>0 (zero advance width – combining mark)</span>
-                <span class="label">Left Side Bearing (LSB):</span><span>0</span>
-                <span class="label">Right Side Bearing (RSB):</span><span>−200 to −309 (negative – overhangs to the left to center the tone)</span>
+                <span class="label">Left Side Bearing (LSB):</span><span>-100</span>
+                <span class="label">Right Side Bearing (RSB):</span><span>55</span>
                 <span class="label">Anchor Type:</span><span>mark (GPOS lookup “mark”)</span>
                 <span class="label">Anchor Name:</span><span>top</span>
-                <span class="label">Anchor X:</span><span>61 (horizontal offset – works with the base anchors at X≈500)</span>
-                <span class="label">Anchor Y:</span><span>719 (vertical position above the baseline)</span>
                 <span class="label">Glyph Origin:</span><span>Bottom‑center at (0,0); shape extends upward (negative Y)</span>
                 <span class="label">Base Anchor (on letters):</span><span>top, X≈500, Y≈top of letter (e.g., -600)</span>
-            </div>
-            <p style="margin-top:12px;font-size:0.8rem;">Note: The negative RSB compensates for the anchor X not being exactly 0. If you regenerate the font, consider setting anchor X to 0 and RSB to 0 for cleaner standard behavior – but the current values work perfectly in the IME.</p>
-        </div>
+             </div>
+       <p style="margin-top:12px;font-size:0.8rem;">Note: The previous anchor X/Y offsets and negative RSB range have been superseded by the corrected LSB (-100) and RSB (55) values from the font file.</p>
+      </div>
 
         <p class="lead">Click copy to get mapping (e.g., <code>c =  (U+E00C) – ch</code>). “Copy All” for the full table.</p>
 
