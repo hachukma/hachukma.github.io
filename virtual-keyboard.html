@@ -496,10 +496,11 @@
             font-size: 1.6em;
             color: #0f0f0f;
             font-weight: 700;
+            padding-left: 29px;
         }
 
         .text-display .char-container.active {
-            background: rgba(41, 124, 124, 0.12);
+            background: rgba(65, 70, 70, 0.12);
             border-radius: 4px;
         }
 
@@ -1079,6 +1080,7 @@
             .text-display .char-container .high-tone {
                 font-size: 1.3em;
                 top: -0.2em;
+                   padding-left: 12px;
             }
             .prediction-bar {
                 min-height: 34px;
@@ -1136,8 +1138,9 @@
                 margin-left: 12px;
                 font-size: 0.7rem;
             }
+
             .smalldevice-key.extra-wide {
-                grid-column: span 10;
+                grid-column: span 12;
             }
             .smalldevice-key[data-type="special"] {
                 font-size: 0.5rem;
@@ -1210,6 +1213,7 @@
             .text-display .char-container .high-tone {
                 font-size: 1.2em;
                 top: -0.15em;
+                   padding-left: 12px;
             }
             .prediction-bar {
                 min-height: 30px;
@@ -1258,6 +1262,7 @@
                 margin-left: 8px;
                 font-size: 0.5rem;
             }
+
             .smalldevice-key.extra-wide {
                 grid-column: span 12;
             }
@@ -1334,6 +1339,7 @@
                 left: 0;
                 transform: translateX(-50%);
                 font-size: 1.4em;
+                padding-left: 12px;
             }
         }
 
@@ -1350,6 +1356,25 @@
             .text-display .char-container .high-tone {
                 font-size: 1.2em;
                 top: -0.15em;
+                padding-left: 18px;
+            }
+        }
+
+        @media (max-width: 300px) {
+            .syllabic-line[data-key="ph"],
+            .syllabic-line[data-key="th"],
+            .syllabic-line[data-key="kh"],
+            .syllabic-line[data-key="ch"] {
+                padding-left: 6px !important;
+            }
+            .syllabic-line[data-key="chh"] {
+                padding-left: 12px !important;
+            }
+
+            .text-display .char-container .high-tone {
+                font-size: 1.2em;
+                top: -0.15em;
+                padding-left: 11px !important;
             }
         }
 
@@ -1446,7 +1471,7 @@
                     <p><strong>Software Experiment — A Note‑Pad for Hachukma</strong></p>
                     <p>
                         A small note‑pad style software is available at
-                        <a href="https://hachukma.github.io/hachukma-IME-software.html" target="_blank">hachukma.github.io/hachukma-IME-software.html</a>.
+                        <a href="https://hachukma.github.io/hachukma-IME-software.html" target="_blank">https://hachukma.github.io/hachukma-IME-software</a>.
                         This is <strong>not</strong> a full IME. It's an early experiment that shows how Hachukma characters can be typed using the multi‑tap system and tone marking.
                     </p>
                     <p>
@@ -1532,8 +1557,6 @@
                         just like typing in any other language. You don't have to think about "special keys" or "alternate
                         layouts" — you just type the sounds as you hear them, and the system handles the rest.
                     </p>
-
-                
 
                     <p style="margin-top:0.6rem;background:#ffffff;padding:0.4rem 0.8rem;border-radius:4px;border:1px dashed #b0c8c8;">
                         <span style="font-weight:600;">Under the hood:</span> The digraph map is defined in the
