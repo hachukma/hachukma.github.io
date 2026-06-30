@@ -1,9 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Primary SEO Meta Tags -->
     <title>Hachukma Script for Kokborok – Pictographic Alphabet & Phonology</title>
     <meta name="title" content="Hachukma Script for Kokborok – Pictographic Alphabet & Phonology" />
     <meta name="description" content="Discover the Hachukma Script, a modern pictographic writing system for Kokborok. Learn its alphabet, phonology, vowels, consonants, diphthongs, tones, and unique acrophonic and telophonic principles rooted in Tripuri culture." />
@@ -12,24 +14,21 @@
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 
-    <!-- Icons -->
-    <link rel="icon" type="image/jpeg" sizes="32x32" href="image/hachukma-icon.jpg" />
-    <link rel="apple-touch-icon" href="image/hachukma-icon.jpg" />
-
     <!-- CSS -->
-    <!-- <link rel="stylesheet" href="script.css" /> -->
+    <!-- <link rel="stylesheet" href="../public/css/script.css" /> -->
     <link rel="stylesheet" href="words.css" />
 
     <style>
-   
+        /* ===== FONTS ===== */
         @font-face {
             font-family: "NewScript";
             src: url("hachukma.woff") format("woff");
             font-weight: normal;
             font-style: normal;
         }
-   
+     
 
+        /* ===== RESET & BASE ===== */
         * {
             margin: 0;
             padding: 0;
@@ -43,7 +42,7 @@
             padding-top: 80px;
         }
 
-        
+        /* ===== NAVBAR ===== */
         .navbar {
             position: fixed;
             top: 0;
@@ -183,7 +182,8 @@
             background: linear-gradient(90deg, #297c7c, #a3c4c4, #297c7c);
         }
         .hachukma-script-box h2 {
-            color: #1e3a3a;
+            color: #bb2525;
+          
             font-size: 1.8rem;
             margin: 0 0 1rem 0;
             font-weight: 600;
@@ -258,7 +258,7 @@
             text-align: center;
         }
 
-    
+        /* ===== CULTURE SECTION ===== */
         .borok-culture-section {
             background: linear-gradient(135deg, #f4f9f9, #e6efef);
             border: 2px solid #a3c4c4;
@@ -279,7 +279,8 @@
             background: linear-gradient(90deg, #297c7c, #a3c4c4, #297c7c);
         }
         .borok-culture-section h2 {
-            color: #1e3a3a;
+            
+            color: #778080;
             font-size: 2rem;
             margin-bottom: 1.5rem;
             border-bottom: 2px solid #a3c4c4;
@@ -327,6 +328,7 @@
             border-radius: 4px;
             font-family: 'Courier New', monospace;
             border: 1px solid #297c7c;
+        
         }
         .culture-name {
             font-size: 1.1rem;
@@ -336,7 +338,6 @@
         }
         .culture-description {
             margin-top: 0.5rem;
-            padding-left: 3rem;
             font-size: 0.98rem;
             line-height: 1.6;
             color: #1e3a3a;
@@ -351,7 +352,7 @@
             cursor: help;
         }
 
-
+        /* ===== THREE BOXES – left-aligned, 1200px wide ===== */
         .three-boxes {
             display: flex;
             flex-direction: column;
@@ -379,7 +380,7 @@
             box-shadow: 0 8px 30px rgba(41, 124, 124, 0.08);
         }
 
-
+        /* === FIX: make Hachukma script visible in the heading === */
         .three-boxes .box-card h3 {
             color: #297c7c;
             font-size: 1.5rem;
@@ -467,7 +468,7 @@
             color: #1e3a3a;
         }
 
-      
+        /* Essential Latin keys box */
         .dev-key-row {
             display: flex;
             flex-wrap: wrap;
@@ -740,12 +741,12 @@
 </head>
 <body>
 
-
+    <!-- ===== NAVBAR ===== -->
     <nav class="navbar" role="navigation" aria-label="Main navigation">
         <a href="index.html" class="navbar-brand">
             <span class="brand-text">
                 Hachukma
-                <small>Kokborok - Phonology . Script </small>
+                <small>Kokborok - Phonology . Script</small>
             </span>
         </a>
 
@@ -755,15 +756,18 @@
             <span></span>
         </button>
 
-        <ul class="nav-links" id="navLinks" role="menubar">
+        <ul class="nav-links" id="navLinks" role="menubar">           
             <li role="none"><a href="hachukma-learn.html" role="menuitem">Learn Hachukma</a></li>
             <li role="none"><a href="hachukma-demo-IDE.html" role="menuitem">Future Compatibility</a></li>
-            <li role="none"><a href="index.html" role="menuitem">Back to Home</a></li>
+             <li role="none"><a href="index.html" role="menuitem">← Back</a></li>
+   
         </ul>
     </nav>
 
-
+    <!-- ===== MAIN ===== -->
     <main class="development-page">
+
+        <!-- HACHUKMA SCRIPT BOX -->
         <div class="hachukma-script-box">
             <p>
                 Kokborok, a Sino-Tibetan language, has six basic vowel phonemes:
@@ -776,456 +780,456 @@
                 The consonant system includes voiceless, aspirated, and voiced stops such as <strong>p, t,
                 k, ch, ph, th, kh, b, d, j,</strong> and <strong>g</strong>. It also includes fricatives
                 like <strong>s</strong> and <strong>h</strong>, nasals <strong>m, n,</strong> and <strong>ng
-            </strong>, the lateral <strong>l</strong>, the rhotic <strong>r</strong>, and the approximants
-            <strong>w</strong> and <strong>y</strong>. Based on this phonological system, the Hachukma script
-            functions as a fully alphabetic writing system, with independent vowels and consonants.
-            <a href="https://ipachart.com" target="_blank" class="ipa-btn">
-                View IPA Chart 🔊
-            </a>
-        </p>
-
-        <div class="hachukma-script-grid">
-            <div class="hachukma-vowels">
-                <h3>Vowels</h3>
-                <table class="phonetic-table">
-                    <tr>
-                        <th></th>
-                        <th>Front</th>
-                        <th>Central</th>
-                        <th>Back</th>
-                    </tr>
-                    <tr>
-                        <th>Close</th>
-                        <td>i</td>
-                        <td></td>
-                        <td>u</td>
-                    </tr>
-                    <tr>
-                        <th>Mid</th>
-                        <td>e</td>
-                        <td>ɘ</td>
-                        <td>ɔ</td>
-                    </tr>
-                    <tr>
-                        <th>Open</th>
-                        <td></td>
-                        <td>a</td>
-                        <td></td>
-                    </tr>
-                </table>
-                <p class="phonetic-note">Orthography differing from the phonetic transcription is indicated using angle brackets</p>
-            </div>
-
-            <div class="hachukma-consonants">
-                <h3>Consonants</h3>
-                <table class="phonetic-table">
-                    <tr>
-                        <th></th>
-                        <th>Labial</th>
-                        <th>Alveolar</th>
-                        <th>Lamino-Postalveolar</th>
-                        <th>Velar</th>
-                        <th>Glottal</th>
-                    </tr>
-                    <tr>
-                        <th>Stops/Affricates</th>
-                        <td>p</td>
-                        <td>t</td>
-                        <td>t͡ʃ ⟨ch⟩</td>
-                        <td>k</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th>aspirated</th>
-                        <td>pʰ ⟨ph⟩</td>
-                        <td>tʰ ⟨th⟩</td>
-                        <td></td>
-                        <td>kʰ ⟨kh⟩</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th>voiced</th>
-                        <td>b</td>
-                        <td>d</td>
-                        <td>d͡ʒ ⟨j⟩</td>
-                        <td>ɡ</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th>Fricatives</th>
-                        <td></td>
-                        <td>s</td>
-                        <td></td>
-                        <td></td>
-                        <td>h</td>
-                    </tr>
-                    <tr>
-                        <th>Nasals</th>
-                        <td>m</td>
-                        <td>n</td>
-                        <td></td>
-                        <td>ŋ ⟨ng⟩</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th>Lateral</th>
-                        <td></td>
-                        <td>l</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th>Rhotic</th>
-                        <td></td>
-                        <td>r</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th>Approximants</th>
-                        <td>w</td>
-                        <td></td>
-                        <td>j ⟨y⟩</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <p>
-            <b>Extra Note on Sound Categories:</b> In the vowel chart, the terms “Front,” “Central,” and “Back”
-            refer to the position of the tongue during pronunciation rather than the letters themselves. “Front” vowels
-            are pronounced with the tongue forward in the mouth, “Central” vowels with the tongue in the middle and “Back”
-            vowels with the tongue pulled toward the back. In the consonant chart, headings like Labial, Alveolar,
-            Lamino-Postalveolar, Velar, and Glottal indicate where in the vocal tract the sound is produced, while rows
-            such as Stops, Fricatives, Nasals, Lateral, Rhotic, and Approximants describe how the airflow is modified
-            during articulation.
-        </p>
-    </div>
-
-    <!-- CULTURE SECTION -->
-    <section class="borok-culture-section">
-        <h2>Hachukma Script</h2>
-        <p>
-            The <strong>Hachukma Object Script</strong> is a distinctive <strong>pictographic writing system</strong>
-            based primarily on the <strong>acrophonic principle</strong> in which each symbol derives its phonetic value
-            from the initial sound of the object it visually represents. A small number of characters are treated as
-            <strong>exceptions</strong>, whose phonetic values do not follow this initial-sound pattern.
-            The characters are inspired by culturally significant <strong>Tripuri artifacts, human body parts,
-            selected arthropods, and elements of the natural environment</strong>, preserving their recognizable forms
-            and maintaining a strong connection to <strong>Borok cultural heritage</strong>. Although pictorial in origin,
-            the symbols function purely as phonetic signs; in actual use, each letter represents only its assigned sound,
-            rendering the original object meaning <strong>semantically inactive</strong>. Through this structure,
-            the script operates as a <strong>fully alphabetic system</strong> while retaining a distinct visual and
-            cultural identity.
-        </p>
-
-        <div class="culture-item">
-            <div class="culture-item-header">
-                <span class="culture-symbol">&#xE00A;</span>
-                <span class="culture-letter">a</span>
-                <h3 class="culture-name">Ang</h3>
-            </div>
-            <p class="culture-description"><strong>Ang</strong> means “self” or “pointing to me”.</p>
-        </div>
-
-        <div class="culture-item">
-            <div class="culture-item-header">
-                <span class="culture-symbol">&#xE00B;</span>
-                <span class="culture-letter">B</span>
-                <h3 class="culture-name">Buphang</h3>
-            </div>
-            <p class="culture-description"><strong>Buphang-khɘthɘi</strong> is a death tree.</p>
-        </div>
-
-        <div class="culture-item">
-            <div class="culture-item-header">
-                <span class="culture-symbol">&#xE00C;</span>
-                <span class="culture-letter">Ch</span>
-                <h3 class="culture-name">Chɘng</h3>
-            </div>
-            <p class="culture-description"><strong>Chɘng</strong> is the word for “we,” embodying unity and the spirit of community among the Borok people.</p>
-        </div>
-
-        <div class="culture-item">
-            <div class="culture-item-header">
-                <span class="culture-symbol">&#xE00D;</span>
-                <span class="culture-letter">D</span>
-                <h3 class="culture-name">Dangdol</h3>
-            </div>
-            <p class="culture-description"><strong>Dangdol</strong> is a clothesline made of bamboo, and it is still commonly used today, especially in rural areas.</p>
-        </div>
-
-        <div class="culture-item">
-            <div class="culture-item-header">
-                <span class="culture-symbol">&#xE00E;</span>
-                <span class="culture-letter">E <span class="pronunciation-note" title="Pronounced like 'e' in Kokborok"></span></span>
-                <h3 class="culture-name">Imang</h3>
-            </div>
-            <p class="culture-description"><strong>Imang</strong> refers to dreams seen while sleeping.</p>
-        </div>
-
-        <div class="culture-item">
-            <div class="culture-item-header">
-                <span class="culture-symbol">&#xE00F;</span>
-                <span class="culture-letter">Ph</span>
-                <h3 class="culture-name">Pharok</h3>
-            </div>
-            <p class="culture-description"><strong>Pharok</strong> refers to the rock pigeon, a bird commonly seen around temples and old buildings.</p>
-        </div>
-
-        <div class="culture-item">
-            <div class="culture-item-header">
-                <span class="culture-symbol">&#xE010;</span>
-                <span class="culture-letter">G</span>
-                <h3 class="culture-name">Golari</h3>
-            </div>
-            <p class="culture-description">
-                <strong>Golari</strong> is a hand-powered device consisting of a Y-shaped frame with elastic bands attached to a pouch that holds a small projectile.
-                It functions by pulling the pouch backward to create tension in the bands, then releasing it to propel the projectile with controlled force and direction.
-            </p>
-        </div>
-
-        <div class="culture-item">
-            <div class="culture-item-header">
-                <span class="culture-symbol">&#xE011;</span>
-                <span class="culture-letter">H</span>
-                <h3 class="culture-name">Hangrai-nok</h3>
-            </div>
-            <p class="culture-description"><strong>Hangrai-nok</strong> is a traditional celebration of the Borok community with bamboo huts, cooking together, and community feasts.</p>
-        </div>
-
-        <div class="culture-item">
-            <div class="culture-item-header">
-                <span class="culture-symbol">&#xE012;</span>
-                <span class="culture-letter">i</span>
-                <h3 class="culture-name">aikha</h3>
-            </div>
-            <p class="culture-description"><strong>aikha</strong> refers to the morning time of day, the early part of the day when the sun rises and the day begins.</p>
-        </div>
-
-        <div class="culture-item">
-            <div class="culture-item-header">
-                <span class="culture-symbol">&#xE013;</span>
-                <span class="culture-letter">J</span>
-                <h3 class="culture-name">Jubar-bubar</h3>
-            </div>
-            <p class="culture-description"><strong>Jubar-bubar</strong> refers to the hibiscus flower, a bright and beautiful flower often seen in gardens and used in cultural and religious traditions.</p>
-        </div>
-
-        <div class="culture-item">
-            <div class="culture-item-header">
-                <span class="culture-symbol">&#xE014;</span>
-                <span class="culture-letter">K</span>
-                <h3 class="culture-name">Kowai-buphang</h3>
-            </div>
-            <p class="culture-description"><strong>Kowai-buphang</strong> is the areca nut tree commonly found near Borok households.</p>
-        </div>
-
-        <div class="culture-item">
-            <div class="culture-item-header">
-                <span class="culture-symbol">&#xE015;</span>
-                <span class="culture-letter">L</span>
-                <h3 class="culture-name">Langa</h3>
-            </div>
-            <p class="culture-description"><strong>Langa</strong> is a traditional carrying basket used by Borok women.</p>
-        </div>
-
-        <div class="culture-item">
-            <div class="culture-item-header">
-                <span class="culture-symbol">&#xE016;</span>
-                <span class="culture-letter">M</span>
-                <h3 class="culture-name">Mɘsɘi-bokhorok</h3>
-            </div>
-            <p class="culture-description"><strong>Mɘsɘi-bokhorok</strong> refers to the deer head in the Borok region. It was known to exist in earlier times, but is no longer found in the present day.</p>
-        </div>
-
-        <div class="culture-item">
-            <div class="culture-item-header">
-                <span class="culture-symbol">&#xE017;</span>
-                <span class="culture-letter">N</span>
-                <h3 class="culture-name">Noboraisa</h3>
-            </div>
-            <p class="culture-description"><strong>Noboraisa</strong> is a locally used name for a baby house gecko (<em>Hemidactylus frenatus</em>), a small nocturnal lizard commonly seen inside homes, especially near lights where it feeds on insects.</p>
-        </div>
-
-        <div class="culture-item">
-            <div class="culture-item-header">
-                <span class="culture-symbol">&#xE018;</span>
-                <span class="culture-letter">O</span>
-                <h3 class="culture-name">Onchi</h3>
-            </div>
-            <p class="culture-description"><strong>Onchi</strong> refers to a bamboo-made fishing net, a traditional livelihood practice.</p>
-        </div>
-
-        <div class="culture-item">
-            <div class="culture-item-header">
-                <span class="culture-symbol">&#xE019;</span>
-                <span class="culture-letter">P</span>
-                <h3 class="culture-name">Potdo-bubar</h3>
-            </div>
-            <p class="culture-description"><strong>Potdo</strong> refers to the lotus flower growing in a pond, admired for its natural beauty.</p>
-        </div>
-
-        <div class="culture-item">
-            <div class="culture-item-header">
-                <span class="culture-symbol">&#xE01A;</span>
-                <span class="culture-letter">Th</span>
-                <h3 class="culture-name">Thaichumui</h3>
-            </div>
-            <p class="culture-description"><strong>Thaichumui</strong> is a local melon fruit grown during jhum cultivation by Tripuri women.</p>
-        </div>
-
-        <div class="culture-item">
-            <div class="culture-item-header">
-                <span class="culture-symbol">&#xE01B;</span>
-                <span class="culture-letter">R</span>
-                <h3 class="culture-name">Romo</h3>
-            </div>
-            <p class="culture-description"><strong>Romo</strong> is a traditional Tripuri wooden mortar used to pound sticky rice.</p>
-        </div>
-
-        <div class="culture-item">
-            <div class="culture-item-header">
-                <span class="culture-symbol">&#xE01C;</span>
-                <span class="culture-letter">S</span>
-                <h3 class="culture-name">Sindrai</h3>
-            </div>
-            <p class="culture-description"><strong>Sindrai</strong> refers to the centipede insect found in the region.</p>
-        </div>
-
-        <div class="culture-item">
-            <div class="culture-item-header">
-                <span class="culture-symbol">&#xE01D;</span>
-                <span class="culture-letter">T</span>
-                <h3 class="culture-name">Tok-thunta</h3>
-            </div>
-            <p class="culture-description"><strong>Tok-thunta</strong> is a woodpecker bird found in natural forest areas.</p>
-        </div>
-
-        <div class="culture-item">
-            <div class="culture-item-header">
-                <span class="culture-symbol">&#xE01E;</span>
-                <span class="culture-letter">u</span>
-                <h3 class="culture-name">unklog</h3>
-            </div>
-            <p class="culture-description"><strong>Unklog</strong> means “back,” referring to the back part of the body.</p>
-        </div>
-
-        <div class="culture-item">
-            <div class="culture-item-header">
-                <span class="culture-symbol">&#xE023;</span>
-                <span class="culture-letter">rɘ</span>
-                <h3 class="culture-name">rɘ</h3>
-            </div>
-            <div class="culture-description">
-                <p><strong>Rɘ</strong> means “give,” referring to the act of handing something to someone.</p>
-                <a href="https://ipachart.com" target="_blank" class="ipa-btn" style="margin-top:8px;">
+                </strong>, the lateral <strong>l</strong>, the rhotic <strong>r</strong>, and the approximants
+                <strong>w</strong> and <strong>y</strong>. Based on this phonological system, the Hachukma script
+                functions as a fully alphabetic writing system, with independent vowels and consonants.
+                <a href="https://ipachart.com" target="_blank" class="ipa-btn">
                     View IPA Chart 🔊
                 </a>
-            </div>
-        </div>
+            </p>
 
-        <div class="culture-item">
-            <div class="culture-item-header">
-                <span class="culture-symbol">&#xE01F;</span>
-                <span class="culture-letter">Kh</span>
-                <h3 class="culture-name">Khunta</h3>
-            </div>
-            <p class="culture-description"><strong>Khunta</strong> is a wooden stake fixed into the soil, used for tying animals such as cows and goats.</p>
-        </div>
+            <div class="hachukma-script-grid">
+                <div class="hachukma-vowels">
+                    <h3>Vowels</h3>
+                    <table class="phonetic-table">
+                        <tr>
+                            <th></th>
+                            <th>Front</th>
+                            <th>Central</th>
+                            <th>Back</th>
+                        </tr>
+                        <tr>
+                            <th>Close</th>
+                            <td>i</td>
+                            <td></td>
+                            <td>u</td>
+                        </tr>
+                        <tr>
+                            <th>Mid</th>
+                            <td>e</td>
+                            <td>ɘ</td>
+                            <td>ɔ</td>
+                        </tr>
+                        <tr>
+                            <th>Open</th>
+                            <td></td>
+                            <td>a</td>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <p class="phonetic-note">Orthography differing from the phonetic transcription is indicated using angle brackets</p>
+                </div>
 
-        <div class="culture-item">
-            <div class="culture-item-header">
-                <span class="culture-symbol">&#xE020;</span>
-                <span class="culture-letter">W</span>
-                <h3 class="culture-name">Wa</h3>
+                <div class="hachukma-consonants">
+                    <h3>Consonants</h3>
+                    <table class="phonetic-table">
+                        <tr>
+                            <th></th>
+                            <th>Labial</th>
+                            <th>Alveolar</th>
+                            <th>Lamino-Postalveolar</th>
+                            <th>Velar</th>
+                            <th>Glottal</th>
+                        </tr>
+                        <tr>
+                            <th>Stops/Affricates</th>
+                            <td>p</td>
+                            <td>t</td>
+                            <td>t͡ʃ ⟨ch⟩</td>
+                            <td>k</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>aspirated</th>
+                            <td>pʰ ⟨ph⟩</td>
+                            <td>tʰ ⟨th⟩</td>
+                            <td></td>
+                            <td>kʰ ⟨kh⟩</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>voiced</th>
+                            <td>b</td>
+                            <td>d</td>
+                            <td>d͡ʒ ⟨j⟩</td>
+                            <td>ɡ</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>Fricatives</th>
+                            <td></td>
+                            <td>s</td>
+                            <td></td>
+                            <td></td>
+                            <td>h</td>
+                        </tr>
+                        <tr>
+                            <th>Nasals</th>
+                            <td>m</td>
+                            <td>n</td>
+                            <td></td>
+                            <td>ŋ ⟨ng⟩</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>Lateral</th>
+                            <td></td>
+                            <td>l</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>Rhotic</th>
+                            <td></td>
+                            <td>r</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>Approximants</th>
+                            <td>w</td>
+                            <td></td>
+                            <td>j ⟨y⟩</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
             </div>
-            <p class="culture-description"><strong>Wa</strong> refers to bamboo found locally and traditionally used in daily life.</p>
-        </div>
-
-        <div class="culture-item">
-            <div class="culture-item-header">
-                <span class="culture-symbol">&#xE022;</span>
-                <span class="culture-letter">Y</span>
-                <h3 class="culture-name">Yakung</h3>
-            </div>
-            <p class="culture-description"><strong>Yakung</strong> refers to the leg, a part of the human body.</p>
-        </div>
-
-        <div class="culture-item">
-            <div class="culture-item-header">
-                <span class="culture-symbol">&#xE021;</span>
-                <span class="culture-letter">wasung</span>
-                <h3 class="culture-name">Wasung</h3>
-            </div>
-            <p class="culture-description">
-                <strong>Wasung</strong> is a character that represents a bamboo tube. It is used to indicate the
-                final consonant sound <strong>/ŋ/</strong>.
+            <p>
+                <b>Extra Note on Sound Categories:</b> In the vowel chart, the terms “Front,” “Central,” and “Back”
+                refer to the position of the tongue during pronunciation rather than the letters themselves. “Front” vowels
+                are pronounced with the tongue forward in the mouth, “Central” vowels with the tongue in the middle and “Back”
+                vowels with the tongue pulled toward the back. In the consonant chart, headings like Labial, Alveolar,
+                Lamino-Postalveolar, Velar, and Glottal indicate where in the vocal tract the sound is produced, while rows
+                such as Stops, Fricatives, Nasals, Lateral, Rhotic, and Approximants describe how the airflow is modified
+                during articulation.
             </p>
         </div>
-    </section>
 
-    <!-- ===== THREE BOXES: Script Type · Numerals · Essential Latin keys ===== -->
-    <section class="three-boxes">
-
-        <!-- 2. Numerals -->
-        <div class="box-card">
-            <h3>Numerals</h3>
-            <p style="color:#1e3a3a; line-height:1.6; margin-bottom:0.5rem;">
-                The <strong>Kokborok number system</strong> is a base-10 system, similar to other
-                Sino-Tibeto-Burman numbering systems. It uses its own set of numerals to represent
-                numbers from zero to nine.
+        <!-- CULTURE SECTION -->
+        <section class="borok-culture-section">
+            <h2>Hachukma Script</h2>
+            <p>
+                The <strong>Hachukma Object Script</strong> is a distinctive <strong>pictographic writing system</strong>
+                based primarily on the <strong>acrophonic principle</strong> in which each symbol derives its phonetic value
+                from the initial sound of the object it visually represents. A small number of characters are treated as
+                <strong>exceptions</strong>, whose phonetic values do not follow this initial-sound pattern.
+                The characters are inspired by culturally significant <strong>Tripuri artifacts, human body parts,
+                selected arthropods, and elements of the natural environment</strong>, preserving their recognizable forms
+                and maintaining a strong connection to <strong>Borok cultural heritage</strong>. Although pictorial in origin,
+                the symbols function purely as phonetic signs; in actual use, each letter represents only its assigned sound,
+                rendering the original object meaning <strong>semantically inactive</strong>. Through this structure,
+                the script operates as a <strong>fully alphabetic system</strong> while retaining a distinct visual and
+                cultural identity.
             </p>
-            <div class="dev-number-row">
-                <span class="dev-number-pair"><span class="num-box">&#xE000;</span> = <strong>0</strong></span>
-                <span class="dev-number-pair"><span class="num-box">&#xE001;</span> = <strong>1</strong></span>
-                <span class="dev-number-pair"><span class="num-box">&#xE002;</span> = <strong>2</strong></span>
-                <span class="dev-number-pair"><span class="num-box">&#xE003;</span> = <strong>3</strong></span>
-                <span class="dev-number-pair"><span class="num-box">&#xE004;</span> = <strong>4</strong></span>
-                <span class="dev-number-pair"><span class="num-box">&#xE005;</span> = <strong>5</strong></span>
-                <span class="dev-number-pair"><span class="num-box">&#xE006;</span> = <strong>6</strong></span>
-                <span class="dev-number-pair"><span class="num-box">&#xE007;</span> = <strong>7</strong></span>
-                <span class="dev-number-pair"><span class="num-box">&#xE008;</span> = <strong>8</strong></span>
-                <span class="dev-number-pair"><span class="num-box">&#xE009;</span> = <strong>9</strong></span>
+
+            <div class="culture-item">
+                <div class="culture-item-header">
+                    <span class="culture-symbol">&#xE00A;</span>
+                    <span class="culture-letter">a</span>
+                    <h3 class="culture-name">Ang</h3>
+                </div>
+                <p class="culture-description"><strong>Ang</strong> means “self” or “pointing to me”.</p>
             </div>
-        </div>
 
+            <div class="culture-item">
+                <div class="culture-item-header">
+                    <span class="culture-symbol">&#xE00B;</span>
+                    <span class="culture-letter">B</span>
+                    <h3 class="culture-name">Buphang</h3>
+                </div>
+                <p class="culture-description"><strong>Buphang-khɘthɘi</strong> is a death tree.</p>
+            </div>
 
+            <div class="culture-item">
+                <div class="culture-item-header">
+                    <span class="culture-symbol">&#xE00C;</span>
+                    <span class="culture-letter">Ch</span>
+                    <h3 class="culture-name">Chɘng</h3>
+                </div>
+                <p class="culture-description"><strong>Chɘng</strong> is the word for “we,” embodying unity and the spirit of community among the Borok people.</p>
+            </div>
 
-        <div class="box-card">
-            <h3>&#xE011;&#xE00A;&#xE00C;&#xE01E;&#xE014;&#xE016;&#xE00A;</h3>
-            <div class="script-meta-list">
-                <div class="script-meta-item">
-                    <span class="label">Script Name</span>
-                    <span class="value">
-                        Hachukma
-                    </span>
+            <div class="culture-item">
+                <div class="culture-item-header">
+                    <span class="culture-symbol">&#xE00D;</span>
+                    <span class="culture-letter">D</span>
+                    <h3 class="culture-name">Dangdol</h3>
                 </div>
-                <div class="script-meta-item">
-                    <span class="label">Developer</span>
-                    <span class="value">Anan Debbarma</span>
+                <p class="culture-description"><strong>Dangdol</strong> is a clothesline made of bamboo, and it is still commonly used today, especially in rural areas.</p>
+            </div>
+
+            <div class="culture-item">
+                <div class="culture-item-header">
+                    <span class="culture-symbol">&#xE00E;</span>
+                    <span class="culture-letter">E <span class="pronunciation-note" title="Pronounced like 'e' in Kokborok"></span></span>
+                    <h3 class="culture-name">Imang</h3>
                 </div>
-                <div class="script-meta-item">
-                    <span class="label">Script Type</span>
-                    <span class="value">Fully alphabetic writing system (phonemic alphabet derived from pictographic forms)</span>
+                <p class="culture-description"><strong>Imang</strong> refers to dreams seen while sleeping.</p>
+            </div>
+
+            <div class="culture-item">
+                <div class="culture-item-header">
+                    <span class="culture-symbol">&#xE00F;</span>
+                    <span class="culture-letter">Ph</span>
+                    <h3 class="culture-name">Pharok</h3>
                 </div>
-                <div class="script-meta-item">
-                    <span class="label">Principle of Formation</span>
-                    <span class="value">Acrophonic principle</span>
+                <p class="culture-description"><strong>Pharok</strong> refers to the rock pigeon, a bird commonly seen around temples and old buildings.</p>
+            </div>
+
+            <div class="culture-item">
+                <div class="culture-item-header">
+                    <span class="culture-symbol">&#xE010;</span>
+                    <span class="culture-letter">G</span>
+                    <h3 class="culture-name">Golari</h3>
                 </div>
-                <div class="script-meta-item">
-                    <span class="label">Writing Orientation</span>
-                    <span class="value">Horizontal, left to right</span>
+                <p class="culture-description">
+                    <strong>Golari</strong> is a hand-powered device consisting of a Y-shaped frame with elastic bands attached to a pouch that holds a small projectile.
+                    It functions by pulling the pouch backward to create tension in the bands, then releasing it to propel the projectile with controlled force and direction.
+                </p>
+            </div>
+
+            <div class="culture-item">
+                <div class="culture-item-header">
+                    <span class="culture-symbol">&#xE011;</span>
+                    <span class="culture-letter">H</span>
+                    <h3 class="culture-name">Hangrai-nok</h3>
+                </div>
+                <p class="culture-description"><strong>Hangrai-nok</strong> is a traditional celebration of the Borok community with bamboo huts, cooking together, and community feasts.</p>
+            </div>
+
+            <div class="culture-item">
+                <div class="culture-item-header">
+                    <span class="culture-symbol">&#xE012;</span>
+                    <span class="culture-letter">i</span>
+                    <h3 class="culture-name">aikha</h3>
+                </div>
+                <p class="culture-description"><strong>aikha</strong> refers to the morning time of day, the early part of the day when the sun rises and the day begins.</p>
+            </div>
+
+            <div class="culture-item">
+                <div class="culture-item-header">
+                    <span class="culture-symbol">&#xE013;</span>
+                    <span class="culture-letter">J</span>
+                    <h3 class="culture-name">Jubar-bubar</h3>
+                </div>
+                <p class="culture-description"><strong>Jubar-bubar</strong> refers to the hibiscus flower, a bright and beautiful flower often seen in gardens and used in cultural and religious traditions.</p>
+            </div>
+
+            <div class="culture-item">
+                <div class="culture-item-header">
+                    <span class="culture-symbol">&#xE014;</span>
+                    <span class="culture-letter">K</span>
+                    <h3 class="culture-name">Kowai-buphang</h3>
+                </div>
+                <p class="culture-description"><strong>Kowai-buphang</strong> is the areca nut tree commonly found near Borok households.</p>
+            </div>
+
+            <div class="culture-item">
+                <div class="culture-item-header">
+                    <span class="culture-symbol">&#xE015;</span>
+                    <span class="culture-letter">L</span>
+                    <h3 class="culture-name">Langa</h3>
+                </div>
+                <p class="culture-description"><strong>Langa</strong> is a traditional carrying basket used by Borok women.</p>
+            </div>
+
+            <div class="culture-item">
+                <div class="culture-item-header">
+                    <span class="culture-symbol">&#xE016;</span>
+                    <span class="culture-letter">M</span>
+                    <h3 class="culture-name">Mɘsɘi-bokhorok</h3>
+                </div>
+                <p class="culture-description"><strong>Mɘsɘi-bokhorok</strong> refers to the deer head in the Borok region. It was known to exist in earlier times, but is no longer found in the present day.</p>
+            </div>
+
+            <div class="culture-item">
+                <div class="culture-item-header">
+                    <span class="culture-symbol">&#xE017;</span>
+                    <span class="culture-letter">N</span>
+                    <h3 class="culture-name">Noboraisa</h3>
+                </div>
+                <p class="culture-description"><strong>Noboraisa</strong> is a locally used name for a baby house gecko (<em>Hemidactylus frenatus</em>), a small nocturnal lizard commonly seen inside homes, especially near lights where it feeds on insects.</p>
+            </div>
+
+            <div class="culture-item">
+                <div class="culture-item-header">
+                    <span class="culture-symbol">&#xE018;</span>
+                    <span class="culture-letter">O</span>
+                    <h3 class="culture-name">Onchi</h3>
+                </div>
+                <p class="culture-description"><strong>Onchi</strong> refers to a bamboo-made fishing net, a traditional livelihood practice.</p>
+            </div>
+
+            <div class="culture-item">
+                <div class="culture-item-header">
+                    <span class="culture-symbol">&#xE019;</span>
+                    <span class="culture-letter">P</span>
+                    <h3 class="culture-name">Potdo-bubar</h3>
+                </div>
+                <p class="culture-description"><strong>Potdo</strong> refers to the lotus flower growing in a pond, admired for its natural beauty.</p>
+            </div>
+
+            <div class="culture-item">
+                <div class="culture-item-header">
+                    <span class="culture-symbol">&#xE01A;</span>
+                    <span class="culture-letter">Th</span>
+                    <h3 class="culture-name">Thaichumui</h3>
+                </div>
+                <p class="culture-description"><strong>Thaichumui</strong> is a local melon fruit grown during jhum cultivation by Tripuri women.</p>
+            </div>
+
+            <div class="culture-item">
+                <div class="culture-item-header">
+                    <span class="culture-symbol">&#xE01B;</span>
+                    <span class="culture-letter">R</span>
+                    <h3 class="culture-name">Romo</h3>
+                </div>
+                <p class="culture-description"><strong>Romo</strong> is a traditional Tripuri wooden mortar used to pound sticky rice.</p>
+            </div>
+
+            <div class="culture-item">
+                <div class="culture-item-header">
+                    <span class="culture-symbol">&#xE01C;</span>
+                    <span class="culture-letter">S</span>
+                    <h3 class="culture-name">Sindrai</h3>
+                </div>
+                <p class="culture-description"><strong>Sindrai</strong> refers to the centipede insect found in the region.</p>
+            </div>
+
+            <div class="culture-item">
+                <div class="culture-item-header">
+                    <span class="culture-symbol">&#xE01D;</span>
+                    <span class="culture-letter">T</span>
+                    <h3 class="culture-name">Tok-thunta</h3>
+                </div>
+                <p class="culture-description"><strong>Tok-thunta</strong> is a woodpecker bird found in natural forest areas.</p>
+            </div>
+
+            <div class="culture-item">
+                <div class="culture-item-header">
+                    <span class="culture-symbol">&#xE01E;</span>
+                    <span class="culture-letter">u</span>
+                    <h3 class="culture-name">unklog</h3>
+                </div>
+                <p class="culture-description"><strong>Unklog</strong> means “back,” referring to the back part of the body.</p>
+            </div>
+
+            <div class="culture-item">
+                <div class="culture-item-header">
+                    <span class="culture-symbol">&#xE023;</span>
+                    <span class="culture-letter">rɘ</span>
+                    <h3 class="culture-name">rɘ</h3>
+                </div>
+                <div class="culture-description">
+                    <p><strong>Rɘ</strong> means “give,” referring to the act of handing something to someone.</p>
+                    <a href="https://ipachart.com" target="_blank" class="ipa-btn" style="margin-top:8px;">
+                        View IPA Chart 🔊
+                    </a>
                 </div>
             </div>
-        </div>
-    </section>
-</main>
+
+            <div class="culture-item">
+                <div class="culture-item-header">
+                    <span class="culture-symbol">&#xE01F;</span>
+                    <span class="culture-letter">Kh</span>
+                    <h3 class="culture-name">Khunta</h3>
+                </div>
+                <p class="culture-description"><strong>Khunta</strong> is a wooden stake fixed into the soil, used for tying animals such as cows and goats.</p>
+            </div>
+
+            <div class="culture-item">
+                <div class="culture-item-header">
+                    <span class="culture-symbol">&#xE020;</span>
+                    <span class="culture-letter">W</span>
+                    <h3 class="culture-name">Wa</h3>
+                </div>
+                <p class="culture-description"><strong>Wa</strong> refers to bamboo found locally and traditionally used in daily life.</p>
+            </div>
+
+            <div class="culture-item">
+                <div class="culture-item-header">
+                    <span class="culture-symbol">&#xE022;</span>
+                    <span class="culture-letter">Y</span>
+                    <h3 class="culture-name">Yakung</h3>
+                </div>
+                <p class="culture-description"><strong>Yakung</strong> refers to the leg, a part of the human body.</p>
+            </div>
+
+            <div class="culture-item">
+                <div class="culture-item-header">
+                    <span class="culture-symbol">&#xE021;</span>
+                    <span class="culture-letter">wasung</span>
+                    <h3 class="culture-name">Wasung</h3>
+                </div>
+                <p class="culture-description">
+                    <strong>Wasung</strong> is a character that represents a bamboo tube. It is used to indicate the
+                    final consonant sound <strong>/ŋ/</strong>.
+                </p>
+            </div>
+        </section>
+
+        <!-- ===== THREE BOXES: Script Type · Numerals · Essential Latin keys ===== -->
+        <section class="three-boxes">
+
+            <!-- 2. Numerals -->
+            <div class="box-card">
+                <h3>Numerals</h3>
+                <p style="color:#1e3a3a; line-height:1.6; margin-bottom:0.5rem;">
+                    The <strong>kokborok number system</strong> is a base-10 system, similar to other
+                    Sino-Tibeto-Burman numbering systems. It uses its own set of numerals to represent
+                    numbers from zero to nine.
+                </p>
+                <div class="dev-number-row">
+                    <span class="dev-number-pair"><span class="num-box">&#xE000;</span> = <strong>0</strong></span>
+                    <span class="dev-number-pair"><span class="num-box">&#xE001;</span> = <strong>1</strong></span>
+                    <span class="dev-number-pair"><span class="num-box">&#xE002;</span> = <strong>2</strong></span>
+                    <span class="dev-number-pair"><span class="num-box">&#xE003;</span> = <strong>3</strong></span>
+                    <span class="dev-number-pair"><span class="num-box">&#xE004;</span> = <strong>4</strong></span>
+                    <span class="dev-number-pair"><span class="num-box">&#xE005;</span> = <strong>5</strong></span>
+                    <span class="dev-number-pair"><span class="num-box">&#xE006;</span> = <strong>6</strong></span>
+                    <span class="dev-number-pair"><span class="num-box">&#xE007;</span> = <strong>7</strong></span>
+                    <span class="dev-number-pair"><span class="num-box">&#xE008;</span> = <strong>8</strong></span>
+                    <span class="dev-number-pair"><span class="num-box">&#xE009;</span> = <strong>9</strong></span>
+                </div>
+            </div>
 
 
+            <div class="box-card">
+                <h3>&#xE011;&#xE00A;&#xE00C;&#xE01E;&#xE014;&#xE016;&#xE00A;</h3>
+                <div class="script-meta-list">
+                    <div class="script-meta-item">
+                        <span class="label">Script Name</span>
+                        <span class="value">
+                            Hachukma
+                        </span>
+                    </div>
+                    <div class="script-meta-item">
+                        <span class="label">Developer</span>
+                        <span class="value">Anan Debbarma</span>
+                    </div>
+                    <div class="script-meta-item">
+                        <span class="label">Script Type</span>
+                        <span class="value">Fully alphabetic writing system (phonemic alphabet derived from pictographic forms)</span>
+                    </div>
+                    <div class="script-meta-item">
+                        <span class="label">Principle of Formation</span>
+                        <span class="value">Acrophonic principle</span>
+                    </div>
+                    <div class="script-meta-item">
+                        <span class="label">Writing Orientation</span>
+                        <span class="value">Horizontal, left to right</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+<!-- ===== JAVASCRIPT: Mobile Nav Toggle ===== -->
 <script>
     (function() {
         const toggle = document.getElementById('navToggle');
@@ -1238,6 +1242,7 @@
                 toggle.setAttribute('aria-expanded', isOpen);
             });
 
+            // Optional: close menu when a link is clicked (better UX on mobile)
             const links = navLinks.querySelectorAll('a');
             links.forEach(function(link) {
                 link.addEventListener('click', function() {
@@ -1249,6 +1254,5 @@
         }
     })();
 </script>
-
 </body>
 </html>
