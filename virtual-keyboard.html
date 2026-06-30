@@ -2013,19 +2013,19 @@
             return pua;
         }
 
-        // ---- Vocabulary: only romanized words ----
-        const wordList = [  "ama", "awang",
+  // ---- Vocabulary: only romanized words ----
+        const wordList = [  "awang",
   "bacha", "khunju", "nahar", "nono", "norok", "nɘng", "o", "omaio",
   "phai", "tabuk", "takhukrok,", "tamo", "tei", "thang", "aboni", "abono",
   "ang", "ani", "apha", "aphuru", "ba", "bini", "bo", "borok", "bɘsa", "bɘsano",
   "bɘrɘima", "bɘkhnai", "chini", "choba", "ha", "joto", "juda",
   "kaham","kerongno", "khajak", "khoroksa", "kothoma", "kotor", "kɘplai",
   "kɘthar", "kɘthɘi", "lamthai", "langma", "musi",  "naisik", "nokhao",
-  "nono", "norok", "norokni", "nɘng", "orono", "pai", "phola", "sinai",
+  "nono", "norok", "norokni", "nɘng", "orono", "phola", "sinai",
   "sindrai", "sɘkango", "ta", "takhukrok", "tamni", "tamo",
   "tatal", "tei", "tong", "tɘimuk", "ulo", "yak", "yang", "abo", "achugui",
   "achuk", "achukjak", "agi", "agini", "agibo", "ainani", "aitor", "ama",
-  "amjokna", "ang", "ani", "ano", "antɘi", "aphuru", "arirokno", "aro", "aroni",
+  "amjokna", "ano", "antɘi", "aphuru", "arirokno", "aro", "aroni",
   "asɘk", "athukiri", "aɘang", "bacha", "bachai", "bagɘi", "bai", "baithang",
   "baksa", "bao", "bebak", "bedek", "belai", "bera", "bini", "birjak", "birman",
   "birɘi", "bisingni", "bisiktham", "bithi", "blɘisa", "bobo", "boh", "bohok",
@@ -2033,8 +2033,8 @@
   "bororokno", "bosong", "bosong,", "bosongni,", "bosongno", "brum", "brɘi",
   "brɘio", "bujak", "bukhuk", "bukhugo", "bului", "bumukhang", "bumun", "buro",
   "buya", "bɘcha", "bɘchap", "bɘdam", "bɘkhak", "bɘkha", "bɘkhnai", "bɘkrang",
-  "bɘrirokno", "bɘrɘima", "bɘrɘi", "bɘsa", "bɘskang", "bɘsɘk", "bɘthai",
-  "bɘtɘino", "cha", "chai", "chana", "chap", "chini", "chirikhok", "chirik",
+  "bɘrirokno", "bɘrɘima", "bɘrɘi", "bɘskang", "bɘsɘk", "bɘthai",
+  "bɘtɘino", "cha", "chadi", "chana", "chap", "chini", "chirikhok", "chirik",
   "choba", "chɘngsacha", "chɘrai", "da", "daina", "dakti", "di", "dolsa",
   "dopha", "dumjak", "eba", "garing", "glak", "gosinai", "gosio", "gɘdal",
   "gɘnang", "haino", "hai", "hambai", "hamjak", "hamya", "hao", "hasing",
@@ -2046,8 +2046,8 @@
   "khitar", "khlai", "kho", "khobjak,", "khogɘi", "khok", "kholob", "khorang",
   "khoroksa", "khoroksani", "khoroksano", "khoroktham", "khulum", "khɘi",
   "kiching", "kirima", "kiri", "kisa", "klaijak", "klai", "klaiɘi", "kok",
-  "kolok",  "kotor,", "kotorma", 
-  "kotoino", "kotorrok", "kothor", "kubui", 
+  "kolok",  "kotor", "kotorma", 
+  "kotoino", "kotor rok", "kothor", "kubui", 
   "kuphur", "kuphurbo", "kuplung", "kutung", "kutungbo", "kusu", "kutukma",
   "kɘbangma", "kɘbangma", "kɘchak", "kɘchak.", "kɘchang", "kɘchar",
   "kɘcharo", "kɘcharni", "kɘchɘng", "kɘkhrang", "kɘma", "kɘmai", "kɘnɘi",
@@ -2079,6 +2079,7 @@
   "yabrɘi", "yachak", "yakung", "yaksi", "yang", "yaphango",
   "yapharjak", "yarok", "yarokno", "yasku" ,"watɘi" , "wa", ,"wasung" , "wacheng" ,"thang",
 ].sort();
+
 
         // ---- Get predictions using SUBSTRING match (contains) ----
         function getPredictions(prefix) {
