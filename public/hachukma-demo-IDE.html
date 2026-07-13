@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>Kokborok · Hachukma IDE | Digital Script + PUA Numerals</title>
+    <link rel="stylesheet" href="../public/css/clock.css">
+    <script src="../public/js/clock.js"></script>
+  
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @font-face {
+            font-family: "HachukmaScript";
+            src: url("../Font/hachukma.woff") format("woff");
+            font-display: swap;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #eef3f5;
+            color: #1e2a3a;
+            padding: 0;
+            width: 100%;
+            min-height: 100vh;
+            padding-top: 5.5rem;
+        }
+
+       
+        .app-header {
+            background-color: #297c7c;
+            border-radius: 0;
+            padding: 1rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(41, 124, 124, 0.2);
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .brand h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -0.02em;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .brand p {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0.1rem 0 0;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+        }
+
+        .nav-actions .btn-back-home {
+
+            display: inline-block;
+            padding: 0.35rem 0.7rem;
+            font-size: 0.9rem;
+            color: #f8f8f8;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: background-color 0.2s ease;
+            font-weight: 500;
+            line-height: 1.4;
+            white-space: nowrap;
+        }
+
+        .nav-actions .btn-back-home:hover {
+
+            background-color: rgba(255, 255, 255, 0.35);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+
+        .main-wrapper {
+            padding: 0 1.5rem 1.5rem 1.5rem;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+
+        .editor-grid {
+           
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 90px 0 2.5rem;
+        }
+
+        .editor-card {
+            background: #ffffff;
+            border-radius: 3px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+            border: 1px solid #297c7c;
+        }
+
+        .editor-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.7rem 1.2rem;
+            background: #297c7c;
+            border-bottom: 1px solid #1f5e5e;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .editor-header h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #f0eaea;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0;
+        }
+
+        .readonly-badge {
+            font-size: 0.6rem;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.2);
+            color: #eee6e6;
+            padding: 0.15rem 0.6rem;
+            border-radius: 3px;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+
+        .lang-badge {
+            font-size: 0.65rem;
+            background: rgba(255, 255, 255, 0.18);
+            color: #eee9e9;
+            padding: 0.15rem 0.7rem;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+
+
+        .custom-editor {
+            display: flex;
+            /* background: #e7e0d1;  */
+            min-height: 280px;
+            font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+            font-size: 0.85rem;
+            line-height: 1.7;
+            position: relative;
+            border-radius: 0 0 3px 3px;
+            overflow: hidden;
+        }
+
+        .line-numbers {
+            background: #297c7c;
+            color: #eee9e9;
+            padding: 1rem 0.7rem 1rem 1rem;
+            text-align: right;
+            user-select: none;
+            font-size: 0.75rem;
+            line-height: 1.7;
+            min-width: 2.4rem;
+            white-space: pre;
+            overflow: hidden;
+            flex-shrink: 0;
+            font-variant-numeric: tabular-nums;
+            position: sticky;
+            top: 0;
+            align-self: flex-start;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .code-container {
+            flex: 1;
+            overflow: hidden;
+            padding: 1rem 1.2rem;
+            position: relative;
+            max-height: 400px;
+        }
+
+
+        .syntax-editor {
+            color: #df8c2e;
+            font-family: inherit;
+            font-size: 0.85rem;
+            line-height: 1.7;
+            white-space: pre;
+            outline: none;
+            min-height: 100%;
+            width: 100%;
+            background: transparent;
+            tab-size: 4;
+            -moz-tab-size: 4;
+            overflow: hidden;
+            /* ── underline pattern ── */
+            background-image: repeating-linear-gradient(to bottom,
+                    transparent 0px,
+                    transparent calc(0.85rem * 1.7 - 1px),
+                    rgba(180, 180, 180, 0.25) calc(0.85rem * 1.7 - 1px),
+                    rgba(180, 180, 180, 0.25) calc(0.85rem * 1.7));
+            background-size: 100% calc(0.85rem * 1.7);
+            background-repeat: repeat;
+        }
+
+
+        .syntax-editor .keyword {
+            color: #ffd966;
+            font-weight: 500;
+        }
+        .syntax-editor .string {
+            color: #a8e6cf;
+        }
+        .syntax-editor .number {
+            color: #ffb347;
+        }
+        .syntax-editor .comment {
+            color: #b0c4de;
+            font-style: italic;
+        }
+
+        .hachukma-syntax {
+            font-family: "HachukmaScript", 'JetBrains Mono', monospace;
+            font-size: 1.05rem;
+            letter-spacing: 0.02em;
+        }
+
+
+        .reference-panel {
+            background: #ffffff;
+            border-radius: 3px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 2.5rem;
+            border: 1px solid #297c7c;
+            box-shadow: 0 2px 8px rgba(41, 124, 124, 0.06);
+        }
+
+        .reference-panel h2 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1a3a3a;
+            border-left: 4px solid #297c7c;
+            padding-left: 0.75rem;
+        }
+
+        .ref-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .ref-card {
+            background: #f6fafb;
+            border-radius: 3px;
+            padding: 0.8rem 1rem;
+            border: 1px solid #297c7c;
+            transition: border-color 0.2s ease;
+        }
+
+        .ref-card:hover {
+            border-color: #1f5e5e;
+        }
+
+        .ref-card h3 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #297c7c;
+            margin-bottom: 0.4rem;
+            font-weight: 700;
+        }
+
+        .ref-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .ref-list li {
+            font-size: 0.82rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: #1a2f2f;
+            padding: 0.15rem 0;
+            border-bottom: 1px solid #e5eef0;
+            display: flex;
+            align-items: baseline;
+            gap: 0.3rem;
+        }
+
+        .ref-list li:last-child {
+            border-bottom: none;
+        }
+
+
+        .future-tech-section {
+            background: #ffffff;
+            border-radius: 3px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 2.5rem;
+            border: 1px solid #297c7c;
+            box-shadow: 0 2px 8px rgba(41, 124, 124, 0.06);
+        }
+
+        .future-tech-section h2 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #1a3a3a;
+            border-left: 4px solid #297c7c;
+            padding-left: 0.75rem;
+        }
+
+        .future-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1rem;
+        }
+
+        .future-list li {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #1a2f2f;
+            background: #f6fafb;
+            padding: 1rem 1.2rem;
+            border-radius: 3px;
+            border-left: 4px solid #297c7c;
+            box-shadow: 0 1px 4px rgba(41, 124, 124, 0.06);
+            transition: background 0.2s ease;
+        }
+
+        .future-list li:hover {
+            background: #eef7f8;
+        }
+
+        .accent-text {
+            font-weight: 600;
+            color: #1c4a4a;
+
+
+        }
+        .articles-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #1a3a3a;
+            margin-bottom: 1rem;
+            border-left: 4px solid #297c7c;
+            padding-left: 0.75rem;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .article-card {
+            background: #ffffff;
+            border-radius: 3px;
+            padding: 1.2rem 1.4rem;
+            border: 1px solid #297c7c;
+            transition: box-shadow 0.2s ease, border-color 0.2s ease;
+            box-shadow: 0 1px 4px rgba(41, 124, 124, 0.04);
+        }
+
+        .article-card:hover {
+            box-shadow: 0 4px 12px rgba(41, 124, 124, 0.08);
+            border-color: #1f5e5e;
+        }
+
+        .article-card h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #1a3a3a;
+            margin-bottom: 0.4rem;
+        }
+
+        .article-card p {
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: #2c4a4a;
+            margin: 0;
+        }
+
+
+        .note-box {
+            font-family: 'Arial', sans-serif;
+            font-size: 12px;
+            line-height: 1.4;
+            color: #1a2f2f;
+            margin-top: 2rem;
+            padding: 1rem 1.5rem;
+            background: #e5f0f2;
+            border-radius: 3px;
+            border-left: 4px solid #297c7c;
+        }
+
+        .note-box strong {
+            font-size: 12.5px;
+            color: #1a3a3a;
+        }
+
+
+        @media (max-width: 820px) {
+            .editor-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .app-header {
+                padding: 1rem 1.2rem;
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .brand h1 {
+                font-size: 1.2rem;
+            }
+
+            #unicode-clock {
+                font-size: 1rem;
+                padding: 0.2rem 0.8rem;
+                align-self: flex-start;
+            }
+
+            .nav-actions {
+                align-self: flex-start;
+            }
+
+            .ref-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .main-wrapper {
+                padding: 0 0.8rem 0.8rem 0.8rem;
+            }
+
+            body {
+                padding-top: 7.5rem;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .ref-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .future-list {
+                grid-template-columns: 1fr;
+            }
+
+            .reference-panel {
+                padding: 1rem;
+            }
+
+            .future-tech-section {
+                padding: 1rem;
+            }
+
+            .main-wrapper {
+                padding: 0 0.5rem 0.5rem 0.5rem;
+            }
+
+            body {
+                padding-top: 8.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER / NAVBAR (full width, teal) ===== -->
+    <header class="app-header">
+        <div class="brand">
+            <h1>Future Compatibility Demo</h1>
+            <p>Hachukma · Future computing</p>
+        </div>
+
+        <div id="unicode-clock" class="unicode-clock">
+            <span class="clock-hour"></span>
+            <span class="separator">:</span>
+            <span class="clock-minute"></span>
+            <span class="separator">:</span>
+            <span class="clock-second"></span>
+            <!-- <span class="separator">.</span> -->
+            <!-- <span class="clock-ms"></span> -->
+            <span class="clock-ampm"></span>
+        </div>
+
+        <div class="nav-actions">
+            <a href="../index.html" class="btn-back-home">← Back</a>
+        </div>
+    </header>
+
+
+    <div class="main-wrapper">
+        <div class="editor-grid">
+            <div class="editor-card">
+                <div class="editor-header">
+                    <h3>Kokborok Roman letters<span class="readonly-badge">Example</span></h3>
+                    <span class="lang-badge">Demo-code-editor</span>
+                </div>
+                <div class="custom-editor">
+                    <div class="line-numbers" id="romanLineNumbers">1</div>
+                    <div class="code-container">
+                        <div id="romanEditorContent" class="syntax-editor" spellcheck="false"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="editor-card hachukma-editor">
+                <div class="editor-header">
+                    <h3>Hachukma Script <span class="readonly-badge">Example</span></h3>
+                    <span class="lang-badge">Demo-code-editor</span>
+                </div>
+                <div class="custom-editor">
+                    <div class="line-numbers" id="hachukmaLineNumbers">1</div>
+                    <div class="code-container">
+                        <div id="hachukmaEditorContent" class="syntax-editor hachukma-syntax" spellcheck="false"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+     
+        <div class="reference-panel">
+            <h2>Code Elements Breakdown</h2>
+            <div class="ref-grid">
+                <div class="ref-card">
+                    <h3>Keywords &amp; Functions</h3>
+                    <ul class="ref-list">
+                        <li>chapdi – print</li>
+                    </ul>
+                </div>
+                <div class="ref-card">
+                    <h3>Keywords</h3>
+                    <ul class="ref-list">
+                        <li>wngkhe – if</li>
+                        <li>hayakhe – else</li>
+                    </ul>
+                </div>
+                <div class="ref-card">
+                    <h3>Strings</h3>
+                    <ul class="ref-list">
+                        <li>"hachukma"</li>
+                        <li>"kokborok swrungnok"</li>
+                        <li>"mung:"</li>
+                        <li>"phurungnok:"</li>
+                        <li>"achima:"</li>
+                        <li>"bisi:"</li>
+                        <li>"achai:"</li>
+                        <li>"kwrwngma: khwlainw kwrwng"</li>
+                        <li>"kwrwngma: khwlainw manya"</li>
+                    </ul>
+                </div>
+                <div class="ref-card">
+                    <h3>Identifiers</h3>
+                    <ul class="ref-list">
+                        <li>mung</li>
+                        <li>phurungnok</li>
+                        <li>achaima</li>
+                        <li>bisi</li>
+                        <li>achai_sal</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    
+        <div class="future-tech-section">
+            <h2>Future Vision of Hachukma in Digital Technology</h2>
+            <ul class="future-list">
+                <li>
+                    <span class="accent-text">Emerging writing system</span> –
+                    Hachukma presents a conceptual writing system exploring how
+                    indigenous language identity could evolve within future digital
+                    communication and modern software environments.
+                </li>
+                <li>
+                    <span class="accent-text">Future compatibility vision</span> –
+                    The showcase explores possibilities for visual consistency across
+                    browsers, devices, and evolving interface technologies through
+                    custom rendering approaches.
+                </li>
+                <li>
+                    <span class="accent-text">Conceptual computing environment</span> –
+                    The project demonstrates how script-oriented interfaces and
+                    symbolic text structures could appear within future multilingual
+                    programming and digital systems.
+                </li>
+                <li>
+                    <span class="accent-text">Digital integration possibilities</span> –
+                    The interface presents a future-oriented example of how Hachukma
+                    writing could visually integrate into websites, applications,
+                    keyboards, and interactive digital platforms.
+                </li>
+                <li>
+                    <span class="accent-text">Character representation showcase</span> –
+                    Visual mapping methods are used to demonstrate how Hachukma
+                    symbols may be represented within digital environments and
+                    evolving technological ecosystems.
+                </li>
+                <li>
+                    <span class="accent-text">Language-centered innovation</span> –
+                    The concept reflects future possibilities for adaptive typography,
+                    intelligent text systems, and AI-assisted tools designed around
+                    Kokborok digital expression.
+                </li>
+            </ul>
+        </div>
+
+      
+        <div class="articles-section">
+            <div class="section-title">Hachukma · Conceptual Digital Ecosystem</div>
+            <div class="articles-grid">
+                <div class="article-card">
+                    <h4>Symbolic Character Design</h4>
+                    <p>Hachukma explores original visual character structures intended to demonstrate how indigenous writing systems could appear within future digital communication environments.</p>
+                </div>
+                <div class="article-card">
+                    <h4>Custom Visual Rendering</h4>
+                    <p>The showcase demonstrates how Hachukma symbols can be visually displayed within browsers and digital interfaces using custom rendering and font-based display methods.</p>
+                </div>
+                <div class="article-card">
+                    <h4>Script-Aware Interface Concepts</h4>
+                    <p>Conceptual interface layouts explore multilingual formatting, symbolic code presentation, and future possibilities for indigenous writing systems in software environments.</p>
+                </div>
+                <div class="article-card">
+                    <h4>Future Digital Expression</h4>
+                    <p>The project presents a creative vision of how emerging writing systems may participate in future digital culture, communication technologies, and modern interface design.</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="note-box">
+            <strong>*Important Note:*</strong><br />
+            The <b>Hachukma Script</b> currently uses characters mapped to the
+            <b>Unicode Private Use Area (PUA)</b>.<br />
+            Since these characters are not yet part of the official Unicode standard,
+            the <b>custom Hachukma font</b> is required for proper display.<br />
+            For universal compatibility across devices and platforms, official Unicode
+            encoding is needed in the future.
+        </div>
+
+    </div>
+
+
+    <script>
+
+        const DEFAULT_ROMAN_CODE = `// hachukma
+
+
+        mung = "hachukma"
+        phurungnok = "kokborok swrungnok"
+        achaima = 2025
+        bisi = 2026
+
+        achai_sal = bisi - achaima
+
+        chapdi("mung:", mung)
+        chapdi("phurungnok:", phurungnok)
+        chapdi("achima:", achaima)
+        chapdi("bisi:", bisi)
+        chapdi("achai:", achai_sal)
+
+        wngkhe achai_sal >= 18:
+            chapdi("kwrwngma: khwlainw kwrwng")
+        hayakhe:
+            chapdi("kwrwngma: khwlainw manya")
+
+        // hachukma
+        nangmani()`;
+
+        // ---- 2. Hachukma PUA mapping (including digits 0-9 -> U+E000..U+E009) ----
+        const hachukmaMap = new Map();
+
+        const digraphs = [
+            ["ch", 0xE00C],
+            ["ph", 0xE00F],
+            ["th", 0xE01A],
+            ["kh", 0xE01F],
+            ["ng", 0xE021]
+        ];
+        const singleLetters = {
+            'a': 0xE00A,
+            'b': 0xE00B,
+            'd': 0xE00D,
+            'e': 0xE00E,
+            'g': 0xE010,
+            'h': 0xE011,
+            'i': 0xE012,
+            'j': 0xE013,
+            'k': 0xE014,
+            'l': 0xE015,
+            'm': 0xE016,
+            'n': 0xE017,
+            'o': 0xE018,
+            'p': 0xE019,
+            'r': 0xE01B,
+            's': 0xE01C,
+            't': 0xE01D,
+            'u': 0xE01E,
+            'w': 0xE020,
+            'y': 0xE022,
+            'ɘ': 0xE023,
+            'c': 0xE003,
+            'f': 0xE004,
+            'v': 0xE005,
+            'z': 0xE006
+        };
+        const digitMapping = {
+            '0': 0xE000,
+            '1': 0xE001,
+            '2': 0xE002,
+            '3': 0xE003,
+            '4': 0xE004,
+            '5': 0xE005,
+            '6': 0xE006,
+            '7': 0xE007,
+            '8': 0xE008,
+            '9': 0xE009
+        };
+
+        for (let [dg, code] of digraphs) hachukmaMap.set(dg, String.fromCodePoint(code));
+        for (let [ch, code] of Object.entries(singleLetters)) hachukmaMap.set(ch, String.fromCodePoint(code));
+        for (let [digit, code] of Object.entries(digitMapping)) hachukmaMap.set(digit, String.fromCodePoint(code));
+
+        function toHachukmaPUA(romanText) {
+            let result = "";
+            let i = 0;
+            while (i < romanText.length) {
+                let matched = false;
+                if (i + 1 < romanText.length) {
+                    let two = romanText.substr(i, 2);
+                    if (hachukmaMap.has(two)) {
+                        result += hachukmaMap.get(two);
+                        i += 2;
+                        matched = true;
+                        continue;
+                    }
+                }
+                let ch = romanText[i];
+                if (hachukmaMap.has(ch)) {
+                    result += hachukmaMap.get(ch);
+                } else {
+                    result += ch;
+                }
+                i++;
+            }
+            return result;
+        }
+
+        const DEFAULT_HACHUKMA_CODE = toHachukmaPUA(DEFAULT_ROMAN_CODE);
+
+    
+        const ROMAN_KEYWORDS = ['chapdi', 'wngkhe', 'hayakhe'];
+        const HACHUKMA_KEYWORDS_PUA = ROMAN_KEYWORDS.map(kw => toHachukmaPUA(kw));
+        const hachukmaKeywordPattern = HACHUKMA_KEYWORDS_PUA.map(kw => kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
+        const HACHUKMA_KEYWORD_REGEX = new RegExp(`(${hachukmaKeywordPattern})`, 'g');
+        const HACHUKMA_NUMBER_REGEX = /[\uE000-\uE009]+/g;
+        const HACHUKMA_STRING_REGEX = /("[^"]*")/g;
+        const HACHUKMA_COMMENT_REGEX = /(\/\/.*$)/gm;
+
+        const ROMAN_KEYWORD_REGEX = new RegExp(`\\b(${ROMAN_KEYWORDS.join('|')})\\b`, 'g');
+        const ROMAN_STRING_REGEX = /(".*?"|'.*?')/g;
+        const ROMAN_COMMENT_REGEX = /(\/\/.*$)/gm;
+        const ROMAN_NUMBER_REGEX = /\b\d+\b/g;
+
+
+        const romanEditorDiv = document.getElementById('romanEditorContent');
+        const hachukmaEditorDiv = document.getElementById('hachukmaEditorContent');
+        const romanLineNumbersDiv = document.getElementById('romanLineNumbers');
+        const hachukmaLineNumbersDiv = document.getElementById('hachukmaLineNumbers');
+
+        let currentRomanRaw = DEFAULT_ROMAN_CODE;
+        let currentHachukmaRaw = DEFAULT_HACHUKMA_CODE;
+
+      
+        function highlightRomanCode(code) {
+            let escaped = code.replace(/[&<>]/g, m => m === '&' ? '&amp;' : (m === '<' ? '&lt;' : '&gt;'));
+            escaped = escaped.replace(ROMAN_COMMENT_REGEX, match => `<span class="comment">${match}</span>`);
+            escaped = escaped.replace(ROMAN_STRING_REGEX, match => `<span class="string">${match}</span>`);
+            escaped = escaped.replace(ROMAN_NUMBER_REGEX, match => `<span class="number">${match}</span>`);
+            escaped = escaped.replace(ROMAN_KEYWORD_REGEX, match => `<span class="keyword">${match}</span>`);
+            escaped = escaped.replace(/\n/g, '<br>');
+            return escaped;
+        }
+
+        function highlightHachukmaCode(code) {
+            let escaped = code.replace(/[&<>]/g, m => m === '&' ? '&amp;' : (m === '<' ? '&lt;' : '&gt;'));
+            escaped = escaped.replace(HACHUKMA_COMMENT_REGEX, match => `<span class="comment">${match}</span>`);
+            escaped = escaped.replace(HACHUKMA_STRING_REGEX, match => `<span class="string">${match}</span>`);
+            escaped = escaped.replace(HACHUKMA_NUMBER_REGEX, match => `<span class="number">${match}</span>`);
+            escaped = escaped.replace(HACHUKMA_KEYWORD_REGEX, match => `<span class="keyword">${match}</span>`);
+            escaped = escaped.replace(/\n/g, '<br>');
+            return escaped;
+        }
+
+        function updateLineNumbers(editorElement, lineNumbersDiv, rawText) {
+            if (!editorElement || !lineNumbersDiv) return;
+            const lines = rawText.split('\n');
+            let numbered = '';
+            for (let i = 1; i <= lines.length; i++) numbered += i + '\n';
+            lineNumbersDiv.textContent = numbered;
+        }
+
+        function renderRomanDisplay() {
+            romanEditorDiv.innerHTML = highlightRomanCode(currentRomanRaw);
+            updateLineNumbers(romanEditorDiv, romanLineNumbersDiv, currentRomanRaw);
+        }
+
+        function renderHachukmaDisplay() {
+            hachukmaEditorDiv.innerHTML = highlightHachukmaCode(currentHachukmaRaw);
+            updateLineNumbers(hachukmaEditorDiv, hachukmaLineNumbersDiv, currentHachukmaRaw);
+        }
+
+        function makeEditorReadOnly(editorElement) {
+            editorElement.setAttribute('contenteditable', 'false');
+            editorElement.style.userSelect = 'text';
+            editorElement.addEventListener('dragstart', (e) => e.preventDefault());
+            editorElement.addEventListener('drop', (e) => e.preventDefault());
+            editorElement.addEventListener('beforeinput', (e) => e.preventDefault());
+            editorElement.addEventListener('keydown', (e) => {
+                if (e.key === 'Delete' || e.key === 'Backspace' || e.key === 'Enter' || e.key === 'Insert') e
+                .preventDefault();
+                if ((e.ctrlKey || e.metaKey) && (e.key === 'v' || e.key === 'x')) e.preventDefault();
+            });
+            editorElement.addEventListener('paste', (e) => e.preventDefault());
+        }
+
+        function attachContainerScrollSync(container, lineNumbersDiv) {
+            if (!container || !lineNumbersDiv) return;
+            container.addEventListener('scroll', () => {
+                lineNumbersDiv.style.transform = `translateY(-${container.scrollTop}px)`;
+            });
+        }
+
+        // ---- init ----
+        function init() {
+            makeEditorReadOnly(romanEditorDiv);
+            makeEditorReadOnly(hachukmaEditorDiv);
+            renderRomanDisplay();
+            renderHachukmaDisplay();
+            const romanContainer = romanEditorDiv.closest('.code-container');
+            const hachContainer = hachukmaEditorDiv.closest('.code-container');
+            if (romanContainer) attachContainerScrollSync(romanContainer, romanLineNumbersDiv);
+            if (hachContainer) attachContainerScrollSync(hachContainer, hachukmaLineNumbersDiv);
+            setTimeout(() => {
+                if (romanContainer) romanLineNumbersDiv.style.transform = `translateY(-${romanContainer.scrollTop}px)`;
+                if (hachContainer) hachukmaLineNumbersDiv.style.transform = `translateY(-${hachContainer.scrollTop}px)`;
+            }, 20);
+        }
+        init();
+
+   
+        (function fixClockMs() {
+            const msElement = document.querySelector('.clock-ms');
+            if (!msElement) return;
+
+            const observer = new MutationObserver(() => {
+                let val = msElement.textContent.trim();
+                if (/^\d+$/.test(val)) {
+                    val = val.padStart(3, '0');
+                    if (msElement.textContent !== val) {
+                        msElement.textContent = val;
+                    }
+                }
+            });
+
+            observer.observe(msElement, { childList: true, characterData: true, subtree: true });
+
+            setInterval(() => {
+                let val = msElement.textContent.trim();
+                if (/^\d+$/.test(val)) {
+                    const padded = val.padStart(3, '0');
+                    if (msElement.textContent !== padded) {
+                        msElement.textContent = padded;
+                    }
+                }
+            }, 50);
+        })();
+    </script>
+</body>
+</html> 
