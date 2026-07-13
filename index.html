@@ -10,15 +10,15 @@
     <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large" />
     <meta name="keywords" content="Kokborok script, Hachukma script, Kokborok alphabet, Tripuri script, Borok language script, pictographic alphabet, acrophonic principle, indigenous script, Kokborok writing system, Tripura script, neography, Borok culture" />
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <!-- <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="manifest" href="/site.webmanifest" /> -->
 
     <style>
         @font-face {
             font-family: "NewScript";
-            src: url("hachukma.woff") format("woff");
+            src: url("../Font/hachukma.woff") format("woff");
             font-weight: normal;
             font-style: normal;
         }
@@ -74,7 +74,6 @@
             letter-spacing: 0.04em;
         }
 
-        /* ─── typing container ─── */
         .typing-wrap {
             display: flex;
             align-items: center;
@@ -85,7 +84,7 @@
         .typing-wrap .pua-char {
             font-family: "NewScript", sans-serif;
             font-size: 1.9rem;
-            color: #c6d9e9; 
+            color: #c6d9e9;
             line-height: 1;
             display: inline-block;
             opacity: 0;
@@ -117,7 +116,7 @@
             display: inline-block;
             width: 2px;
             height: 1.8rem;
-            background:  #c6d9e9;
+            background: #c6d9e9;
             margin-left: 0.1rem;
             border-radius: 1px;
             animation: blink 0.9s step-end infinite;
@@ -284,12 +283,68 @@
         }
 
         .hero-showcase .label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.08em;
             color: #5a7a7a;
             font-weight: 600;
             margin-bottom: 0.6rem;
+        }
+
+        .hero-showcase .label .play-all-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: #297c7c;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            padding: 0.2rem 0.8rem 0.2rem 0.5rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .hero-showcase .label .play-all-btn:hover {
+            background: #1f5f5f;
+            transform: scale(1.03);
+        }
+
+        .hero-showcase .label .play-all-btn:active {
+            transform: scale(0.95);
+        }
+
+        .hero-showcase .label .play-all-btn svg {
+            display: block;
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+
+        .hero-showcase .label .play-all-btn.playing svg {
+            animation: pulse 0.8s ease-in-out infinite;
+        }
+
+        .hero-showcase .label .play-all-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        @keyframes pulse {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.25);
+            }
         }
 
         .hero-showcase .grid {
@@ -299,16 +354,19 @@
         }
 
         .hero-showcase .sample-char {
-            font-family: "NewScript", sans-serif;
-            font-size: 1.8rem;
-            color: #297c7c;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             background: #ffffff;
-            padding: 0.15rem 0.6rem;
-            border-radius: 2px;
-            border: 1px solid #d0e0e0;
-            min-width: 2.6rem;
-            text-align: center;
-            transition: all 0.12s ease;
+            border-radius: 4px;
+            border: 2px solid #d0e0e0;
+            padding: 0.1rem 0.4rem 0.1rem;
+            min-width: 2.8rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            position: relative;
+            user-select: none;
         }
 
         .hero-showcase .sample-char:hover {
@@ -317,13 +375,42 @@
             border-color: #297c7c;
         }
 
+        /* ─── Highlight state for playback ─── */
+        .hero-showcase .sample-char.highlight {
+            border-color: #297c7c;
+            background: #d4ecec;
+            box-shadow: 0 0 0 3px rgba(41, 124, 124, 0.25), 0 4px 12px rgba(41, 124, 124, 0.15);
+            transform: scale(1.05);
+            z-index: 2;
+        }
+
+        .hero-showcase .sample-char .char-symbol {
+            font-family: "NewScript", sans-serif;
+            font-size: 1.8rem;
+            color: #297c7c;
+            line-height: 1.2;
+            transition: color 0.2s ease;
+            pointer-events: none;
+        }
+
+        .hero-showcase .sample-char.highlight .char-symbol {
+            color: #1a5f5f;
+        }
+
         .hero-showcase .sample-char .roman {
             font-family: "Inter", sans-serif;
             font-size: 0.6rem;
             font-weight: 600;
             color: #5a7a7a;
             display: block;
-            margin-top: -0.2rem;
+            margin-top: -0.1rem;
+            line-height: 1.2;
+            transition: color 0.2s ease;
+            pointer-events: none;
+        }
+
+        .hero-showcase .sample-char.highlight .roman {
+            color: #1a5f5f;
         }
 
         .hero-showcase .note {
@@ -826,6 +913,21 @@
             white-space: nowrap;
         }
 
+        /* ─── DISCLAIMER ─── */
+        .disclaimer {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #4a6a6a;
+            padding: 1rem 1rem 0.5rem;
+            border-top: 1px solid #e0e8e8;
+            margin: 1rem 0 0.5rem;
+            background: #fcfcfc;
+            border-radius: 4px;
+        }
+        .disclaimer strong {
+            color: #297c7c;
+        }
+
         .visitor-wrapper {
             display: inline-block;
             background: #f0f6f6;
@@ -885,6 +987,14 @@
             .navbar-brand .brand-roman {
                 font-size: 0.55rem;
             }
+            .hero-showcase .label .play-all-btn {
+                font-size: 0.6rem;
+                padding: 0.15rem 0.6rem 0.15rem 0.4rem;
+            }
+            .hero-showcase .label .play-all-btn svg {
+                width: 12px;
+                height: 12px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -928,9 +1038,22 @@
                 padding: 1.2rem 1rem 1rem;
             }
             .hero-showcase .sample-char {
-                font-size: 1.4rem;
                 min-width: 2.2rem;
-                padding: 0.1rem 0.4rem;
+                padding: 0.05rem 0.2rem;
+            }
+            .hero-showcase .sample-char .char-symbol {
+                font-size: 1.4rem;
+            }
+            .hero-showcase .sample-char .roman {
+                font-size: 0.5rem;
+            }
+            .hero-showcase .label .play-all-btn {
+                font-size: 0.55rem;
+                padding: 0.1rem 0.5rem 0.1rem 0.3rem;
+            }
+            .hero-showcase .label .play-all-btn svg {
+                width: 11px;
+                height: 11px;
             }
             .section-head h2 {
                 font-size: 1.6rem;
@@ -1009,6 +1132,9 @@
             .navbar-brand .brand-roman {
                 font-size: 0.5rem;
             }
+            .hero-showcase .sample-char.highlight {
+                transform: scale(1.04);
+            }
         }
 
         @media (max-width: 600px) {
@@ -1077,12 +1203,22 @@
                 line-height: 1.7;
             }
             .hero-showcase .sample-char {
-                font-size: 1.1rem;
                 min-width: 1.8rem;
-                padding: 0.05rem 0.3rem;
+                padding: 0.05rem 0.15rem;
+            }
+            .hero-showcase .sample-char .char-symbol {
+                font-size: 1.1rem;
             }
             .hero-showcase .sample-char .roman {
+                font-size: 0.45rem;
+            }
+            .hero-showcase .label .play-all-btn {
                 font-size: 0.5rem;
+                padding: 0.1rem 0.4rem 0.1rem 0.3rem;
+            }
+            .hero-showcase .label .play-all-btn svg {
+                width: 9px;
+                height: 9px;
             }
             .section-head h2 {
                 font-size: 1.4rem;
@@ -1154,6 +1290,10 @@
             .navbar-brand .brand-roman {
                 font-size: 0.45rem;
             }
+            .hero-showcase .sample-char.highlight {
+                transform: scale(1.03);
+                box-shadow: 0 0 0 2px rgba(41, 124, 124, 0.3), 0 2px 8px rgba(41, 124, 124, 0.12);
+            }
         }
 
         @media (max-width: 400px) {
@@ -1201,6 +1341,10 @@
             }
             .navbar-brand .brand-roman {
                 display: none;
+            }
+            .hero-showcase .sample-char.highlight {
+                transform: scale(1.02);
+                box-shadow: 0 0 0 2px rgba(41, 124, 124, 0.25);
             }
         }
 
@@ -1270,6 +1414,18 @@
             .navbar-brand .brand-roman {
                 opacity: 1 !important;
             }
+            .hero-showcase .label .play-all-btn {
+                display: none !important;
+            }
+            .hero-showcase .sample-char.highlight {
+                border-color: #297c7c !important;
+                background: #d4ecec !important;
+                box-shadow: none !important;
+                transform: none !important;
+            }
+            .disclaimer {
+                border-top: 1px solid #ccc !important;
+            }
         }
     </style>
 </head>
@@ -1279,7 +1435,6 @@
     <nav class="navbar" role="navigation">
         <a href="" class="navbar-brand">
             <span class="typing-wrap" id="typingWrap">
-                <!-- PUA chars injected by JS -->
                 <span class="cursor-blink" id="cursorBlink"></span>
             </span>
             <span class="brand-label" id="brandLabel">Script</span>
@@ -1293,13 +1448,13 @@
         </button>
 
         <ul class="navbar-links" id="navLinks">
-           <li><a href="acrophonic.html">Acrophonic</a></li>
-            <li><a href="script.html">Script</a></li>
-            <li><a href="numerals.html">Numerals</a></li>
-            <li><a href="hachukma-chart.html">Chart</a></li>
-            <li><a href="virtual-keyboard.html">Virtual Keyboard</a></li>
-            <li><a href="dropped-glyphs.html">Dropped-glyphs</a></li>
-            <li><a href="hachukma-IME-software.html">Download</a></li>
+            <li><a href="../public/acrophonic.html">Acrophonic</a></li>
+            <li><a href="../public/script.html">Script</a></li>
+            <li><a href="../public/numerals.html">Numerals</a></li>
+            <li><a href="../public/hachukma-chart.html">Chart</a></li>
+            <li><a href="../public/virtual-keyboard.html">Virtual Keyboard</a></li>
+            <li><a href="../public/dropped-glyphs.html">Dropped-glyphs</a></li>
+            <li><a href="../public/hachukma-IME-software.html">Download</a></li>
         </ul>
     </nav>
 
@@ -1319,35 +1474,144 @@
             </div>
 
             <div class="hero-showcase">
-                <div class="label">Kokborok alphabet</div>
-                <div class="grid">
-                    <!-- Sorted alphabetically: a, b, ch, d, e, g, h, i, j, k, kh, l, m, n, ng, o, p, ph, r, s, t, th, u, w, y, ɘ -->
-                    <span class="sample-char">&#xE00A;<span class="roman">a</span></span>
-                    <span class="sample-char">&#xE00B;<span class="roman">b</span></span>
-                    <span class="sample-char">&#xE00C;<span class="roman">ch</span></span>
-                    <span class="sample-char">&#xE00D;<span class="roman">d</span></span>
-                    <span class="sample-char">&#xE00E;<span class="roman">e</span></span>
-                    <span class="sample-char">&#xE010;<span class="roman">g</span></span>
-                    <span class="sample-char">&#xE011;<span class="roman">h</span></span>
-                    <span class="sample-char">&#xE012;<span class="roman">i</span></span>
-                    <span class="sample-char">&#xE013;<span class="roman">j</span></span>
-                    <span class="sample-char">&#xE014;<span class="roman">k</span></span>
-                    <span class="sample-char">&#xE01F;<span class="roman">kh</span></span>
-                    <span class="sample-char">&#xE015;<span class="roman">l</span></span>
-                    <span class="sample-char">&#xE016;<span class="roman">m</span></span>
-                    <span class="sample-char">&#xE017;<span class="roman">n</span></span>
-                    <span class="sample-char">&#xE021;<span class="roman">ng</span></span>
-                    <span class="sample-char">&#xE018;<span class="roman">o</span></span>
-                    <span class="sample-char">&#xE019;<span class="roman">p</span></span>
-                    <span class="sample-char">&#xE00F;<span class="roman">ph</span></span>
-                    <span class="sample-char">&#xE01B;<span class="roman">r</span></span>
-                    <span class="sample-char">&#xE01C;<span class="roman">s</span></span>
-                    <span class="sample-char">&#xE01D;<span class="roman">t</span></span>
-                    <span class="sample-char">&#xE01A;<span class="roman">th</span></span>
-                    <span class="sample-char">&#xE01E;<span class="roman">u</span></span>
-                    <span class="sample-char">&#xE020;<span class="roman">w</span></span>
-                    <span class="sample-char">&#xE022;<span class="roman">y</span></span>
-                    <span class="sample-char">&#xE023;<span class="roman">ɘ</span></span>
+                <div class="label">
+                    <span>Kokborok alphabet</span>
+                    <button class="play-all-btn" id="playAllBtn" aria-label="Play all alphabet sounds">
+                        <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+                        <span>Play all</span>
+                    </button>
+                </div>
+                <div class="grid" id="alphabetGrid">
+                    <!-- a -->
+                    <div class="sample-char" data-char="a">
+                        <span class="char-symbol">&#xE00A;</span>
+                        <span class="roman">a</span>
+                    </div>
+                    <!-- b -->
+                    <div class="sample-char" data-char="b">
+                        <span class="char-symbol">&#xE00B;</span>
+                        <span class="roman">b</span>
+                    </div>
+                    <!-- ch -->
+                    <div class="sample-char" data-char="ch">
+                        <span class="char-symbol">&#xE00C;</span>
+                        <span class="roman">ch</span>
+                    </div>
+                    <!-- d -->
+                    <div class="sample-char" data-char="d">
+                        <span class="char-symbol">&#xE00D;</span>
+                        <span class="roman">d</span>
+                    </div>
+                    <!-- e -->
+                    <div class="sample-char" data-char="e">
+                        <span class="char-symbol">&#xE00E;</span>
+                        <span class="roman">e</span>
+                    </div>
+                    <!-- g -->
+                    <div class="sample-char" data-char="g">
+                        <span class="char-symbol">&#xE010;</span>
+                        <span class="roman">g</span>
+                    </div>
+                    <!-- h -->
+                    <div class="sample-char" data-char="h">
+                        <span class="char-symbol">&#xE011;</span>
+                        <span class="roman">h</span>
+                    </div>
+                    <!-- i -->
+                    <div class="sample-char" data-char="i">
+                        <span class="char-symbol">&#xE012;</span>
+                        <span class="roman">i</span>
+                    </div>
+                    <!-- j -->
+                    <div class="sample-char" data-char="j">
+                        <span class="char-symbol">&#xE013;</span>
+                        <span class="roman">j</span>
+                    </div>
+                    <!-- k -->
+                    <div class="sample-char" data-char="k">
+                        <span class="char-symbol">&#xE014;</span>
+                        <span class="roman">k</span>
+                    </div>
+                    <!-- kh -->
+                    <div class="sample-char" data-char="kh">
+                        <span class="char-symbol">&#xE01F;</span>
+                        <span class="roman">kh</span>
+                    </div>
+                    <!-- l -->
+                    <div class="sample-char" data-char="l">
+                        <span class="char-symbol">&#xE015;</span>
+                        <span class="roman">l</span>
+                    </div>
+                    <!-- m -->
+                    <div class="sample-char" data-char="m">
+                        <span class="char-symbol">&#xE016;</span>
+                        <span class="roman">m</span>
+                    </div>
+                    <!-- n -->
+                    <div class="sample-char" data-char="n">
+                        <span class="char-symbol">&#xE017;</span>
+                        <span class="roman">n</span>
+                    </div>
+                    <!-- ng -->
+                    <div class="sample-char" data-char="ng">
+                        <span class="char-symbol">&#xE021;</span>
+                        <span class="roman">ng</span>
+                    </div>
+                    <!-- o -->
+                    <div class="sample-char" data-char="o">
+                        <span class="char-symbol">&#xE018;</span>
+                        <span class="roman">o</span>
+                    </div>
+                    <!-- p -->
+                    <div class="sample-char" data-char="p">
+                        <span class="char-symbol">&#xE019;</span>
+                        <span class="roman">p</span>
+                    </div>
+                    <!-- ph -->
+                    <div class="sample-char" data-char="ph">
+                        <span class="char-symbol">&#xE00F;</span>
+                        <span class="roman">ph</span>
+                    </div>
+                    <!-- r -->
+                    <div class="sample-char" data-char="r">
+                        <span class="char-symbol">&#xE01B;</span>
+                        <span class="roman">r</span>
+                    </div>
+                    <!-- s -->
+                    <div class="sample-char" data-char="s">
+                        <span class="char-symbol">&#xE01C;</span>
+                        <span class="roman">s</span>
+                    </div>
+                    <!-- t -->
+                    <div class="sample-char" data-char="t">
+                        <span class="char-symbol">&#xE01D;</span>
+                        <span class="roman">t</span>
+                    </div>
+                    <!-- th -->
+                    <div class="sample-char" data-char="th">
+                        <span class="char-symbol">&#xE01A;</span>
+                        <span class="roman">th</span>
+                    </div>
+                    <!-- u -->
+                    <div class="sample-char" data-char="u">
+                        <span class="char-symbol">&#xE01E;</span>
+                        <span class="roman">u</span>
+                    </div>
+                    <!-- w -->
+                    <div class="sample-char" data-char="w">
+                        <span class="char-symbol">&#xE020;</span>
+                        <span class="roman">w</span>
+                    </div>
+                    <!-- y -->
+                    <div class="sample-char" data-char="y">
+                        <span class="char-symbol">&#xE022;</span>
+                        <span class="roman">y</span>
+                    </div>
+                    <!-- ɘ -->
+                    <div class="sample-char" data-char="ɘ">
+                        <span class="char-symbol">&#xE023;</span>
+                        <span class="roman">ɘ</span>
+                    </div>
                 </div>
                 <div class="note">26 alphabetic characters — vowels, consonants, and a tone diacritic</div>
             </div>
@@ -1445,7 +1709,7 @@
                     The Hachukma Kokborok script follows the <strong>acrophonic principle</strong>, where each character derives its phonetic value from the <strong>initial sound</strong> of the object it depicts. <strong>This is a deliberate choice</strong> for three key reasons:
                 </p>
                 <ul style="margin:0.4rem 0 0.4rem 1.5rem; color:#2a3e3e; line-height:1.8;">
-                    <li><strong>Memorability.</strong> By linking each character to a familiar object — <em>Golari</em> (slingshot) for /g/, <em>Dangdol</em> (clothesline) for /d/, and so on — Hachukma leverages existing knowledge. A learner can recall the corresponding sound by remembering the object's name, making the entire Kokborok alphabet <strong>memorisable within a few weeks of regular practice (for example, 8–15 weeks), rather than decades.</strong></li
+                    <li><strong>Memorability.</strong> By linking each character to a familiar object — <em>Golari</em> (slingshot) for /g/, <em>Dangdol</em> (clothesline) for /d/, and so on — Hachukma leverages existing knowledge. A learner can recall the corresponding sound by remembering the object's name, making the entire Kokborok alphabet <strong>memorisable within a few weeks of regular practice (for example, 8–15 weeks), rather than decades.</strong></li>
                     <li><strong>Technological compatibility.</strong> An alphabetic system uses a small, manageable set of characters — just 26 letters, 10 numerals, and a single diacritic. This minimal inventory is essential for digital processing, keyboard efficiency, and programming applications.</li>
                 </ul>
                 <p style="margin-top:0.6rem;">
@@ -1489,10 +1753,9 @@
                 <p>
                     <strong>I oversaw</strong> a rigorous <strong>eight‑month development cycle (October 2025 – May 2026)</strong> focused on visual distinctiveness, cultural authenticity, and writing speed. <strong>I refined</strong> each character to minimise writing time while maintaining clear recognisability through iterative testing and feedback from native speakers.
                 </p>
-               <p>
-                During the research phase, an extensive survey of writing systems, neographies, and symbol sets was conducted. Throughout this process, <strong>I discovered</strong> that several Hachukma pictographic symbols unintentionally resembled characters found in other scripts and neographies, despite those writing systems not being pictographic in nature. To safeguard the originality and distinct visual identity of Hachukma, <strong>I systematically identified, eliminated, and redesigned</strong> these symbols. This rigorous refinement ensured that the final Kokborok alphabet preserved only the most visually distinctive, culturally authentic, and efficient pictographic symbols.
-               </p>
-
+                <p>
+                    During the research phase, an extensive survey of writing systems, neographies, and symbol sets was conducted. Throughout this process, <strong>I discovered</strong> that several Hachukma pictographic symbols unintentionally resembled characters found in other scripts and neographies, despite those writing systems not being pictographic in nature. To safeguard the originality and distinct visual identity of Hachukma, <strong>I systematically identified, eliminated, and redesigned</strong> these symbols. This rigorous refinement ensured that the final Kokborok alphabet preserved only the most visually distinctive, culturally authentic, and efficient pictographic symbols.
+                </p>
             </div>
             <div>
                 <h3>Design Principles</h3>
@@ -1506,65 +1769,143 @@
         </div>
 
 
-        <!-- ─── VOWELS SECTION (NO ROMAN) ─── -->
+        <!-- ─── VOWELS SECTION ─── -->
         <div class="vowels-section">
             <h3>Vowels</h3>
             <p class="sub">The six vowel characters of the Hachukma Kokborok script</p>
-            <div class="vowels-grid">
-                <div class="vowel-item"><span class="symbol">&#xE00A;</span><span class="ipa">/a/</span></div>
-                <div class="vowel-item"><span class="symbol">&#xE00E;</span><span class="ipa">/e/</span></div>
-                <div class="vowel-item"><span class="symbol">&#xE012;</span><span class="ipa">/i/</span></div>
-                <div class="vowel-item"><span class="symbol">&#xE018;</span><span class="ipa">/o/</span></div>
-                <div class="vowel-item"><span class="symbol">&#xE01E;</span><span class="ipa">/u/</span></div>
-                <div class="vowel-item"><span class="symbol">&#xE023;</span><span class="ipa">/ɘ/</span></div>
+            <div class="vowels-grid" id="vowelsGrid">
+                <div class="vowel-item" data-char="a">
+                    <span class="symbol">&#xE00A;</span>
+                    <span class="ipa">/a/</span>
+                </div>
+                <div class="vowel-item" data-char="e">
+                    <span class="symbol">&#xE00E;</span>
+                    <span class="ipa">/e/</span>
+                </div>
+                <div class="vowel-item" data-char="i">
+                    <span class="symbol">&#xE012;</span>
+                    <span class="ipa">/i/</span>
+                </div>
+                <div class="vowel-item" data-char="o">
+                    <span class="symbol">&#xE018;</span>
+                    <span class="ipa">/o/</span>
+                </div>
+                <div class="vowel-item" data-char="u">
+                    <span class="symbol">&#xE01E;</span>
+                    <span class="ipa">/u/</span>
+                </div>
+                <div class="vowel-item" data-char="ɘ">
+                    <span class="symbol">&#xE023;</span>
+                    <span class="ipa">/ɘ/</span>
+                </div>
             </div>
         </div>
 
-        <!-- ─── CONSONANTS GRID (A–Z ORDER, NO ROMAN) ─── -->
+        <!-- ─── CONSONANTS GRID ─── -->
         <div class="consonants-section">
             <h3>Consonants</h3>
             <p class="sub">All 20 consonant characters with IPA pronunciation</p>
-            <div class="consonants-grid">
+            <div class="consonants-grid" id="consonantsGrid">
                 <!-- b -->
-                <div class="char-item"><span class="symbol">&#xE00B;</span><span class="ipa">/b/</span></div>
+                <div class="char-item" data-char="b">
+                    <span class="symbol">&#xE00B;</span>
+                    <span class="ipa">/b/</span>
+                </div>
                 <!-- ch -->
-                <div class="char-item"><span class="symbol">&#xE00C;</span><span class="ipa">/tʃ/</span></div>
+                <div class="char-item" data-char="ch">
+                    <span class="symbol">&#xE00C;</span>
+                    <span class="ipa">/tʃ/</span>
+                </div>
                 <!-- d -->
-                <div class="char-item"><span class="symbol">&#xE00D;</span><span class="ipa">/d/</span></div>
+                <div class="char-item" data-char="d">
+                    <span class="symbol">&#xE00D;</span>
+                    <span class="ipa">/d/</span>
+                </div>
                 <!-- g -->
-                <div class="char-item"><span class="symbol">&#xE010;</span><span class="ipa">/g/</span></div>
+                <div class="char-item" data-char="g">
+                    <span class="symbol">&#xE010;</span>
+                    <span class="ipa">/g/</span>
+                </div>
                 <!-- h -->
-                <div class="char-item"><span class="symbol">&#xE011;</span><span class="ipa">/h/</span></div>
+                <div class="char-item" data-char="h">
+                    <span class="symbol">&#xE011;</span>
+                    <span class="ipa">/h/</span>
+                </div>
                 <!-- j -->
-                <div class="char-item"><span class="symbol">&#xE013;</span><span class="ipa">/dʒ/</span></div>
+                <div class="char-item" data-char="j">
+                    <span class="symbol">&#xE013;</span>
+                    <span class="ipa">/dʒ/</span>
+                </div>
                 <!-- k -->
-                <div class="char-item"><span class="symbol">&#xE014;</span><span class="ipa">/k/</span></div>
+                <div class="char-item" data-char="k">
+                    <span class="symbol">&#xE014;</span>
+                    <span class="ipa">/k/</span>
+                </div>
                 <!-- kh -->
-                <div class="char-item"><span class="symbol">&#xE01F;</span><span class="ipa">/kʰ/</span></div>
+                <div class="char-item" data-char="kh">
+                    <span class="symbol">&#xE01F;</span>
+                    <span class="ipa">/kʰ/</span>
+                </div>
                 <!-- l -->
-                <div class="char-item"><span class="symbol">&#xE015;</span><span class="ipa">/l/</span></div>
+                <div class="char-item" data-char="l">
+                    <span class="symbol">&#xE015;</span>
+                    <span class="ipa">/l/</span>
+                </div>
                 <!-- m -->
-                <div class="char-item"><span class="symbol">&#xE016;</span><span class="ipa">/m/</span></div>
+                <div class="char-item" data-char="m">
+                    <span class="symbol">&#xE016;</span>
+                    <span class="ipa">/m/</span>
+                </div>
                 <!-- n -->
-                <div class="char-item"><span class="symbol">&#xE017;</span><span class="ipa">/n/</span></div>
+                <div class="char-item" data-char="n">
+                    <span class="symbol">&#xE017;</span>
+                    <span class="ipa">/n/</span>
+                </div>
                 <!-- ng -->
-                <div class="char-item"><span class="symbol">&#xE021;</span><span class="ipa">/ŋ/</span></div>
+                <div class="char-item" data-char="ng">
+                    <span class="symbol">&#xE021;</span>
+                    <span class="ipa">/ŋ/</span>
+                </div>
                 <!-- p -->
-                <div class="char-item"><span class="symbol">&#xE019;</span><span class="ipa">/p/</span></div>
+                <div class="char-item" data-char="p">
+                    <span class="symbol">&#xE019;</span>
+                    <span class="ipa">/p/</span>
+                </div>
                 <!-- ph -->
-                <div class="char-item"><span class="symbol">&#xE00F;</span><span class="ipa">/pʰ/</span></div>
+                <div class="char-item" data-char="ph">
+                    <span class="symbol">&#xE00F;</span>
+                    <span class="ipa">/pʰ/</span>
+                </div>
                 <!-- r -->
-                <div class="char-item"><span class="symbol">&#xE01B;</span><span class="ipa">/r/</span></div>
+                <div class="char-item" data-char="r">
+                    <span class="symbol">&#xE01B;</span>
+                    <span class="ipa">/r/</span>
+                </div>
                 <!-- s -->
-                <div class="char-item"><span class="symbol">&#xE01C;</span><span class="ipa">/s/</span></div>
+                <div class="char-item" data-char="s">
+                    <span class="symbol">&#xE01C;</span>
+                    <span class="ipa">/s/</span>
+                </div>
                 <!-- t -->
-                <div class="char-item"><span class="symbol">&#xE01D;</span><span class="ipa">/t/</span></div>
+                <div class="char-item" data-char="t">
+                    <span class="symbol">&#xE01D;</span>
+                    <span class="ipa">/t/</span>
+                </div>
                 <!-- th -->
-                <div class="char-item"><span class="symbol">&#xE01A;</span><span class="ipa">/tʰ/</span></div>
+                <div class="char-item" data-char="th">
+                    <span class="symbol">&#xE01A;</span>
+                    <span class="ipa">/tʰ/</span>
+                </div>
                 <!-- w -->
-                <div class="char-item"><span class="symbol">&#xE020;</span><span class="ipa">/w/</span></div>
+                <div class="char-item" data-char="w">
+                    <span class="symbol">&#xE020;</span>
+                    <span class="ipa">/w/</span>
+                </div>
                 <!-- y -->
-                <div class="char-item"><span class="symbol">&#xE022;</span><span class="ipa">/j/</span></div>
+                <div class="char-item" data-char="y">
+                    <span class="symbol">&#xE022;</span>
+                    <span class="ipa">/j/</span>
+                </div>
             </div>
         </div>
 
@@ -1623,19 +1964,19 @@
                 Download the Hachukma IME software for Windows, install the custom font, and start typing in Kokborok using this pictographic alphabetic script.
             </p>
             <div class="cta-buttons">
-                <a href="hachukma-IME-software.html" class="cta-btn primary">
+                <a href="../public/hachukma-IME-software.html" class="cta-btn primary">
                     <span class="btn-icon">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                     </span>
                     Download IME
                 </a>
-                <a href="hachukma-chart.html" class="cta-btn secondary">
+                <a href="../public/hachukma-chart.html" class="cta-btn secondary">
                     <span class="btn-icon">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
                     </span>
                     View Full Chart
                 </a>
-                <a href="virtual-keyboard.html" class="cta-btn secondary">
+                <a href="../public/virtual-keyboard.html" class="cta-btn secondary">
                     <span class="btn-icon">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01"/><path d="M10 10h.01"/><path d="M14 10h.01"/><path d="M18 10h.01"/><path d="M6 14h.01"/><path d="M10 14h.01"/><path d="M14 14h.01"/><path d="M18 14h.01"/><path d="M6 10h.01"/><path d="M10 10h.01"/><path d="M14 10h.01"/><path d="M18 10h.01"/></svg>
                     </span>
@@ -1647,22 +1988,15 @@
     </main>
 
     <footer class="footer">
-        <!-- <div class="social-links">
-            <a href="https://www.facebook.com/hachukma" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-            </a>
-            <a href="https://www.youtube.com/channel/hachukma" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-            </a>
-        </div> -->
-
-
-          <div class="footer-meta">
+      <!-- <div class="disclaimer">
+          <p><strong>Important:</strong> This script is <strong>not officially implemented in Tripura, India, as of now</strong>. It is presented for demonstration and discussion. Your support and sharing for future implementation are highly welcome.</p>
+     </div> -->
+        <div class="footer-meta">
             <span class="nowrap">Designed and developed by <strong>Anan Debbarma</strong>.</span>
             <span class="nowrap">&copy; 2025 – 2026.</span>
             <span class="nowrap">|</span>
             <span class="nowrap"><a href="mailto:hachukma@gmail.com" style="color: #297c7c; text-decoration: none;"> Contact : hachukma@gmail.com</a></span>
-            </div>
+        </div>
     </footer>
 
     <script>
@@ -1696,10 +2030,7 @@
                 });
             }
 
-            // ─── Typing effect with PUA glyphs ───
-            // Mapping: "Hachukma" → PUA glyphs
-            // H → U+E011 (h), a → U+E00A (a), c → U+E00C (ch)
-            // u → U+E01E (u), k → U+E014 (k), m → U+E016 (m), a → U+E00A (a)
+            // ─── Typing effect ───
             const puaChars = [
                 { glyph: '\uE011', roman: 'h' },
                 { glyph: '\uE00A', roman: 'a' },
@@ -1715,45 +2046,195 @@
             const label = document.getElementById('brandLabel');
             const roman = document.getElementById('brandRoman');
 
-            if (!wrap || !cursor) return;
+            if (wrap && cursor) {
+                let index = 0;
+                const total = puaChars.length;
+                const delay = 180;
 
-            let index = 0;
-            const total = puaChars.length;
-            const delay = 180; // ms per char
+                wrap.innerHTML = '';
+                wrap.appendChild(cursor);
 
-            // Clear initial content (keep cursor)
-            wrap.innerHTML = '';
-            wrap.appendChild(cursor);
+                function typeNext() {
+                    if (index >= total) {
+                        cursor.classList.add('done');
+                        if (label) label.classList.add('visible');
+                        if (roman) roman.classList.add('visible');
+                        return;
+                    }
 
-            function typeNext() {
-                if (index >= total) {
-                    // All done: hide cursor, show label + roman
-                    cursor.classList.add('done');
-                    if (label) label.classList.add('visible');
-                    if (roman) roman.classList.add('visible');
-                    return;
+                    const data = puaChars[index];
+                    const span = document.createElement('span');
+                    span.className = 'pua-char';
+                    span.textContent = data.glyph;
+                    wrap.insertBefore(span, cursor);
+
+                    requestAnimationFrame(() => {
+                        span.classList.add('show');
+                    });
+
+                    index++;
+                    setTimeout(typeNext, delay);
                 }
 
-                const data = puaChars[index];
-                const span = document.createElement('span');
-                span.className = 'pua-char';
-                span.textContent = data.glyph;
-                span.dataset.roman = data.roman;
-
-                // Insert before cursor
-                wrap.insertBefore(span, cursor);
-
-                // Trigger pop-in animation
-                requestAnimationFrame(() => {
-                    span.classList.add('show');
-                });
-
-                index++;
-                setTimeout(typeNext, delay);
+                setTimeout(typeNext, 400);
             }
 
-            // Start after a tiny delay so the page settles
-            setTimeout(typeNext, 400);
+            // ─── Global play-all with highlight ───
+            const playAllBtn = document.getElementById('playAllBtn');
+            if (playAllBtn) {
+                const charOrder = [
+                    'a', 'b', 'ch', 'd', 'e', 'g', 'h', 'i', 'j', 'k',
+                    'kh', 'l', 'm', 'n', 'ng', 'o', 'p', 'ph', 'r', 's',
+                    't', 'th', 'u', 'w', 'y', 'ɘ'
+                ];
+
+                let isPlaying = false;
+                let currentIndex = 0;
+                let timeoutId = null;
+
+                const charElements = document.querySelectorAll('#alphabetGrid .sample-char');
+                const charMap = {};
+                charElements.forEach(el => {
+                    const key = el.getAttribute('data-char');
+                    if (key) charMap[key] = el;
+                });
+
+                function clearHighlight() {
+                    charElements.forEach(el => el.classList.remove('highlight'));
+                }
+
+                function highlightChar(char) {
+                    clearHighlight();
+                    if (charMap[char]) {
+                        charMap[char].classList.add('highlight');
+                    }
+                }
+
+                function stopPlayAll() {
+                    isPlaying = false;
+                    if (timeoutId) {
+                        clearTimeout(timeoutId);
+                        timeoutId = null;
+                    }
+                    if (window._currentAudio) {
+                        try {
+                            window._currentAudio.pause();
+                            window._currentAudio.currentTime = 0;
+                        } catch (e) {}
+                        window._currentAudio = null;
+                    }
+                    if (window._playTimeout) {
+                        clearTimeout(window._playTimeout);
+                        window._playTimeout = null;
+                    }
+                    currentIndex = 0;
+                    clearHighlight();
+                    playAllBtn.disabled = false;
+                    playAllBtn.classList.remove('playing');
+                    playAllBtn.querySelector('span').textContent = 'Play all';
+                }
+
+                function playNextSound() {
+                    if (!isPlaying) {
+                        stopPlayAll();
+                        return;
+                    }
+                    if (currentIndex >= charOrder.length) {
+                        stopPlayAll();
+                        return;
+                    }
+
+                    const char = charOrder[currentIndex];
+                    highlightChar(char);
+
+                    const audio = new Audio(`alphabets/${char}.mp3`);
+                    window._currentAudio = audio;
+                    audio.onended = function() {
+                        if (!isPlaying) {
+                            window._currentAudio = null;
+                            return;
+                        }
+                        window._currentAudio = null;
+                        currentIndex++;
+                        window._playTimeout = setTimeout(playNextSound, 300);
+                    };
+                    audio.onerror = function() {
+                        if (!isPlaying) {
+                            window._currentAudio = null;
+                            return;
+                        }
+                        window._currentAudio = null;
+                        console.warn('Could not load sound for "' + char + '"');
+                        currentIndex++;
+                        window._playTimeout = setTimeout(playNextSound, 200);
+                    };
+                    audio.play().catch(function(err) {
+                        window._currentAudio = null;
+                        console.warn('Playback error for "' + char + '":', err);
+                        if (!isPlaying) {
+                            return;
+                        }
+                        currentIndex++;
+                        window._playTimeout = setTimeout(playNextSound, 200);
+                    });
+                }
+
+                playAllBtn.addEventListener('click', function() {
+                    if (isPlaying) {
+                        stopPlayAll();
+                        return;
+                    }
+
+                    // Start playing
+                    isPlaying = true;
+                    currentIndex = 0;
+                    this.disabled = true;
+                    this.classList.add('playing');
+                    this.querySelector('span').textContent = 'Playing...';
+                    clearHighlight();
+                    playNextSound();
+                });
+            }
+
+            // ─── Individual click on character box ───
+            document.querySelectorAll('#alphabetGrid .sample-char').forEach(function(el) {
+                el.addEventListener('click', function(e) {
+                    const char = this.getAttribute('data-char');
+                    if (!char) return;
+
+                    // If "Play all" is running, stop it
+                    if (playAllBtn && playAllBtn.classList.contains('playing')) {
+                        // Simulate a click on the play all button to stop
+                        playAllBtn.click();
+                        // Wait a moment then play the individual sound
+                        setTimeout(function() {
+                            playSingleSound(char);
+                        }, 100);
+                    } else {
+                        playSingleSound(char);
+                    }
+                });
+            });
+
+            function playSingleSound(char) {
+                // Highlight the clicked character
+                const allChars = document.querySelectorAll('#alphabetGrid .sample-char');
+                allChars.forEach(el => el.classList.remove('highlight'));
+                const target = document.querySelector('#alphabetGrid .sample-char[data-char="' + char + '"]');
+                if (target) {
+                    target.classList.add('highlight');
+                    // Remove highlight after sound ends or after a timeout
+                    setTimeout(function() {
+                        target.classList.remove('highlight');
+                    }, 1200);
+                }
+
+                const audio = new Audio(`alphabets/${char}.mp3`);
+                audio.play().catch(function(err) {
+                    console.warn('Could not play individual sound for "' + char + '":', err);
+                });
+            }
+
         })();
     </script>
 
