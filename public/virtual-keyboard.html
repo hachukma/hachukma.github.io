@@ -230,55 +230,6 @@
             border-bottom-color: #1a5a5a;
         }
 
-        .article-section .article-body .digraph-highlight {
-            background: #f0f9f9;
-            padding: 0.8rem 1.2rem;
-            border-radius: 6px;
-            border-left: 4px solid #1a7a7a;
-            margin: 1rem 0;
-        }
-
-        .article-section .article-body .digraph-highlight code {
-            background: #dce8e8;
-            padding: 0.1rem 0.5rem;
-            border-radius: 4px;
-            font-family: 'Segoe UI', monospace;
-            font-size: 0.9rem;
-        }
-
-        .article-section .article-body .digraph-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            gap: 0.5rem;
-            margin: 0.8rem 0 1.2rem 0;
-        }
-
-        .article-section .article-body .digraph-grid .digraph-box {
-            background: #f8fbfb;
-            border: 1.5px solid #dce8e8;
-            border-radius: 8px;
-            padding: 0.4rem 0.2rem;
-            text-align: center;
-            font-size: 0.95rem;
-        }
-
-        .article-section .article-body .digraph-grid .digraph-box .digraph-keys {
-            font-weight: 600;
-            color: #0d2b2b;
-            font-family: 'Segoe UI', monospace;
-        }
-
-        .article-section .article-body .digraph-grid .digraph-box .digraph-arrow {
-            color: #6a8a8a;
-            margin: 0 0.2rem;
-        }
-
-        .article-section .article-body .digraph-grid .digraph-box .digraph-result {
-            font-family: 'NewScript', 'Segoe UI', Tahoma, sans-serif;
-            font-size: 1.6rem;
-            color: #297c7c;
-        }
-
         .letter-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
@@ -347,7 +298,6 @@
             border-color: #297c7c;
         }
 
-        /* ─── PREDICTION BAR — VERTICAL BAR STYLE ─── */
         .prediction-bar {
             display: flex;
             flex-wrap: nowrap;
@@ -440,9 +390,8 @@
             font-size: 2.4rem;
             color: #000000;
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column;
             align-items: flex-start;
-            gap: 0;
             font-family: 'NewScript', 'Segoe UI', Tahoma, sans-serif;
             cursor: text;
             position: relative;
@@ -454,41 +403,66 @@
             background: #ffffff;
         }
 
-        .text-display .char-container {
+        /* Hachukma wrapper - ZERO GAPS between characters */
+        .hachukma-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 0;
+            width: 100%;
+            min-height: 1.4em;
+            position: relative;
+            font-size: 0; /* Remove whitespace between inline elements */
+            line-height: 0;
+        }
+
+        .hachukma-wrapper .char-container {
             display: inline-flex;
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
-            min-width: 0.4em;
+            margin: 0;
+            padding: 0;
+            min-width: 0;
             position: relative;
-            transition: background 0.1s;
-            padding: 0 0.02em;
             vertical-align: top;
+            flex-shrink: 0;
+            font-size: 2.2rem; /* Reset font size */
+            line-height: 1.3;
         }
 
-        .text-display .char-container .syllabic-line {
-            font-size: 2.2rem;
-            line-height: 1.3;
-            position: relative;
+        .hachukma-wrapper .char-container .syllabic-line {
             display: inline-block;
             font-weight: 500;
             color: #1a2a2a;
             font-family: 'NewScript', 'Segoe UI', Tahoma, sans-serif;
             min-height: 1.4em;
+            padding: 0;
+            margin: 0;
+            line-height: 1.3;
+            font-size: inherit;
         }
 
-        .text-display .char-container .alphabetic-line {
+        .hachukma-wrapper .char-container .syllabic-line.space-char {
+            min-width: 0.5em;
+        }
+
+        /* Roman helper directly below – no gaps */
+        .hachukma-wrapper .char-container .alphabetic-line {
             font-size: 0.65rem;
             color: #6a8a8a;
-            line-height: 1;
-            margin-top: 0.1rem;
-            font-weight: 400;
-            letter-spacing: 0.3px;
             font-family: 'Segoe UI', Tahoma, sans-serif;
+            letter-spacing: 0;
+            line-height: 1;
+            margin: 0;
+            padding: 0;
             min-height: 1em;
+            text-align: center;
+            width: auto;
+            display: inline-block;
         }
 
-        .text-display .char-container .high-tone {
+        .hachukma-wrapper .char-container .high-tone {
             position: absolute;
             top: -0.25em;
             left: 0;
@@ -499,30 +473,42 @@
             padding-left: 32px;
         }
 
-        .text-display .char-container.active {
-            background: rgba(65, 70, 70, 0.12);
-            border-radius: 4px;
+        /* Error state - applies to both syllabic and alphabetic lines */
+        .hachukma-wrapper .char-container.error .syllabic-line {
+            color: #ff0000 !important;
+            text-decoration: line-through;
+            animation: blinkRed 0.6s infinite;
+        }
+        .hachukma-wrapper .char-container.error .alphabetic-line {
+            color: #ff0000 !important;
+            text-decoration: line-through;
         }
 
-        .text-display .cursor {
+        @keyframes blinkRed {
+            0%   { color: #ff0000; background-color: transparent; }
+            50%  { color: #ffffff; background-color: #ff0000; }
+            100% { color: #ff0000; background-color: transparent; }
+        }
+
+        /* Cursor - inline with characters */
+        .cursor {
             display: inline-block;
             width: 2px;
             height: 1.4em;
             background-color: #000;
-            margin-left: 2px;
             animation: blink 1s step-end infinite;
-            vertical-align: middle;
+            vertical-align: bottom;
             flex-shrink: 0;
+            margin-left: 0px;
+            margin-top: 0;
+            font-size: 2.2rem;
+            line-height: 1.3;
         }
 
         @keyframes blink {
             50% {
                 opacity: 0;
             }
-        }
-
-        .text-display .char-container .syllabic-line.space-char {
-            min-width: 0.5em;
         }
 
         .keyboard-wrapper {
@@ -582,6 +568,42 @@
             flex-direction: column;
         }
 
+        .key .shortcut-label,
+        .smalldevice-key .shortcut-label,
+        .smalldevice-keys .shortcut-label {
+            position: absolute;
+            top: 2px;
+            right: 4px;
+            font-size: 0.5rem;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            color: #888;
+            font-weight: bold;
+            pointer-events: none;
+            line-height: 1;
+            transition: none;
+        }
+        .smalldevice-key .shortcut-label,
+        .smalldevice-keys .shortcut-label {
+            font-size: 0.45rem;
+            top: 1px;
+            right: 2px;
+        }
+
+        .shortcut-label.blink-label {
+            animation: blinkLabel 0.6s ease-in-out infinite;
+        }
+
+        @keyframes blinkLabel {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.15;
+                transform: scale(0.8);
+            }
+        }
+
         .key[data-key="p"] {
             background: linear-gradient(145deg, #a3d3bd, #e9ebda);
         }
@@ -599,7 +621,6 @@
             background: #c8d6d6;
         }
 
-        /* ---- ENHANCED BLINK EFFECT for desktop keys ---- */
         .key.active {
             background: #dae4e4 !important;
             transform: scale(1.02);
@@ -820,7 +841,6 @@
             background: #c8d6d6;
         }
 
-        /* ---- ENHANCED BLINK EFFECT for phone keys ---- */
         .smalldevice-key.active,
         .smalldevice-keys.active,
         .smalldevice-key-arrow.active,
@@ -860,7 +880,7 @@
         .syllabic-line[data-key="th"],
         .syllabic-line[data-key="kh"],
         .syllabic-line[data-key="ch"] {
-            padding-left: 17px;
+            padding-left: 0px;
         }
 
         .syllabic-line[data-key="chh"] {
@@ -884,8 +904,11 @@
                 min-height: 120px;
                 max-height: 200px;
             }
-            .text-display .char-container .syllabic-line {
+            .hachukma-wrapper .char-container .syllabic-line {
                 font-size: 1.8rem;
+            }
+            .hachukma-wrapper .char-container .alphabetic-line {
+                font-size: 0.55rem;
             }
             .prediction-bar {
                 min-height: 48px;
@@ -933,11 +956,11 @@
                 min-height: 100px;
                 max-height: 180px;
             }
-            .text-display .char-container .syllabic-line {
+            .hachukma-wrapper .char-container .syllabic-line {
                 font-size: 1.5rem;
             }
-            .text-display .char-container .alphabetic-line {
-                font-size: 0.55rem;
+            .hachukma-wrapper .char-container .alphabetic-line {
+                font-size: 0.5rem;
             }
             .prediction-bar {
                 min-height: 44px;
@@ -999,13 +1022,13 @@
                 min-height: 80px;
                 max-height: 160px;
             }
-            .text-display .char-container .syllabic-line {
+            .hachukma-wrapper .char-container .syllabic-line {
                 font-size: 1.2rem;
             }
-            .text-display .char-container .alphabetic-line {
-                font-size: 0.5rem;
+            .hachukma-wrapper .char-container .alphabetic-line {
+                font-size: 0.45rem;
             }
-            .text-display .cursor {
+            .cursor {
                 height: 1.2rem;
             }
             .prediction-bar {
@@ -1067,20 +1090,20 @@
                 min-height: 65px;
                 max-height: 150px;
             }
-            .text-display .char-container .syllabic-line {
+            .hachukma-wrapper .char-container .syllabic-line {
                 font-size: 1.0rem;
                 line-height: 1.4;
             }
-            .text-display .char-container .alphabetic-line {
-                font-size: 0.45rem;
+            .hachukma-wrapper .char-container .alphabetic-line {
+                font-size: 0.4rem;
             }
-            .text-display .cursor {
+            .cursor {
                 height: 1rem;
             }
-            .text-display .char-container .high-tone {
+            .hachukma-wrapper .char-container .high-tone {
                 font-size: 1.3em;
                 top: -0.2em;
-                   padding-left: 12px;
+                padding-left: 12px;
             }
             .prediction-bar {
                 min-height: 34px;
@@ -1200,20 +1223,20 @@
                 min-height: 55px;
                 max-height: 130px;
             }
-            .text-display .char-container .syllabic-line {
+            .hachukma-wrapper .char-container .syllabic-line {
                 font-size: 0.85rem;
                 line-height: 1.3;
             }
-            .text-display .char-container .alphabetic-line {
-                font-size: 0.4rem;
+            .hachukma-wrapper .char-container .alphabetic-line {
+                font-size: 0.35rem;
             }
-            .text-display .cursor {
+            .cursor {
                 height: 0.85rem;
             }
-            .text-display .char-container .high-tone {
+            .hachukma-wrapper .char-container .high-tone {
                 font-size: 1.2em;
                 top: -0.15em;
-                   padding-left: 12px;
+                padding-left: 12px;
             }
             .prediction-bar {
                 min-height: 30px;
@@ -1329,12 +1352,12 @@
             .syllabic-line[data-key="th"],
             .syllabic-line[data-key="kh"],
             .syllabic-line[data-key="ch"] {
-                padding-left: 10px !important;
+                padding-left: 0px !important;
             }
             .syllabic-line[data-key="chh"] {
                 padding-left: 18px !important;
             }
-            .text-display .char-container .high-tone {
+            .hachukma-wrapper .char-container .high-tone {
                 top: -0.2em;
                 left: 0;
                 transform: translateX(-50%);
@@ -1348,12 +1371,12 @@
             .syllabic-line[data-key="th"],
             .syllabic-line[data-key="kh"],
             .syllabic-line[data-key="ch"] {
-                padding-left: 6px !important;
+                padding-left: 0px !important;
             }
             .syllabic-line[data-key="chh"] {
                 padding-left: 12px !important;
             }
-            .text-display .char-container .high-tone {
+            .hachukma-wrapper .char-container .high-tone {
                 font-size: 1.2em;
                 top: -0.15em;
                 padding-left: 18px;
@@ -1365,13 +1388,13 @@
             .syllabic-line[data-key="th"],
             .syllabic-line[data-key="kh"],
             .syllabic-line[data-key="ch"] {
-                padding-left: 6px !important;
+                padding-left: 0px !important;
             }
             .syllabic-line[data-key="chh"] {
                 padding-left: 12px !important;
             }
 
-            .text-display .char-container .high-tone {
+            .hachukma-wrapper .char-container .high-tone {
                 font-size: 1.2em;
                 top: -0.15em;
                 padding-left: 11px !important;
@@ -1430,7 +1453,7 @@
 
     <div class="container">
 
-        <!-- ===== ARTICLE 1: Main Introduction ===== -->
+        <!-- ===== ARTICLE ===== -->
         <div class="article-section" id="articleSection">
             <div class="article-title">
                 Hachukma — <span class="hachukma-word">A Modern Script for Kokborok</span>
@@ -1449,7 +1472,7 @@
                 </p>
 
                 <p>
-                    <strong>Built for Practical, Everyday Use</strong> — Hachukma is built for practical, everyday use. The script is designed to work on your computer right now, and the keyboard layout is straightforward. The tone system and digraph auto‑replace are designed to be efficient. It's a script made for the Kokborok language, ready to be used today and in the future.
+                    <strong>Built for Practical, Everyday Use</strong> — Hachukma is built for practical, everyday use. The script is designed to work on your computer right now, and the keyboard layout is straightforward. The tone system and digraph handling are designed to be efficient. It's a script made for the Kokborok language, ready to be used today and in the future.
                 </p>
 
                 <p>
@@ -1464,9 +1487,7 @@
                     <strong>Why the Tone Mark is on the <kbd>p</kbd> Key (Double‑Tap)</strong> — In Kokborok, the tone mark is important for pronunciation and meaning. In Hachukma, you add it by double‑tapping the <kbd>p</kbd> key. Why <kbd>p</kbd>? Because it keeps all the other keys free for their normal jobs, like punctuation and symbols. This "multi‑tap" approach is fast and intuitive.
                 </p>
 
-                <!-- ========================================================= -->
-                <!--  IME EXPERIMENT — CLEAR & FUTURE-FOCUSED                    -->
-                <!-- ========================================================= -->
+                <!-- ===== IME EXPERIMENT ===== -->
                 <div class="ime-experiment">
                     <p><strong>Software Experiment — A Note‑Pad for Hachukma</strong></p>
                     <p>
@@ -1485,77 +1506,24 @@
                     </p>
                 </div>
 
-                <!-- ========================================================= -->
-                <!--  DIGRAPH MAPS & AUTO‑REPLACE SECTION                       -->
-                <!-- ========================================================= -->
-                <div class="digraph-highlight">
-                    <p><strong>Digraph Maps &amp; Auto‑Replace — How Typing Really Works</strong></p>
+                <!-- ===== PRACTICE MODE ONLY ===== -->
+                <div style="background:#f0f9f9;padding:0.8rem 1.2rem;border-radius:6px;border-left:4px solid #1a7a7a;margin:1rem 0;">
+                    <p><strong>Practice Mode – Learn the Key Mapping</strong></p>
                     <p>
-                        One of the core design decisions I made for Hachukma is that typing should feel <em>natural</em>.
-                        In Kokborok, certain sounds are represented by two letters together — these are called <strong>digraphs</strong>:
-                        <code>th</code>, <code>ph</code>, <code>kh</code>, <code>ch</code>, and <code>ng</code>.
-                        Instead of forcing you to memorise a separate key for each digraph, I built an <strong>auto‑replace</strong> system
-                        right into the typing engine.
+                        To help you learn which physical keys produce which Hachukma characters, the system includes a <strong>practice‑mode</strong> error detector.
+                        If you type the two separate letters that form a digraph – for example, <strong>n</strong> then <strong>g</strong> for <code>ng</code> – 
+                        both characters will immediately turn <strong>red</strong>, get a <strong>strike‑through</strong>, and <strong>blink</strong> continuously.
+                        At the same time, the <strong>correct label</strong> (e.g., <code>x</code> on the <kbd>ng</kbd> key) will <strong>blink</strong> inside the key box to show you the right key to press – with no background change, just the letter itself pulsing.
+                        All further keyboard input is blocked until you press <strong>Backspace</strong> to delete the erroneous pair.
+                    </p>
+                    <p style="margin-top:0.4rem;">
+                        <span style="font-weight:600;">The correct way:</span> Use the dedicated keys on the keyboard labelled:
+                        <kbd>th</kbd>, <kbd>kh</kbd>, <kbd>ng</kbd>, <kbd>ph</kbd>, <kbd>ch</kbd>.
+                        These insert the digraph instantly with no error.
                     </p>
                     <p>
-                        Here's how it works: when you type two characters that form a valid digraph, the system automatically
-                        <strong>replaces</strong> the pair with the corresponding Hachukma character. For example:
-                    </p>
-
-                    <div class="digraph-grid">
-                        <div class="digraph-box">
-                            <span class="digraph-keys">t</span>
-                            <span class="digraph-arrow">+</span>
-                            <span class="digraph-keys">h</span>
-                            <span class="digraph-arrow">→</span>
-                            <span class="digraph-result"></span>
-                            <div style="font-size:0.7rem;color:#6a8a8a;">/tʰ/</div>
-                        </div>
-                        <div class="digraph-box">
-                            <span class="digraph-keys">p</span>
-                            <span class="digraph-arrow">+</span>
-                            <span class="digraph-keys">h</span>
-                            <span class="digraph-arrow">→</span>
-                            <span class="digraph-result"></span>
-                            <div style="font-size:0.7rem;color:#6a8a8a;">/pʰ/</div>
-                        </div>
-                        <div class="digraph-box">
-                            <span class="digraph-keys">k</span>
-                            <span class="digraph-arrow">+</span>
-                            <span class="digraph-keys">h</span>
-                            <span class="digraph-arrow">→</span>
-                            <span class="digraph-result"></span>
-                            <div style="font-size:0.7rem;color:#6a8a8a;">/kʰ/</div>
-                        </div>
-                      
-                        <div class="digraph-box">
-                            <span class="digraph-keys">n</span>
-                            <span class="digraph-arrow">+</span>
-                            <span class="digraph-keys">g</span>
-                            <span class="digraph-arrow">→</span>
-                            <span class="digraph-result"></span>
-                            <div style="font-size:0.7rem;color:#6a8a8a;">/ŋ/</div>
-                        </div>
-                    </div>
-
-                    <p>
-                        The mapping is simple and consistent. When you type a character that <em>could</em> form a digraph
-                        with the previous character, the engine checks the digraph map and performs the replacement instantly.
-                        This means you can type <code>t</code> then <code>h</code>, and before you even lift your finger,
-                        the two characters have already become a single <strong>th</strong> character in the Hachukma script.
-                    </p>
-
-                    <p>
-                        <strong>Why this matters:</strong> This auto‑replace feature makes typing in Hachukma feel
-                        just like typing in any other language. You don't have to think about "special keys" or "alternate
-                        layouts" — you just type the sounds as you hear them, and the system handles the rest.
-                    </p>
-
-                    <p style="margin-top:0.6rem;background:#ffffff;padding:0.4rem 0.8rem;border-radius:4px;border:1px dashed #b0c8c8;">
-                        <span style="font-weight:600;">Under the hood:</span> The digraph map is defined in the
-                        JavaScript as <code>digraphMap</code> — it's a simple object that maps second characters to first
-                        characters. When you type, the engine checks if the current key + the previous key form a valid
-                        digraph, and if so, it replaces the pair. This is the actual production code running in this demo.
+                        The Latin transliteration below each Hachukma character shows the roman equivalent directly beneath it, so you can clearly see the result of your typing.
+                        This immediate visual feedback (red strike + blink + block + pulsing shortcut letter) is designed to reinforce the correct key mapping in your muscle memory.
                     </p>
                 </div>
 
@@ -1605,9 +1573,6 @@
                     This is a project for the community, by the community. I invite you to explore, use, and share your feedback. Together, we can ensure that the Kokborok language continues to flourish in the digital world.
                 </p>
 
-                <p style="margin-top:0.8rem;background:#f4fafa;padding:0.6rem 1rem;border-radius:6px;border-left:4px solid #297c7c;">
-                    <strong>About this Demo:</strong> This is an independent, ongoing project. I am solely responsible for its current state and future direction. The demo is provided as a functional testbed to explore the Hachukma script and its typing mechanics. It is not a finished product, and expectations should be set accordingly.
-                </p>
             </div>
         </div>
 
@@ -1617,7 +1582,7 @@
                 <div class="prediction-empty">Start typing to see predictions …</div>
             </div>
             <div id="textDisplay" class="text-display" tabindex="0">
-                <span class="cursor"></span>
+                <div class="hachukma-wrapper" id="hachukmaWrapper"></div>
             </div>
         </div>
 
@@ -1643,57 +1608,169 @@
                     <button class="key" data-type="special" data-key="">Scroll Lock</button>
                     <button class="key" data-type="special" data-key="">Pause</button>
 
-                    <button class="key" data-type="vowel" data-key="1" data-char="&#xE001;"><br>&#xE001;<br>1</button>
-                    <button class="key" data-type="vowel" data-key="2" data-char="&#xE002;"><br>&#xE002;<br>2</button>
-                    <button class="key" data-type="vowel" data-key="3" data-char="&#xE003;"><br>&#xE003;<br>3</button>
-                    <button class="key" data-type="vowel" data-key="4" data-char="&#xE004;"><br>&#xE004;<br>4</button>
-                    <button class="key" data-type="vowel" data-key="5" data-char="&#xE005;"><br>&#xE005;<br>5</button>
-                    <button class="key" data-type="vowel" data-key="6" data-char="&#xE006;"><br>&#xE006;<br>6</button>
-                    <button class="key" data-type="vowel" data-key="7" data-char="&#xE007;"><br>&#xE007;<br>7</button>
-                    <button class="key" data-type="vowel" data-key="8" data-char="&#xE008;"><br>&#xE008;<br>8</button>
-                    <button class="key" data-type="vowel" data-key="9" data-char="&#xE009;"><br>&#xE009;<br>9</button>
-                    <button class="key" data-type="vowel" data-key="0" data-char="&#xE000;"><br>&#xE000;<br>0</button>
+                    <!-- Number row -->
+                    <button class="key" data-type="vowel" data-key="1" data-char="&#xE001;">
+                        <span class="shortcut-label">1</span>
+                        <br>&#xE001;<br>1
+                    </button>
+                    <button class="key" data-type="vowel" data-key="2" data-char="&#xE002;">
+                        <span class="shortcut-label">2</span>
+                        <br>&#xE002;<br>2
+                    </button>
+                    <button class="key" data-type="vowel" data-key="3" data-char="&#xE003;">
+                        <span class="shortcut-label">3</span>
+                        <br>&#xE003;<br>3
+                    </button>
+                    <button class="key" data-type="vowel" data-key="4" data-char="&#xE004;">
+                        <span class="shortcut-label">4</span>
+                        <br>&#xE004;<br>4
+                    </button>
+                    <button class="key" data-type="vowel" data-key="5" data-char="&#xE005;">
+                        <span class="shortcut-label">5</span>
+                        <br>&#xE005;<br>5
+                    </button>
+                    <button class="key" data-type="vowel" data-key="6" data-char="&#xE006;">
+                        <span class="shortcut-label">6</span>
+                        <br>&#xE006;<br>6
+                    </button>
+                    <button class="key" data-type="vowel" data-key="7" data-char="&#xE007;">
+                        <span class="shortcut-label">7</span>
+                        <br>&#xE007;<br>7
+                    </button>
+                    <button class="key" data-type="vowel" data-key="8" data-char="&#xE008;">
+                        <span class="shortcut-label">8</span>
+                        <br>&#xE008;<br>8
+                    </button>
+                    <button class="key" data-type="vowel" data-key="9" data-char="&#xE009;">
+                        <span class="shortcut-label">9</span>
+                        <br>&#xE009;<br>9
+                    </button>
+                    <button class="key" data-type="vowel" data-key="0" data-char="&#xE000;">
+                        <span class="shortcut-label">0</span>
+                        <br>&#xE000;<br>0
+                    </button>
                     <button class="key" data-type="special" data-key="-">-<br>_</button>
                     <button class="key" data-type="special" data-key="=">=<br>+</button>
                     <button class="key wide-backspace-key" data-type="special" data-key="Backspace">⌫ Backspace</button>
 
                     <button class="key wide" data-type="special">Tab</button>
-                    <button class="key" data-key="th" data-char="&#xE01A;">&#xE01A;<br>th</button>
-                    <button class="key" data-key="w" data-char="&#xE020;">&#xE020;<br>w</button>
-                    <button class="key" data-key="e" data-char="&#xE00E;">&#xE00E;<br>e</button>
-                    <button class="key" data-key="r" data-char="&#xE01B;">&#xE01B;<br>r</button>
-                    <button class="key" data-key="t" data-char="&#xE01D;">&#xE01D;<br>t</button>
-                    <button class="key" data-key="y" data-char="&#xE022;">&#xE022;<br>y</button>
-                    <button class="key" data-key="u" data-char="&#xE01E;">&#xE01E;<br>u</button>
-                    <button class="key" data-key="i" data-char="&#xE012;">&#xE012;<br>i</button>
-                    <button class="key" data-key="o" data-char="&#xE018;">&#xE018;<br>o</button>
-                    <button class="key" data-key="p" data-char="&#xE019;">&#xE019;&#xE024;<br>p</button>
+                    <!-- ROW 2 -->
+                    <button class="key" data-key="th" data-char="&#xE01A;">
+                        <span class="shortcut-label">q</span>
+                        &#xE01A;<br>th
+                    </button>
+                    <button class="key" data-key="w" data-char="&#xE020;">
+                        <span class="shortcut-label">w</span>
+                        &#xE020;<br>w
+                    </button>
+                    <button class="key" data-key="e" data-char="&#xE00E;">
+                        <span class="shortcut-label">e</span>
+                        &#xE00E;<br>e
+                    </button>
+                    <button class="key" data-key="r" data-char="&#xE01B;">
+                        <span class="shortcut-label">r</span>
+                        &#xE01B;<br>r
+                    </button>
+                    <button class="key" data-key="t" data-char="&#xE01D;">
+                        <span class="shortcut-label">t</span>
+                        &#xE01D;<br>t
+                    </button>
+                    <button class="key" data-key="y" data-char="&#xE022;">
+                        <span class="shortcut-label">y</span>
+                        &#xE022;<br>y
+                    </button>
+                    <button class="key" data-key="u" data-char="&#xE01E;">
+                        <span class="shortcut-label">u</span>
+                        &#xE01E;<br>u
+                    </button>
+                    <button class="key" data-key="i" data-char="&#xE012;">
+                        <span class="shortcut-label">i</span>
+                        &#xE012;<br>i
+                    </button>
+                    <button class="key" data-key="o" data-char="&#xE018;">
+                        <span class="shortcut-label">o</span>
+                        &#xE018;<br>o
+                    </button>
+                    <button class="key" data-key="p" data-char="&#xE019;">
+                        <span class="shortcut-label">p</span>
+                        &#xE019;&#xE024;<br>p
+                    </button>
                     <button class="key" data-type="special" data-key="]">{<br>]</button>
                     <button class="key" data-type="special" data-key="]">}<br>[</button>
                     <button class="key wide" data-type="special" data-key="\">|<br>\</button>
 
                     <button class="key wide" data-type="special">Caps Lock</button>
-                    <button class="key" data-key="a" data-char="&#xE00A;">&#xE00A;<br>a</button>
-                    <button class="key" data-key="s" data-char="&#xE01C;">&#xE01C;<br>s</button>
-                    <button class="key" data-key="d" data-char="&#xE00D;">&#xE00D;<br>d</button>
-                    <button class="key" data-key="ph" data-char="&#xE00F;">&#xE00F;<br>ph</button>
-                    <button class="key" data-key="g" data-char="&#xE010;">&#xE010;<br>g</button>
-                    <button class="key" data-key="h" data-char="&#xE011;">&#xE011;<br>h</button>
-                    <button class="key" data-key="j" data-char="&#xE013;">&#xE013;<br>j</button>
-                    <button class="key" data-key="k" data-char="&#xE014;">&#xE014;<br>k</button>
-                    <button class="key" data-key="l" data-char="&#xE015;">&#xE015;<br>l</button>
+                    <!-- ROW 3 -->
+                    <button class="key" data-key="a" data-char="&#xE00A;">
+                        <span class="shortcut-label">a</span>
+                        &#xE00A;<br>a
+                    </button>
+                    <button class="key" data-key="s" data-char="&#xE01C;">
+                        <span class="shortcut-label">s</span>
+                        &#xE01C;<br>s
+                    </button>
+                    <button class="key" data-key="d" data-char="&#xE00D;">
+                        <span class="shortcut-label">d</span>
+                        &#xE00D;<br>d
+                    </button>
+                    <button class="key" data-key="ph" data-char="&#xE00F;">
+                        <span class="shortcut-label">f</span>
+                        &#xE00F;<br>ph
+                    </button>
+                    <button class="key" data-key="g" data-char="&#xE010;">
+                        <span class="shortcut-label">g</span>
+                        &#xE010;<br>g
+                    </button>
+                    <button class="key" data-key="h" data-char="&#xE011;">
+                        <span class="shortcut-label">h</span>
+                        &#xE011;<br>h
+                    </button>
+                    <button class="key" data-key="j" data-char="&#xE013;">
+                        <span class="shortcut-label">j</span>
+                        &#xE013;<br>j
+                    </button>
+                    <button class="key" data-key="k" data-char="&#xE014;">
+                        <span class="shortcut-label">k</span>
+                        &#xE014;<br>k
+                    </button>
+                    <button class="key" data-key="l" data-char="&#xE015;">
+                        <span class="shortcut-label">l</span>
+                        &#xE015;<br>l
+                    </button>
                     <button class="key" data-type="special" data-key=";">:<br>;</button>
                     <button class="key" data-type="special" data-key="'">"<br>'</button>
                     <button class="key Enter-extra-wide" data-type="special" data-key="Enter">↵ Enter</button>
 
                     <button class="key Enter-extra-wide" data-type="special" data-key="Shift">⇧ Shift</button>
-                    <button class="key" data-key="ɘ" data-char="&#xE023;">&#xE023;<br>ɘ</button>
-                    <button class="key" data-key="ng" data-char="&#xE021;">&#xE021;<br>ng</button>
-                    <button class="key" data-key="ch" data-char="&#xE00C;">&#xE00C;<br>ch</button>
-                    <button class="key" data-key="kh" data-char="&#xE01F;">&#xE01F;<br>kh</button>
-                    <button class="key" data-key="b" data-char="&#xE00B;">&#xE00B;<br>b</button>
-                    <button class="key" data-key="n" data-char="&#xE017;">&#xE017;<br>n</button>
-                    <button class="key" data-key="m" data-char="&#xE016;">&#xE016;<br>m</button>
+                    <!-- ROW 4 -->
+                    <button class="key" data-key="ɘ" data-char="&#xE023;">
+                        <span class="shortcut-label">z</span>
+                        &#xE023;<br>ɘ
+                    </button>
+                    <button class="key" data-key="ng" data-char="&#xE021;">
+                        <span class="shortcut-label">x</span>
+                        &#xE021;<br>ng
+                    </button>
+                    <button class="key" data-key="ch" data-char="&#xE00C;">
+                        <span class="shortcut-label">c</span>
+                        &#xE00C;<br>ch
+                    </button>
+                    <button class="key" data-key="kh" data-char="&#xE01F;">
+                        <span class="shortcut-label">v</span>
+                        &#xE01F;<br>kh
+                    </button>
+                    <button class="key" data-key="b" data-char="&#xE00B;">
+                        <span class="shortcut-label">b</span>
+                        &#xE00B;<br>b
+                    </button>
+                    <button class="key" data-key="n" data-char="&#xE017;">
+                        <span class="shortcut-label">n</span>
+                        &#xE017;<br>n
+                    </button>
+                    <button class="key" data-key="m" data-char="&#xE016;">
+                        <span class="shortcut-label">m</span>
+                        &#xE016;<br>m
+                    </button>
                     <button class="key" data-type="special" data-key=","><<br>,</button>
                     <button class="key" data-type="special" data-key=".">><br>.</button>
                     <button class="key" data-type="special" data-key="/">?<br>/</button>
@@ -1718,47 +1795,159 @@
                 <div class="smalldevice-keyboard-container">
                     <div class="smalldevice-keyboard" id="phoneKeyboard">
 
-                        <button class="smalldevice-key" data-type="vowel" data-key="1" data-char="&#xE001;"><br>&#xE001;<br>1</button>
-                        <button class="smalldevice-key" data-type="vowel" data-key="2" data-char="&#xE002;"><br>&#xE002;<br>2</button>
-                        <button class="smalldevice-key" data-type="vowel" data-key="3" data-char="&#xE003;"><br>&#xE003;<br>3</button>
-                        <button class="smalldevice-key" data-type="vowel" data-key="4" data-char="&#xE004;"><br>&#xE004;<br>4</button>
-                        <button class="smalldevice-key" data-type="vowel" data-key="5" data-char="&#xE005;"><br>&#xE005;<br>5</button>
-                        <button class="smalldevice-key" data-type="vowel" data-key="6" data-char="&#xE006;"><br>&#xE006;<br>6</button>
-                        <button class="smalldevice-key" data-type="vowel" data-key="7" data-char="&#xE007;"><br>&#xE007;<br>7</button>
-                        <button class="smalldevice-key" data-type="vowel" data-key="8" data-char="&#xE008;"><br>&#xE008;<br>8</button>
-                        <button class="smalldevice-key" data-type="vowel" data-key="9" data-char="&#xE009;"><br>&#xE009;<br>9</button>
-                        <button class="smalldevice-key" data-type="vowel" data-key="0" data-char="&#xE000;"><br>&#xE000;<br>0</button>
+                        <!-- Phone number row -->
+                        <button class="smalldevice-key" data-type="vowel" data-key="1" data-char="&#xE001;">
+                            <span class="shortcut-label">1</span>
+                            <br>&#xE001;<br>1
+                        </button>
+                        <button class="smalldevice-key" data-type="vowel" data-key="2" data-char="&#xE002;">
+                            <span class="shortcut-label">2</span>
+                            <br>&#xE002;<br>2
+                        </button>
+                        <button class="smalldevice-key" data-type="vowel" data-key="3" data-char="&#xE003;">
+                            <span class="shortcut-label">3</span>
+                            <br>&#xE003;<br>3
+                        </button>
+                        <button class="smalldevice-key" data-type="vowel" data-key="4" data-char="&#xE004;">
+                            <span class="shortcut-label">4</span>
+                            <br>&#xE004;<br>4
+                        </button>
+                        <button class="smalldevice-key" data-type="vowel" data-key="5" data-char="&#xE005;">
+                            <span class="shortcut-label">5</span>
+                            <br>&#xE005;<br>5
+                        </button>
+                        <button class="smalldevice-key" data-type="vowel" data-key="6" data-char="&#xE006;">
+                            <span class="shortcut-label">6</span>
+                            <br>&#xE006;<br>6
+                        </button>
+                        <button class="smalldevice-key" data-type="vowel" data-key="7" data-char="&#xE007;">
+                            <span class="shortcut-label">7</span>
+                            <br>&#xE007;<br>7
+                        </button>
+                        <button class="smalldevice-key" data-type="vowel" data-key="8" data-char="&#xE008;">
+                            <span class="shortcut-label">8</span>
+                            <br>&#xE008;<br>8
+                        </button>
+                        <button class="smalldevice-key" data-type="vowel" data-key="9" data-char="&#xE009;">
+                            <span class="shortcut-label">9</span>
+                            <br>&#xE009;<br>9
+                        </button>
+                        <button class="smalldevice-key" data-type="vowel" data-key="0" data-char="&#xE000;">
+                            <span class="shortcut-label">0</span>
+                            <br>&#xE000;<br>0
+                        </button>
 
-                        <button class="smalldevice-key" data-key="th" data-char="&#xE01A;">&#xE01A;<br>th</button>
-                        <button class="smalldevice-key" data-key="w" data-char="&#xE020;">&#xE020;<br>w</button>
-                        <button class="smalldevice-key" data-key="e" data-char="&#xE00E;">&#xE00E;<br>e</button>
-                        <button class="smalldevice-key" data-key="r" data-char="&#xE01B;">&#xE01B;<br>r</button>
-                        <button class="smalldevice-key" data-key="t" data-char="&#xE01D;">&#xE01D;<br>t</button>
-                        <button class="smalldevice-key" data-key="y" data-char="&#xE022;">&#xE022;<br>y</button>
-                        <button class="smalldevice-key" data-key="u" data-char="&#xE01E;">&#xE01E;<br>u</button>
-                        <button class="smalldevice-key" data-key="i" data-char="&#xE012;">&#xE012;<br>i</button>
-                        <button class="smalldevice-key" data-key="o" data-char="&#xE018;">&#xE018;<br>o</button>
-                        <button class="smalldevice-key" data-key="p" data-char="&#xE019;">&#xE019;<br>p</button>
+                        <!-- PHONE ROW 2 -->
+                        <button class="smalldevice-key" data-key="th" data-char="&#xE01A;">
+                            <span class="shortcut-label">q</span>
+                            &#xE01A;<br>th
+                        </button>
+                        <button class="smalldevice-key" data-key="w" data-char="&#xE020;">
+                            <span class="shortcut-label">w</span>
+                            &#xE020;<br>w
+                        </button>
+                        <button class="smalldevice-key" data-key="e" data-char="&#xE00E;">
+                            <span class="shortcut-label">e</span>
+                            &#xE00E;<br>e
+                        </button>
+                        <button class="smalldevice-key" data-key="r" data-char="&#xE01B;">
+                            <span class="shortcut-label">r</span>
+                            &#xE01B;<br>r
+                        </button>
+                        <button class="smalldevice-key" data-key="t" data-char="&#xE01D;">
+                            <span class="shortcut-label">t</span>
+                            &#xE01D;<br>t
+                        </button>
+                        <button class="smalldevice-key" data-key="y" data-char="&#xE022;">
+                            <span class="shortcut-label">y</span>
+                            &#xE022;<br>y
+                        </button>
+                        <button class="smalldevice-key" data-key="u" data-char="&#xE01E;">
+                            <span class="shortcut-label">u</span>
+                            &#xE01E;<br>u
+                        </button>
+                        <button class="smalldevice-key" data-key="i" data-char="&#xE012;">
+                            <span class="shortcut-label">i</span>
+                            &#xE012;<br>i
+                        </button>
+                        <button class="smalldevice-key" data-key="o" data-char="&#xE018;">
+                            <span class="shortcut-label">o</span>
+                            &#xE018;<br>o
+                        </button>
+                        <button class="smalldevice-key" data-key="p" data-char="&#xE019;">
+                            <span class="shortcut-label">p</span>
+                            &#xE019;<br>p
+                        </button>
 
+                        <!-- PHONE ROW 3 -->
                         <button class="smalldevice-keys" id="smalldevice-two-set-key" data-key="" data-char="&#xE024;">&#xE024;<br></button>
-                        <button class="smalldevice-keys" data-key="a" data-char="&#xE00A;">&#xE00A;<br>a</button>
-                        <button class="smalldevice-keys" data-key="s" data-char="&#xE01C;">&#xE01C;<br>s</button>
-                        <button class="smalldevice-keys" data-key="d" data-char="&#xE00D;">&#xE00D;<br>d</button>
-                        <button class="smalldevice-keys" data-key="ph" data-char="&#xE00F;">&#xE00F;<br>ph</button>
-                        <button class="smalldevice-keys" data-key="g" data-char="&#xE010;">&#xE010;<br>g</button>
-                        <button class="smalldevice-keys" data-key="h" data-char="&#xE011;">&#xE011;<br>h</button>
-                        <button class="smalldevice-keys" data-key="j" data-char="&#xE013;">&#xE013;<br>j</button>
-                        <button class="smalldevice-keys" data-key="k" data-char="&#xE014;">&#xE014;<br>k</button>
-                        <button class="smalldevice-keys" data-key="l" data-char="&#xE015;">&#xE015;<br>l</button>
+                        <button class="smalldevice-keys" data-key="a" data-char="&#xE00A;">
+                            <span class="shortcut-label">a</span>
+                            &#xE00A;<br>a
+                        </button>
+                        <button class="smalldevice-keys" data-key="s" data-char="&#xE01C;">
+                            <span class="shortcut-label">s</span>
+                            &#xE01C;<br>s
+                        </button>
+                        <button class="smalldevice-keys" data-key="d" data-char="&#xE00D;">
+                            <span class="shortcut-label">d</span>
+                            &#xE00D;<br>d
+                        </button>
+                        <button class="smalldevice-keys" data-key="ph" data-char="&#xE00F;">
+                            <span class="shortcut-label">f</span>
+                            &#xE00F;<br>ph
+                        </button>
+                        <button class="smalldevice-keys" data-key="g" data-char="&#xE010;">
+                            <span class="shortcut-label">g</span>
+                            &#xE010;<br>g
+                        </button>
+                        <button class="smalldevice-keys" data-key="h" data-char="&#xE011;">
+                            <span class="shortcut-label">h</span>
+                            &#xE011;<br>h
+                        </button>
+                        <button class="smalldevice-keys" data-key="j" data-char="&#xE013;">
+                            <span class="shortcut-label">j</span>
+                            &#xE013;<br>j
+                        </button>
+                        <button class="smalldevice-keys" data-key="k" data-char="&#xE014;">
+                            <span class="shortcut-label">k</span>
+                            &#xE014;<br>k
+                        </button>
+                        <button class="smalldevice-keys" data-key="l" data-char="&#xE015;">
+                            <span class="shortcut-label">l</span>
+                            &#xE015;<br>l
+                        </button>
                         <button class="smalldevice-key-arrow" data-type="special" data-key="">↑</button>
 
-                        <button class="smalldevice-key" data-key="ɘ" data-char="&#xE023;">&#xE023;<br>ɘ</button>
-                        <button class="smalldevice-key" data-key="ng" data-char="&#xE021;">&#xE021;<br>ng</button>
-                        <button class="smalldevice-key" data-key="ch" data-char="&#xE00C;">&#xE00C;<br>ch</button>
-                        <button class="smalldevice-key" data-key="kh" data-char="&#xE01F;">&#xE01F;<br>kh</button>
-                        <button class="smalldevice-key" data-key="b" data-char="&#xE00B;">&#xE00B;<br>b</button>
-                        <button class="smalldevice-key" data-key="n" data-char="&#xE017;">&#xE017;<br>n</button>
-                        <button class="smalldevice-key" data-key="m" data-char="&#xE016;">&#xE016;<br>m</button>
+                        <!-- PHONE ROW 4 -->
+                        <button class="smalldevice-key" data-key="ɘ" data-char="&#xE023;">
+                            <span class="shortcut-label">z</span>
+                            &#xE023;<br>ɘ
+                        </button>
+                        <button class="smalldevice-key" data-key="ng" data-char="&#xE021;">
+                            <span class="shortcut-label">x</span>
+                            &#xE021;<br>ng
+                        </button>
+                        <button class="smalldevice-key" data-key="ch" data-char="&#xE00C;">
+                            <span class="shortcut-label">c</span>
+                            &#xE00C;<br>ch
+                        </button>
+                        <button class="smalldevice-key" data-key="kh" data-char="&#xE01F;">
+                            <span class="shortcut-label">v</span>
+                            &#xE01F;<br>kh
+                        </button>
+                        <button class="smalldevice-key" data-key="b" data-char="&#xE00B;">
+                            <span class="shortcut-label">b</span>
+                            &#xE00B;<br>b
+                        </button>
+                        <button class="smalldevice-key" data-key="n" data-char="&#xE017;">
+                            <span class="shortcut-label">n</span>
+                            &#xE017;<br>n
+                        </button>
+                        <button class="smalldevice-key" data-key="m" data-char="&#xE016;">
+                            <span class="shortcut-label">m</span>
+                            &#xE016;<br>m
+                        </button>
                         <button class="smalldevice-key-cut" data-type="special" data-key="X">⌫ X</button>
                         <button class="smalldevice-key" data-type="special" data-key="!#1">!#1</button>
                         <button class="smalldevice-key" data-type="special" data-key=",">,</button>
@@ -1773,7 +1962,7 @@
 
         </div>
 
-        <!-- ===== FEEDBACK FOOTER ===== -->
+        <!-- ===== FOOTER ===== -->
         <div class="feedback-footer">
             <p>
                 If you have any feedback, suggestions, or questions about the Hachukma key mapping, please contact:
@@ -1876,12 +2065,11 @@
 
 
         // ================================================================
-        //  HACHUKMA PREDICTIVE TYPING SYSTEM — Full Implementation
-        //  with SUBSTRING matching + VERTICAL BAR separators
+        //  HACHUKMA TYPING SYSTEM - ZERO GAPS BETWEEN CHARACTERS
         // ================================================================
 
         // ---- DOM refs ----
-        const textDisplayEl = document.getElementById('textDisplay');
+        const hachukmaWrapper = document.getElementById('hachukmaWrapper');
         const predictionBar = document.getElementById('predictionBar');
         const desktopKb = document.getElementById('desktopKbContainer');
         const phoneKb = document.getElementById('phoneKbContainer');
@@ -1892,6 +2080,8 @@
         let predictionList = [];
         let selectedIndex = -1;
         let totalKeyPresses = 0;
+        let blockInput = false;
+        let currentSuggestedKey = null;
 
         // ---- Physical keyboard "p" double-tap tracking ----
         let lastPhysicalPTime = 0;
@@ -1912,6 +2102,15 @@
 
         // ---- Digraph keys that should NOT have tone ----
         const DIGRAPH_KEYS_WITHOUT_TONE = ['th', 'ph', 'kh', 'ch', 'ng'];
+
+        // ---- Mapping from digraph to its on‑screen key label (same as digraph) ----
+        const digraphToShortcut = {
+            'th': 'th',
+            'kh': 'kh',
+            'ng': 'ng',
+            'ph': 'ph',
+            'ch': 'ch'
+        };
 
         // ---- PUA to Latin mapping (for display) ----
         const puaToLatin = {
@@ -1944,13 +2143,10 @@
             '\uE024': ''
         };
 
-        // ---- Digraph composition map ----
-        const digraphMap = {
-            'h': { 't': 'th', 'p': 'ph', 'k': 'kh', 'c': 'ch' },
-            'g': { 'n': 'ng' }
-        };
+        // ---- Digraph composition map (for error detection) ----
+        const DIGRAPH_SET = ['th', 'ph', 'kh', 'ch', 'ng'];
 
-        // ---- Token → PUA mapping (built from keyboard keys) ----
+        // ---- Token → PUA mapping ----
         const tokenToPUA = {
             'a': '\uE00A',
             'b': '\uE00B',
@@ -2073,7 +2269,7 @@
   "yapharjak", "yarok", "yarokno", "yasku" ,"watɘi" , "wa", ,"wasung" , "wacheng" ,"thang",
 ].sort();
 
-        // ---- Get predictions using SUBSTRING match (contains) ----
+        // ---- Get predictions ----
         function getPredictions(prefix) {
             if (!prefix || prefix.length === 0) return [];
             const lowerPrefix = prefix.toLowerCase();
@@ -2088,11 +2284,22 @@
             return results;
         }
 
-        // ---- Get max chips ----
         function getMaxChips() {
             const w = window.innerWidth;
             if (w <= 600) return 4;
             return 6;
+        }
+
+        // ---- Helper to remove blinking label ----
+        function clearBlink() {
+            if (currentSuggestedKey) {
+                document.querySelectorAll(
+                    `.key[data-key="${currentSuggestedKey}"] .shortcut-label, ` +
+                    `.smalldevice-key[data-key="${currentSuggestedKey}"] .shortcut-label, ` +
+                    `.smalldevice-keys[data-key="${currentSuggestedKey}"] .shortcut-label`
+                ).forEach(el => el.classList.remove('blink-label'));
+                currentSuggestedKey = null;
+            }
         }
 
         // ================================================================
@@ -2100,16 +2307,19 @@
         // ================================================================
 
         function renderDisplay() {
-            const cursor = textDisplayEl.querySelector('.cursor');
-            textDisplayEl.innerHTML = '';
+            // Clear wrapper
+            hachukmaWrapper.innerHTML = '';
+
             typedChars.forEach((item) => {
                 const container = document.createElement('span');
                 container.className = 'char-container';
+                if (item.error) {
+                    container.classList.add('error');
+                }
 
+                // Syllabic line (the Hachukma glyph)
                 const syllabic = document.createElement('div');
                 syllabic.className = 'syllabic-line';
-                const latin = document.createElement('div');
-                latin.className = 'alphabetic-line';
 
                 const key = item.key || item.char || '';
                 const charEntity = item.char || '';
@@ -2118,28 +2328,34 @@
                     const base = charEntity.replace('\uE024', '');
                     syllabic.innerHTML = `${base}<span class="high-tone">\uE024</span>`;
                     syllabic.setAttribute('data-key', key);
-                    latin.textContent = (puaToLatin[base] || base) + '́';
                 } else {
                     if (charEntity === ' ' || key === 'space') {
                         syllabic.innerHTML = '&nbsp;';
                         syllabic.className = 'syllabic-line space-char';
-                        latin.textContent = '';
                     } else {
                         syllabic.innerHTML = charEntity;
                         syllabic.setAttribute('data-key', key);
-                        latin.textContent = puaToLatin[charEntity] || key || charEntity;
                     }
                 }
 
-                container.appendChild(syllabic);
-                container.appendChild(latin);
-                textDisplayEl.appendChild(container);
-            });
-            const newCursor = document.createElement('span');
-            newCursor.className = 'cursor';
-            textDisplayEl.appendChild(newCursor);
+                // Roman helper line (directly below the glyph)
+                const roman = document.createElement('div');
+                roman.className = 'alphabetic-line';
+                if (charEntity !== ' ' && key !== 'space') {
+                    roman.textContent = puaToLatin[charEntity] || key || charEntity;
+                } else {
+                    roman.textContent = '';
+                }
 
-            textDisplayEl.scrollTop = textDisplayEl.scrollHeight;
+                container.appendChild(syllabic);
+                container.appendChild(roman);
+                hachukmaWrapper.appendChild(container);
+            });
+
+            // Add cursor inline at the end of characters
+            const cursor = document.createElement('span');
+            cursor.className = 'cursor';
+            hachukmaWrapper.appendChild(cursor);
         }
 
         function renderPredictions() {
@@ -2217,78 +2433,68 @@
             const chars = [...pua];
             for (const ch of chars) {
                 const key = puaToLatin[ch] || ch;
-                typedChars.push({ char: ch, key: key, tone: false });
+                typedChars.push({ char: ch, key: key, tone: false, error: false });
             }
-            typedChars.push({ char: ' ', key: 'space', tone: false });
+            typedChars.push({ char: ' ', key: 'space', tone: false, error: false });
 
             currentInput = '';
             predictionList = [];
             selectedIndex = -1;
+            blockInput = false;
+            clearBlink();
             renderDisplay();
             renderPredictions();
-            textDisplayEl.focus();
+            document.getElementById('textDisplay').focus();
         }
 
+        // ---- Insert a character, with digraph error detection and label blink ----
         function insertChar(charData) {
+            if (blockInput) return;
+
             const newKey = charData.key;
             const newChar = charData.char;
 
-            if (typedChars.length > 0 && newChar !== ' ' && newKey !== 'space') {
-                const prev = typedChars[typedChars.length - 1];
-                const prevKey = prev.key;
-
-                let digraphKey = null;
-                if (digraphMap[newKey] && digraphMap[newKey][prevKey]) {
-                    digraphKey = digraphMap[newKey][prevKey];
-                }
-
-                if (digraphKey) {
-                    let digraphChar = null;
-                    const foundKey = document.querySelector(
-                        `#desktopKeyboard .key[data-key="${digraphKey}"], #phoneKeyboard .smalldevice-key[data-key="${digraphKey}"], #phoneKeyboard .smalldevice-keys[data-key="${digraphKey}"]`
-                    );
-                    if (foundKey) {
-                        digraphChar = foundKey.getAttribute('data-char');
-                    }
-                    if (!digraphChar) {
-                        const digraphMapPUA = {
-                            'th': '\uE01A',
-                            'ph': '\uE00F',
-                            'kh': '\uE01F',
-                            'ch': '\uE00C',
-                            'ng': '\uE021'
-                        };
-                        digraphChar = digraphMapPUA[digraphKey] || digraphKey;
-                    }
-
-                    typedChars.pop();
-                    typedChars.push({
-                        char: digraphChar,
-                        key: digraphKey,
-                        tone: false
-                    });
-                    if (currentInput.length > 0) {
-                        currentInput = currentInput.slice(0, -1) + digraphKey;
-                    } else {
-                        currentInput = digraphKey;
-                    }
-                    renderDisplay();
-                    updatePredictions();
-                    return;
-                }
-            }
-
-            typedChars.push(charData);
-
-            if (newChar !== ' ' && newKey !== 'space') {
-                currentInput += newKey;
-            } else {
+            if (newChar === ' ' || newKey === 'space') {
+                typedChars.push({ char: ' ', key: 'space', tone: false, error: false });
                 currentInput = '';
                 predictionList = [];
                 selectedIndex = -1;
+                clearBlink();
                 renderPredictions();
                 renderDisplay();
                 return;
+            }
+
+            typedChars.push({ char: newChar, key: newKey, tone: false, error: false });
+            currentInput += newKey;
+
+            // ---- Digraph error detection ----
+            if (typedChars.length >= 2) {
+                const last = typedChars[typedChars.length - 1];
+                const prev = typedChars[typedChars.length - 2];
+                if (last.key.length === 1 && prev.key.length === 1 && !prev.error && !last.error) {
+                    const combined = prev.key + last.key;
+                    if (DIGRAPH_SET.includes(combined)) {
+                        prev.error = true;
+                        last.error = true;
+                        blockInput = true;
+
+                        const shortcut = digraphToShortcut[combined];
+                        if (shortcut) {
+                            clearBlink();
+                            currentSuggestedKey = shortcut;
+                            document.querySelectorAll(
+                                `.key[data-key="${shortcut}"] .shortcut-label, ` +
+                                `.smalldevice-key[data-key="${shortcut}"] .shortcut-label, ` +
+                                `.smalldevice-keys[data-key="${shortcut}"] .shortcut-label`
+                            ).forEach(el => el.classList.add('blink-label'));
+                        }
+
+                        renderDisplay();
+                        renderPredictions();
+                        return;
+                    }
+                }
             }
 
             renderDisplay();
@@ -2321,11 +2527,19 @@
                 currentInput = '';
                 predictionList = [];
                 selectedIndex = -1;
+                blockInput = false;
+                clearBlink();
                 renderPredictions();
                 renderDisplay();
                 return;
             }
+
             typedChars.pop();
+            const hasError = typedChars.some(item => item.error === true);
+            if (!hasError) {
+                blockInput = false;
+                clearBlink();
+            }
             let temp = '';
             for (let i = typedChars.length - 1; i >= 0; i--) {
                 const item = typedChars[i];
@@ -2362,11 +2576,20 @@
             currentInput = '';
             predictionList = [];
             selectedIndex = -1;
+            blockInput = false;
+            clearBlink();
             renderDisplay();
             renderPredictions();
         }
 
         function handleKeyPress(keyChar, isSpecial = false, charEntity = null) {
+            if (blockInput) {
+                if (keyChar === 'Backspace') {
+                    doBackspace();
+                }
+                return;
+            }
+
             if (keyChar === 'Backspace') {
                 doBackspace();
                 return;
@@ -2671,7 +2894,7 @@
             }
         });
 
-        textDisplayEl.addEventListener('click', () => textDisplayEl.focus());
+        document.getElementById('textDisplay').addEventListener('click', () => document.getElementById('textDisplay').focus());
 
         handleResponsiveKeyboard();
         renderDisplay();
@@ -2690,7 +2913,9 @@
         console.log('⌨️  Space bar inserts a plain space — no auto‑selection.');
         console.log('│  Prediction bar uses vertical bar separators.');
         console.log('✨ Keys now flash with a bright blink on press.');
+        console.log('✏️  PRACTICE MODE: typing two letters that form a digraph (e.g., n+g) shows red strike, blinks, and blocks input until Backspace.');
+        console.log('💡 The correct shortcut label (q, v, f, x, c) blinks with opacity and scale – no background change.');
+        console.log('✅ ZERO GAPS between characters – roman helper is now completely continuous (e.g., "kaham" not "k a h a m").');
     </script>
-
 </body>
 </html>
