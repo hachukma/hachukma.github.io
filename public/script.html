@@ -877,7 +877,7 @@
         <ul class="nav-links" id="navLinks" role="menubar">           
             <li role="none"><a href="../public/hachukma-learn.html" role="menuitem">Learn Hachukma</a></li>
             <li role="none"><a href="../public/hachukma-demo-IDE.html" role="menuitem">Future Compatibility</a></li>
-            <li role="none"><a href="../index.html" role="menuitem">← Back</a></li>
+            <li role="none"><a href="../index.html" role="menuitem">Back</a></li>
         </ul>
     </nav>
 
@@ -1305,20 +1305,49 @@
     <script>
         (function() {
             'use strict';
-            const wordList = [
-                "ang",
-                "buphang",
-                "chəng",
-                "dangdol",
-                "imang",
-                "pharok",
-                "golari",
-                "hangrai-nok",
-                "aikha",
-                "jubar-bubar",
-                "thang",
-                "musuk",
-            ];
+           const wordList = [
+           "aao","abono","achai","acham","achuk","achuk-thai","achukde","agi","ah","ah-kərun","ah-suk","ah-yu",
+           "aichuk","aikha","aisiri","akar","akaran","akarkha","alang","alka","ama","amchai","aming","andra","ang",
+           "ani","ano","ari","asuk","athuk","athukuri","awa","aya","ayang","ayu","ayung","babu","baching","bachui",
+           "bagui","bah","bahai","bahan","bai","baiching","bak","baka","baksa","bangra","bangui","bara","bardi","barja",
+           "barkha","bedek","belai","bera","berai","berma","bəcha","bəchadi","bəchələi","bəkarang","bəkha","bəkhurui",
+           "bəlai","bəlam","bərəi","bəsa","bəsai","bəsak","bəsəlai","bəskang","bəthai","bigra","bihik","bikhi","bikhumu",
+           "bir","birphang","bisa","bisi","bisinəi","bising","bisma","biyang","bo","bo-mo","bo-rai","bohok","bokhorok",
+           "bokong","bokrong","bol","bolong","bom","bompha-rai","bomrai","bomtha","bomtok","bomung","bongso","bor","borai",
+           "boro","borok","bosong","bothob","botowa","boyar","brandi","bubagra","bubar","buchuk","buduk","bui","bukung",
+           "bukur","buphang","bupra","bura","burai","busalai","buwa","cha-kha","chəng","dangdol","imang","pharok",
+           "golari","hangrai-nok","jubar-bubar","thang","musuk","cha-thok","cha-ya","chakhui","chalak","chanduk",
+           "chati","cheng","chibuk","chini","chirik","chum-de","chumui","chung","chuwan","da","dagi-di","dagi-mung","daiti",
+           "daruma","denta","dəkhəi","di","dibor","doga","doma","dugar","dum","ehe","əng","əng-ya","əngkha","əngya","gabang",
+           "garing","geguma","gəlak","giyan","go","gondra","gonga","gra","gudok","ha","hache","haching","hachuk","hadului",
+           "hai","hake","hakor","hambai","hamya","haphang","haphung","harung","hasing","hatai","hənəi","himdi","himo","hok",
+           "hoki","holong","huk","huldi","hus","ja","jabra","jak","jala","jalak","jilik","kaham","kai","kalang","karphek",
+           "kecham","keiseng","kenar","kepla","kesep","kəbai","kəbang","kəbuk","kəchak","kəchang","kəchar","kəkha","kəkhak",
+           "kəlai","kəlui","kənui","kəpəlai","kəphur","kəprap","kərəi","kəsa","kəsap","kəsar","kətal","kəthar","kəthung",
+           "kha","kha-ching","khachik","khaching","khachuk","khaichor","khairok","khakcha","kham","khamkha-chikam","khaphang","khar","khatang","khenta","kheto","khəi","khəlai","khəna","khəna-kha","khəna-ya",
+           "khi","khiklai","khoroksa", "khowa", "khuk", "khuk-chui", "khulum", "khum", "khumbar", "khumpui", "khunai", "khuri", "khutung", 
+           "ki", "kinar", "kiphil", "kiphiləi", "kiri-kha", "kiri-ya", "kirima-singcha", "kisa", "kisi", "ko", "kok", "koldi",
+            "kolok", "kondi", "konla", "kora", "kormo", "kosok", "kosom", "kothok", "kuksa", "kulum", "kumun", "kuna", 
+            "kuphur", "kuri", "kurma", "kuthuk", "kutuk", "kutul", "kutung", "lachikha", "lachimasingcha", "lachiya", 
+            "lai", "laibuma", "laikha", "lama", "lamthai", "langa", "langi", "larima", "latha", "luku", "ma", "mai", 
+            "mai chalam", "mairang", "maknəi", "maktham", "malkhung", "mankha", "manya", "mangphili", "manui", "masa", 
+            "masing", "mayung", "məito", "məkhui", "mənui", "məsa", "məsadi", "məsandui", "mətai", "mikhən", "mikhumu", 
+            "milik", "miski", "misorom", "mithik", "moi", "mudru", "mura", "muwa", "muya", "nahar", "nai", "naidi", 
+            "naisik", "naithok", "naithok-ya", "nakha", "nana", "nasik", "nasing", "nasingde", "nathong", "naya", "nəng", 
+            "nobar", "nog", "nokha", "nophang", "nukha", "nukhung", "nukya", "oh", "omthai", "onchi",  "paide",
+            "pai-kha", "paikha", "paiya", "papari", "phai", "phai-kaham", "phai-kha", "phaidi", "phaio", "phaiya", "phan",
+           "phantok", "pharuk", "phatra", "phərəng", "phiya", "phula", "phung", "phurkha", "phusunga", "pohor", "poito", 
+           "pokto", "pukhiri", "pun", "punjuwa", "ra", "rai", "rang", "rəkhəlai", "rəsam", "ri", "rignai", "rikha", "rimi", 
+           "risha", "riya", "romo", "rwya", "sa", "sabo", "sadi", "saichung", "saka", "sakolom", "sal", "samung", "sanja", 
+           "sarik", "saya", "seler", "səi", "səlai", "səngchar", "sian", "sikha", "sikla", "sikli", "sikok", "silok", 
+           "siluk", "siya", "soi", "sok", "soni", "tabuk", "takhuk", "takhum", "tal", "tamo", "tangəi", "təi", "tha", 
+           "thago", "thai", "thaichuk", "thaichumu", "thaipung", "thalik", "tham", "thamchi", "thampui", "thangdi", "thangəi", 
+           "thangya", "thani", "thapa", "thapala", "thapha", "thapla", "thenta", "thəi", "thəng", "tho", "thok", "thoyam", 
+           "thung", "to", "tok", "tok khi", "toksa", "toktəi", "tong-thok", "tongo", "udru", "ulo", "unklog", "ura", "wa", 
+           "wachang", "waisa", "wak", "wakhung", "wamalang", "wanama-singcha", "wansuk", "waphra", "waruk", "wasəng", "wasong", 
+           "watəi", "wathui", "watui", "wayung", "yachang", "yakrai", "yakung", "yang", "yaphang", "yaphar", "yasi", "yasing", 
+           "yok", "yong", "yongla" ,"Yung",
+           ];
 
             //  2. GLYPH MAP (letter → HTML entity)        
             const glyphMap = {
