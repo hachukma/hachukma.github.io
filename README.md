@@ -53,7 +53,7 @@ From the 19th century, Kokborok began to be written with the **Bengali** and lat
 
 The six vowel characters:
 
-| /a/ | /e/ | /i/ | /o/ | /u/ | /ɘ/ |
+| /a/ | /e/ | /i/ | /o/ | /u/ | /ə/ |
 |-----|-----|-----|-----|-----|-----|
 
 ### Consonants
@@ -100,9 +100,9 @@ For certain sounds, Hachukma uses **indirect pictographs** — symbols derived f
 
 - `/a/` — from *Ang* (self / "I")
 - `/i/` — from *aikha* (morning)
-- `/ch/` — from *Chɘng* (we / "us")
+- `/ch/` — from *Chəng* (we / "us")
 - `/e/` — from *imang* (dream)
-- `/ɘ/` — from *rɘ* (to give), representing its vowel sound
+- `/ə/` — from *rə* (to give), representing its vowel sound
 
 ### Selection Process
 
