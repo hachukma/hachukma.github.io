@@ -25,7 +25,7 @@
             padding-top: 80px;
         }
 
-   
+
         .navbar {
             position: fixed;
             top: 0;
@@ -874,7 +874,7 @@
             <span></span>
         </button>
 
-        <ul class="nav-links" id="navLinks" role="menubar">           
+        <ul class="nav-links" id="navLinks" role="menubar">
             <li role="none"><a href="../public/hachukma-learn.html" role="menuitem">Learn Hachukma</a></li>
             <li role="none"><a href="../public/hachukma-demo-IDE.html" role="menuitem">Future Compatibility</a></li>
             <li role="none"><a href="../index.html" role="menuitem">Back</a></li>
@@ -969,9 +969,9 @@
                 </div>
                 <p class="culture-description"><strong>Ang</strong> means “self” or “pointing to me”.</p>
             </div>
-            
 
- <div class="culture-item">
+
+            <div class="culture-item">
                 <div class="culture-item-header">
                     <span class="culture-symbol">&#xE00B;</span>
                     <span class="culture-letter">B</span>
@@ -1157,7 +1157,7 @@
             <div class="culture-item">
                 <div class="culture-item-header">
                     <span class="culture-symbol">&#xE023;</span>
-                    <span class="culture-letter">rə</span>
+                    <span class="culture-letter">r</span>
                     <h3 class="culture-name">rə</h3>
                 </div>
                 <div class="culture-description">
@@ -1300,20 +1300,22 @@
         </section>
     </main>
 
-    <!-- ===== JAVASCRIPT – with simple word list ===== -->
+    <!-- ===== JAVASCRIPT – with fixed letter grouping ===== -->
 
     <script>
         (function() {
             'use strict';
-           const wordList = [
-           "aao","abono","achai","acham","achuk","achuk-thai","achukde","agi","ah","ah-kərun","ah-suk","ah-yu",
+
+            // ─── 1. WORD LIST ──────────────────────────────────────────────
+            const wordList = [
+               "aao","abono","achai","acham","achuk","achuk-thai","achukde","agi","ah","ahkərun","ah-suk","ahyu",
            "aichuk","aikha","aisiri","akar","akaran","akarkha","alang","alka","ama","amchai","aming","andra","ang",
            "ani","ano","ari","asuk","athuk","athukuri","awa","aya","ayang","ayu","ayung","babu","baching","bachui",
            "bagui","bah","bahai","bahan","bai","baiching","bak","baka","baksa","bangra","bangui","bara","bardi","barja",
            "barkha","bedek","belai","bera","berai","berma","bəcha","bəchadi","bəchələi","bəkarang","bəkha","bəkhurui",
            "bəlai","bəlam","bərəi","bəsa","bəsai","bəsak","bəsəlai","bəskang","bəthai","bigra","bihik","bikhi","bikhumu",
-           "bir","birphang","bisa","bisi","bisinəi","bising","bisma","biyang","bo","bo-mo","bo-rai","bohok","bokhorok",
-           "bokong","bokrong","bol","bolong","bom","bompha-rai","bomrai","bomtha","bomtok","bomung","bongso","bor","borai",
+           "bir","birphang","bisa","bisi","bisinəi","bising","bisma","biyang","bo","bomo","bo-rai","bohok","bokhorok",
+           "bokong","bokrong","bol","bolong","bom","bompharai","bomrai","bomtha","bomtok","bomung","bongso","bor","borai",
            "boro","borok","bosong","bothob","botowa","boyar","brandi","bubagra","bubar","buchuk","buduk","bui","bukung",
            "bukur","buphang","bupra","bura","burai","busalai","buwa","cha-kha","chəng","dangdol","imang","pharok",
            "golari","hangrai-nok","jubar-bubar","thang","musuk","cha-thok","cha-ya","chakhui","chalak","chanduk",
@@ -1349,8 +1351,7 @@
            "yok", "yong", "yongla" ,"Yung",
 
 
-
-            //    added Sunday, 19 July 2026 from keyboard text predections data 
+   //    added Sunday, 19 July 2026 from keyboard text predections data 
           "bacha", "khunju", "nahar", "nono", "norok", "nəng", "o", "omaio",
           "phai", "tabuk", "takhukrok,", "tamo", "tei", "thang", "aboni", "abono",
           "ang", "ani", "apha", "aphuru", "ba", "bini", "bo", "borok", "bəsa", "bəsano",
@@ -1363,7 +1364,9 @@
           "achuk", "achukjak", "agi", "agini", "agibo", "ainani", "aitor", "ama",
           "amjokna", "ano", "antəi", "aphuru", "arirokno", "aro", "aroni",
           "asək", "athukiri",  "bacha", "bachai", "bagəi", "bai", "baithang",
-          "baksa", "bao", "bebak", "bedek", "belai", "bera", "bini", "birjak", "birman",
+        
+
+         "baksa", "bao", "bebak", "bedek", "belai", "bera", "bini", "birjak", "birman",
           "birəi", "bisingni", "bisiktham", "bithi", "bləisa", "bobo", "boh", "bohok",
           "bohrok", "bono", "bori", "borok", "borokrok", "bororokni",
           "bororokno", "bosong", "bosong,", "bosongni,", "bosongno", "brum", "brəi",
@@ -1384,6 +1387,8 @@
           "kiching", "kirima", "kiri", "kisa", "klaijak", "klai", "klaiəi", "kok",
           "kolok",  "kotor", "kotorma", 
            "kotoino", "kotor rok", "kothor", "kubui", 
+       
+
           "kuphur", "kuphurbo", "kuplung", "kutung", "kutungbo", "kusu", "kutukma",
           "kəbangma", "kəbangma", "kəchak", "kəchak.", "kəchang", "kəchar",                  
           "kəcharo", "kəcharni", "kəchəng", "kəkhrang", "kəma", "kəmai", "kənəi",                     
@@ -1395,7 +1400,9 @@
           "mungsa", "məsa", "naidi", "nang", "nango", "nini", "nobar", "nogo",
           "nok", "nokha", "norok", "norokbo", "norokni", "nugui", "nugo", "nuhur",
           "nuk", "nukjak", "nukmani", "nəng", "nəngjak", "okra", "omo", "ongkhor",
-          "ongkhlai", "paibo", "pai", "painai", "phaina", "phan", "phano", "phataro",
+         
+
+           "ongkhlai", "paibo", "pai", "painai", "phaina", "phan", "phano", "phataro",
           "philik", "phiya", "phiyok", "phunuk", "phunukna", "phunuknai",
           "pohor", "pətap", "pətapsa", "raidang", "rak", "ri", "riphrik",                     
           "rogo", "rohor", "rohorjak", "rohorjaknai", "rom", "romo", "rə",
@@ -1406,22 +1413,24 @@
           "seleng", "seng", "sengkrak", "si", "sicha", "sikla", "sikok", "simi",
            "simino", "sina", "sini", "sinino", "sio", "sitra", "skango", "smai",
           "snamjak", "snamnai", "snamo", "sokdi", "songni", "səi", "səijak",
-          "səkdi", "səkagəi", "səkak", "səkakma", "səkango", "səndək", "səng",                       
-           "səngchar", "səngcharni", "səngcharno", "takhuk", "tak",
-          "tal", "tamni", "tamna", "tamono", "tang", "tangma", "tangmani",
-          "tangna", "tangnai", "tangsa", "tapsa", "tatal", "tei", "tekto", "tektoni",
-          "thai", "thango", "thani", "thəi", "thəima", "toling", "tongdi", "təi",
-          "təimuk", "ulo", "əng", "əngjak", 
-          "yabrəi", "yachak", "yakung", "yaksi", "yang", "yaphango",
-           "yapharjak", "yarok", "yarokno", "yasku" ,"watɘi" , "wa", ,"wasung" , "wacheng" ,"thang",
-           ];
+       
 
 
+           "səkdi", "səkagəi", "səkak", "səkakma", "səkango", "səndək", "səng",                       
+            "səngchar", "səngcharni", "səngcharno", "takhuk", "tak",
+           "tal", "tamni", "tamna", "tamono", "tang", "tangma", "tangmani",
+           "tangna", "tangnai", "tangsa", "tapsa", "tatal", "tei", "tekto", "tektoni",
+           "thai", "thango", "thani", "thəi", "thəima", "toling", "tongdi", "təi",
+         
 
-               
-           
+           "təimuk", "ulo", "əng", "əngjak", 
+           "yabrəi", "yachak", "yakung", "yaksi", "yang", "yaphango",
+           "yapharjak", "yarok", "yarokno", "yasku" ,"watɘi" , "wa" ,"wasung" , "wacheng" ,"thang"
 
-            //  2. GLYPH MAP (letter → HTML entity)        
+
+            ];
+
+            // ─── 2. GLYPH MAP ──────────────────────────────────────────────
             const glyphMap = {
                 'a': '&#xE00A;',
                 'b': '&#xE00B;',
@@ -1451,29 +1460,38 @@
                 'ng': '&#xE021;'
             };
 
+            // ─── 3. ALPHABET DEFINITION ──────────────────────────────────
+            // Order matters: multi‑char letters must come before their single‑char counterparts
+            const ALL_LETTERS = ['A', 'B', 'Ch', 'D', 'E', 'Ph', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Th', 'R',
+                'S', 'T', 'U', 'ə', 'W', 'Kh', 'Y', 'NG'
+            ];
 
-            //  3. CONFIGURATION
-            const ALL_LETTERS = ['A','B','Ch','D','E','Ph','G','H','I','J','K','L','M','N','O','P','Th','R','S','T','U','ə','W','Kh','Y','NG'];
+            // Letters that can appear anywhere in a word (not just at the start)
+            const SPECIAL_ANYWHERE = new Set(['I', 'E', 'O', 'NG', 'ə']);
+
             const WORDS_PER_PAGE = 55;
             let currentLetter = 'ALL';
             let currentPage = 1;
 
-            //  4. BUILD INTERNAL WORD DATA
+            // ─── 4. TOKENIZATION ──────────────────────────────────────────
             function tokenizeWord(word, alphabet) {
+                // Sort by length descending so multi‑char tokens match first
                 const sorted = alphabet.slice().sort((a, b) => b.length - a.length);
                 const tokens = [];
                 let remaining = word.toLowerCase();
                 while (remaining.length > 0) {
                     let matched = false;
                     for (let letter of sorted) {
-                        if (remaining.startsWith(letter.toLowerCase())) {
-                            tokens.push(letter.toLowerCase());
-                            remaining = remaining.substring(letter.length);
+                        const lower = letter.toLowerCase();
+                        if (remaining.startsWith(lower)) {
+                            tokens.push(lower);
+                            remaining = remaining.substring(lower.length);
                             matched = true;
                             break;
                         }
                     }
                     if (!matched) {
+                        // single character fallback
                         tokens.push(remaining[0]);
                         remaining = remaining.substring(1);
                     }
@@ -1485,50 +1503,50 @@
                 const tokens = tokenizeWord(word, ALL_LETTERS);
                 let html = '';
                 for (let t of tokens) {
-                    html += glyphMap[t.toLowerCase()] || '?';
+                    html += glyphMap[t] || '?';
                 }
                 return html;
             }
 
-            // Convert the simple list into the full data array
+            // ─── 5. BUILD WORD DATA ──────────────────────────────────────
             const wordData = [];
             for (let item of wordList) {
-                let english, letter;
-                if (typeof item === 'string') {
-                    english = item;
-                    // Auto‑detect the first token as the grouping letter
-                    const tokens = tokenizeWord(english, ALL_LETTERS);
-                    // The first token might be a multi‑char like "th", "ch", etc.
-                    // Capitalize it to match ALL_LETTERS format
-                    const firstToken = tokens.length > 0 ? tokens[0] : '';
-                    // Convert to proper case (e.g., "th" → "Th", "ng" → "NG")
-                    const formatted = ALL_LETTERS.find(l => l.toLowerCase() === firstToken) || firstToken.toUpperCase();
-                    letter = formatted;
-                } else if (typeof item === 'object') {
-                    english = item.english;
-                    letter = item.letter || (() => {
-                        const tokens = tokenizeWord(english, ALL_LETTERS);
-                        const firstToken = tokens.length > 0 ? tokens[0] : '';
-                        return ALL_LETTERS.find(l => l.toLowerCase() === firstToken) || firstToken.toUpperCase();
-                    })();
-                } else {
-                    continue;
-                }
+                const english = typeof item === 'string' ? item : item.english;
+                const tokens = tokenizeWord(english, ALL_LETTERS);
+                const firstToken = tokens.length > 0 ? tokens[0] : '';
+                // Format the first token to match ALL_LETTERS casing (e.g. "th" → "Th", "ng" → "NG")
+                let letter = firstToken.toUpperCase();
+                // Find the exact match in ALL_LETTERS (case‑insensitive)
+                const found = ALL_LETTERS.find(l => l.toLowerCase() === firstToken);
+                if (found) letter = found;
+                // If firstToken is empty, default to 'A'
+                if (!letter) letter = 'A';
                 const unicode = generateUnicode(english);
                 wordData.push({ english, unicode, letter });
             }
-            //  5. FILTERING, SORTING, RENDERING (same logic as before)
+
+            // ─── 6. FILTERING ─────────────────────────────────────────────
             function getFilteredWords() {
                 let filtered = [];
-                if (currentLetter === 'ALL') filtered = wordData.slice();
-                else if (currentLetter === 'I') filtered = wordData.filter(w => w.english.toLowerCase().includes('i'));
-                else if (currentLetter === 'NG') filtered = wordData.filter(w => w.english.toLowerCase().includes('ng'));
-                else if (currentLetter === 'E') filtered = wordData.filter(w => w.english.toLowerCase().includes('e'));
-                else if (currentLetter === 'O') filtered = wordData.filter(w => w.english.toLowerCase().includes('o'));
-                else if (currentLetter === 'ə') filtered = wordData.filter(w => w.english.includes('ə'));
-                else filtered = wordData.filter(w => w.english.toLowerCase().startsWith(currentLetter.toLowerCase()));
+                const letter = currentLetter;
 
-                filtered.sort((a,b) => {
+                if (letter === 'ALL') {
+                    filtered = wordData.slice();
+                } else if (SPECIAL_ANYWHERE.has(letter)) {
+                    // Vowels and NG: match anywhere in the word
+                    const pattern = letter === 'NG' ? 'ng' : letter.toLowerCase();
+                    filtered = wordData.filter(w => w.english.toLowerCase().includes(pattern));
+                } else {
+                    // Consonants: match only if the FIRST token equals this letter
+                    const pattern = letter.toLowerCase();
+                    filtered = wordData.filter(w => {
+                        const tokens = tokenizeWord(w.english, ALL_LETTERS);
+                        return tokens.length > 0 && tokens[0] === pattern;
+                    });
+                }
+
+                // Sort by letter order, then length, then alphabetically
+                filtered.sort((a, b) => {
                     const i1 = ALL_LETTERS.indexOf(a.letter);
                     const i2 = ALL_LETTERS.indexOf(b.letter);
                     if (i1 !== i2) return i1 - i2;
@@ -1538,49 +1556,68 @@
                 return filtered;
             }
 
-            function findFirstOccurrence(str, substr) {
-                return str.toLowerCase().indexOf(substr.toLowerCase());
-            }
-
+            // ─── 7. HIGHLIGHTING ──────────────────────────────────────────
             function highlightWord(english, unicode, letter) {
                 if (letter === 'ALL') return { english, unicode };
-                let eng = english;
-                let uni = unicode;
-                let pattern = letter;
-                if (['I','E','O'].includes(letter)) pattern = letter.toLowerCase();
-                else if (letter === 'NG') pattern = 'ng';
-                else if (letter === 'ə') pattern = 'ə';
-                else pattern = letter.toLowerCase();
 
-                const idx = findFirstOccurrence(eng, pattern);
-                let tokenIndex = -1;
-                if (idx !== -1) {
-                    const len = pattern.length;
-                    eng = eng.substring(0, idx) + '<span class="highlight">' + eng.substring(idx, idx+len) + '</span>' + eng.substring(idx+len);
+                const tokens = tokenizeWord(english, ALL_LETTERS);
+                const pattern = letter.toLowerCase();
+                const isSpecial = SPECIAL_ANYWHERE.has(letter);
 
-                    const tokens = tokenizeWord(english, ALL_LETTERS);
-                    let cum = 0;
-                    for (let i=0; i<tokens.length; i++) {
-                        if (cum === idx && tokens[i].toLowerCase() === pattern.toLowerCase()) { tokenIndex = i; break; }
-                        cum += tokens[i].length;
-                        if (cum > idx) break;
-                    }
-                    if (tokenIndex === -1) {
-                        for (let i=0; i<tokens.length; i++) {
-                            if (tokens[i].toLowerCase() === pattern.toLowerCase()) { tokenIndex = i; break; }
+                // Find token indices to highlight
+                const highlightIndices = [];
+                if (isSpecial) {
+                    // Highlight ALL occurrences of the pattern
+                    for (let i = 0; i < tokens.length; i++) {
+                        if (tokens[i] === pattern) {
+                            highlightIndices.push(i);
                         }
                     }
-                }
-                if (tokenIndex !== -1) {
-                    const glyphs = uni.match(/&#x[0-9A-F]+;/g) || [];
-                    if (tokenIndex < glyphs.length) {
-                        glyphs[tokenIndex] = '<span class="highlight">' + glyphs[tokenIndex] + '</span>';
-                        uni = glyphs.join('');
+                } else {
+                    // Highlight only the FIRST token if it matches
+                    if (tokens.length > 0 && tokens[0] === pattern) {
+                        highlightIndices.push(0);
                     }
                 }
-                return { english: eng, unicode: uni };
+
+                // If nothing to highlight, return as‑is
+                if (highlightIndices.length === 0) {
+                    return { english, unicode };
+                }
+
+                // Build highlighted English
+                let engParts = [];
+                let pos = 0;
+                for (let i = 0; i < tokens.length; i++) {
+                    const token = tokens[i];
+                    const isHighlight = highlightIndices.includes(i);
+                    const segment = english.substring(pos, pos + token.length);
+                    if (isHighlight) {
+                        engParts.push('<span class="highlight">' + segment + '</span>');
+                    } else {
+                        engParts.push(segment);
+                    }
+                    pos += token.length;
+                }
+                const highlightedEnglish = engParts.join('');
+
+                // Build highlighted Unicode (glyphs)
+                const glyphs = unicode.match(/&#x[0-9A-F]+;/g) || [];
+                let uniParts = [];
+                for (let i = 0; i < glyphs.length; i++) {
+                    const isHighlight = highlightIndices.includes(i);
+                    if (isHighlight && i < glyphs.length) {
+                        uniParts.push('<span class="highlight">' + glyphs[i] + '</span>');
+                    } else {
+                        uniParts.push(glyphs[i] || '');
+                    }
+                }
+                const highlightedUnicode = uniParts.join('');
+
+                return { english: highlightedEnglish, unicode: highlightedUnicode };
             }
 
+            // ─── 8. RENDER GRID ──────────────────────────────────────────
             function renderGrid() {
                 const grid = document.getElementById('wordGrid');
                 const filtered = getFilteredWords();
@@ -1588,13 +1625,13 @@
                 document.getElementById('totalCount').textContent = total;
 
                 const totalPages = Math.ceil(total / WORDS_PER_PAGE);
-                if (currentPage > totalPages) currentPage = 1;
+                if (currentPage > totalPages) currentPage = Math.max(1, totalPages);
                 const start = (currentPage - 1) * WORDS_PER_PAGE;
                 const end = Math.min(start + WORDS_PER_PAGE, total);
                 const pageWords = filtered.slice(start, end);
 
                 if (pageWords.length === 0) {
-                    grid.innerHTML = '<div style="grid-column:1/-1; padding:2rem; text-align:center;">No words</div>';
+                    grid.innerHTML = '<div style="grid-column:1/-1; padding:2rem; text-align:center; color:#666;">No words found for this letter.</div>';
                     renderPagination(totalPages);
                     return;
                 }
@@ -1608,25 +1645,24 @@
                         eng = res.english;
                         uni = res.unicode;
                     }
-                    let engStyle = currentLetter === 'ALL' ? ' style="color:#000000;"' : '';
-                    let uniStyle = currentLetter === 'ALL' ? ' style="color:#2e7d32;"' : '';
+                    // Capitalize first letter for display
                     let displayEng = eng.charAt(0).toUpperCase() + eng.slice(1);
-                    let extraClass = currentLetter === 'NG' ? ' ng-word-box' : '';
-                    html += `<div class="word-box${extraClass}">
-                                <span class="english"${engStyle}>${displayEng}</span>
-                                <span class="unicode"${uniStyle}>${uni}</span>
+                    html += `<div class="word-box">
+                                <span class="english">${displayEng}</span>
+                                <span class="unicode">${uni}</span>
                             </div>`;
                 }
                 grid.innerHTML = html;
                 renderPagination(totalPages);
             }
 
+            // ─── 9. PAGINATION ────────────────────────────────────────────
             function renderPagination(totalPages) {
                 const container = document.getElementById('pagination');
                 if (totalPages <= 1) { container.innerHTML = ''; return; }
                 let html = '';
                 if (currentPage > 1) html += `<a data-page="${currentPage-1}">&laquo; Prev</a>`;
-                for (let i=1; i<=totalPages; i++) {
+                for (let i = 1; i <= totalPages; i++) {
                     html += `<a data-page="${i}" class="${i===currentPage?'active-page':''}">${i}</a>`;
                 }
                 if (currentPage < totalPages) html += `<a data-page="${currentPage+1}">Next &raquo;</a>`;
@@ -1634,7 +1670,7 @@
                 container.querySelectorAll('a').forEach(link => {
                     link.addEventListener('click', function(e) {
                         e.preventDefault();
-                        const page = parseInt(this.dataset.page);
+                        const page = parseInt(this.dataset.page, 10);
                         if (page && page !== currentPage) {
                             currentPage = page;
                             updateURL();
@@ -1644,12 +1680,15 @@
                 });
             }
 
+            // ─── 10. TABS ──────────────────────────────────────────────────
             function renderTabs() {
                 const container = document.getElementById('alphabetTabs');
-                let html = `<li>${currentLetter==='ALL'?'<span class="nav-tab active">ALL</span>':'<a class="nav-tab" data-letter="ALL">ALL</a>'}</li>`;
+                let html =
+                    `<li>${currentLetter==='ALL'?'<span class="nav-tab active">ALL</span>':'<a class="nav-tab" data-letter="ALL">ALL</a>'}</li>`;
                 for (let letter of ALL_LETTERS) {
-                    const active = currentLetter===letter ? 'active' : '';
-                    html += `<li>${active?'<span class="nav-tab active">'+letter+'</span>':'<a class="nav-tab" data-letter="'+letter+'">'+letter+'</a>'}</li>`;
+                    const active = currentLetter === letter ? 'active' : '';
+                    html +=
+                        `<li>${active?'<span class="nav-tab active">'+letter+'</span>':'<a class="nav-tab" data-letter="'+letter+'">'+letter+'</a>'}</li>`;
                 }
                 container.innerHTML = html;
                 container.querySelectorAll('a.nav-tab').forEach(tab => {
@@ -1667,9 +1706,11 @@
                 });
             }
 
+            // ─── 11. URL STATE ────────────────────────────────────────────
             function updateURL() {
                 const url = new URL(window.location);
-                currentLetter === 'ALL' ? url.searchParams.delete('letter') : url.searchParams.set('letter', currentLetter);
+                currentLetter === 'ALL' ? url.searchParams.delete('letter') : url.searchParams.set('letter',
+                currentLetter);
                 currentPage === 1 ? url.searchParams.delete('page') : url.searchParams.set('page', currentPage);
                 window.history.replaceState({}, '', url);
             }
@@ -1683,6 +1724,7 @@
                 if (page > 0) currentPage = page;
             }
 
+            // ─── 12. INIT ──────────────────────────────────────────────────
             loadState();
             renderTabs();
             renderGrid();
