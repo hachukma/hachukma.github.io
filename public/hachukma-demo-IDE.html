@@ -239,8 +239,8 @@
 
         .hachukma-syntax {
             font-family: "HachukmaScript", 'JetBrains Mono', monospace;
-            font-size: 1.05rem;
-            letter-spacing: 0.02em;
+            font-size: 0.8rem;
+            letter-spacing: 0.04em;
         }
 
 
@@ -516,7 +516,7 @@
         </div>
 
         <div class="nav-actions">
-            <a href="script.html" class="btn-back-home">Back</a>
+            <a href="../index.php" class="btn-back-home">Back</a>
         </div>
     </header>
 
@@ -563,7 +563,7 @@
                 <div class="ref-card">
                     <h3>Keywords</h3>
                     <ul class="ref-list">
-                        <li>wngkhe – if</li>
+                        <li>əngkhe – if</li>
                         <li>hayakhe – else</li>
                     </ul>
                 </div>
@@ -571,14 +571,14 @@
                     <h3>Strings</h3>
                     <ul class="ref-list">
                         <li>"hachukma"</li>
-                        <li>"kokborok swrungnok"</li>
+                        <li>"kokborok sərungnok"</li>
                         <li>"mung:"</li>
                         <li>"phurungnok:"</li>
                         <li>"achima:"</li>
                         <li>"bisi:"</li>
                         <li>"achai:"</li>
-                        <li>"kwrwngma: khwlainw kwrwng"</li>
-                        <li>"kwrwngma: khwlainw manya"</li>
+                        <li>"kərəngma: khəlainə kərəng"</li>
+                        <li>"kərəngma: khəlainə manya"</li>
                     </ul>
                 </div>
                 <div class="ref-card">
@@ -659,28 +659,13 @@
                 </div>
             </div>
         </div>
-
-
-        <div class="note-box">
-            <strong>*Important Note:*</strong><br />
-            The <b>Hachukma Script</b> currently uses characters mapped to the
-            <b>Unicode Private Use Area (PUA)</b>.<br />
-            Since these characters are not yet part of the official Unicode standard,
-            the <b>custom Hachukma font</b> is required for proper display.<br />
-            For universal compatibility across devices and platforms, official Unicode
-            encoding is needed in the future.
-        </div>
-
     </div>
-
 
     <script>
 
         const DEFAULT_ROMAN_CODE = `// hachukma
-
-
         mung = "hachukma"
-        phurungnok = "kokborok swrungnok"
+        phurungnok = "kokborok sərungnok"
         achaima = 2025
         bisi = 2026
 
@@ -692,10 +677,10 @@
         chapdi("bisi:", bisi)
         chapdi("achai:", achai_sal)
 
-        wngkhe achai_sal >= 18:
-            chapdi("kwrwngma: khwlainw kwrwng")
+        əngkhe achai_sal >= 18:
+            chapdi("kərəngma: khəlainə kərəng")
         hayakhe:
-            chapdi("kwrwngma: khwlainw manya")
+            chapdi("kərəngma: khəlainə Tap on a clip to paste it in the text box.manya")
 
         // hachukma
         nangmani()`;
@@ -731,7 +716,7 @@
             'u': 0xE01E,
             'w': 0xE020,
             'y': 0xE022,
-            'ɘ': 0xE023,
+            'ə': 0xE023,
             'c': 0xE003,
             'f': 0xE004,
             'v': 0xE005,
@@ -782,7 +767,7 @@
         const DEFAULT_HACHUKMA_CODE = toHachukmaPUA(DEFAULT_ROMAN_CODE);
 
     
-        const ROMAN_KEYWORDS = ['chapdi', 'wngkhe', 'hayakhe'];
+        const ROMAN_KEYWORDS = ['chapdi', 'əngkhe', 'hayakhe'];
         const HACHUKMA_KEYWORDS_PUA = ROMAN_KEYWORDS.map(kw => toHachukmaPUA(kw));
         const hachukmaKeywordPattern = HACHUKMA_KEYWORDS_PUA.map(kw => kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
         const HACHUKMA_KEYWORD_REGEX = new RegExp(`(${hachukmaKeywordPattern})`, 'g');
