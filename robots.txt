@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /
-Sitemap: https://hachukmascript.online/sitemap.xml
+Sitemap: https://hachukma.github.io/sitemap.xml
 
 
 
