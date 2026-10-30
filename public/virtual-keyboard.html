@@ -994,6 +994,30 @@
             }
         }
 
+
+
+          @media screen and (min-width: 896px) and (max-width: 1200px) {
+            .keyboard-container {
+                padding: 0.75rem;
+            }
+
+            .keyboard {
+                width: 100%;
+                max-width: 100%;
+                grid-template-columns: repeat(30, minmax(0, 1fr));
+                grid-template-rows: repeat(6, 45px);
+                gap: 2px;
+                transform: none;
+            }
+
+            .key {
+                font-size: 0.88rem;
+                padding: 2px;
+            }
+        }
+
+
+        
         @media screen and (max-width: 768px) {
             .navbar {
                 flex-direction: column;
