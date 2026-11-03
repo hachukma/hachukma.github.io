@@ -4,15 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
     <title>Kokborok · Hachukma IDE | Digital Script + PUA Numerals</title>
+    <link rel="stylesheet" href="../public/css/demo-ide.css">
     <link rel="stylesheet" href="../public/css/clock.css">
     <script src="../public/js/clock.js"></script>
-    <link rel="stylesheet" href="../public/css/demo-ide.css">
-
-   
 </head>
 <body>
 
-    <!-- ===== HEADER / NAVBAR (full width, teal) ===== -->
     <header class="app-header">
         <div class="brand">
             <h1>Future Compatibility Demo</h1>
@@ -25,15 +22,18 @@
             <span class="clock-minute"></span>
             <span class="separator">:</span>
             <span class="clock-second"></span>
-            <!-- <span class="separator">.</span> -->
-            <!-- <span class="clock-ms"></span> -->
+            <span class="separator">.</span> 
+             <span class="clock-ms"></span>
             <span class="clock-ampm"></span>
         </div>
 
         <div class="nav-actions">
-            <a href="../index.html" class="btn-back-home">Back</a>
+            <a href="script.html" class="btn-back-home">Back</a>
         </div>
     </header>
+
+
+
 
 
     <div class="main-wrapper">
@@ -65,7 +65,50 @@
             </div>
         </div>
 
-     
+        <div class="output-grid">
+            <div class="output-panel">
+                <div class="output-header">
+                    <h2>kokborok Roman Output</h2>
+                    <span class="output-status">Console</span>
+                </div>
+                <div class="output-box">
+                    <pre id="romanOutputText"></pre>
+                </div>
+            </div>
+
+            <div class="output-panel">
+                <div class="output-header">
+                    <h2>Hachukma Output</h2>
+                    <span class="output-status">Console</span>
+                </div>
+                <div class="output-box hachukma-output-box">
+                    <pre id="hachukmaOutputText" class="hachukma-output-text"></pre>
+                </div>
+            </div>
+        </div>
+
+          <div class="future-tech-section">
+            <h2>Demo Syntax Overview</h2>
+            <ul class="future-list">
+                <li>
+                    <span class="accent-text">Sample keyword</span> –
+                    chapdi, wngkhe, and hayakhe are example action and condition words used in the demo program.
+                </li>
+                <li>
+                    <span class="accent-text">Sample string</span> –
+                    Text values such as "hachukma" or "mung:" are shown in string format and printed to the output console.
+                </li>
+                <li>
+                    <span class="accent-text">Sample number</span> –
+                    Values such as 2025, 2026, and 18 are example numeric values used in the demo logic.
+                </li>
+                <li>
+                    <span class="accent-text">Sample comment</span> –
+                    Lines beginning with // are example comments used to explain the purpose of the sample code.
+                </li>
+            </ul>
+        </div>
+
         <div class="reference-panel">
             <h2>Code Elements Breakdown</h2>
             <div class="ref-grid">
@@ -78,7 +121,7 @@
                 <div class="ref-card">
                     <h3>Keywords</h3>
                     <ul class="ref-list">
-                        <li>əngkhe – if</li>
+                        <li>wngkhe – if</li>
                         <li>hayakhe – else</li>
                     </ul>
                 </div>
@@ -86,14 +129,14 @@
                     <h3>Strings</h3>
                     <ul class="ref-list">
                         <li>"hachukma"</li>
-                        <li>"kokborok sərungnok"</li>
+                        <li>"kokborok swrungnok"</li>
                         <li>"mung:"</li>
                         <li>"phurungnok:"</li>
                         <li>"achima:"</li>
                         <li>"bisi:"</li>
                         <li>"achai:"</li>
-                        <li>"kərəngma: khəlainə kərəng"</li>
-                        <li>"kərəngma: khəlainə manya"</li>
+                        <li>"kwrwngma: khwlainw kwrwng"</li>
+                        <li>"kwrwngma: khwlainw manya"</li>
                     </ul>
                 </div>
                 <div class="ref-card">
@@ -109,78 +152,52 @@
             </div>
         </div>
 
-    
-        <div class="future-tech-section">
-            <h2>Future Vision of Hachukma in Digital Technology</h2>
-            <ul class="future-list">
-                <li>
-                    <span class="accent-text">Emerging writing system</span> –
-                    Hachukma presents a conceptual writing system exploring how
-                    indigenous language identity could evolve within future digital
-                    communication and modern software environments.
-                </li>
-                <li>
-                    <span class="accent-text">Future compatibility vision</span> –
-                    The showcase explores possibilities for visual consistency across
-                    browsers, devices, and evolving interface technologies through
-                    custom rendering approaches.
-                </li>
-                <li>
-                    <span class="accent-text">Conceptual computing environment</span> –
-                    The project demonstrates how script-oriented interfaces and
-                    symbolic text structures could appear within future multilingual
-                    programming and digital systems.
-                </li>
-                <li>
-                    <span class="accent-text">Digital integration possibilities</span> –
-                    The interface presents a future-oriented example of how Hachukma
-                    writing could visually integrate into websites, applications,
-                    keyboards, and interactive digital platforms.
-                </li>
-                <li>
-                    <span class="accent-text">Character representation showcase</span> –
-                    Visual mapping methods are used to demonstrate how Hachukma
-                    symbols may be represented within digital environments and
-                    evolving technological ecosystems.
-                </li>
-                <li>
-                    <span class="accent-text">Language-centered innovation</span> –
-                    The concept reflects future possibilities for adaptive typography,
-                    intelligent text systems, and AI-assisted tools designed around
-                    Kokborok digital expression.
-                </li>
-            </ul>
-        </div>
+     
+        
 
-      
-        <div class="articles-section">
-            <div class="section-title">Hachukma · Conceptual Digital Ecosystem</div>
-            <div class="articles-grid">
-                <div class="article-card">
-                    <h4>Symbolic Character Design</h4>
-                    <p>Hachukma explores original visual character structures intended to demonstrate how indigenous writing systems could appear within future digital communication environments.</p>
-                </div>
-                <div class="article-card">
-                    <h4>Custom Visual Rendering</h4>
-                    <p>The showcase demonstrates how Hachukma symbols can be visually displayed within browsers and digital interfaces using custom rendering and font-based display methods.</p>
-                </div>
-                <div class="article-card">
-                    <h4>Script-Aware Interface Concepts</h4>
-                    <p>Conceptual interface layouts explore multilingual formatting, symbolic code presentation, and future possibilities for indigenous writing systems in software environments.</p>
-                </div>
-                <div class="article-card">
-                    <h4>Future Digital Expression</h4>
-                    <p>The project presents a creative vision of how emerging writing systems may participate in future digital culture, communication technologies, and modern interface design.</p>
-                </div>
-            </div>
-        </div>
+
+   <div class="future-tech-section">
+       <h2>Why an Alphabetic System Based on the Acrophonic Principle?</h2>
+
+        <p style="margin:0; font-size:0.9rem; line-height:1.7; color:#1a2f2f;">
+
+        Hachukma is designed as an <strong>alphabetic writing system</strong>
+        based on the <strong>acrophonic principle</strong>, where each symbol
+        represents the initial sound of a meaningful object or word.
+
+        <br><br>
+
+        This approach offers simplicity, flexibility, and cultural identity.
+        <strong>Compared to writing systems that require more symbols or
+        complex character structures</strong>, an alphabetic system uses
+        a limited and systematic set of characters, making it easier to
+        learn, remember, write, and expand.
+
+        <br><br>
+
+        Another important consideration is its suitability for future
+        computing technologies, including coding, programming languages,
+        keyboards, hardware, and software. Its structure could support
+        the development of Kokborok-based programming syntax, digital
+        applications, fonts, typing systems, and language tools.
+
+        <br><br>
+
+        Therefore, Hachukma aims not only to preserve Kokborok's linguistic
+        and cultural identity but also to create a foundation for its
+        future growth in literature, education, computing, and the
+        digital world.
+
+      </p>
+     </div> 
     </div>
+
 
     <script>
 
         const DEFAULT_ROMAN_CODE = `// hachukma
         mung = "hachukma"
-        phurungnok = "kokborok sərungnok"
+        phurungnok = "kokborok swrungnok"
         achaima = 2025
         bisi = 2026
 
@@ -192,13 +209,14 @@
         chapdi("bisi:", bisi)
         chapdi("achai:", achai_sal)
 
-        əngkhe achai_sal >= 18:
-            chapdi("kərəngma: khəlainə kərəng")
+        wngkhe achai_sal >= 18:
+            chapdi("kwrwngma: khwlainw kwrwng")
         hayakhe:
-            chapdi("kərəngma: khəlainə Tap on a clip to paste it in the text box.manya")
+            chapdi("kwrwngma: khwlainw manya")
 
         // hachukma
-        nangmani()`;
+               nangmani()`;
+
 
         // ---- 2. Hachukma PUA mapping (including digits 0-9 -> U+E000..U+E009) ----
         const hachukmaMap = new Map();
@@ -231,7 +249,7 @@
             'u': 0xE01E,
             'w': 0xE020,
             'y': 0xE022,
-            'ə': 0xE023,
+            'ɘ': 0xE023,
             'c': 0xE003,
             'f': 0xE004,
             'v': 0xE005,
@@ -280,9 +298,16 @@
         }
 
         const DEFAULT_HACHUKMA_CODE = toHachukmaPUA(DEFAULT_ROMAN_CODE);
+        const DEFAULT_ROMAN_OUTPUT_TEXT = `mung: hachukma
+        phurungnok: kokborok swrungnok
+        achima: 2025
+        bisi: 2026
+        achai: 18
+        kwrwngma: khwlainw kwrwng`;
+        const DEFAULT_HACHUKMA_OUTPUT_TEXT = toHachukmaPUA(DEFAULT_ROMAN_OUTPUT_TEXT);
 
     
-        const ROMAN_KEYWORDS = ['chapdi', 'əngkhe', 'hayakhe'];
+        const ROMAN_KEYWORDS = ['chapdi', 'wngkhe', 'hayakhe'];
         const HACHUKMA_KEYWORDS_PUA = ROMAN_KEYWORDS.map(kw => toHachukmaPUA(kw));
         const hachukmaKeywordPattern = HACHUKMA_KEYWORDS_PUA.map(kw => kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
         const HACHUKMA_KEYWORD_REGEX = new RegExp(`(${hachukmaKeywordPattern})`, 'g');
@@ -300,6 +325,8 @@
         const hachukmaEditorDiv = document.getElementById('hachukmaEditorContent');
         const romanLineNumbersDiv = document.getElementById('romanLineNumbers');
         const hachukmaLineNumbersDiv = document.getElementById('hachukmaLineNumbers');
+        const romanOutputText = document.getElementById('romanOutputText');
+        const hachukmaOutputText = document.getElementById('hachukmaOutputText');
 
         let currentRomanRaw = DEFAULT_ROMAN_CODE;
         let currentHachukmaRaw = DEFAULT_HACHUKMA_CODE;
@@ -331,6 +358,10 @@
             let numbered = '';
             for (let i = 1; i <= lines.length; i++) numbered += i + '\n';
             lineNumbersDiv.textContent = numbered;
+
+            const lineHeight = parseFloat(getComputedStyle(editorElement).lineHeight) || 20;
+            const paddingExtra = 28;
+            lineNumbersDiv.style.minHeight = `${Math.max(lines.length * lineHeight + paddingExtra, 280)}px`;
         }
 
         function renderRomanDisplay() {
@@ -341,6 +372,15 @@
         function renderHachukmaDisplay() {
             hachukmaEditorDiv.innerHTML = highlightHachukmaCode(currentHachukmaRaw);
             updateLineNumbers(hachukmaEditorDiv, hachukmaLineNumbersDiv, currentHachukmaRaw);
+        }
+
+        function renderOutput() {
+            if (romanOutputText) {
+                romanOutputText.textContent = DEFAULT_ROMAN_OUTPUT_TEXT;
+            }
+            if (hachukmaOutputText) {
+                hachukmaOutputText.textContent = DEFAULT_HACHUKMA_OUTPUT_TEXT;
+            }
         }
 
         function makeEditorReadOnly(editorElement) {
@@ -370,6 +410,7 @@
             makeEditorReadOnly(hachukmaEditorDiv);
             renderRomanDisplay();
             renderHachukmaDisplay();
+            renderOutput();
             const romanContainer = romanEditorDiv.closest('.code-container');
             const hachContainer = hachukmaEditorDiv.closest('.code-container');
             if (romanContainer) attachContainerScrollSync(romanContainer, romanLineNumbersDiv);
