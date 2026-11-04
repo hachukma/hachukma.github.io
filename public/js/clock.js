@@ -87,8 +87,18 @@ function updateClock() {
 
 function initClock() {
   updateClock();
-  // Update every 40ms for smooth millisecond display (approx 25fps)
-  setInterval(updateClock, 40);
+
+  let lastFrame = 0;
+
+  function tick(timestamp) {
+    if (!lastFrame || timestamp - lastFrame >= 16) {
+      updateClock();
+      lastFrame = timestamp;
+    }
+    requestAnimationFrame(tick);
+  }
+
+  requestAnimationFrame(tick);
   console.log('hachukma Unicode Clock initialized with milliseconds');
 }
 
