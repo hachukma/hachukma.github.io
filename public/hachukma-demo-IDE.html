@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-    <title>Kokborok · Hachukma IDE | Digital Script + PUA Numerals</title>
+    <title>Kokborok · Hachukma | Future Digital Representation Demo</title>
     <link rel="stylesheet" href="../public/css/demo-ide.css">
     <link rel="stylesheet" href="../public/css/clock.css">
     <script src="../public/js/clock.js"></script>
@@ -12,8 +12,11 @@
 
     <header class="app-header">
         <div class="brand">
-            <h1>Future Compatibility Demo</h1>
-            <p>Hachukma · Future computing</p>
+            <!-- <h1>Future Compatibility Demo</h1>
+            <p>Hachukma · Future computing</p> --> 
+             <h1>Future Digital Representation</h1>
+             <p>Hachukma · Kokborok in the Digital World</p>
+
         </div>
 
         <div id="unicode-clock" class="unicode-clock">
@@ -25,18 +28,29 @@
             <span class="separator">.</span> 
              <span class="clock-ms"></span>
             <span class="clock-ampm"></span>
-        </div>
+        </div> 
 
+       
         <div class="nav-actions">
             <a href="script.html" class="btn-back-home">Back</a>
         </div>
     </header>
 
 
-
-
-
     <div class="main-wrapper">
+        <div class="future-tech-section" style="margin: 1.9rem 0 0.1rem; width: 100%; padding: 1rem 1.2rem; border: 1px solid rgba(30,77,74,0.18); border-radius: 12px; background: rgba(144, 211, 199, 0.08);">
+           <h2>A Conceptual Example</h2>
+            <p style="margin:0; font-size:0.95rem; line-height:1.7; color:#1a2f2f;">
+              This page presents a demonstration of how Kokborok words and expressions
+              can be represented using a programming-style format. It displays sample
+              text in both Roman letters and Hachukma script, along with their digital
+              representations and corresponding outputs. The example explores how
+              Hachukma could be presented in future digital environments and how
+              traditional writing systems may connect with emerging technologies.
+              It is intended for educational and illustrative purposes only, not as
+              an actual programming language or software development project.
+          </p>
+        </div>
         <div class="editor-grid">
             <div class="editor-card">
                 <div class="editor-header">
@@ -197,7 +211,7 @@
 
         const DEFAULT_ROMAN_CODE = `// hachukma
         mung = "hachukma"
-        phurungnok = "kokborok swrungnok"
+        phurungnok = "kokborok sərungnok"
         achaima = 2025
         bisi = 2026
 
@@ -209,10 +223,10 @@
         chapdi("bisi:", bisi)
         chapdi("achai:", achai_sal)
 
-        wngkhe achai_sal >= 18:
-            chapdi("kwrwngma: khwlainw kwrwng")
+         əngkhe achai_sal >= 18:
+            chapdi("kərəngma: khəlainə kərəng")
         hayakhe:
-            chapdi("kwrwngma: khwlainw manya")
+            chapdi("kərəngma: khəlainə manya")
 
         // hachukma
                nangmani()`;
@@ -249,7 +263,7 @@
             'u': 0xE01E,
             'w': 0xE020,
             'y': 0xE022,
-            'ɘ': 0xE023,
+            'ə': 0xE023,
             'c': 0xE003,
             'f': 0xE004,
             'v': 0xE005,
@@ -299,15 +313,15 @@
 
         const DEFAULT_HACHUKMA_CODE = toHachukmaPUA(DEFAULT_ROMAN_CODE);
         const DEFAULT_ROMAN_OUTPUT_TEXT = `mung: hachukma
-        phurungnok: kokborok swrungnok
+        phurungnok: kokborok sərungnok
         achima: 2025
         bisi: 2026
         achai: 18
-        kwrwngma: khwlainw kwrwng`;
+        kərəngma: khəlainə kərəng`;
         const DEFAULT_HACHUKMA_OUTPUT_TEXT = toHachukmaPUA(DEFAULT_ROMAN_OUTPUT_TEXT);
 
     
-        const ROMAN_KEYWORDS = ['chapdi', 'wngkhe', 'hayakhe'];
+        const ROMAN_KEYWORDS = ['chapdi', 'əngkhe', 'hayakhe'];
         const HACHUKMA_KEYWORDS_PUA = ROMAN_KEYWORDS.map(kw => toHachukmaPUA(kw));
         const hachukmaKeywordPattern = HACHUKMA_KEYWORDS_PUA.map(kw => kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
         const HACHUKMA_KEYWORD_REGEX = new RegExp(`(${hachukmaKeywordPattern})`, 'g');
@@ -423,32 +437,6 @@
         init();
 
    
-        (function fixClockMs() {
-            const msElement = document.querySelector('.clock-ms');
-            if (!msElement) return;
-
-            const observer = new MutationObserver(() => {
-                let val = msElement.textContent.trim();
-                if (/^\d+$/.test(val)) {
-                    val = val.padStart(3, '0');
-                    if (msElement.textContent !== val) {
-                        msElement.textContent = val;
-                    }
-                }
-            });
-
-            observer.observe(msElement, { childList: true, characterData: true, subtree: true });
-
-            setInterval(() => {
-                let val = msElement.textContent.trim();
-                if (/^\d+$/.test(val)) {
-                    const padded = val.padStart(3, '0');
-                    if (msElement.textContent !== padded) {
-                        msElement.textContent = padded;
-                    }
-                }
-            }, 50);
-        })();
     </script>
 </body>
 </html> 
