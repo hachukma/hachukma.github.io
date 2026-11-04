@@ -31,12 +31,24 @@
            font-family: "HachukmaScript", -apple-system, BlinkMacSystemFont, sans-serif;
            font-size: 1.8rem;
            font-weight: 500;
-           padding: 0.3rem 0.9rem;
+           padding: 0.3rem 0.9rem 0.55rem;
            margin-right: 145px;
            border-radius: 8px;
            color: #fcf5f5;
            width: 20rem; 
            box-sizing: border-box;
+           position: relative;
+        }
+
+        .unicode-clock::after {
+            content: "";
+            position: absolute;
+            left: 10%;
+            right: 10%;
+            bottom: 0;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.42);
+            border-radius: 999px;
         }
 
        .clock-hour,
@@ -62,6 +74,7 @@
             width: 100%;
             text-align: center;
             opacity: 0.6;
+            margin-top: -0.4rem;
             font-family: Arial, sans-serif; 
         }
 
@@ -146,7 +159,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1.5rem;
-            margin: 90px 0 2.5rem;
+            margin: 3rem 0 2.5rem;
         }
 
         .editor-card {
@@ -442,8 +455,8 @@
         .future-tech-section {
             background: #ffffff;
             border-radius: 3px;
-            padding: 1.5rem 2rem;
-            margin-bottom: 2.5rem;
+            padding: 1.5rem 1rem;
+            /* margin-bottom: 0.9rem; */
             border: 1px solid #297c7c;
             box-shadow: 0 2px 8px rgba(41, 124, 124, 0.06);
         }
@@ -554,7 +567,7 @@
         }
 
 
-        @media (max-width: 820px) {
+        @media (max-width: 1061px) {
             .editor-grid,
             .output-grid {
                 grid-template-columns: 1fr;
@@ -589,11 +602,19 @@
             }
 
             body {
-                padding-top: 7.5rem;
+                padding-top: 9rem;
+            }
+
+            .future-tech-section {
+                margin-top: 1.5rem !important;
             }
         }
 
         @media (max-width: 500px) {
+            .future-tech-section {
+                margin-top: 3.5rem !important;
+            }
+
             .ref-grid {
                 grid-template-columns: 1fr;
             }
