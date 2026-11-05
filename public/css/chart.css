@@ -121,6 +121,31 @@
             align-items: center;
         }
 
+        .acrophonic-note {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 0 30px;
+            padding: 16px;
+            border: 1px solid #555;
+            border-radius: 4px;
+            background: #fff;
+            text-align: left;
+        }
+
+        .acrophonic-copy h2 {
+            margin: 0 0 8px;
+            color: #6b7280;
+            font-family: "NewScript";
+            font-size: 18px;
+            font-weight: normal;
+        }
+
+        .acrophonic-copy p {
+            color: #333;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
 
         .page-title {
             font-family: "NewScript", Arial, sans-serif;
@@ -387,6 +412,15 @@
             .page-title {
                 font-size: 24px;
             }
+
+            .acrophonic-note {
+                margin-bottom: 24px;
+                padding: 14px;
+            }
+
+            .acrophonic-copy h2 {
+                font-size: 17px;
+            }
         }
 
 
@@ -417,5 +451,198 @@
         }
         .notice-box u {
             text-decoration-color: #297c7c;
+        }
+
+        .pdf-downloads {
+            width: 100%;
+            max-width: 880px;
+            margin: 0 0 30px;
+            padding: 34px;
+            border: 1px solid #d8e5e7;
+            border-radius: 16px;
+            background: linear-gradient(145deg, #f4f9f8, #f7f8fb);
+            box-shadow: 0 12px 32px rgba(37, 76, 80, 0.08);
+            text-align: center;
+        }
+
+        .pdf-eyebrow {
+            display: inline-block;
+            padding: 6px 11px;
+            border: 1px solid #d3e8e2;
+            border-radius: 20px;
+            background: #e9f4f1;
+            color: #267269;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.11em;
+            text-transform: uppercase;
+        }
+
+        .pdf-downloads h2 {
+            margin: 13px 0 0;
+            color: #203548;
+            font-family: Arial, sans-serif;
+            font-size: clamp(22px, 3vw, 29px);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .pdf-downloads-intro {
+            margin-top: 8px;
+            color: #617681;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .pdf-options {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+            margin-top: 25px;
+            text-align: left;
+        }
+
+        .pdf-option {
+            position: relative;
+            display: flex;
+            min-width: 0;
+            flex-direction: column;
+            padding: 24px;
+            border: 1px solid #dce6e8;
+            border-radius: 12px;
+            background: #fff;
+            box-shadow: 0 5px 16px rgba(32, 61, 75, 0.06);
+            transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+        }
+
+        .pdf-option:hover {
+            transform: translateY(-2px);
+            border-color: #b8d4d1;
+            box-shadow: 0 10px 24px rgba(32, 61, 75, 0.11);
+        }
+
+        .pdf-option-color {
+            border-top: 4px solid #398d7c;
+        }
+
+        .pdf-option-mono {
+            border-top: 4px solid #657487;
+        }
+
+        .pdf-option-label {
+            color: #347b70;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .pdf-option-mono .pdf-option-label {
+            color: #5b6878;
+        }
+
+        .pdf-option h3 {
+            margin-top: 9px;
+            color: #203548;
+            font-size: 21px;
+            letter-spacing: -0.02em;
+        }
+
+        .pdf-option p {
+            flex: 1;
+            margin-top: 8px;
+            color: #647783;
+            font-size: 13px;
+            line-height: 1.55;
+        }
+
+        .pdf-option-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .pdf-button {
+            display: inline-flex;
+            min-height: 43px;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 17px;
+            border: 1px solid #2c796f;
+            border-radius: 7px;
+            color: #246c64;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+        }
+
+        .pdf-button:hover {
+            transform: translateY(-1px);
+        }
+
+        .pdf-button:focus-visible {
+            outline: 3px solid rgba(44, 121, 111, 0.35);
+            outline-offset: 3px;
+        }
+
+        .pdf-preview {
+            border-color: #28796f;
+            background: #28796f;
+            color: #fff;
+        }
+
+        .pdf-preview:hover {
+            border-color: #1e655d;
+            background: #1e655d;
+        }
+
+        .pdf-option-mono .pdf-preview {
+            border-color: #536276;
+            background: #536276;
+        }
+
+        .pdf-option-mono .pdf-preview:hover {
+            border-color: #3e4b5d;
+            background: #3e4b5d;
+        }
+
+        .pdf-option-mono .pdf-download {
+            border-color: #768396;
+            color: #4d5b6d;
+        }
+
+        .pdf-preview-note {
+            margin-top: 20px;
+            color: #788790;
+            font-size: 11px;
+        }
+
+        @media (max-width: 600px) {
+            .pdf-downloads {
+                margin-bottom: 24px;
+                padding: 25px 18px;
+                border-radius: 12px;
+            }
+
+            .pdf-options {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .pdf-option {
+                padding: 21px;
+            }
+        }
+
+        @media print {
+            .acrophonic-note {
+                break-inside: avoid;
+            }
+
+            .pdf-downloads {
+                display: none;
+            }
         }
  
