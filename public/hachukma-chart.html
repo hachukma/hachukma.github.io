@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hachukma Alphabet Chart</title>
     <link rel="stylesheet" href="../public/css/chart.css">
-   
 </head>
 
 <body>
 
-    <!-- ═══ FIXED FULL-WIDTH NAVBAR ═══ -->
     <nav class="navbar">
 
         <div class="navbar-left">
@@ -19,15 +17,22 @@
         </div>
 
         <div class="navbar-right">
-            <a href="../index.html" class="nav-link"> Back </a>
+            <a href="../index.html" class="nav-link">Back </a>
         </div>
 
     </nav>
 
-    <!-- ═══ CENTERED CONTENT ═══ -->
+   
     <div class="container">
 
-        <!-- ALPHABET GRID -->
+        <aside class="acrophonic-note" aria-labelledby="acrophonic-heading">
+            <div class="acrophonic-copy">
+                <h2 id="acrophonic-heading">The Acrophonic Principle</h2>
+                <p>An acrophonic principle connects a sign with the first sound of a word used to represent it. For example, the Hachukma letter for <strong>/a/</strong> is shown with <em>ang</em>, which begins with the sound <strong>/a/</strong>.</p>
+            </div>
+        </aside>
+
+     
         <div class="grid alphabet-grid">
             <div class="card"><div class="letter">&#xE00A;</div><img src="../image/a.png" alt="a" /><div class="word">/a/ng</div></div>
             <div class="card"><div class="letter">&#xE00B;</div><img src="../image/b.png" alt="b" /><div class="word">/b/uphang-kəthəi</div></div>
@@ -54,16 +59,16 @@
             <div class="card"><div class="letter">&#xE020;</div><img src="../image/w.png" alt="w" /><div class="word">/w/a</div></div>
             <div class="card"><div class="letter">&#xE021;</div><img src="../image/ng.png" alt="ng" /><div class="word">/ng/wasung</div></div>
             <div class="card"><div class="letter">&#xE022;</div><img src="../image/y.png" alt="y" /><div class="word">/y/akung</div></div>
-            <div class="card"><div class="letter">&#xE023;</div><img src="../image/ɘ.png" alt="ə" /><div class="word">/ə/rə</div></div>
+            <div class="card"><div class="letter">&#xE023;</div><img src="../image/ɘ.png" alt="ɘ" /><div class="word">/ə/rə</div></div>
         </div>
 
-        <!-- DIACRITIC – centered with custom color -->
+     
         <h2>Diacritic</h2>
         <div class="tone-grid">
             <div class="card"><div class="letter">&#xE024;</div><div class="word">high-tone</div></div>
         </div>
 
-        <!-- NUMERALS -->
+      
         <h2>Numerals (0–9)</h2>
         <div class="grid numerals-grid">
             <div class="card"><div class="letter">&#xE000;</div><div class="word">0</div></div>
@@ -78,10 +83,40 @@
             <div class="card"><div class="letter">&#xE009;</div><div class="word">9</div></div>
         </div>
 
-        <!-- CTA BUTTON - changed to "Development Complete" for a clean status label -->
-        <!-- <a href="#" class="btn-primary">✔ Development Complete</a> -->
-
-
+        <section class="pdf-downloads" aria-labelledby="pdf-downloads-heading">
+            <p class="pdf-eyebrow">Take the chart with you</p>
+            <h2 id="pdf-downloads-heading">Download the Hachukma Chart</h2>
+            <p class="pdf-downloads-intro">Choose a version to preview or save for later.</p>
+            <div class="pdf-options">
+                <article class="pdf-option pdf-option-color">
+                    <span class="pdf-option-label">Color edition</span>
+                    <h3>Full Color</h3>
+                    <p>The complete chart with colorful letter cards.</p>
+                    <div class="pdf-option-actions">
+                        <a class="pdf-button pdf-preview" href="../downloads/Hachukma-color.pdf" target="_blank" rel="noopener">
+                            Preview PDF
+                        </a>
+                        <a class="pdf-button pdf-download" href="../downloads/Hachukma-color.pdf" download="Hachukma-color.pdf">
+                            Download
+                        </a>
+                    </div>
+                </article>
+                <article class="pdf-option pdf-option-mono">
+                    <span class="pdf-option-label">Print edition</span>
+                    <h3>Black &amp; White</h3>
+                    <p>A clean, ink-friendly version for printing.</p>
+                    <div class="pdf-option-actions">
+                        <a class="pdf-button pdf-preview" href="../downloads/Hachukma-black-&amp;-white.pdf" target="_blank" rel="noopener">
+                            Preview PDF
+                        </a>
+                        <a class="pdf-button pdf-download" href="../downloads/Hachukma-black-&amp;-white.pdf" download="Hachukma-black-and-white.pdf">
+                            Download
+                        </a>
+                    </div>
+                </article>
+            </div>
+            <p class="pdf-preview-note">Preview opens in a new browser tab. Download saves the PDF to your device.</p>
+        </section>
 
         <div class="notice-box">
             <strong>Hachukma Script Usage Notice:</strong>
