@@ -26,7 +26,7 @@
     <div class="container">
 
         <div class="chart-meta" aria-label="Chart character information">
-            <span><strong>37 characters</strong> · 26 letters · 10 numerals · 1 diacritic</span>
+            <span><strong>37 characters</strong> · 26 letters · 10 numerals · 1 high tone diacritic</span>
             <span><strong>PUA:</strong> U+E000–U+E024</span>
         </div>
 
@@ -116,7 +116,7 @@
                         <a class="pdf-button pdf-preview" href="../downloads/Hachukma-color.pdf" target="_blank" rel="noopener">
                             Preview PDF
                         </a>
-                        <a class="pdf-button pdf-download" href="../downloads/Hachukma-color.pdf" download="Hachukma-color.pdf" target="_blank" rel="noopener">
+                        <a class="pdf-button pdf-download" href="../downloads/Hachukma-color.pdf" download="Hachukma-color.pdf">
                             Download
                         </a>
                     </div>
@@ -129,14 +129,13 @@
                         <a class="pdf-button pdf-preview" href="../downloads/Hachukma-black-&amp;-white.pdf" target="_blank" rel="noopener">
                             Preview PDF
                         </a>
-                        <a class="pdf-button pdf-download" href="../downloads/Hachukma-black-&amp;-white.pdf" download="Hachukma-black-and-white.pdf" target="_blank" rel="noopener">
+                        <a class="pdf-button pdf-download" href="../downloads/Hachukma-black-&amp;-white.pdf" download="Hachukma-black-and-white.pdf">
                             Download
                         </a>
                     </div>
                 </article>
             </div>
-            <p class="pdf-preview-note">On phones that support file sharing, Download opens your device's share sheet so you can save the PDF. If the PDF opens instead, use your browser's menu to download or save it.</p>
-            <p class="pdf-download-status" id="pdf-download-status" role="status" aria-live="polite"></p>
+            <p class="pdf-preview-note">Tap Download to save the PDF directly to your device.</p>
         </section>
 
          <section class="chart-note exceptions-note" aria-labelledby="exceptions-heading">
@@ -159,70 +158,6 @@
 
     <script>
         document.getElementById("copyright-year").textContent = new Date().getFullYear();
-
-        const downloadLinks = document.querySelectorAll(".pdf-download");
-        const downloadStatus = document.getElementById("pdf-download-status");
-        const isTouchDevice = navigator.maxTouchPoints > 0 && window.matchMedia("(pointer: coarse)").matches;
-        const canSharePDF = isTouchDevice
-            && typeof File === "function"
-            && typeof navigator.share === "function"
-            && typeof navigator.canShare === "function"
-            && navigator.canShare({ files: [new File([], "test.pdf", { type: "application/pdf" })] });
-        const preparedFiles = new Map();
-        const fileRequests = new Map();
-
-        if (canSharePDF) {
-            downloadLinks.forEach((link) => {
-                link.addEventListener("click", (event) => {
-                    const file = preparedFiles.get(link);
-                    if (!file) {
-                        event.preventDefault();
-                        downloadStatus.textContent = "Preparing the PDF. Please tap Download again in a moment.";
-                        let request = fileRequests.get(link);
-                        if (!request) {
-                            request = fetch(link.href)
-                                .then((response) => {
-                                    if (!response.ok) {
-                                        throw new Error(`PDF request failed with status ${response.status}`);
-                                    }
-                                    return response.blob();
-                                })
-                                .then((blob) => {
-                                    const preparedFile = new File([blob], link.download, { type: "application/pdf" });
-                                    preparedFiles.set(link, preparedFile);
-                                    return preparedFile;
-                                });
-                            fileRequests.set(link, request);
-                        }
-                        request.then(() => {
-                            downloadStatus.textContent = "The PDF is ready. Tap Download again to save it.";
-                        }).catch((error) => {
-                            fileRequests.delete(link);
-                            console.error("Could not prepare the PDF for sharing.", error);
-                            downloadStatus.textContent = "The PDF could not be prepared. Use Preview PDF, then choose Download or Save in your browser.";
-                        });
-                        return;
-                    }
-
-                    event.preventDefault();
-                    try {
-                        navigator.share({ files: [file], title: file.name })
-                            .then(() => {
-                                downloadStatus.textContent = "Choose a save option in your device's share sheet.";
-                            })
-                            .catch((error) => {
-                                if (error.name !== "AbortError") {
-                                    console.error("Could not open the device share sheet.", error);
-                                    downloadStatus.textContent = "Could not open the share sheet. Use Preview PDF, then choose Download or Save in your browser.";
-                                }
-                            });
-                    } catch (error) {
-                        console.error("Could not open the device share sheet.", error);
-                        downloadStatus.textContent = "Could not open the share sheet. Use Preview PDF, then choose Download or Save in your browser.";
-                    }
-                });
-            });
-        }
     </script>
 
 </body>
