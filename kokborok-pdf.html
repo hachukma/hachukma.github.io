@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kokborok Word Collection · Hachukma Script</title>
+    <style>
+        @font-face {
+            font-family: "NewScript";
+            src: url("Font/hachukma.woff") format("woff");
+            font-display: swap;
+        }
+
+        :root {
+            color-scheme: light;
+            --ink: #203548;
+            --muted: #647783;
+            --line: #c8d8dc;
+            --teal-dark: #23928e;
+            --blue-pale: #eef4f8;
+            --paper: #fffdf8;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 32px 20px;
+            background: #eaf1f4;
+            color: var(--ink);
+            font-family: Arial, sans-serif;
+        }
+
+        .page {
+            width: min(100%, 1120px);
+            margin: 0 auto;
+            padding: 36px 42px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+            padding-bottom: 12px;
+            margin-bottom: 18px;
+            border-bottom: 2px solid var(--teal-dark);
+        }
+
+        h1 {
+            margin: 0;
+            color: var(--teal-dark);
+            font-family: Arial, sans-serif;
+            font-size: 34px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .script-wordmark {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin: 0 0 14px;
+            color: var(--muted);
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .script-wordmark::before,
+        .script-wordmark::after {
+            height: 1px;
+            flex: 1;
+            background: var(--line);
+            content: "";
+        }
+
+        .script-wordmark span {
+            color: var(--teal-dark);
+            font-family: "NewScript", sans-serif;
+            font-size: 36px;
+            font-weight: normal;
+            letter-spacing: 0.08em;
+            line-height: 1.15;
+            text-transform: none;
+        }
+
+        .subtitle {
+            margin: 6px 0 0;
+            color: var(--muted);
+            font-size: 13px;
+            letter-spacing: 0.04em;
+        }
+
+        .header-note {
+            max-width: 290px;
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.5;
+            text-align: right;
+        }
+
+        .contributor {
+            margin-top: 6px;
+            color: var(--ink);
+        }
+
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .print-button {
+            padding: 9px 14px;
+            border: 0;
+            border-radius: 3px;
+            background: var(--teal-dark);
+            color: #fff;
+            cursor: pointer;
+            font: inherit;
+            font-weight: 700;
+        }
+
+        .print-button:hover {
+            background: #187873;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-right: 8px;
+            padding: 9px 14px;
+            border: 1px solid var(--line);
+            border-radius: 3px;
+            color: var(--ink);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            background: var(--blue-pale);
+        }
+
+        .table-wrap {
+            width: 100%;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        th,
+        td {
+            padding: 6px 10px;
+            border: 1px solid var(--line);
+            text-align: left;
+            vertical-align: middle;
+        }
+
+        th {
+            background: var(--teal-dark);
+            color: #fff;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        tbody tr:nth-child(even) {
+            background: var(--blue-pale);
+        }
+
+        .number-cell {
+            width: 7%;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .word-cell {
+            width: 25%;
+            overflow-wrap: anywhere;
+            font-size: 13px;
+        }
+
+        .glyph-cell {
+            width: 28%;
+            color: var(--teal-dark);
+            text-align: center;
+        }
+
+        .glyph {
+            display: inline-block;
+            min-height: 1.4em;
+            color: var(--teal-dark);
+            font-family: "NewScript", "Segoe UI Emoji", sans-serif;
+            font-size: 25px;
+            line-height: 1.4;
+            vertical-align: middle;
+        }
+
+        .pua-cell {
+            width: 40%;
+            color: #43535a;
+            font-family: Consolas, "Courier New", monospace;
+            font-size: 10px;
+            overflow-wrap: anywhere;
+        }
+
+        .unsupported {
+            color: #a64b37;
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+        }
+
+        .status {
+            padding: 24px 12px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .page-footer {
+            padding-top: 10px;
+            margin-top: 16px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 10px;
+            line-height: 1.5;
+        }
+
+        @page {
+            size: A4 landscape;
+            margin: 12mm;
+        }
+
+        @media (max-width: 650px) {
+            body {
+                padding: 12px 8px;
+            }
+
+            .page {
+                padding: 22px 14px;
+            }
+
+            .page-header {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .header-note {
+                text-align: left;
+            }
+
+            .table-wrap {
+                overflow-x: auto;
+            }
+
+            table {
+                min-width: 720px;
+            }
+        }
+
+        @media print {
+            body {
+                padding: 0;
+                background: #fff;
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+
+            .page {
+                width: 100%;
+                max-width: none;
+                padding: 0;
+                border: 0;
+                box-shadow: none;
+            }
+
+            .page-header {
+                margin-bottom: 10px;
+            }
+
+            h1 {
+                font-size: 27px;
+            }
+
+            .script-wordmark {
+                gap: 10px;
+                margin-bottom: 8px;
+                font-size: 7px;
+            }
+
+            .script-wordmark span {
+                font-size: 26px;
+            }
+
+            .subtitle,
+            .header-note {
+                font-size: 9px;
+            }
+
+            .toolbar {
+                margin-bottom: 7px;
+                font-size: 9px;
+            }
+
+            .print-button {
+                display: none;
+            }
+
+            .back-link {
+                display: none;
+            }
+
+            th,
+            td {
+                padding: 3px 6px;
+            }
+
+            th {
+                font-size: 8px;
+            }
+
+            .number-cell,
+            .word-cell {
+                font-size: 9px;
+            }
+
+            .glyph {
+                font-size: 18px;
+            }
+
+            .pua-cell {
+                font-size: 8px;
+            }
+
+            thead {
+                display: table-header-group;
+            }
+
+            tr {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            .page-footer {
+                margin-top: 8px;
+                padding-top: 6px;
+                font-size: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="page">
+        <header class="page-header">
+            <div>
+                <h1>Kokborok Word Collection</h1>
+                <p class="subtitle">Roman Kokborok · Hachukma glyphs · Unicode Private Use Area</p>
+            </div>
+            <div class="header-note">
+                <div>Hachukma Script · PUA U+E00A–U+E023</div>
+                <div class="contributor">Contributed by <strong>Eltanish Debbarma</strong></div>
+            </div>
+        </header>
+
+        <div class="script-wordmark" aria-label="Hachukma written in its own script">
+            <span class="glyph">&#xE011;&#xE00A;&#xE00C;&#xE01E;&#xE014;&#xE016;&#xE00A;</span>
+        </div>
+
+        <div class="toolbar">
+            <span id="word-count" aria-live="polite">Loading Kokborok words…</span>
+            <div>
+                <a class="back-link" href="public/script.html">Back to Word Collection</a>
+                <button class="print-button" type="button" onclick="window.print()">Print / Save as PDF</button>
+            </div>
+        </div>
+
+        <div class="table-wrap">
+            <table aria-label="Kokborok words with Hachukma glyphs and Unicode PUA codes">
+                <thead>
+                    <tr>
+                        <th scope="col" class="number-cell">No.</th>
+                        <th scope="col" class="word-cell">Roman Kokborok</th>
+                        <th scope="col" class="glyph-cell">Hachukma Glyphs</th>
+                        <th scope="col" class="pua-cell">Unicode PUA</th>
+                    </tr>
+                </thead>
+                <tbody id="word-table">
+                    <tr><td class="status" colspan="4">Loading word list…</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <footer class="page-footer">
+            Spaces, hyphens, and punctuation are not encoded; the PUA column lists the mapped letter glyphs in order.
+            Unmapped characters are identified explicitly. Use the print button and choose “Save as PDF” in the print dialog.
+        </footer>
+    </main>
+
+    <script>
+        const glyphMap = {
+            a: 0xE00A, b: 0xE00B, ch: 0xE00C, d: 0xE00D, e: 0xE00E,
+            ph: 0xE00F, g: 0xE010, h: 0xE011, i: 0xE012, j: 0xE013,
+            k: 0xE014, l: 0xE015, m: 0xE016, n: 0xE017, o: 0xE018,
+            p: 0xE019, th: 0xE01A, r: 0xE01B, s: 0xE01C, t: 0xE01D,
+            u: 0xE01E, kh: 0xE01F, w: 0xE020, ng: 0xE021, y: 0xE022,
+            "ə": 0xE023
+        };
+        const tokens = Object.keys(glyphMap).sort((a, b) => b.length - a.length);
+
+        function encodeWord(word) {
+            const glyphHtml = [];
+            const codePoints = [];
+            const unsupported = [];
+            const normalized = word.toLowerCase();
+            let position = 0;
+
+            while (position < normalized.length) {
+                const token = tokens.find(candidate => normalized.startsWith(candidate, position));
+                if (token) {
+                    const codePoint = glyphMap[token];
+                    glyphHtml.push(`&#x${codePoint.toString(16)};`);
+                    codePoints.push(`U+${codePoint.toString(16).toUpperCase().padStart(4, "0")}`);
+                    position += token.length;
+                    continue;
+                }
+                const character = normalized[position];
+                if (!/\p{L}/u.test(character)) {
+                    position += 1;
+                    continue;
+                }
+                unsupported.push(character);
+                glyphHtml.push(document.createTextNode(character).textContent);
+                position += 1;
+            }
+            return { glyphHtml: glyphHtml.join(""), codePoints, unsupported: [...new Set(unsupported)] };
+        }
+
+        function appendCell(row, className, value) {
+            const cell = document.createElement("td");
+            cell.className = className;
+            cell.textContent = value;
+            row.appendChild(cell);
+            return cell;
+        }
+
+        function renderWords(words) {
+            const tableBody = document.getElementById("word-table");
+            const fragment = document.createDocumentFragment();
+
+            words.forEach((word, index) => {
+                const encoded = encodeWord(word);
+                const row = document.createElement("tr");
+                appendCell(row, "number-cell", String(index + 1));
+                appendCell(row, "word-cell", word);
+                const glyphCell = appendCell(row, "glyph-cell", "");
+                const glyph = document.createElement("span");
+                glyph.className = "glyph";
+                glyph.innerHTML = encoded.glyphHtml;
+                glyphCell.appendChild(glyph);
+                const puaCell = appendCell(row, "pua-cell", encoded.codePoints.join(" · ") || "—");
+
+                if (encoded.unsupported.length > 0) {
+                    const note = document.createElement("span");
+                    note.className = "unsupported";
+                    note.textContent = `  Unmapped: ${encoded.unsupported.join(", ")}`;
+                    puaCell.appendChild(note);
+                }
+                fragment.appendChild(row);
+            });
+
+            tableBody.replaceChildren(fragment);
+            document.getElementById("word-count").textContent = `Total words: ${words.length}`;
+        }
+
+        fetch("public/script.html")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Could not load public/script.html (HTTP ${response.status}).`);
+                }
+                return response.text();
+            })
+            .then(text => {
+                const wordListMatch = text.match(/const\s+wordList\s*=\s*\[([\s\S]*?)\];/);
+                if (!wordListMatch) {
+                    throw new Error("Could not find the word list in public/script.html.");
+                }
+                const words = [...wordListMatch[1].matchAll(/"([^"]+)"/g)].map(match => match[1]);
+                if (words.length === 0) {
+                    throw new Error("The Kokborok word list is empty or could not be read.");
+                }
+                renderWords(words);
+            })
+            .catch(error => {
+                document.getElementById("word-count").textContent = "Word list could not be loaded.";
+                const row = document.createElement("tr");
+                const cell = document.createElement("td");
+                cell.className = "status";
+                cell.colSpan = 4;
+                cell.textContent = `${error.message} Open this page through the local web server so it can read public/script.html.`;
+                row.appendChild(cell);
+                document.getElementById("word-table").replaceChildren(row);
+            });
+    </script>
+</body>
+</html>
