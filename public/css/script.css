@@ -487,6 +487,22 @@
             margin-top: 8px;
         }
 
+
+       .pdf-download-link {
+            display: inline-block;
+            margin-right: 8px;
+            padding: 9px 12px;
+            border: 1px solid #c8d8dc;
+            border-radius: 3px;
+            color: #203548;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .pdf-download-link:hover {
+            background: #eef4f8;
+        }
+
         .alphabet-nav {
             margin: 30px 0;
             border-bottom: 1px solid #dee2e6;
