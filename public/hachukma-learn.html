@@ -25,8 +25,8 @@
 <!-- LETTERS SECTION (normal, with English after slash) -->
 <div id="lettersSection" class="section active">
   <div class="header">
-    <div class="pageTitle">Fill the Missing Letters</div>
-    <div class="subtitle">Choose the correct Hachukma character to complete each word</div>
+    <div class="pageTitle">Learn and Remember Hachukma Letters</div>
+    <div class="subtitle">Choose the Hachukma character that completes each word. Repeated practice helps you recognize and remember the letters.</div>
   </div>
   <div style="max-width:1400px; margin:0 auto; padding:20px;">
     <!-- all original letter boxes (with slash + English) -->
@@ -64,6 +64,8 @@
     <div class="keyboardBox" data-correct="90"><div class="wordDisplay">9_/90</div><button class="key" onclick="checkNumberKey(this, '\uE000')">&#xE000;</button><button class="key" onclick="checkNumberKey(this, '\uE009')">&#xE009;</button><button class="key" onclick="checkNumberKey(this, '\uE008')">&#xE008;</button><button class="key" onclick="checkNumberKey(this, '\uE007')">&#xE007;</button></div>
   </div>
 </div>
+
+
 
 <script>
 // Unicode to English mapping (used for comparison)
@@ -288,18 +290,18 @@ function checkPageCompletion() {
   const completedBoxes = Array.from(boxes).filter(box => 
     box.style.borderColor === 'green' || box.style.borderColor === 'rgb(0, 128, 0)'
   );
-  if (completedBoxes.length === boxes.length && boxes.length > 0) {
-    showEmojiPopup();
-  }
+  const allComplete = boxes.length > 0 && completedBoxes.length === boxes.length;
+  showEmojiPopup(allComplete ? 'Amazing! You completed them all!' : 'Great job! One complete!');
 }
 
 // ----- EMOJI POPUP -----
-function showEmojiPopup() {
+function showEmojiPopup(message) {
+  document.querySelectorAll('.emoji-popup').forEach(popup => popup.remove());
   const emojis = ['🎉', '🌟', '👍', '🎯', '💯', '🔥', '✨', '🏆'];
   const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
   const popup = document.createElement('div');
   popup.className = 'emoji-popup';
-  popup.innerHTML = `<div class="emoji-bubble"><span class="emoji">${randomEmoji}</span><span class="emoji-text">Great job!</span></div>`;
+  popup.innerHTML = `<div class="emoji-bubble"><span class="emoji">${randomEmoji}</span><span class="emoji-text">${message}</span></div>`;
   document.body.appendChild(popup);
   setTimeout(() => {
     popup.classList.add('show');
@@ -309,17 +311,6 @@ function showEmojiPopup() {
     }, 2000);
   }, 100);
 }
-
-// ----- DISABLE RIGHT CLICK AND KEYBOARD -----
-document.addEventListener('contextmenu', e => e.preventDefault()); // disable right-click
-document.addEventListener('keydown', e => {
-  // Allow browser shortcuts (Ctrl, Alt, Meta, F keys, arrows, Tab, Escape)
-  if (e.ctrlKey || e.altKey || e.metaKey || e.key.startsWith('F') || e.key === 'Escape' || e.key === 'Tab' || e.key.startsWith('Arrow')) {
-    return;
-  }
-  // Block all other keys (letters, numbers, space, Enter, etc.)
-  e.preventDefault();
-});
 
 // goHome
 function goHome() { window.location.href = "./script"; }
