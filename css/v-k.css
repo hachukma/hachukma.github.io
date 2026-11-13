@@ -378,7 +378,7 @@
             text-align: center;
             width: 100%;
             padding: 0.2rem 0;
-        }
+        } 
 
         .text-display {
             padding: 1.2rem 1.5rem;
@@ -599,10 +599,11 @@
                 transform: scale(0.8);
             }
         }
-
+/* 
         .key[data-key="p"] {
-            background: linear-gradient(145deg, #a3d3bd, #e9ebda);
-        }
+    
+             background: linear-gradient(145deg, #c1d6cd, #edeee7);
+        } */
 
         .key:hover {
             transform: translateY(-2px);
@@ -775,7 +776,7 @@
 
         #smalldevice-two-set-key {
             grid-column: span 2;
-            background: linear-gradient(145deg, #a3d3bd, #e9ebda);
+            /* background: linear-gradient(145deg, #a3d3bd, #e9ebda); */
             color: #222222;
             border: 1px solid #CCCCCC;
             border-radius: 4px;
@@ -879,9 +880,9 @@
             padding-left: 0px;
         }
 
-        .syllabic-line[data-key="chh"] {
+        /* .syllabic-line[data-key="chh"] {
             padding-left: 39px;
-        }
+        } */
 
         @media screen and (max-width: 1200px) {
             .container {
@@ -1377,9 +1378,9 @@
             .syllabic-line[data-key="ch"] {
                 padding-left: 0px !important;
             }
-            .syllabic-line[data-key="chh"] {
+            /* .syllabic-line[data-key="chh"] {
                 padding-left: 18px !important;
-            }
+            } */
             .hachukma-wrapper .char-container .high-tone {
                 top: -0.2em;
                 left: 0;
@@ -1396,9 +1397,9 @@
             .syllabic-line[data-key="ch"] {
                 padding-left: 0px !important;
             }
-            .syllabic-line[data-key="chh"] {
+            /* .syllabic-line[data-key="chh"] {
                 padding-left: 12px !important;
-            }
+            } */
             .hachukma-wrapper .char-container .high-tone {
                 font-size: 1.2em;
                 top: -0.15em;
@@ -1413,9 +1414,9 @@
             .syllabic-line[data-key="ch"] {
                 padding-left: 0px !important;
             }
-            .syllabic-line[data-key="chh"] {
+            /* .syllabic-line[data-key="chh"] {
                 padding-left: 12px !important;
-            }
+            } */
 
             .hachukma-wrapper .char-container .high-tone {
                 font-size: 1.2em;
