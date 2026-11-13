@@ -19,13 +19,12 @@
 
     <div class="container">
 
-        <!-- ===== ARTICLE ===== -->
         <div class="article-section" id="articleSection">
             <div class="article-title">
                 Hachukma — <span class="hachukma-word">A Modern Script for Kokborok</span>
             </div>
             <div class="article-meta">
-                <span>Designed for Virtual & Physical Keyboards · 2025–2026 </span>
+                <span>Designed for Virtual keyboards · 2025–2026 </span>
             </div>
             <div class="article-body">
 
@@ -53,14 +52,19 @@
                     <strong>Why the Tone Mark is on the <kbd>p</kbd> Key (Double‑Tap)</strong> — In Kokborok, the tone mark is important for pronunciation and meaning. In Hachukma, you add it by double‑tapping the <kbd>p</kbd> key. Why <kbd>p</kbd>? Because it keeps all the other keys free for their normal jobs, like punctuation and symbols. This "multi‑tap" approach is fast and intuitive.
                 </p>
 
-                <!-- ===== IME EXPERIMENT ===== -->
+               
                 <div class="ime-experiment">
                     <p><strong>Software Experiment — A Note‑Pad for Hachukma</strong></p>
-                    <p>
+
+                     <p>
                         A small note‑pad style software is available at
                         <a href="https://hachukmascript.online/public/hachukma-IME-software" target="_blank">hachukmascript.online/public/hachukma-IME-software</a>.
                         This is <strong>not</strong> a full IME. It's an early experiment that shows how Hachukma characters can be typed using the multi‑tap system and tone marking.
                     </p>
+
+                    <!-- <p>
+                        A small note‑pad style software experiment is available from this project’s local download resources. This is <strong>not</strong> a full IME. It's an early experiment that shows how Hachukma characters can be typed using the multi‑tap system and tone marking.
+                    </p> -->
                     <p>
                         <strong>What about the future?</strong> Once official Unicode codepoints are assigned to Hachukma, building a full system‑wide IME (Input Method Editor) will be straightforward. Such an IME would handle the multi‑tap system entirely in software — no special hardware needed. You'd be able to type in Hachukma on <em>any</em> standard keyboard, in <em>any</em> application.
                     </p>
@@ -72,7 +76,6 @@
                     </p>
                 </div>
 
-                <!-- ===== PRACTICE MODE ONLY ===== -->
                 <div style="background:#f0f9f9;padding:0.8rem 1.2rem;border-radius:6px;border-left:4px solid #1a7a7a;margin:1rem 0;">
                     <p><strong>Practice Mode – Learn the Key Mapping</strong></p>
                     <p>
@@ -98,7 +101,7 @@
                 </p>
 
                 <p>
-                    <strong>The Building Blocks of Hachukma</strong> — The script is built on the sounds of Kokborok. It includes six vowels: <strong>a</strong>, <strong>e</strong>, <strong>i</strong>, <strong>o</strong>, <strong>u</strong>, and the central vowel <strong>ɘ</strong>. It also features 20 consonants that cover the full range of Kokborok sounds. Each character is designed to be visually distinct and easy to learn. Below you can see the complete set, along with their Latin equivalents and IPA pronunciations.
+                    <strong>The Building Blocks of Hachukma</strong> — The script is built on the sounds of Kokborok. It includes six vowels: <strong>a</strong>, <strong>e</strong>, <strong>i</strong>, <strong>o</strong>, <strong>u</strong>, and the central vowel <strong>ə</strong>. It also features 20 consonants that cover the full range of Kokborok sounds. Each character is designed to be visually distinct and easy to learn. Below you can see the complete set, along with their Latin equivalents and IPA pronunciations.
                 </p>
 
                 <!-- Vowels Grid -->
@@ -108,7 +111,7 @@
                     <div class="letter-box"><span class="script"></span><span class="ipa">/i/</span><span class="latin">i</span></div>
                     <div class="letter-box"><span class="script"></span><span class="ipa">/o/</span><span class="latin">o</span></div>
                     <div class="letter-box"><span class="script"></span><span class="ipa">/u/</span><span class="latin">u</span></div>
-                    <div class="letter-box"><span class="script"></span><span class="ipa">/ə/</span><span class="latin">ə</span></div>
+                    <div class="letter-box"><span class="script">&#xE023;</span><span class="ipa">/ə/</span><span class="latin">ə</span></div>
                 </div>
 
                 <!-- Consonants Grid -->
@@ -142,11 +145,11 @@
             </div>
         </div>
 
-        <!-- ===== TEXT DISPLAY with PREDICTION BAR ===== -->
-        <div class="text-display-wrapper" id="textDisplayWrapper">
+         <div class="text-display-wrapper" id="textDisplayWrapper">
             <div class="prediction-bar" id="predictionBar">
-                <div class="prediction-empty">Start typing to see predictions …</div>
+                <div class="prediction-empty">type kokborok....</div>
             </div>
+
             <div id="textDisplay" class="text-display" tabindex="0">
                 <div class="hachukma-wrapper" id="hachukmaWrapper"></div>
             </div>
@@ -259,7 +262,7 @@
                     </button>
                     <button class="key" data-key="p" data-char="&#xE019;">
                         <span class="shortcut-label">p</span>
-                        &#xE019;&#xE024;<br>p
+                        &#xE019;&#xE024;<br>p-tone
                     </button>
                     <button class="key" data-type="special" data-key="]">{<br>]</button>
                     <button class="key" data-type="special" data-key="]">}<br>[</button>
@@ -346,7 +349,7 @@
                     <button class="key" data-type="special">Ctrl</button>
                     <button class="key" data-type="special">Win</button>
                     <button class="key" data-type="special">Alt</button>
-                    <button class="key extra-wide" data-type="special" data-key="space">kokborok</button>
+                    <button class="key extra-wide" data-type="special" data-key="space">Kokborok</button>
                     <button class="key" data-type="special">Alt</button>
                     <button class="key" data-type="special">Ctrl</button>
 
@@ -446,7 +449,8 @@
                         </button>
 
                         <!-- PHONE ROW 3 -->
-                        <button class="smalldevice-keys" id="smalldevice-two-set-key" data-key="" data-char="&#xE024;">&#xE024;<br></button>
+                        <button class="smalldevice-keys" id="smalldevice-two-set-key" data-key="" data-char="&#xE024;">&#xE024;tone<br></button>
+
                         <button class="smalldevice-keys" data-key="a" data-char="&#xE00A;">
                             <span class="shortcut-label">a</span>
                             &#xE00A;<br>a
@@ -528,7 +532,7 @@
 
         </div>
 
-        <!-- ===== FOOTER ===== -->
+ 
         <div class="feedback-footer">
             <p>
                 If you have any feedback, suggestions, or questions about the Hachukma key mapping, please contact:
@@ -552,7 +556,7 @@
                 e.stopPropagation();
                 return false;
             }, true);
-
+           
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'F12' || e.keyCode === 123) {
                     e.preventDefault();
@@ -633,9 +637,7 @@
         })();
 
 
-        // ================================================================
-        //  HACHUKMA TYPING SYSTEM - ZERO GAPS BETWEEN CHARACTERS
-        // ================================================================
+     
 
         // ---- DOM refs ----
         const hachukmaWrapper = document.getElementById('hachukmaWrapper');
@@ -789,7 +791,7 @@
   "bərəima", "bəkhnai", "chini", "choba", "ha", "joto", "juda",
   "kaham","kerongno", "khajak", "khoroksa", "kothoma", "kotor", "kəplai",
   "kəthar", "kəthəi", "lamthai", "langma", "musi",  "naisik", "nokhao",
-  "nono", "norok", "norokni", "nɘng", "orono", "phola", "sinai",
+  "nono", "norok", "norokni", "nəng", "orono", "phola", "sinai",
 
 
   "sindrai", "səkango", "ta", "takhukrok", "tamni", "tamo",                       
@@ -863,7 +865,7 @@
 
 ].sort();
 
-        // ---- Get predictions ----
+        // Get predictions 
         function getPredictions(prefix) {
             if (!prefix || prefix.length === 0) return [];
             const lowerPrefix = prefix.toLowerCase();
@@ -896,9 +898,6 @@
             }
         }
 
-        // ================================================================
-        //  RENDER FUNCTIONS
-        // ================================================================
 
         function renderDisplay() {
             // Clear wrapper
@@ -962,7 +961,18 @@
             if (show.length === 0) {
                 const empty = document.createElement('div');
                 empty.className = 'prediction-empty';
-                empty.textContent = currentInput.length > 0 ? 'No matching words' : 'Start typing to see predictions …';
+                empty.textContent = currentInput.length > 0 ? 'No matching words' : 'Type kokborok …';
+
+
+
+
+
+
+
+
+
+
+
                 predictionBar.appendChild(empty);
                 return;
             }
@@ -1147,6 +1157,15 @@
             updatePredictions();
         }
 
+
+
+
+
+
+
+
+
+
         function applyHighToneToLastChar() {
             if (typedChars.length === 0) return;
             const last = typedChars[typedChars.length - 1];
@@ -1238,9 +1257,7 @@
             renderPredictions();
         }
 
-        // ================================================================
-        //  KEYBOARD BINDING
-        // ================================================================
+  
 
         const desktopKeys = document.querySelectorAll('#desktopKeyboard .key');
         desktopKeys.forEach(key => {
