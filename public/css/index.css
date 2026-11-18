@@ -47,6 +47,65 @@
             min-height: 2.4rem;
         }
 
+
+
+        
+/* ─── PDF DOWNLOAD ─── */
+
+.pdf-download-link {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 4px;
+    margin-top: 9px;
+    margin-right: 8px;
+    padding: 10px 14px;
+    border: 1px solid #c8d8dc;
+    border-radius: 4px;
+    background: #ffffff;
+    color: #203548;
+    text-decoration: none;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.pdf-button-label {
+    font-size: 0.9rem;
+    font-weight: 650;
+    line-height: 1.4;
+    color: #203548;
+}
+
+.pdf-button-title {
+    display: block;
+    font-size: 0.70rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #536879;
+}
+
+.pdf-download-link:hover {
+    background: #eef4f8;
+    border-color: #a9c5cb;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .pdf-download-link {
+        padding: 8px 11px;
+        gap: 3px;
+        margin-top: 7px;
+        max-width: 100%;
+    }
+
+    .pdf-button-label {
+        font-size: 0.82rem;
+    }
+
+    .pdf-button-title {
+        font-size: 0.68rem;
+    }
+}
         .navbar-brand .brand-glyph {
             font-family: "NewScript", sans-serif;
             font-size: 1.8rem;
