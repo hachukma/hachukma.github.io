@@ -47,12 +47,23 @@
             min-height: 2.4rem;
         }
 
+        .navbar-brand .brand-glyph {
+            font-family: "NewScript", sans-serif;
+            font-size: 1.8rem;
+            color: #c6d9e9;
+            line-height: 1;
+            display: inline-block;
+            letter-spacing: 0.04em;
+        }
 
 
-        
-/* ─── PDF DOWNLOAD ─── */
 
-.pdf-download-link {
+
+
+/* ─── PDF DOWNLOAD & PREVIEW (COMMON STYLES) ─── */
+
+.pdf-download-link,
+.pdf-preview-link {
     display: inline-flex;
     flex-direction: column;
     align-items: flex-start;
@@ -67,7 +78,16 @@
     color: #203548;
     text-decoration: none;
     transition: background 0.2s ease, border-color 0.2s ease;
+} 
+ 
+
+.pdf-download-link:hover,
+.pdf-preview-link:hover {
+    background: #eef4f8;
+    border-color: #a9c5cb;
 }
+
+/* Common Text Styles */
 
 .pdf-button-label {
     font-size: 0.9rem;
@@ -84,14 +104,11 @@
     color: #536879;
 }
 
-.pdf-download-link:hover {
-    background: #eef4f8;
-    border-color: #a9c5cb;
-}
+/* ─── MOBILE ─── */
 
-/* Mobile */
 @media (max-width: 600px) {
-    .pdf-download-link {
+    .pdf-download-link,
+    .pdf-preview-link {
         padding: 8px 11px;
         gap: 3px;
         margin-top: 7px;
@@ -106,14 +123,15 @@
         font-size: 0.68rem;
     }
 }
-        .navbar-brand .brand-glyph {
-            font-family: "NewScript", sans-serif;
-            font-size: 1.8rem;
-            color: #c6d9e9;
-            line-height: 1;
-            display: inline-block;
-            letter-spacing: 0.04em;
-        }
+
+
+
+
+
+
+
+
+
 
         .typing-wrap {
             display: flex;
